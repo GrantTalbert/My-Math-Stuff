@@ -1,0 +1,1 @@
+Sometimes I'm watching a youtube video or reading an article online or doing homework or talking to a friend and I come across an interesting math problem, then I usually work it out somewhere and type it into LaTeX for fun (and cuz it helps me check my work). So I might as well upload some of those files here, I guess.
