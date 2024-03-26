@@ -1,0 +1,2 @@
+# Quantum Computing
+I was going through the textbook on [IBM's Qiskit website](https://qiskit.org/), but then they took that down in favor of a more up to date textbook on IBM Quantum Learning platform(https://learning.quantum.ibm.com/catalog/courses), but that caused me to loose interest so I only really absorbed a little bit of quantum computing theory and most of my first year linear algebra curriculum. That said, it was rather fun and I wouldn't mind learning more in the future when I have time.
