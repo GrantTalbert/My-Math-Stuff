@@ -1,0 +1,1052 @@
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage{import}
+\import{C:/Users/83tal/Documents/School/Personal Studies/Abstract Algebra by Thomas W. Judson}{Header.tex}
+
+\title{Algebra 1 and 2 Notes}
+\author{Grant Talbert}
+\date{Sem 2 2024}
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		owo\\
+		Notes from the text \emph{Abstract Algebra} by Thomas W. Judson.
+	\end{abstract}
+	
+	\newpage
+	
+	\tableofcontents
+	
+	\newpage
+
+\chapter{Preliminaries}
+\section{Sets and Equivalence Relations}
+\subsection*{Set Theory}
+\begin{definition}[Set]
+	A set is any well-defined collection of objects; that is, it is defined in such a manner that we can tell whether \(x\) belongs to the set or not.
+\end{definition}
+We denote sets by capital letters, and we refer to the objects that belong to them as their elements. We have two notations for defining sets. Sometimes we write all their elements within curly brackets:
+\[
+	X=\{ x_1,x_2,\ldots,x_n \} 
+\]
+and sometimes we use set-builder notation:
+\[
+	X=\{ x\mid x\text{ satisfies }\mathcal{P}   \} 
+\]
+where all elements \(x\) of the set \(X\) must satisfy some property \(\mathcal{P} \). For example, consider the set of even positive integers:
+\[
+	E=\{ x\in\mathbb{N} \mid \frac{x}{2}\in\mathbb{N}  \}
+\]
+We write \(2\in E\) to denote set membership, and \(-3\notin E\) to denote set exclusion.\\
+The following are shorthands for rather important sets:
+\begin{itemize}
+	\item \(\mathbb{N} \) is the set of all naturals.
+	\item \(\mathbb{Z} \) is the set of all integers. 
+	\item \(\mathbb{Q} \) is the set of all rationals. 
+	\item \(\mathbb{R} \) is the set of all reals. 
+	\item \(\mathbb{C} \) is the set of all complex numbers.
+\end{itemize}
+We can define various relations and operations on sets.
+\begin{definition}[Subset]
+	if \(A\) and \(B\) are sets, we say that \(A\subset B\), or \(A\) is a subset of \(B\), if every element of \(A\) is also in \(B\).
+\end{definition}
+For example,
+\[
+	\mathbb{N} \subset\mathbb{Z} \subset\mathbb{Q} \subset\mathbb{R} \subset\mathbb{C} 
+\]
+Trivially, all sets are their own subsets. We also find that two sets are equal if \(A\subseteq B\) and \(B\subseteq A\).
+\begin{definition}[Empty Set]
+	The empty set, denoted \(\varnothing \), is the set \(\{  \} \).
+\end{definition}
+We can define two operations on sets to construct new sets from two sets:
+\begin{definition}[Union]
+	The union \(A\cup B\) of two sets \(A\) and \(B\) is defined as 
+	\[
+		A\cup B=\{ x\mid x\in A \lor x\in B\} 
+	\]
+	In other words, all elements in either \(A\), \(B\), or both.
+\end{definition}
+\begin{definition}[Intersection]
+	The intersection \(A\cap B\) of two sets \(A\) and \(B\) is defined as 
+	\[
+		A\cap B=\{ x\mid x\in A \land x\in B \} 
+	\]
+	In other words, all elements in both \(A\) and \(B\).
+\end{definition}
+We can consider the union and intersection of more than just two sets with the big operators. The union is given as
+\[
+	\bigcup_{i=1}^{n} A_i =A_1 \cup A_2 \cup \cdots \cup A_n
+\]
+and the intersection is
+\[
+	\bigcap_{i=1}^{n} A_i = A_1 \cap A_2 \cap  \cdots \cap  A_n
+\]
+\begin{definition}[Disjoint]
+	Two sets \(A\) and \(B\) are disjoint if 
+	\[A\cap B=\varnothing\]
+\end{definition}
+Oftentimes, we will work within one fixed set \(U\), called the \emph{Universal Set.}
+\begin{definition}[Compliment of a Set]
+	From the previous definition of a Universal Set, we define the compliment of a set \(A\) as
+	\[
+		A^{\prime} =\{ x\mid x\in U \land x\notin A \} 
+	\]
+\end{definition}
+\begin{definition}[Set Difference]
+	We define the difference between two sets \(A\) and \(B\) as
+	\[
+		A\setminus B=A\cap B^{\prime} =\{ x\mid x\in A \land  x\notin B \} 
+	\]
+\end{definition}
+\begin{proposition}
+	Let \(A\), \(B\), and \(C\) be sets.
+	\begin{itemize}
+		\item \(A\cup A=A,A\cap A=A,\text{ and }A\setminus A=\varnothing \) 
+		\item \(A\cup \varnothing =A \text{ and } A\cap \varnothing =\varnothing \) 
+		\item \(A\cup (B\cup C)=(A\cup B)\cup C\text{ and }A\cap (B\cap C)=(A\cap B)\cap C \)
+		\item \(A\cup B=B\cup A\) and \(A\cap B=B\cap A\)
+		\item \(A\cup (B\cap C)=(A\cup B)\cap (A\cup C)\)
+		\item \(A\cap (B\cup C)=(A\cap B)\cup (A\cap C)\)
+	\end{itemize}  
+\end{proposition}
+\subsection*{Cartesian Products and Mappings}
+Given sets \(A\) and \(B\), we define the \textbf{Cartesian} \textbf{Product} \(A\times B\) as a set of ordered pairs.
+\begin{definition}[Cartesian Product]
+	The cartesian product of two sets \(A\times B\) is given as
+	\[
+		A\times B=\{ (a,b)\mid a\in A \land b\in B \} 
+	\]
+\end{definition}
+\begin{proposition}[Generalization of Cartesian Product]
+	The cartesian product generalizes to \(n\) sets:
+	\[
+		A_1 \times \cdots \times A_n =\{ (a_1,\ldots,a_n)\mid a_1\in A_1 \land \cdots \land a_n\in A_n \} 
+	\]
+\end{proposition}
+We will often use the shorthand \(\mathbb{R} \times \mathbb{R} \times \mathbb{R} =\mathbb{R} ^3\).
+\begin{definition}[Function/Mapping]
+	Subsets of \(A\times B\) are known as \textbf{relations}. We define a \textbf{mapping} or \textbf{function} \(f\subset A\times B\) from set \(A\) to \(B\) as a special type of relation where each element \(a\in A\) has a unique element \(b\in B\) such that \((a,b)\in f\).\\
+	Often, we write \(f:A\to B\) and \(f:a\mapsto b\).
+\end{definition}
+If \(f:A\to B\), then \(A\) is the \textbf{domain} of \(f\), and
+\[
+	f(A)=\{ f(a)\mid a\in A \} \subseteq B
+\]
+is the \textbf{range} or \textbf{image} of \(f\).
+\begin{definition}[Surjective]\label{surjective}
+	A map \(f:A\to B\) is \textbf{onto} or \textbf{surjective} if
+	\[
+		\forall (a\in A)(\exists (b\in B)(f(a)=b))
+	\]
+	In other words, every element of the domain is mapped to an element in the image, \textbf{and} every element in the image is mapped from an element in the domain. The entirety of both sets is used.
+\end{definition}
+\begin{definition}[Injective]\label{injective}
+	A map \(f:A\to B\) is \textbf{one-to-one} or \textbf{injective} if\\
+	\[a_1\neq a_2 \Longrightarrow f(a_1)\neq f(a_2)\]
+	Equivalently, a function is injective if \(a_1=a_2\Longrightarrow f(a_1)=f(a_2)\).\\
+	In other words, each element of the domain is mapped to a \textbf{unique} element of the image.
+\end{definition}
+\begin{definition}[Bijective]\label{bijective}
+	A map is called \textbf{bijective} if it is both injective and surjective.
+\end{definition}
+\begin{definition}[Function Compositions]
+	If we have the maps \(f:A\to B\) and \(g:B\to C\), we can define the \textbf{composition} of \(f\) and \(g\) from \(A\) to \(C\) as 
+	\[
+		(g\circ f)(x)=g(f(x))
+	\]
+	where we have
+	\[
+		g\circ f:A\to C
+	\]
+\end{definition}
+A map from \(\mathbb{R} ^n\) to \(\mathbb{R} ^m\) given by a matrix is known as a \textbf{linear} \textbf{map}, or \textbf{linear} \textbf{transformation}.
+\begin{definition}[Permutation]\label{permutation}
+	For some set \(S\), a bijection from \(S\) to \(S\), formally \(\pi:S\to S\), is known as a \textbf{permutation} of \(S\).
+\end{definition}
+\begin{theorem}[Properties of Compositions]\label{propcomp}
+Let \(f:A\to B\), \(g:B\to C\), and \(h:C\to D\). 
+\begin{itemize}
+	\item The composition of mappings is associative: \((h\circ g)\circ f=h\circ (g\circ f)\)
+	\item If \(f\) and \(g\) are both injective, then \(g\circ f\) is injective.
+	\item If \(f\) and \(g\) are both surjective, then \(g\circ f\) is surjective. 
+	\item If \(f\) and \(g\) are both bijective, then \(g\circ f\) is bijective.
+\end{itemize}
+\end{theorem}
+\begin{definition}[Identity Mapping]\label{identity_map}
+	For some set \(S\), we will use \(id_S\) or \(id\) as the \textbf{identity} \textbf{mapping} from \(S\) to itself.
+	\[
+		id(s)=s\forall s\in S
+	\]
+\end{definition}
+\begin{definition}[Inverse Mappings]\label{invmap}
+	From \ref{identity_map}, we can formally define an \textbf{inverse} \textbf{mapping} \(g:B\to A\) of some map \(f:A\to B\), where
+	\[g\circ f=id_A \text{ and } f\circ g=id_B\]
+\end{definition}
+A map is said to be \textbf{invertible} if it has an inverse. We often give \(f^{-1} \) as the inverse of \(f\).
+\begin{theorem}
+	\textbf{A Map is Invertible if and only if it is Bijective.}
+\end{theorem}
+\begin{proof}
+	Suppose \(f:A\to B\) is invertible with inverse \(g:B\to A\). Then \(g\circ f=id_A\) is the identity map, meaning \(g(f(a))=a\). If \(a_1,a_2\in A\) with \(f(a_1)=f(a_2)\), then
+	\[
+		a_1=g(f(a_1))=g(f(a_2))=a_2
+	\]
+	Thus, \(f\) is injective. Now suppose \(b\in B\). Let \(a\in A\) be the number such that \(f(a)=b\). Recall that \(f(g(b))=b\). Thus, we have \(a=g(b)\). This means each element of the domain will have some corresponding element in the image, and thus \(f\) is surjective.\\
+	Let \(f\) be bijective and let \(b\in B\). Since \(f\) is surjective, there exists \(a\in A\) where \(f(a)=b\). Since \(f\) is injective, \(a\) is unique. Define \(g(b)=a\). This is the inverse of \(f\).
+\end{proof}
+\begin{definition}[Equivalent Relation]
+	An equivalence relation on a set \(X\) is a relation \(R\subset X\times X\) satisfying the properties
+	\begin{itemize}
+		\item \((x,x)\in R\;\forall x\in X\) \textbf{reflexive} \textbf{property} 
+		\item \((x,y)\in R\Longrightarrow (y,x)\in R\) \textbf{symmetric} \textbf{property} 
+		\item \((x,y)\in R\) and \((y,z)\in R\) implies \((x,z)\in R\) \textbf{transitive} \textbf{property}
+	\end{itemize}
+\end{definition}
+For an equivalence relation on \(X\) with \((x,y)\in R\), we often write \(x \sim y\). If the relation has an associated notation such as \(=,\equiv ,\cong \), then that will be used.
+\begin{eg}
+	Suppose \(f\) and \(g\) are differentiable functions on \(\mathbb{R} \). We can define an equivalence relation \(f(x)\sim g(x)\) if \(f^{\prime} (x)=g^{\prime} (x)\).
+\end{eg}
+\begin{definition}[Partition]
+	A partition \(\mathcal{P} \) of a set \(X\) is a collection of sets \(X_1,X_2,\ldots\neq \varnothing \) such that
+	\[X_{i} \cap X_j = \varnothing \text{ for }i\neq j\]
+	and
+	\[\bigcup_{k}X_k=X\]
+\end{definition}
+\begin{definition}[Equivalence Class]
+	Let \(\sim \) be an equivalence relation on a set \(X\) with \(x\in X\). Then the \textbf{equivalence} \textbf{class} of \(x\) is given as 
+	\[
+		[x]=\{ y\in X\mid y\sim x \} 
+	\]
+\end{definition}
+\begin{theorem}
+	Given an equivalence relation \(\sim \) on a set \(X\), the equivalence classes of \(X\) form a partition of \(X\). Conversely, if \(\mathcal{P} ={X_i}\) is a partition of a set \(X\), then there is an equivalence relation on \(X\) with equivalence classes \(X_i\).
+\end{theorem}
+\begin{corollary}
+	Two equivalence classes of an equivalence relation are either disjoint or equal.
+\end{corollary}
+\chapter{The Integers}
+\section{Mathematical Induction}
+\begin{definition}[First Principle of Induction]
+	Mathematical induction is a method of proof wherein a statement about integers with \(n\in\mathbb{N} \). We prove the statement for a specific integer \(n_0\), and then we show that the statement being true for some \(n\) implies the statement is true for \(n+1\). This implies this statement holds for all integers \(n\geq n_0\).
+\end{definition}
+A standard example of induction follows. 
+\begin{eg}
+	Show that
+	\[
+		1+2+\cdots+n=\frac{n(n+1)}{2}
+	\]
+	for any \(n\in\mathbb{N} \).\\
+	We can show this for \(n=1\):
+	\[
+		1=\frac{1(1+1)}{2}=\frac{2}{2}=1
+	\]
+	Now we can assume that we have verified the first \(n\) cases.
+	\[
+		1+\cdots+n+(n+1)=\frac{n(n+1)}{2}+n+1
+	\]
+	\[
+		=\frac{n^{2+3n+2} }{2}
+	\]
+	\[
+		=\frac{(n+1)((n+1)+1)}{2}
+	\]
+	This is the formula for the \(n+1\)th case, so we are done.
+\end{eg}
+\begin{definition}[Second Principle of Induction]
+	Let \(S(n)\) be a statemenht about the integers for \(n\in\mathbb{N} \). Suppose \(S(n_0)\) is true. If \(S(n_0),S(n_{0}+1 ),\ldots,S(k)\) implies \(S(k+1)\) for \(k\geq n_0\), then \(S(n)\) is true for all integers \(n\geq n_{0} \).
+\end{definition}
+This is more complicated, so an example has not been given. Obviously.
+\begin{definition}[Principle of Well-Ordering]
+	Every nonempty subset of the natural numbers is well-ordered.
+\end{definition}
+\begin{lemma}
+	The principle of mathematical induction implies \(1\) is the least positive natural.
+\end{lemma}
+\begin{theorem}[Principle of Well-Ordering]
+	The principle of well ordering can follow from the principle of mathematical induction. Furthermore, every nonempty subset of \(\mathbb{N} \) contains at least one element.
+\end{theorem}
+\section{The Division Algorithm}
+
+\begin{theorem}[Division Algorithm]\label{divalg}
+	Let \(a\) and \(b\) be integers with \(b>0\). Then there exists \emph{unique} integers \(q\) and \(r\) such that 
+	\[
+		a=bq+r
+	\]
+	where \(0\leq r<b\).
+\end{theorem}
+Let \(a,b\in\mathbb{Z} \). If \(b=ak,k\in\mathbb{Z} \), then we write \(a|b\). We say an integer \(d\) is a \textbf{common} \textbf{divisor} of \(a\) and \(b\) if \(d|a\) and \(d|b\). The \textbf{greatest} \textbf{common} \textbf{divisor} of integers \(a,b\) is a positive integer \(d\) such that \(d\) is a common divisor of \(a\) and \(b\) and if \(d^{\prime} \) is any other common divisor of \(a\) and \(b\), then \(d^{\prime} |d\). We write \(\text{gcd}(a,b) \).
+\begin{definition}[Relatively Prime Numbers]
+	Two numbers \(a,b\in\mathbb{Z} \) are relatively prime if \(\text{gcd}(a,b)=1 \).
+\end{definition}
+\begin{theorem}\label{owothingy}
+	Let \(a,b\in\mathbb{Z} \setminus \{ 0 \} \). Then there exist \(r,s\in\mathbb{Z} \) such that 
+	\[
+		\text{gcd}(a,b)=ar+bs 
+	\]
+\end{theorem}
+\begin{corollary}
+	For any two \(a,b\in\mathbb{Z} \) that are relatively prime, there exist \(r,s\in\mathbb{Z} \) such that \(ar+bs=1\).
+\end{corollary}
+\subsection*{The Euclidean Algorithm}
+\ref{owothingy} allows us to compute the gcd of two integers. This will be illustrated with an example.
+\begin{eg}
+	Let's compute \(\text{gcd}(945,2415) \). First, observe:
+	\begin{align*}
+		2415&=945\cdot2+525\\
+		945&=525\cdot1+420\\
+		525&=420\cdot1+105\\
+		420&=105\cdot4+0
+	\end{align*}
+	Reversing our steps, we find that \(105\) divides \(420\), \(105\) divides \(525\), \(105\) divides \(945\), and \(105\) divides \(2415\). Hence, \(105\) divides both numbers. If \(d\) were another common divisor of \(945\) and \(2415\), then \(d\) would have to divide \(105.\) Hence, \(\text{gcd}(2415,945)=105 \).
+\end{eg}
+To compute \(\text{gcd}(a,b) =d\), we are dividing multiple times to obtain a decreasing sequence of integers. We use the algorithm
+\begin{align*}
+	b&=aq_1 +r_1\\
+	a&=r_1 q_2 +r_2\\
+	r_1&=r_2 q_3 +r_3\\
+	&\vdots\\
+	r_{n-2}&=r_{n-1}q_n +r_n\\
+	r_{n-1}&=r_n q_{n+1}
+\end{align*}
+where \(q_i\) is the highest integer number of times \(r_i\) can divide \(r_{i-1} \), and \(r_{i+1} \) is the remainder. 
+\subsection*{Prime Numbers}
+Some \(p\in\mathbb{N} \setminus \{ 1 \} \) is a \textbf{prime} \textbf{number} if the only numbers that divide \(p\) are 1 and itself. Non-prime integers \(>1\) are known as \textbf{composite}.
+\begin{lemma}[Euclid]
+	Let \(a,b\in\mathbb{Z} \) and \(p\in\mathbb{P} \), where \(\mathbb{P} \) is the set of primes. Since \(\text{gcd}(a,p)=1 \), then there exists \(r,s\in\mathbb{Z} \) such that \(ar+ps=1\).
+\end{lemma}
+\begin{theorem}[Euclid]
+	There exist an infinite number of primes.
+\end{theorem}
+\begin{proof}
+	We will do this proof via contradiction. Suppose there are a finite number of primes, say \(\{ p_1,\ldots,p_n \}=\mathbb{P}  \).
+	\[
+		\text{Let } P=1+\prod _{i\in\mathbb{P} }i
+	\]
+	It follows that \(P\) is divisible by some \(p_i\) for \(i\in[1,n]\). In this case, \(p_i\) must divide \(P-p_1 p_2 \cdots p_n=1\). However, it does not, so there must either exist some \(p_{n+1}\neq p_i \), or \(P\in\mathbb{P} \).
+\end{proof}
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+	Let \(n\in\mathbb{N} \) where \(n>1\). Then 
+	\[
+		n=p_1 p_2 \cdots p_k
+	\]
+	where \(p_1,\ldots,p_k\in\mathbb{P} \), and are not necessarily distinct. Furthermore, this factorization is unique.
+\end{theorem}
+
+
+\chapter{Groups}
+\section{Integer Equivalence Classes and Symmetries}
+Two integers \(a,b\in\mathbb{Z} \) are equivalent mod \(n\) if \(n\) divides \(a-b\) with no remainder. The integers mod \(n\) partition \(\mathbb{Z} \) into \(n\) different equivalence classes, the set of which is denoted as \(\mathbb{Z} _n\). For example, consider \(\mathbb{Z} _{12}\), the set of the following equivalence classes:
+\begin{align*}
+	[0]&=\{ \ldots,-12,0,12,24,\ldots \}\\
+	[1]&=\{ \ldots,-11,1,13,25,\ldots \}\\
+	&\vdots\\
+	[11]&=\{ \ldots,-1,11,23,35,\ldots \}
+\end{align*}
+We can define arithmetic over \(\mathbb{Z} _n\), where we say addition modulo \(n\) is given as \((a+b)\mod n\).
+\begin{eg}
+	Operations modulo \(n\):
+	\begin{align*}
+		7+4&\equiv 1\mod5&7\cdot3&\equiv 1\mod5\\
+		3+5&\equiv 0\mod8&3\cdot5&\equiv 7\mod8\\
+		3+4&\equiv 7\mod12&3\cdot4&\equiv0\mod12
+	\end{align*}
+\end{eg}
+\begin{proposition}\label{prop.1}
+	Let \(\mathbb{Z} _n\) be the set of equivalence classes of the integers mod \(n\) and \(a,b,c\in\mathbb{Z} _n\).
+	\begin{enumerate}
+		\item Addition and multiplication are commutative:
+		\[
+			a+b\equiv b+a\mod n
+		\]
+		\[
+			ab\equiv ba\mod n
+		\]
+		\item Addition and multiplication are associative:
+		\[
+			(a+b)+c\equiv a+(b+c)\mod n
+		\]
+		\[
+			(ab)c\equiv a(bc)\mod n
+		\]
+		\item There are both additive and multiplicative identities:
+		\[
+			a+0\equiv a\mod n
+		\]
+		\[
+			a\cdot 1\equiv a\mod n
+		\]
+		\item Multiplication distributes over addition:
+		\[
+			a(b+c)\equiv ab+ac\mod n
+		\]
+		\item For every integer there exists an additive inverse:
+		\[
+			a+(-a)\equiv 0\mod n
+		\]
+		\item If \(a\neq 0\), then \(\text{gcd}(a,n)=1 \) iff there exists a multiplicative inverse \(b\) for \(a\mod n\); that is, a \(b\neq 0\) such that 
+		\[
+			ab\equiv 1\mod n
+		\]
+	\end{enumerate}
+\end{proposition}
+\section{Definitions and Examples}
+\begin{definition}[Group]\label{group}
+	A group \((G,\circ )\)  is a set \(G\) together with a \textbf{binary} \textbf{operation} (or \textbf{law} \textbf{of} \textbf{composition}) \(G\times G\to G\) given as \((a,b)\mapsto a\circ b\) that satisfies the following axioms. 
+	\begin{itemize}
+		\item The binary operation is \textbf{associative}. That is, 
+		\[
+			(a\circ b)\circ c=a\circ (b\circ c)
+		\]
+		Formally,
+		\[
+			\forall (a,b,c\in G)((a\circ b)\circ c=a\circ (b\circ c))
+		\]
+		\item There exists an \textbf{identity} \textbf{element} \(e\in G\), such that
+		\[
+			e\circ a=a\circ e=a
+		\]
+		Formally,
+		\[
+			\exists (e\in G)(\forall a\in G(a\circ e=e\circ a=a))
+		\]
+		\item For all \( a\in G\), there exists an \textbf{inverse} \textbf{element} \(a^{-1} \in G\), such that 
+		\[
+			a\circ a^{-1} =a^{-1} \circ a=e
+		\]
+		Formally,
+		\[
+			\forall (a\in G)(\exists (a^{-1} \in G)(a\circ a^{-1} =a^{-1} \circ a=e))
+		\]
+	\end{itemize}
+	The \(\circ \) operator can be thought of as simply a placeholder for a binary operation such as addition, multiplication, or even an inner product-like operation.
+\end{definition}
+\begin{definition}[Abelian Group]\label{abelian}
+	A group \((G,\circ )\) with the property \(a\circ b=b\circ a\;\forall a,b\in G\) is called \textbf{abelian} or \textbf{commutative}. A group not satisfying this property is known as \textbf{nonabelian} or \textbf{noncommutative}.
+\end{definition}
+\begin{notation}
+	We will use \(ab\) to denote a binary operation associated with a set rather than \(a\circ b\), partially for brevity but also to distinguish between group opperations and compositions. If a standard symbol is associated with the operation, such as \(+\), that will be used instead.
+\end{notation}
+For example, the set of integers \(\mathbb{Z} \) forms a group under addition, because for all \(a,b\in\mathbb{Z} \), we have \((a+b)\in\mathbb{Z} \), \(a+0=a\), \(a+(-a)=0\), and \(-a\in\mathbb{Z} \). We also have \(a+b=b+a\), so the integers over addition \((\mathbb{Z} ,+)\) form an abelian group.\\
+The integers mod \(n\) also form a group under addition modulo \(n\). Addition can be shown with a \textbf{Cayley} \textbf{table}, or a table describing addition/multiplication. Consider \(\mathbb{Z} _5\):\\
+\begin{center}\begin{tabular}{c|ccccc}
+	+&0&1&2&3&4\\
+	\hline
+	0&0&1&2&3&4\\
+	1&1&2&3&4&0\\
+	2&2&3&4&0&1\\
+	3&3&4&0&1&2\\
+	4&4&0&1&2&3
+\end{tabular}\end{center}
+It's also to note that not every set with a binary operation defines a group. For example, the integers mod \(n\) are not necessarily closed under multiplication, so they cannot necessarily constitute a group. However, we can recall from \ref{prop.1} that \(ab\equiv 1\mod n\) iff \(a,b\) are relatively prime; that is \(\text{gcd}(a,b)=1 \). Thus, we can define the multiplicative group of nonzero relatively prime numbers in \(\mathbb{Z} _n\) as \(U(n)\). For example, consider the Cayley table for \(U(8)\):\\
+\begin{center}
+	\begin{tabular}{c|cccc}
+		\(\cdot\)&1&3&5&7\\
+		\hline
+		1&1&3&5&7\\
+		3&3&1&7&5\\
+		5&5&7&1&3\\
+		7&7&5&3&1\\ 
+	\end{tabular}
+\end{center}
+\begin{eg}
+	Let
+	\[
+		1=\begin{pmatrix}
+			1 &0   \\
+			 0&  1 \\
+		\end{pmatrix}\qquad \hat{\imath}=\begin{pmatrix}
+			 0&1   \\
+			 -1&  0 \\
+		\end{pmatrix}
+	\]
+	\[
+		\hat{\jmath}=\begin{pmatrix}
+			0 &i   \\
+			 i&  0 \\
+		\end{pmatrix}\qquad \hat{k}=\begin{pmatrix}
+			i &0   \\
+			 0&  -i \\
+		\end{pmatrix}
+	\]
+	Notice the following. 
+	\[
+		\hati^2=\begin{pmatrix}
+			0 &1   \\
+			 -1&  0 \\
+		\end{pmatrix}\begin{pmatrix}
+			0 &1   \\
+			 -1&  0 \\
+		\end{pmatrix}=\begin{pmatrix}
+			-1 &0   \\
+			 0&-1   \\
+		\end{pmatrix}=-1
+	\]
+	\[
+		\hatj^2=\begin{pmatrix}
+			0 &i   \\
+			 i&  0 \\
+		\end{pmatrix}\begin{pmatrix}
+			0 &i   \\
+			 i&  0 \\
+		\end{pmatrix}=\begin{pmatrix}
+			-1 &0   \\
+			 0&-1   \\
+		\end{pmatrix}=-1
+	\]
+	\[
+		\hatk^2=\begin{pmatrix}
+			i &0   \\
+			 0&  -i \\
+		\end{pmatrix}\begin{pmatrix}
+		i &0   \\
+		 0&  -i \\
+	\end{pmatrix}=\begin{pmatrix}
+		-1 &0   \\
+		 0&-1   \\
+	\end{pmatrix}=-1
+	\]
+	\[
+		\Longrightarrow \hati^2 =\hatj^2 =\hatk^2=-1
+	\]
+	The set \(Q_8 =\{ \pm1,\pm\hati,\pm\hatj,\pm\hatk \} \) forms a group \(\left( Q_8,\cdot \right) \) known as the \textbf{quaternion} \textbf{group}, which is nonabelian.
+\end{eg}
+One final important example is the \textbf{general} \textbf{linear} \textbf{group}. This is the group of all invertible matrices over the multiplication operator, and is denoted \(\text{GL}(n,S) \) where the matrices are of order \(n\) with elements \(a_{ij} \in S\).
+\begin{definition}[Order of a Group]
+	The order of a group \(G\), denoted \(|G|\), is the number of elements it has. If the group has \textbf{finite} \textbf{order}, we write \(|G| =n\), where \(n\in\mathbb{N} \). If a group has \textbf{infinite} \textbf{order}, we write \(|G| =\infty\).
+\end{definition}
+\subsection*{Basic Properties of Groups}
+\begin{proposition}
+	The identity element of a group is unique. 
+\end{proposition}
+\begin{proof}
+	Suppose \(e\) and \(e^{\prime} \) are both identities in \(G\). Then \(eg=ge=g\) and \(e^{\prime} g=ge^{\prime} =g\) for all \(g\in G\). However, \(e,e^{\prime} \in G\), so we can say
+	\[
+		ee^{\prime} =e^{\prime} 
+	\]
+	\[
+		ee^{\prime} =e
+	\]
+	\[
+		\Longrightarrow e=ee^{\prime}=e^{\prime} 
+	\]
+	\[
+		\therefore e=e^{\prime} 
+	\]
+\end{proof}
+\begin{proposition}
+	If \(G\) is a group, then for any \(g\in G\), its inverse \(g^{-1} \) is unique.
+\end{proposition}
+\begin{proposition}
+	Let \(G\) be a group. If \(a,b\in G\), then \((ab)^{-1} =b^{-1} a^{-1} \).
+\end{proposition}
+\begin{proof}
+	Let \(a,b\in G\). Then \(abb^{-1} a^{-1} =aea^{-1} =aa^{-1} =e\). Similarly, \(b^{-1} a^{-1} ab=e\). By the previous proposition, we know that inverses are unique, and by \ref{group} we know group operations are associative. Thus,
+	\[
+		(ab)\left( b^{-1} a^{-1}  \right) =e
+	\]
+	\[
+		\therefore (ab)^{-1} =b^{-1} a^{-1} 
+	\]
+\end{proof}
+\begin{proposition}
+	If \(G\) is a group, then \(\forall a\in G\), it will follow that \(\left( a^{-1}  \right)^{-1} =a \).
+\end{proposition}
+\begin{proposition}
+	If \(G\) is a group and \(a,b,c\in G\), then \(ba=ca\Longrightarrow b=c\) and \(ab=ac\Longrightarrow b=c\).
+\end{proposition}
+The previous proposition shows that \textbf{right and left cancellation laws} hold in groups. This is due to the existance of inverses over the associated binary operation.
+\begin{notation}
+	Oftentimes, exponential notation will be used in a group to denote repeated applications of the operation:
+	\[
+		g^n=\underbrace{g\circ g\circ \cdots\circ g}_{n\text{ times} }
+	\]
+	And
+	\[
+		g^{-n} =\underbrace{g^{-1} \circ g^{-1} \circ \cdots\circ g^{-1} }_{n\text{ times} }
+	\]
+\end{notation}
+\begin{proposition}
+	In a group \(G\), the following properties of exponentiation hold for all \(g,h\in G\):
+	\begin{itemize}
+		\item \(g^m g^n=g^{m+n} \;\forall m,n\in\mathbb{Z} \) 
+		\item \(\left( g^m \right)^n=g^{mn}\;\forall m,n\in\mathbb{Z}   \)
+		\item \((gh)^n =\left( h^{-1} g^{-1}  \right)^{-n}\;\forall n\in \mathbb{Z}   \)
+	\end{itemize}
+\end{proposition}
+\begin{remark}
+	In the above proposition, \((gh)^n \neq g^n h^n\) in general, since the group may not be abelian. If the group is abelian, this property holds.
+\end{remark}
+\begin{remark}
+	f the group has an addition operator, especially if the group is \(\mathbb{Z} \) or \(\mathbb{Z} _n\), we write the operation of exponentiation as multiplication, that is \(an\) rather than \(n^a\) for \(n\in G\), \(a\in\mathbb{Z} \).
+\end{remark}
+\section{Subgroups}
+\subsection*{Definitions and Examples}
+\begin{definition}[Subgroup]
+	A \textbf{subgroup} \(H\) of a group \(G\) is a subset \(H \subseteq G\) such that when the group operation of \(G\) is restricted to \(H\), then \(H\) is still a group. That is, if \(H\subseteq G\) and \((G,\circ )\) is a group, then \(H\) is a subgroup if \((H,\circ )\) is a group.
+\end{definition}
+\begin{remark}
+	The subgroup \(H=\{ e \} \) is called the \textbf{trivial} \textbf{subgroup}, and a proper subset that forms a group \(H \subsetneq G\) is known as a \textbf{proper} \textbf{subgroup}.
+\end{remark}
+\begin{eg}
+	Consider the set of nonzero real numbers \(\mathbb{R} ^*\) over the operation of multiplication. The identity is \(1\) and the inverse of any \(a\in\mathbb{R} ^*\) is just \(a^{-1} \). We can show that \(\mathbb{Q} ^*\) is a proper subgroup of \(\mathbb{R} ^*\). Trivially, \(1\in\mathbb{Q}^* \). Also, the inverse of any \(\frac{p}{q}\in\mathbb{Q}^* \) must also be in \(\mathbb{Q}^* \), since \(\left( \frac{p}{q} \right)^{-1} =\frac{q}{p}\in\mathbb{Q} ^*\). Since multiplication in \(\mathbb{R} ^*\) is associative, so is multiplication in \(\mathbb{Q} ^*\). Therefore, \(\mathbb{Q} ^*\) is a proper subgroup of \(\mathbb{R} ^*\).
+\end{eg}
+\begin{remark}
+	A subset of some set \(G\) can be a group without being a \emph{subgroup} of \(G\), if it is a group under a different operation. For example, the general linear is not a subgroup of the additive group of \(n\times n\) matrices, since it uses a different operation.
+\end{remark}
+\begin{eg}
+	Let \(\text{SL}(2,\mathbb{R} )\subset\text{GL}(2,\mathbb{R} )  \) be the set of matrices \(A\in\text{SL}(2,\mathbb{R} ) \) satisfying \(\det (A)=1\). Multiplication is closed since \(\det (A)\det (B)=\det (AB)\), and the other properties of groups follow directly from the general linear. This group is known as the \textbf{special linear group}.
+\end{eg}
+\subsection*{Some Subgroup Theorems}
+\begin{proposition}
+	A subset \(H\) of \(G\) is a subgroup iff it satisfies the following conditions:
+	\begin{enumerate}
+		\item The identity \(e\in G\) is in \(H\). 
+		\item If \(h_1,h_2\in H\), then \(h_1 h_2\in H\).
+		\item If \(h\in H\), then \(h^{-1} \in H\).
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Trivial.
+\end{proof}
+\begin{proposition}
+	Let \(H\) be a subset of \(G\). Then \(H\) is a subgroup of \(G\) iff \(H\neq \varnothing \), and whenever \(g,h\in H\) then \(gh^{-1} \in H\).
+\end{proposition}
+\chapter{Cyclic Groups}
+\section{Cyclic Subroups}
+Oftentimes, a subgroup can be constructed from a single element of a group. For example, consider \(3\in\mathbb{Z} \). now consider the set of all multiples of 3, that is 
+\[
+	3\mathbb{Z} =\{ \ldots,-3,0,3,6,\ldots \} 
+\]
+Obviously, \(3\mathbb{Z} \) is a subgroup of \(\mathbb{Z}\). Specifically, it's a \textbf{cyclic subgroup} "generated" by 3. 
+\begin{theorem}[Cyclic Subgroups]
+	If \(G\) is a group and \(a\in G\), then the set 
+	\[
+		\langle a \rangle =\left\{ a^k \mid k\in\mathbb{Z}  \right\} 
+	\]
+	is a subgroup of \(G\). Furthermore, \(\langle a \rangle \) is the smallest subgroup of \(G\) containing \(a\).
+\end{theorem}
+\begin{remark}
+	If we use the \(+\) notation, then we write 
+	\[
+		\langle a \rangle =\left\{ na \mid n\in\mathbb{Z}  \right\}
+	\]
+\end{remark}
+\begin{definition}[Cyclic Groups and Subgroups]
+	If \(G\) is a group with \(a\in G\), then we say \(\langle a \rangle \) is the \textbf{cyclic} \textbf{subgroup} generated by \(a\). If there exists some \(b\in G\) where \(\langle b \rangle =G\), then \(G\) is a \textbf{cyclic} \textbf{group} generated by \(b\). We call \(a\) and \(b\) the \textbf{generators} of their repsective groups.
+\end{definition}
+\begin{definition}[Order of a Cyclic Group]
+	The \textbf{order} of a cyclic group \(\langle a \rangle \) is the smallest \textbf{positive} integer \(n\in\mathbb{Z} ^+\) such that \(a^n =e\), where \(e\in \langle a \rangle \) is the identity element. If there does not exist some \(n\), we say \(|a| =\infty\).
+\end{definition}
+\begin{remark}
+	When considering the above definition, it's important to note that \(0\notin \mathbb{Z} ^+\).
+\end{remark}
+\begin{eg}
+	Notice that both \(1\) and \(5\) generate \(\left( \mathbb{Z} _6,+ \right) \). Also, not every element necessarily generates the group. The element \(2\in\mathbb{Z} _6\) generates \(\langle 2 \rangle =\left\{ 0,2,4 \right\} \).
+\end{eg}
+
+\begin{theorem}
+	Every cyclic subgroup is abelian.
+\end{theorem}
+\begin{proof}
+	Let \(\langle a \rangle =G\) and \(a\in G\). If \(g,h\in G\), then they can be written as powers of \(a\). Let \(r,s\in\mathbb{Z} \) such that \(g=a^r ,h=a^s\). 
+	\[
+		gh=a^r a^s=a^{r+s}=a^{s+r}=a^s a^r =hg   
+	\]
+	Therefore \(G\) is abelian.
+\end{proof}
+\subsection*{Subgroups of Cyclic Groups}
+\begin{theorem}
+	Every subgroup of a cyclic group is cyclic.
+\end{theorem}
+\begin{corollary}
+	The subgroups of \(\mathbb{Z} \) are exactly \(n\mathbb{Z} \) for \(n\in\mathbb{N} \cup \{ 0 \} \). 
+\end{corollary}
+\begin{proposition}
+	Let \(G\) be a cyclic subgroup of order \(n\) and suppose \(\langle a \rangle=G \). Then \(a^k =e\) iff \(n\) divides \(k\) with no remainder.
+\end{proposition}
+\begin{theorem}
+	Let \(G\) be a cyclic group of order \(n\) with \(\langle a \rangle =G\). If \(b=a^k\), then the order of \(b\) is \(\frac{n}{d}\), where \(d=\text{gcd}(k,n) \).
+\end{theorem}
+\begin{corollary}
+	The generators of \(\mathbb{Z} _n\) are the integers \(r\in[1,n)\) where \(\text{gcd}(r,n)=1 \).
+\end{corollary}
+\section{Multiplicative Group of Complex Numbers}
+\begin{definition}[Complex Numbers]
+	The \textbf{complex} \textbf{numbers} are defined as
+	\[
+		\mathbb{C} =\left\{ a+bi\mid a,b\in\mathbb{R}  \right\} 
+	\]
+	where \(i=\sqrt{-1} \)
+\end{definition}
+\begin{definition}[Arithmetic in \(\mathbb{C} \)]
+	If \(z=a+bi\) and \(w=c+di\) with \(z,w\in\mathbb{C} \), then we have 
+	\[
+		z+w=(a+bi)+(c+di)=(a+c)+(b+d)i
+	\]
+	\[zw=(a+bi)(c+di)=ac+bdi^2 +adi+bci =(ac-bd)+(ad+bc)i\]
+\end{definition}
+Every nonzero complex number \(z=a+bi\) has a multiplicative inverse, that is \(z^{-1} \in\mathbb{C} \) such that \(zz^{-1}=z^{-1} z=1\).
+\[
+	z^{-1} =\frac{a-bi}{a^2 +b^2}
+\]
+\begin{definition}[Complex Conjugate]
+	If \(z=a+bi\), then the complex conjugate \(\overline{z}=a-bi\).
+\end{definition}
+Complex numbers can also be represented in \textbf{polar} \textbf{coordinates} of the form 
+\[
+	z=a+bi=r(\cos \theta +i\sin \theta )
+\]
+and
+\[r=|z| =\sqrt{a^2 +b^2} \]
+and
+\[
+	a=r\cos \theta \quad b=r\sin \theta 
+\]
+and
+\[
+	\theta =\arctan\left( \frac{b}{a} \right)
+\]
+\begin{notation}
+	We can abbreviate \(r(\cos \theta +i\sin \theta )\eqqcolon r\cis \theta \).
+\end{notation}
+\begin{proposition}
+	Let \(z=r\cis \theta \) and \(w=s\cis \phi \). Then
+	\[
+		zw=rs\cis(\theta +\phi )
+	\]
+\end{proposition}
+\begin{theorem}[DeMoivre]
+	Let \(z=r\cis \theta \in\mathbb{C} \setminus \{ 0 \} \). Then 
+	\[
+		\left( r\cis \theta  \right) ^n =r^n \cis(n \theta )
+	\]
+\end{theorem}
+\subsection*{The Circle Group and the Roots of Unity}
+The multiplicative group of complex numbers \((\mathbb{C} ,\cdot)\triangleq\mathbb{C} ^*\) has interesting subgroups. Specifically, \(\mathbb{R} ^*\) and \(\mathbb{Q} ^*\) have no subgroups of finite order, but \(\mathbb{C} ^*\) has many. 
+\begin{definition}[Circle Group]\label{circlegroup}
+	The circle group is the multiplicative group \(\mathbb{T} \subsetneq \mathbb{C} \) defined as 
+	\[
+		\mathbb{T} \coloneqq \left\{ z\in\mathbb{C} \mid |z| = 1 \right\} 
+	\]
+\end{definition}
+\begin{remark}
+	This group forms a circle on the complex grid with radius 1.
+\end{remark}
+\begin{proposition}
+	The circle group \(\mathbb{T} \) is a subgroup of \(\mathbb{C} ^*\) 
+\end{proposition}
+The circle group has many interesting subgroups, such as \(\{ 1,-1,i,-i \} \). These numbers are the numbers satisfying \(z^4 =1\). These are known as the 4th \textbf{roots} \textbf{of} \textbf{unity}. 
+\begin{definition}[Roots of Unity]
+	The set of complex numbers \(z\) satisfying \(z^n =1\) for some \(n\in\mathbb{N} \) are known as the \(n\)\textbf{th} \textbf{roots} \textbf{of} \textbf{unity}.
+\end{definition}
+\begin{theorem}[Roots of Unity Definition]
+	If \(z^n =1\), then the \(n\)th roots of unity are 
+	\[z=\cis \left( \frac{2k \pi }{n} \right) \]
+	where \(k\in\{ 0,1,\ldots,n-1 \} \). Furthermore, the \(n\)th roots of unity are a subgroup of \(\mathbb{T} \) of order \(n\).
+\end{theorem}
+\begin{definition}[Primitive \(n\)th root of unity]
+	A primitive \(n\)th root of unity is some \(z\) that generates the \(n\)th roots of unity.
+\end{definition}
+For example, the 8th roots of unity have 4 generators: 
+\begin{align*}
+	w&=\frac{\sqrt{2} }{2}+\frac{\sqrt{2} }{2}i\\
+	w^3 &=-\frac{\sqrt{2} }{2}+\frac{\sqrt{2} }{2}i\\
+	w^5 &=-\frac{\sqrt{2} }{2} -\frac{\sqrt{2} }{2}i\\
+	w^7 &=\frac{\sqrt{2} }{2}-\frac{\sqrt{2} }{2}i
+\end{align*}
+\section{The Method of Repeated Squares}
+looked boring ill come back to it later 
+\chapter{Permutation Groups}
+Consider an equilateral triangle \(\triangle ABC\). The symmetries of this triangle actually consist of permutations of the three vetices, where a \textbf{permutation}  of the set \(S=\{ A,B,C \} \) is a bijective map \(\pi :S\to S	\). The three vertices have the following six permuations: 
+\[
+	\begin{pmatrix}
+		A &B  &C   \\
+		 A&B  &C   \\
+	\end{pmatrix}\quad \begin{pmatrix}
+		 A&B  &C   \\
+		 C&A  &B   \\
+	\end{pmatrix}\quad \begin{pmatrix}
+		A &B  &C   \\
+		 B&C  &A   \\
+	\end{pmatrix}
+\]
+\[
+	\begin{pmatrix}
+		A &B  &C   \\
+		 A&C  &B   \\
+	\end{pmatrix}\quad \begin{pmatrix}
+		A &B  &C   \\
+		 C&B  &A   \\
+	\end{pmatrix}\quad \begin{pmatrix}
+		A &B  &C   \\
+		 B&A  &C   \\
+	\end{pmatrix}
+\]
+In this case, the array 
+\[
+	\begin{pmatrix}
+		A &B  &C   \\
+		 B&C  &A   \\
+	\end{pmatrix}
+\]
+denotes the permuation that sends \(A\to B\), \(B\to C\), and \(C\to A\):
+\[
+	A\mapsto B
+\]
+\[
+	B\mapsto C
+\]
+\[
+	C\mapsto A
+\]
+The symmetries of a triangle form a group. In this chapter we study groups of this type.
+\section{Definitions and Notation}
+The permutations of a set \(X\) form a group \(S_X\). If \(X\) is finite, then we assume \(X=\{ 1,2,\ldots,n \} \). In this case we write \(S_n\) instead of \(S_X \). We call this the \textbf{symmetric} \textbf{group} on \(n\) letters. 
+\begin{theorem}[Symmetric Group on \(n\) Letters]
+	The symmetric group on \(n\) letters \(S_n\) is a group with \(n!\) elements, wherein the binary operation is the composition of maps.
+\end{theorem}
+\begin{proof}
+	The identity of \(S_n\) is the identity map. If \(f:S_n \to S_n\) is a permutation, then \(f^{-1} \) exists by \ref{invmap} since \(f\) is bijective. Thus, every map has an inverse under the composition operation. By \ref{propcomp}, compositions are associative. Thus, \((S_n,\circ )\) is a group. There are \(n!\) ways to arrange sets of order \(n\), so \(\left\vert S_n \right\vert=n! \).
+\end{proof}
+\begin{definition}[Permutation Group]
+	A subgroup of \(S_n\) is a \textbf{permutation} \textbf{group}.
+\end{definition}
+\begin{eg}
+	Consider the subgroup \(G\) of \(S_5\) consisting of the identity permutation \(\text{id} \) and the permutations 
+	\[
+		\sigma =\begin{pmatrix}
+			1 &2  &3  &4  &5   \\
+			 1&2  &3  &5  &4   \\
+		\end{pmatrix}
+	\]
+	\[
+		\tau =\begin{pmatrix}
+			1 &2  &3  &4  &5   \\
+			 3&2  &1  &4 &5   \\
+		\end{pmatrix}
+	\]
+	\[
+		\mu =\begin{pmatrix}
+			1 &2  &3  &4  &5   \\
+			 3&2  &1  &5  &4   \\
+		\end{pmatrix}
+	\]
+	We can construct this table defining how to operate with elements in this permutation group.
+	\begin{center}\begin{tabular}{c|cccc}
+		\(\circ \) &\(\text{id} \) &\(\sigma \) &\(\tau \) &\(\mu \)\\
+		\hline
+		\(\text{id} \) &\(\text{id} \) &\(\sigma \) &\(\tau \) &\(\mu \)\\
+		\(\sigma \)&\(\sigma \)&\(\text{id} \)&\(\mu \)&\(\tau \)\\
+		\(\tau \)&\(\tau \)&\(\mu \)&\(\text{id} \)&\(\sigma \)\\
+		\(\mu \)&\(\mu \)&\(\tau \)&\(\sigma \)&\(\text{id} \)
+	\end{tabular}\end{center}
+\end{eg}
+\begin{remark}
+	Functions are composed from right to left. That is, \((\sigma \circ \tau )(x)=\sigma (\tau (x))\). We can thus adopt the convention of operating from right to left on permutations, that is given \(\sigma \tau \) we will simply do \(\tau \) first.
+\end{remark}
+\begin{eg}
+	Permutation groups are usually not abelian. Let 
+	\[
+		\sigma =\begin{pmatrix}
+			1 &2  &3  &4   \\
+			 4&1  &2  &3   \\
+		\end{pmatrix}
+	\]
+	\[
+		\tau =\begin{pmatrix}
+			1 &2  &3  &4   \\
+			 2&1  &4  &3   \\
+		\end{pmatrix}
+	\]
+	Then 
+	\[
+		\sigma \tau =\begin{pmatrix}
+			1 &2  &3  &4   \\
+			 1&4  &3  &2   \\
+		\end{pmatrix}
+	\]
+	and
+	\[
+		\tau \sigma =\begin{pmatrix}
+			1 &2  &3  &4   \\
+			 3&2  &1  &4   \\
+		\end{pmatrix}
+	\]
+\end{eg}
+\subsection*{Cycle Notation}
+\begin{definition}[Permutations as Cycles]
+	A permutation \(\sigma \in S_X\) is a \textbf{cycle} \textbf{of} \textbf{length} \(k\) if there exists \(a_1,\ldots,a_k\in X\) such that
+	\newpage\[
+		\sigma \left( a_1 \right) =a_2
+	\]
+	\[
+		\sigma \left( a_2 \right) =a_3
+	\]
+	\[
+		\vdots
+	\]
+	\[
+		\sigma \left( a_k \right) =a_1
+	\]
+	and \(\sigma (x)=x\) for all other \(x\in X\). We write \((a_1,\ldots,a_k)\) to denote the cycle \(\sigma \).
+\end{definition}
+\begin{remark}
+	Cycles are the building blocks of all permutations.
+\end{remark}
+For example, the permutation 
+\[
+	\sigma =\begin{pmatrix}
+		1 &2  &3  &4  &5  &6  &7   \\
+		 6&3  &5  &1  &4  &2  &7   \\
+	\end{pmatrix}=(162354)
+\]
+is a cycle of length 6, and 
+\[
+	\tau =\begin{pmatrix}
+		1 &2  &3  &4  &5  &6   \\
+		 1&4  &2  &3  &5  &6   \\
+	\end{pmatrix}=(243)
+\]
+is a cycle of length 3. Not all permutations are cycles. For example,
+\[
+	\mu =\begin{pmatrix}
+		1 &2  &3  &4  &5  &6   \\
+		 2&4  &1  &3  &6  &5   \\
+	\end{pmatrix}=(1243)(56)
+\]
+coinsists of both a cycle of length 2 and of length 4. 
+\begin{eg}
+	It's easy to compute compositions of cycles. Let 
+	\[
+		\sigma =(1352)\text{ and } \tau =(256)
+	\]
+	We can think of \(\sigma \) as 
+	\[
+		\sigma \equiv \left\{\begin{array}{c}
+			1\mapsto 3\\
+			3\mapsto 5\\
+			5\mapsto 2\\
+			2\mapsto 1
+		\end{array}\right.
+	\]
+	and we can think of \(\tau \) as 
+	\[
+		\tau \equiv \left\{\begin{array}{c}
+			2\mapsto 5\\
+			5\mapsto 6\\
+			6\mapsto 2
+		\end{array}\right.
+	\]
+	Thus, we can find
+	\[
+		(\sigma \circ \tau )\equiv \left\{\begin{array}{c}
+			2\mapsto 5\mapsto 2\\
+			5\mapsto 6\\
+			6\mapsto 2\mapsto 1\\
+			1\mapsto 3\\
+			3\mapsto 5\\
+			5\mapsto 2\mapsto 5
+		\end{array}\right.\equiv \left\{\begin{array}{c}
+			5\mapsto 6\\
+			6\mapsto 1\\
+			1\mapsto 3\\
+			3\mapsto 5
+		\end{array}\right.\equiv (1356)
+	\]
+	Similarly, if \(\mu =(1634)\), then \(\sigma \mu =(1652)(34)\) 
+\end{eg}
+\begin{definition}[Disjoint Cycles]
+	If \(\sigma ,\tau \in S_X\) are cycles such that \(\sigma =(a_1,\ldots,a_k)\) and \(\tau =(b_1,\ldots,b_l)\), then \(\sigma \) and \(\tau \) are \textbf{disjoint} if \(a_i \neq b_j\) for all \(i,j\).
+\end{definition}
+The products of disjoint cycles cannot be simplified.
+\begin{proposition}
+	Let \(\sigma \) and \(\tau \) be disjoint cycles in \(S_X\). \(\sigma \tau =\tau \sigma \).
+\end{proposition}
+\begin{proof}
+	Let \(\sigma =(a_1,\ldots,a_k)\) and \(\tau =(b_1,\ldots,b_l)\). We must show \(\sigma \tau (x)=\tau \sigma (x)\) for all \(x\in X\). If \(x\notin \{ a_1,\ldots,a_k \} \) and \(x \notin \{ b_1,\ldots,b_l \} \), then both \(\sigma \) and \(\tau \) \textbf{fix} \(x\), meaning \(\sigma (x)=x\) and \(\tau (x)=x\). Thus,
+	\[
+		\sigma \tau (x)=\sigma (\tau (x))=\sigma (x)=x=\tau (x)=\tau (\sigma (x))=\tau \sigma (x)
+	\]
+	Now, suppose \(x\in {a_1,\ldots,a_k}\). Thus, \(\sigma (a_i)=a_{(i\mod k)+1} \), meaning 
+	\begin{align*}
+		a_1&\mapsto a_2\\
+		a_2&\mapsto a_3\\
+		&\vdots\\
+		a_{k-1}&\mapsto a_k\\
+		a_k&\mapsto a_1 
+	\end{align*}
+	Since \(\sigma \) and \(\tau \) are disjoint, then \(\tau (a_i)=a_i\). Thus, 
+	\begin{align*}
+		\sigma \tau (a_i)&=\sigma (\tau (a_i))\\
+		&=\sigma (a_i)\\
+		&=a_{(i\mod k)+1}\\
+		&=\tau (a_{(i\mod k)+1})\\
+		&=\tau (\sigma (a_{i} ))\\
+		&=\tau \sigma (a_i)
+	\end{align*}
+	The same logic holds for \(x\in\{ b_1,\ldots,b_l  \} \). Since \(\sigma \) and \(\tau \) are disjoint,
+	\[
+		\{ a_1,\ldots,a_k \} \cap \{ b_1,\ldots,b_l \} =\varnothing 
+	\]
+\end{proof}
+\begin{theorem}[Permutations as Cycles]
+	Every permutation \(\sigma \in S_n\) can be written as the product of disjoint cycles.
+\end{theorem}
+\begin{proof}
+	Assume \(X=\{1,2,\ldots,n\}\). Let \(\sigma \in S_n\) and define \(X_1=\{ \sigma (1),\sigma^2 (1),\ldots \} \). The set \(X_1\) must be finite, since the set \(X\) is finite. Let \(i\in\mathbb{Z} \) be the first integer in \(X\) that is not in \(X_1\), and let \(X_2=\{ \sigma (i),\sigma ^2(i),\ldots \} \). Again, this set is finite. Now we can define \(X_3,X_4,\ldots\) in the same manner. Since \(X\) is finite, there will be a finite number of these \textbf{disjoint} sets. Let this number be \(r\). If \(\sigma _i\) is given as 
+	\[
+		\left\{\begin{array}{cc}
+			\sigma (x)&x\in X_i\\
+			x&x\notin X_i
+		\end{array}\right.
+	\]
+	Then \(\sigma =\sigma _1 \sigma _2 \cdots \sigma _r\). Since the sets \(X_1,\ldots, X_r\) are disjoint, then the cycles \(\sigma _1,\ldots,\sigma _r\) are also disjoint.
+\end{proof}
+\begin{remark}
+	Permutations will generally be represented by cycles for brevity, and the identity permutation will be given as \((1)\).
+\end{remark}
+\subsection*{Transpositions}
+\begin{definition}[Transposition]
+	A transposition is a cycle of length 2.
+\end{definition}
+\begin{proposition}
+	Any permutation of a finite set containing at least two elements can be given as the product of transpositions.
+\end{proposition}
+\begin{eg}
+	For example, the permutation
+	\[
+		(16)(253)=(16)(23)(25)
+	\]
+\end{eg}
+There is no unique representation of permutations as a product of transpositions. For example, the above permutation can also be given as
+\[
+	(16)(45)(23)(45)(25)
+\]
+Interestingly, no permutation can be written as both an odd \emph{and} an even number of transpositions. 
+\begin{lemma}\label{lma:11}
+	If the identity is written as the product of \(r\) transpositions 
+	\[
+		\text{id}=\tau _1 \tau _2 \cdots \tau _r 
+	\]
+	then \(r\) is even.
+\end{lemma}
+\begin{theorem}
+	If a permutation \(\sigma \) can be expressed as the product of an even number of transpositions, then all other products of transpositions equaling \(\sigma \) must contain an even number of transpositions. Similarly, if \(\sigma \) can be expressed as an odd number of transpositions, then any set of transpositions equaling \(\sigma \) must be odd.
+\end{theorem}
+\begin{proof}
+	Suppose 
+	\[
+		\sigma =\sigma _1 \sigma _2\cdots \sigma _m =\tau _1 \tau _2 \cdots \tau _n
+	\]
+	where \(m\) is even. The inverse of \(\sigma \) is \(\sigma _m \cdots \sigma _1\).
+	\[
+		\text{id} =\sigma \sigma _m \cdots \sigma _1=\tau _1\cdots \tau _n \sigma _m\cdots \sigma _1
+	\]
+thus \(n\) is even by \ref{lma:11}.
+\end{proof}
+\subsection*{The Alternating Groups}
+\section{Dihedral Groups}
+\subsection*{The Motion Group of a Cube}
+\end{document}
