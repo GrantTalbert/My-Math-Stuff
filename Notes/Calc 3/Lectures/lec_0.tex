@@ -1,0 +1,75 @@
+\chapter{Vectors and the Geometry of Space}
+
+\@lecture{2}{24 Jan. 08:00}{12.2 and 12.3}
+
+\section{Vectors}
+\begin{theorem}[Properties of Vectors]\label{thm:1}
+	Let $\vec{a},\vec{b},\vec{c}\in\R^n$ be vectors, and let $c,d\in\R$ be scalars. The following properties are satisfied:
+	$$\vec{a}+\vec{b}=\vec{b}+\vec{a}$$
+	$$\vec{a}+(\vec{b}+\vec{c})=(\vec{a}+\vec{b})+\vec{c}$$
+	$$\vec{a}+\vec{0}=\vec{a}$$
+	$$\vec{a}+(-\vec{a})=\vec{0}$$
+	$$c(\vec{a}+\vec{b})=c\vec{a}+c\vec{b}$$
+	$$(cd)\vec{a}=c(d\vec{a})$$
+	$$1\vec{a}=\vec{a}$$
+\end{theorem}
+\begin{definition}[Unit Vector]\label{def:1}
+	A unit vector is any vector $\vec{v}$ satisfying $|\vec{v}|=1$. In physics, we give $\hat{v}$ to denote the unit vector in the direction of $\vec{v}$.
+\end{definition}
+The vectors $\langle1,0,0\rangle$, $\langle0,1,0\rangle$, and $\langle0,0,1\rangle$ are the \textbf{standard basis vectors} of $\R^3$. We denote them $\ihat$, $\jhat$, and $\khat$, respectively.\\
+For some vector $\vec{v}$, the unit vector with the same direction as $\vec{v}$ is given as
+$$\frac{\vec{v}}{|\vec{v}|}$$
+This notation is slightly abusive, as multiplication and division are not defined for vectors.\\
+One use of vectors is to denote forces. For example, given some $\vec{F_1}=\sqrt{2}\langle-5,5\rangle$ and $\vec{F_2}=\langle9\sqrt{3},9\rangle$, we can find the resultant force vector and its magnitude:
+$$\vec{F_1}+\vec{F_2}=(9\sqrt{3}-5\sqrt{2})\ihat+(9+5\sqrt{2})\jhat$$
+$$\Rightarrow|\vec{F_1}+\vec{F_2}|=\sqrt{(9\sqrt{3}-5\sqrt{2})^2+(9+5\sqrt{2})^2}$$
+$$=\sqrt{424+90(\sqrt{2}-\sqrt{6})}$$
+	
+\section{The Dot Product}
+\begin{definition}[The Dot Product]\label{def:2}
+	For $\vec{a}=\langle a_1,a_2,a_3\rangle$ and $\vec{b}=\langle b_1,b_2,b_3\rangle$, we define the dot product
+	$$\vec{a}\cdot\vec{b}=a_1b_1+a_2b_2+a_3b_3$$
+	This is an example of an inner product with the mapping $\langle\cdot,\cdot\rangle:\R^n\times\R^n\rightarrow\R$. The extention from $\R^3$ to $\R^n$ is given as
+	$$\vec{a}\cdot\vec{b}=\sum_{i=1}^n a_ib_i$$
+	where $a_i,b_i$ represent components of the vectors $\vec{a}$ and $\vec{b}$.
+\end{definition}
+\begin{definition}[Orthogonal Vectors]\label{def:3}
+	$\vec{a}$ and $\vec{b}$ are orthogonal if and only if $\langle\vec{a},\vec{b}\rangle=0$, where $\langle\cdot,\cdot\rangle$ gives an inner product. In calculus 3, this inner product is assumed to always be the dot product, and is generally denoted $\vec{a}\cdot\vec{b}$.
+\end{definition}
+\begin{definition}[Direction Angles]\label{def:4}
+	For some $\vec{a}=\langle a_1,a_2,a_3\rangle$, we give $\alpha,\beta,\gamma$ as the angles formed with the $x$, $y$, and $z$-axes. We can define them as
+	$$\cos\alpha=\frac{a_1}{|\vec{a}|}\qquad\cos\beta=\frac{a_2}{|\vec{a}|}\qquad\cos\gamma=\frac{a_3}{|\vec{a}|}$$
+	We also find that
+	$$\frac{\vec{a}}{|\vec{a}|}=\langle\cos\alpha,\cos\beta,\cos\gamma\rangle$$
+\end{definition}
+As an example, consider $\vec{a}=\langle1,2,3\rangle$ and $\vec{b}=-4\ihat+2\jhat-\khat$. From \ref{def:2}, we have
+$$\vec{a}\cdot\vec{b}=-4+4-3=-3$$
+$$\vec{b}\cdot\vec{a}=-4+4-3=-3$$
+$$\vec{a}=1+4+9=14$$
+$$\vec{b}=16+4+1=21$$
+We see there are some properties of the dot product.
+\begin{theorem}[Properties of the Dot Product]\label{thm:2}
+	Let $\vec{a},\vec{b},\vec{c}\in\R^n$ be vectors, and let $c,d\in\R$ be scalars. The following properties are satisfied:
+	$$\vec{a}\cdot\vec{a}=|\vec{a}|^2$$
+	$$\vec{a}\cdot\vec{b}=\vec{b}\cdot\vec{a}$$
+	$$\vec{a}\cdot(\vec{b}+\vec{c})=\vec{a}\cdot\vec{b}+\vec{a}\cdot\vec{c}$$
+	$$(c\vec{a})\cdot\vec{b}=c(\vec{a}\cdot\vec{b})=\vec{a}\cdot(c\vec{b})$$
+	$$\vec{0}\cdot\vec{a}=0$$
+\end{theorem}
+\begin{theorem}[Alternate Definition of the Dot Product]\label{thm:3}
+	Let $\vec{a},\vec{b}$ be vectors and let $\theta$ be the angle between them.
+	$$\vec{a}\cdot\vec{b}=|\vec{a}||\vec{b}|\cos\theta$$
+\end{theorem}
+We can now define new things using the dot product.
+\begin{definition}[Vector Projection]\label{def:5}
+	The projecion of a vector $\vec{v}$ onto another vector $\vec{u}$ is the component of the vector $\vec{v}$ in the direction of $\vec{u}$. One can imagine two vectors coming from the origin. Forming a right triangle using the top vector as the hypotenuse, the length of the leg that lies along the other vector is the projection of the first vector onto the second vector. The projection of $\vec{u}$ onto $\vec{v}$ is
+	$$\text{proj}_{\vec{v}}\vec{u}=\frac{\vec{v}\cdot\vec{u}}{|\vec{v}|^2}\vec{v}$$
+\end{definition}
+\begin{definition}[Scalar Projection]\label{def:6}
+	We can define the scalar projection, which is simply the signed magnitude of the vector projection, as seen in \ref{def:5}. The scalar projection of $\vec{u}$ onto $\vec{v}$ is given as
+	$$\text{comp}_{\vec{v}}\vec{u}=\frac{\vec{v}\cdot\vec{u}}{|\vec{u}|}$$
+\end{definition}
+As an example, we can use the scalar projection to define work. If a force $\vec{F}$ moves an object from $P_1$ to $P_2$, the displacement vector $\vec{d}=\overrightarrow{P_1P_2}$. The work done by the force over this distance is
+$$W=\text{comp}_{\vec{d}}\vec{F}|\vec{d}|$$
+which is the product of the component of the force over the distance, times the total distance moved. This simplifies to
+$$W=\vec{F}\cdot\vec{d}$$

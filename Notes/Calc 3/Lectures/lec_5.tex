@@ -1,0 +1,536 @@
+\section{Limits and Continuity}
+Let \(f\) be a function defined on an open interval containing \(x\) values arbitrarily close to \(a\). Recall that
+\[
+    \lim_{x\to a}f(x)=L\Longleftrightarrow \forall (\varepsilon >0)(\exists (\delta >0)(0<|x-a|<\delta \Longrightarrow |f(x)-L|<\varepsilon ))
+\]
+We now generalize this to multivariate scalar functions.
+\begin{definition}[Formal Definition of 2D Limit]
+    Let \(f\) be a function of two variables with domain \(D\) including points arbitrarily close to \(a,b\).
+    \[
+        \lim_{(x,y)\to (a,b)}f(x,y)=L\Longleftrightarrow \forall (\varepsilon >0)(\exists (\delta >0)(0<\sqrt{(x-a)^2 +(y-b)^2 }<\delta \Longrightarrow  |f(x,y)-L|<\varepsilon ))
+    \]
+\end{definition}
+Notice the use of the distance formula, or more generally, the \emph{euclidean norm}. This generalizes to \(n\)-dimensions:
+\begin{definition}[Formal Definition of Limits]
+    Let \(f\) be a function of \(n\) variables with domain \(D\) including points arbitrarily close to \(\vec{a}  \in\mathbb{R} ^n\). For the sake of being concise, let \(\vec{x}   =(x_1,\ldots,x_n)\in\mathbb{R} ^n\).
+    \[
+        \lim_{\vec{x} \to \vec{a}  }f(\vec{x}   )=L\Longleftrightarrow \forall (\varepsilon >0)(\exists (\delta >0)(0<\|\vec{x}   -\vec{a} \|<\delta \Longrightarrow |f(\vec{x}  )-L|<\varepsilon ))
+    \]
+\end{definition}
+We have the same definition of continuity. 
+\begin{definition}[Continuity at a Point]
+    If \(f(a,b)=\lim_{(x,y) \to (a,b)} \), then \(f\) is continuous at \((a,b)\).
+\end{definition}
+\begin{theorem}[Continuous Functions]
+    All elementary functions (polynomial, logarithmic, radical, rational, exponential, trig, inverse trig) are continuous \textbf{on}  \textbf{their}  \textbf{domains}. Furthermore, compositions of continous functions are continuous on their domains.
+\end{theorem}
+When a function is continous at a point, we can evaluate its limit at that point by showing that the function is continous there, and then plugging in values. 
+\begin{theorem}[Limit Laws]
+    \[
+        \lim_{(x,y)\to (a,b)}x=a
+    \]
+    \[
+        \lim_{(x,y)\to (a,b)}y=b
+    \]
+    \[
+        \lim_{(x,y)\to (a,b)}c=c
+    \]
+\end{theorem}
+\begin{theorem}[Squeeze Theorem]
+    If \(f(x)\leq g(x,y)\leq h(x)\) when \(x\) is near \(a\), and
+    \[\lim_{(x,y)\to (a,b)}f(x)=\lim_{(x,y)\to (a,b)}h(x)=L\]
+    then
+    \[\lim_{(x,y)\to (a,b)}g(x)=L\]
+\end{theorem}
+Note the use of single variable functions in the previous theorem.\\
+A good checklist of strategies for finding limits of 2D functions is:
+\begin{enumerate}
+    \item Is the function continuous?
+    \item Can the function be simplified algebreicly?
+    \item Try to show that the limit does \emph{not} exist by showing two different paths \((x,y)\to (a,b)\) give different limit values.
+    \item Try using polar coordinates to find it. Give \(x=r\cos \theta \), \(y=r\sin \theta \), and \((x,y)\to (0,0)\) is equivalent to \(r\to 0\). Note this only works for \((a,b)=(0,0)\). 
+    \item Use the squeeze theorem. 
+    \item Use the epsilon-delta definition of limit. 
+\end{enumerate}
+\begin{eg}
+    Evaluate the limit, or show it does not exist.
+    \[
+        \lim_{(x,y) \to (0,0)} \frac{xy^2}{x^2 +y^2}
+    \] 
+    \(\frac{0}{0}\) is indeterminate, so \((0,0)\notin D\).\\
+    \textbf{Path 1:}
+    \[
+        y=x\text{ and } x\to 0
+    \]
+    \[
+        \Longrightarrow \lim_{x\to 0}\frac{x^3}{x^2 +x^4}=\lim_{x\to 0}\frac{x}{1+x^2}=\frac{0}{1}=0
+    \]
+    \textbf{NOTE:} just because we have shown that one path gives one value does not mean this is the value of the limit. The entire point of this method is to show the same limit has multiple values, thus it can only disprove the existence of a limit, not prove it. Thus, we consider more paths.\\
+    \textbf{Path 2:}
+    \[
+        x=y^2 \text{ and } y\to 0
+    \]
+    \[
+        \lim_{y\to 0}\frac{y^4}{y^4 +y^4}=\lim_{y \to 0} \frac{y^4}{2y^4}=\frac{1}{2}
+    \]
+    \(0\neq \frac{1}{2}\), so the limit does not exist at \((0,0)\).
+\end{eg}
+A note about the previous example: we cannot choose a definition for \(x\) or \(y\) where we do not get to the desired point.
+\begin{eg}
+    Evaluate the limit, or show it does not exist. 
+    \[
+        \lim_{(x,y)\to (0,0)}\frac{x^2 \sin ^2 y}{x^2 +2y^2}
+    \]
+    We will use the squeeze theorem. 
+    \[
+        0\leq \frac{x^2}{x^2 +2y^2}\leq 1\;\forall x\in\mathbb{R}
+    \]
+    \[
+        \Longrightarrow 0\leq \frac{x^2 \sin ^2 y}{x^2 +2y^2}\leq \sin ^2 y
+    \]
+    \[
+        \lim_{(x,y)\to (0,0)}0=0
+    \]
+    \[
+        \lim_{(x,y)\to (0,0)}\sin ^2 y=0
+    \]
+    \[
+        \therefore \lim_{(x,y)\to (0,0)}\frac{x^2 \sin ^2 y}{x^2 +2y^2}=0\text{ by sqeeze theorem.}\;\qedsymbol 
+    \]
+\end{eg}
+\section{Partial Derivatives}
+\begin{definition}[Partial Derivatives of a Function of 2 Variables]
+    Let \(f:\mathbb{R} ^2\to \mathbb{R} \) be the function \(z=f(x,y)\). Then the partial derivatives are given as 
+    \[
+        f_x (x,y)=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}
+    \]
+    \[
+        f_y (x,y)=\lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}{h}
+    \]
+\end{definition}
+A way to think about the above definition is by having a function \(g(x)=f(x,b)\), where \(b\) is constant. In other words, we let \(x\) vary while holding \(y\) constant for some arbitrary \(b\in\mathbb{R} \). In this case, \(g^{\prime} (x)=f_x (x,b)\), or \(g^{\prime} \) is the partial derivative of \(f\) with respect to \(x\).
+\begin{notation}
+    The following notations are equivalent. 
+    \[
+        f_x (x,y)=f_x =\frac{\partial f}{\partial x}=\frac{\partial }{\partial x}f(x,y)=z_x =D_1 f=D_x f
+    \]
+    Generally we want to avoid big \(D\) notation for partial derivatives. The same statements hold for \(y\).
+\end{notation}
+\begin{eg}
+    Let \(f(x,y)=3x^3 y^2 -4xy\). Find \(\frac{\partial f}{\partial x}\) and \(\frac{\partial f}{\partial y}\).
+    \[
+        \frac{\partial f}{\partial x}=9x^2 y^2 -4y
+    \]
+    \[
+        \frac{\partial f}{\partial y}=6x^3 y-4x
+    \]
+\end{eg}
+\newpage
+\begin{eg}
+    Let \(g(x)=\cos \left( \frac{x^2}{1+y} \right) \). Find \(g_x\) and \(g_y\). 
+    \[
+        g_x=-\sin \left( \frac{x^2}{1+y} \right) \left( \frac{2x}{1+y} \right)
+    \]
+    \[
+        g_y =-\sin \left( \frac{x^2}{1+y} \right) \left( \frac{-x^2}{(1+y)^2} \right) 
+    \]
+\end{eg}
+\begin{remark}
+    Partial derivatives for functions of \(n\) variables exist in the same way.
+\end{remark}
+\begin{notation}
+    Higher order partial derivatives can be given in various ways:
+    \[
+        \left( f_x \right)_y =f_{xy}=\frac{\partial }{\partial y}\left( \frac{\partial f}{\partial x} \right)  =\frac{\partial f}{\partial y\partial x}=\frac{\partial }{\partial x}\left( \frac{\partial }{\partial y}\left( f(x,y) \right)  \right)
+    \]
+    When in Leibnitz notation, repeated partials are operated from left to right, similarly to function compositions.
+\end{notation}
+\begin{eg}
+    Let \(f(x,y)=3x^3 y^2 -4xy\). From a previous example, we have 
+    \[
+        \frac{\partial f}{\partial x}=9x^2 y^2 -4y\qquad \frac{\partial f}{\partial y}=6x^3 y-4x
+    \]
+    Find the second order partials. 
+    \[
+        f_{xx}=18xy^2\qquad f_{yy}=6x^3 
+    \]
+    \[
+        f_{xy}=18x^2 y-4\qquad f_{yx} =18x^2 y-4
+    \]
+\end{eg}
+\begin{theorem}[Clairaut's Theorem]\label{Clairaut}
+    If \(f\) is defined on a disc \(D\) which contains \((a,b)\), and if \(f_{xy} \) and \(f_{yx} \) are continuous on \(D\), then
+    \[
+        f_{xy} (a,b)=f_{yx}(a,b) 
+    \]
+\end{theorem}
+\begin{remark}
+    The aforementioned disk is assigned the radius of some arbitrary \(\varepsilon \). From this, a better interpretation of the above theorem can be stated as such:\\
+    If \(f\) is continuous on a closed region \(D\), and its partials are continuous on \(D\), then the order of differentiation doesn't matter for any points not on the border of \(D\).\\
+    (A disk of radius \(\varepsilon \) is also known as an epsilon ball.)
+\end{remark}
+\begin{definition}[Laplace's Equation]
+    The partial differential equation (PDE) \(u_{xx}+u_{yy}=0  \) is known as \textbf{Laplace's} \textbf{Equation}. Solutions \(u\) to this equation are known as \textbf{harmonic} \textbf{functions}.
+\end{definition}
+\begin{eg}
+    Does \(u(x,y)=e^x \sin (y)\) satisfy Laplace's Equation?
+    \[
+        u_{xx}=e^x\sin(y) 
+    \]
+    \[
+        u_{yy}=-e^x \sin (y) 
+    \]
+    \[u_{xx}+u_{yy}=e^{x}\sin (y)-e^x \sin (y)=0   \]
+Therefore this equation is a solution to Laplace's Equation.
+\end{eg}
+\begin{definition}[Wave Equation]
+    The \textbf{Wave} \textbf{Equation} is a PDE given as \(u_{tt}=a^2 u_{xx}  \).
+\end{definition}
+\begin{eg}
+    Let \(u(x,t)=\sin (x-5t)\). Show \(u\) is a solution to the wave equation.
+    \[
+        u_{t}=-5\cos (x-5t)\qquad u_x =\cos (x-5t) 
+    \]
+    \[
+        u_{tt}=-25\sin (x-5t)\qquad u_{xx}=-\sin (x-5t)  
+    \]
+    \[
+        \Longrightarrow u_{tt}-25u_{xx}=-25\sin (x-5t)+25\sin (x-5t)=0  
+    \]
+    \[
+        \Longrightarrow u_{tt}=25u_{xx}  
+    \]
+\end{eg}
+\section{Tangent Planes and Linear Approximations}
+\begin{definition}[Tangent Plane]
+    If \(z=f(x,y)\) defines a surface with \(P=(x_0,y_0,z_0 )\in f\), then let \(C_1\) and \(C_2\) be the curves \(x=x_0\) and \(y=y_0\). The tangent plane izs the plane containing the lines tangent to \(C_1\) and \(C_2\).
+\end{definition}
+\begin{definition}[Linearization]
+    If \(f(x,y)\) defines a surface with point \((a,b)\), then near \((a,b)\) it follows that
+    \[
+        f(x,y)\approx L(x,y)=f_x(a,b)(x-a)+f_y (a,b)(y-b)
+    \]
+\end{definition}
+\begin{definition}[Differentiability of a 2D Function]
+    Let \(\Delta z=f(a,b)-f(x,y)\). Let \(\varepsilon _1,\varepsilon _2\) be functions of \(\Delta x\) and \(\Delta y\) such that \(\varepsilon _1,\varepsilon _2\) go to 0 as \((\Delta x,\Delta y)\to (0,0)\). \(f\) is differentiable at \((a,b)\) iff 
+    \[
+        \Delta z=f_x (a,b)\Delta x+f_y (a,b)\Delta y+\varepsilon _1\Delta x+\varepsilon _2 \Delta y
+    \]
+\end{definition}
+\begin{definition}[Tangent Plane]
+    Suppose a function \(z=f(x,y)\) has a point \((x_0,y_0,z_0)\in f\). The tangent plane to \(f\) at this point can be written as 
+\[
+    z-z_0 =f_x (x_0,y_0)(x-x_0)+f_y (x_0,y_0)(y-y_0)
+\]
+\end{definition}
+\begin{remark}
+    The variables in this function are only \(x,y,z\).
+\end{remark}
+\begin{corollary}
+    The normal vector to this plane is 
+    \[
+        \vec{N}=\left\langle f_x (x_0,y_0),f_y(x_0,y_0),-1 \right\rangle 
+    \]
+\end{corollary}
+\begin{eg}
+    Find the equation of the tangent plane to \(z=y\ln x\) at \((e,4,4)\).
+    \[
+        z-4=\frac{4}{e}(x-e)+(y-4)
+    \]
+\end{eg}
+The tangent plane can be used as a \textbf{linear} \textbf{approximation} for the function \(z\) near the point \(P\).
+\begin{definition}[Linearization]
+    If \(z=f(x,y)\), then near \(P=(x_0,y_0,z_0)\in f\), 
+    \[f(x,y)\approx L(x,y)=f_x (x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)+z_0\]
+\end{definition}
+\begin{theorem}
+    Let \(f:D\to \mathbb{R} \) be a function of two variables with \((a,b)\in D\). If \(f_x\text{ and }  f_y\) exist near and at \((a,b)\), and are continuous at \((a,b)\), then \(f\) is differentiable at \((a,b)\).
+\end{theorem}
+\begin{definition}[Differentials]
+    For a differentiable function \(z=f(x,y)\), let \(dx\) and \(dy\) be independent variables. Then the \textbf{differential} of \(z\) (or \textbf{total} \textbf{differential}) is given as 
+    \[
+        dz=f_x (x,y)dx +f_y (x,y)dy
+    \]
+\end{definition}
+\section{The Chain Rule}
+From Calc 1, we know if \(f\) is a function of a function, that is \(f(g(t))=f(x)\), meaining \(x=g(t)\), then we give 
+\[
+    f^{\prime} (x)=f^{\prime} (g(t))g^{\prime} (t)
+\]
+Or in Leibnitz' notation, 
+\[
+    \frac{df}{dt}=\frac{df}{dx}\frac{dx}{dt}
+\]
+This is the chain rule. It's important to realize here that variables can be thought of as nested functions of other variables. This will be how we extend the chain rule to multidimensions. 
+\begin{theorem}[Chain Rule, Case 1]
+    If \(z=f(x,y)\) where \(x=g(t)\) and \(y=h(t)\), meaning \(z=f(g(t),h(t))\), then 
+    \[
+        \frac{dz}{dt}=\frac{\partial z}{\partial x}\frac{d x}{d t}+\frac{\partial z}{\partial y}\frac{d y}{d t}
+    \]
+    where \(z\) is differentiable.
+\end{theorem}
+\begin{eg}
+    Let \(f(x,y)=x^3 y-4x^2 y^2\), where \(x=\sin (2t)\) and \(y=\cos (3t)\). Find \(\frac{dz}{dt}\). 
+    \[
+        \frac{dz}{dt}=(3x^2 -8xy^2)(2\cos (2t))+(x^3 -8x^2 y)(-3\sin (3t))
+    \]
+\end{eg}
+\begin{corollary}
+    In general, for \(z=f(x_1,\ldots,x_n)\) where the partial derivatives are continuous, then 
+    \[
+        \frac{dz}{dt}=\sum_{i=1}^n \frac{\partial z}{\partial x_{i} }\frac{dx_i}{dt} 
+    \]
+\end{corollary}
+\begin{theorem}[Chain Rule, Case 2]
+    Let \(f(x,y)=z\), \(x=g(s,t)\), and \(y=h(s,t)\). Then 
+    \[
+        \frac{\partial z}{\partial s}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial s}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial s}
+    \]
+    Similarly,
+    \[
+        \frac{\partial z}{\partial t}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial t}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial t}
+    \]
+\end{theorem}
+\begin{theorem}[Chain Rule, General Case]
+    If \(f\) is a differentiable function in \(n\) variables \(x_1,\ldots,x_n\), and each \(x_i\) is a differentiable function of \(m\) variables \(t_1,\ldots,t_n\), then 
+    \begin{align*}
+        \frac{\partial f}{\partial t_j}&=\frac{\partial f}{\partial x_1}\frac{\partial x_1}{\partial t_j}+\cdots+\frac{\partial f}{\partial x_n}\frac{\partial x_n}{\partial t_j}\\
+        &=\sum_{i=1}^n \frac{\partial f}{\partial x_i}\frac{\partial x_i}{\partial t_j} 
+\end{align*}
+\end{theorem}
+We can now do \textbf{implicit} \textbf{differentiation} in multiple variables.
+\begin{eg}
+    Let \(w^3 +x^3 +y^3 +z^3 +6wz=4y\). Find \(\frac{\partial z}{\partial x}\). 
+    \[
+        \frac{\partial }{\partial x}\left( w^3 +x^3 +y^3 +z^3 +6wz \right) =\frac{\partial }{\partial x}(4y)
+    \]
+    \[
+        3w^2 w_x +3x^2 +3y^2 y_x +3z^2 z_x +6wz_x +6zw_x =4y_x
+    \]
+    \[
+        3z^2 z_x +6wz_x=4y_x -3w^2 w_x -3x^2 -3y^2 y_x -6zw_x
+    \]
+    \[
+        z_x(3z^2 +6w)=4y_x -3w^2 w_x -3x^2 -3y^2 y_x -6zw_x
+    \]
+    \[
+        z_x =\frac{4y_x -3w^2 w_x -3x^2 -3y^2 y_x -6zw_x}{3z^2 +6w}
+    \]
+\end{eg}
+\section{Directional Derivatives and the Gradient Vector}
+\begin{definition}[Gradient Vector]
+    The gradient vector (field) of a function \(\nabla f\) in \(n\) variables is given as 
+    \[
+        \left\langle \frac{\partial f}{\partial x_1},\cdots,\frac{\partial f}{\partial x_n}   \right\rangle 
+    \]
+\end{definition}
+\begin{definition}[Directional Derivative]
+    The derivative of a function \(f(x,y)\) in the arbitrary direction of some unit vector \(\vec{u}=\langle a,b \rangle  \) at a point \((x_0,y_0)\) is defined as 
+    \[
+        D_{\vec{u} }f = \lim_{h\to 0}\frac{f(x_0 -ha,y_0 -hb)-f(x_0,y_0)}{h}
+    \]
+\end{definition}
+\begin{remark}
+    The above definition can be extended to \(\mathbb{R} ^n\).
+\end{remark}
+\begin{theorem}[Directional Derivative Thm. 1]
+    The directional derivative of a function \(f\) in the direction of unit vector \(\vec{u} =\langle a,b \rangle \) is given as
+    \[
+        D _{\vec{u}} f=f_x(x,y)a+f_y(x,y)b
+    \]
+\end{theorem}
+\begin{remark}
+    The above definition can be extended to \(\mathbb{R} ^n\).
+\end{remark}
+\begin{proposition}[Directional Derivative as a Dot Product]
+    With the previous definitions, we have
+    \[
+        D _{\vec{u}} f=\nabla f\cdot \vec{u} 
+    \]
+\end{proposition}
+\begin{remark}
+    The gradient vector points in the steepest rate of change and is perpendicular to all level curves (contour map).
+\end{remark}
+\begin{theorem}[Directional Derivative Thm. 2]
+    For a differentiable function \(f\) of two variables, the maximum value of \(D_{\vec{u} }f \left( \vec{x}  \right) \) is
+    \[
+        \left\vert \nabla f \left( \vec{x}  \right)  \right\vert 
+    \]
+    and is in the direction of \(\nabla f\).
+\end{theorem}
+\begin{remark}
+    The above definition can be extended to \(\mathbb{R} ^n\).
+\end{remark}
+\section{Maximum and Minimum Values}
+\begin{theorem}[First Derivative Test]
+    If \(f\) is a function of \textbf{two} \textbf{variables} that has a local max or min at \((a,b)\), and the first order partial derivatives exist at \((a,b)\), then
+    \[
+        \nabla f(a,b)=\vec{0}
+    \]
+\end{theorem}
+\begin{theorem}[Second Derivative Test]
+    Let \(f\) be a function of \textbf{two} \textbf{variables}. Suppose the partial derivatives of \(f\) are continuous on a disk centered at \((a,b)\), and \(\nabla f(a,b)=\vec{0}\). Define a new function \(D\), the disciminant function:
+    \[
+        D(x,y)=f_{xx}f_{yy}-\left(f_{xy}\right)^2
+    \]
+    \begin{itemize}
+        \item If \(D(a,b)>0\) and \(f_{xx} \) or \(f_{yy} \) are greater than 0, then \(f(a,b)\) is a local min.
+        \item If \(D(a,b)>0\) and \(f_{xx} \) or \(f_{yy} \) are less than 0, then \(f(a,b)\) is a local max.
+        \item If \(D(a,b)<0\), then \(f(a,b)\) is a saddle point.
+        \item If \(D(a,b)=0\), then the test is inconclusive.
+    \end{itemize}
+\end{theorem}
+\begin{remark}
+    A pneumonic for remembering the discriminant function is 
+    \[
+        D=\begin{vmatrix}
+            f_{xx}  &f_{xy}    \\
+             f_{yx} &f_{yy}    \\
+        \end{vmatrix}
+    \]
+    Note that the partials are defined on a disk so \ref{Clairaut} applies, and \(f_{xy}f_{yx}=(f_{xy})^2   \).
+\end{remark}
+\begin{notation}
+    This is beyond calc 3.\\
+    If \(S\) is a set, then \(\max (S)\) gives the maximum element of the set. Likewise, \(\min (S)\) gives the min.\\
+    If a function is defined \(f:X\to Y\), then
+    \[
+        \underset{x\in S}{\arg\max}f(x)=\{ x\in S\mid \forall s\in X(f(s)\leq f(x)) \} 
+    \]
+    \(\arg \min \) is defined similarly.
+\end{notation}
+\begin{theorem}[Extreme Value Theorem for Multivariate Functions]
+    If \(f\) is defined on a closed, bounded set \(D\subseteq \mathbb{R}^n \), then \(f\) has an absolute max and min on \(D\).
+\end{theorem}
+To find the extreme values for a function of only \textbf{two} \textbf{variables} on a set \(D\subseteq \mathbb{R} ^2\), set \(\nabla f=\vec{0}\), solve for points, evaluate \(f\) at the points found, and evaluate \(f\) on the boundary of \(D\) (notated \(\partial D\)).\\
+\section{Lagrange Multipliers}
+The method of Lagrange multipliers can optimize a function given some constraint. Suppose we have some function \(f\) and a constaint function \(g\), where \(g\) has some set value. Find values where \(\nabla f\parallel \lambda \nabla g\). Set up and solve a system of equations. Plug in values to the original function.
+\begin{eg}
+    Let \(f(x,y)\coloneqq (x-2)^2 +(y-2)^2\) and \(g(x,y)\coloneqq x^2 +y^2 =9\). 
+    \[
+        \nabla f=\left\langle 2x-4,2y-4 \right\rangle
+    \]
+    \[
+        \nabla g=\left\langle 2x,2y \right\rangle 
+    \]
+    \[
+        \nabla =\lambda \nabla g
+    \]
+    \[
+        \Longrightarrow \left\{\begin{array}{c}
+            2x-4=\lambda 2x\\
+            2y-4=\lambda 2y
+        \end{array}\right.
+    \]
+Solve system of equations
+\[
+    x,y\in\left\{ 1+\frac{2\sqrt{2} }{3},1-\frac{2\sqrt{2} }{3} \right\} 
+\]
+Plug in values to \(f\) to find the maxes and mins.
+\end{eg}
+\chapter{Multiple Integrals}
+\section{Double Integrals over Rectangles}
+Let a function \(f:\mathbb{R}^2 \to \mathbb{R} \) be continuous on \(D \subset \mathbb{R}^2\), where 
+\[
+    D= [a,b]\times [c,d]
+\]
+Using Riemann sums, we can extend the definition of an integral over rectangular regions such as this. Let \([a,b]\) be partitioned into \(n\) disjoint subsets of an equal length \(\Delta x\), and let \([c,d]\) be similarly paritioned into \(m\) disjoint subsets of an equal length \(\Delta y\). Let \(\left( x_i^*,y_j^* \right) \) be the midpoint of the \(ij\)th subset of \([a,b]\times [c,d]\). We say that the volume under some function \(f(x,y)\) over the region \(D\) is approximately
+\[
+    V \approx \sum_{i=1}^n \sum_{j=1}^m f \left( x_i^*,y_j^* \right) \Delta y \Delta x
+\]
+We say that \(\Delta y \Delta x = \Delta A\) for convenience. This leads to the following definition.
+\begin{definition}[Double Integral over a Rectangular Region]
+    Let \(f\) be defined over a rectangular region \(R \subset \mathbb{R}^2\). We say
+    \[
+        \iint\limits_{R}f(x,y)\,dA = \lim_{(n,m) \to \infty}\sum_{i=1}^n \sum_{j=1}^m f \left( x_i^*,y_j^* \right)\Delta A
+    \]
+    provided the limit exists.
+\end{definition}
+\begin{remark}
+    When we integrate a function of multiple variables with respect to a single variable, we hold other variables fixed with respect to the variable being integrated with respect to. This is known as \textbf{partial} \textbf{integration}.
+\end{remark}
+\begin{theorem}[Fubini's Theorem]\label{Fubini}
+    Let \(f\) be continuous on \(D=\{ (x,y)\mid x\in[a,b]\land y\in[c,d] \} \subset \mathbb{R}^2\). Then
+    \[
+        \iint\limits_{D}f(x,y)\,dA = \int_a^b \int_c^d f(x,y)\,dydx = \int_c^d \int_a^b f(x,y)\,dxdy
+    \]
+\end{theorem}
+\begin{remark}
+    The restriction of continuity can be relaxed in some cases, and it can be required only that \(f\) be bounded on \(D\) and be discontinuous on a finite number of smooth curves. Proof of this fact most likely follows from utilization of lebesgue integration, but either way it'll likely be shown in an analysis course.
+\end{remark}
+\section{Double Integrals over General Regions}
+\begin{definition}[Type I Region]
+    A type I region is a region bounded by two continuous functions of \(x\).
+\end{definition}
+\begin{definition}[Type II Region]
+    A type II region is a region bounded by two continuous functions of \(y\).
+\end{definition}
+\begin{definition}[Integrals over Type I or II Regions]
+    Let \(D_1\) be a type I region with
+    \[
+        D_1=\left\{ (x,y)\in\mathbb{R}^2 \mid x\in[a,b]\land y\in[g_1(x),g_2(x)] \right\} 
+    \]
+    and let \(f\) be defined and integrable over \(D_1\). Then 
+    \[
+        \iint\limits_{D_1}f(x,y)dA = \int_a^b \int_{g_1(x)}^{g_2(x)}f(x,y)\,dydx
+    \]
+    Furthermore, let \(D_2\) be a type II region with
+    \[
+        D_2 =\left\{ (x,y)\in\mathbb{R}^2\mid x\in[h_1(x),h_2(x)]\land y\in[c,d] \right\}
+    \]
+    and let \(f\) be defined and integrable over \(D_2\). Then 
+    \[
+        \iint\limits_{D_2}f(x,y)dA=\int_c^{d}\int_{h_1(x)}^{h_2(x)}f(x,y)\,dxdy 
+    \]
+\end{definition}
+\begin{remark}
+    Notice that when integrating over a type I or type II region, the integral bounded by constants is the last integral evaluated.
+\end{remark}
+The following are properties of double integrals.
+\begin{enumerate}
+    \item If \(f(x,y)\geq 0\, \forall (x,y)\in D\), then the volume \(V\) of the solid region above \(D\) and below \(z=f(x,y)\) is
+    \[
+        V=\iint\limits_{D}f(x,y)\,dA
+    \]
+    \item The average value of a function \(f:\mathbb{R} ^2\to \mathbb{R} \) on \(D \subset \mathbb{R} ^2\) is
+    \[
+        f_{avg}=\frac{1}{A(D)}\iint\limits_{D}f(x,y)\,dA 
+    \]
+    where \(A(D)\) is the area of the region \(D\).
+    \item Integral of a sum:
+    \[
+        \iint\limits_{D}f(x,y)+g(x,y)\,dA = \iint\limits_{D}f(x,y)\,dA + \iint\limits_{D}g(x,y)\,dA
+    \]
+    \item Integral of a constant multiple:
+    \[
+        \iint\limits_{D}cf(x,y)\,dA = c\iint\limits_{D}f(x,y)\,dA
+    \]
+    \item If \(f(x,y)\geq g(x,y)\forall (x,y)\in D\), then
+    \[
+        \iint\limits_{D}f(x,y)\,dA \geq \iint\limits_{D}g(x,y)\,dA
+    \]
+    \item If \(D = \bigcup_{i=1}^n D_i \) where \(\bigcap_{i=1}^{n}D_i = \varnothing  \), then
+    \[
+        \iint\limits_{D}f(x,y)\,dA= \sum_{i=1}^n \iint\limits_{D_i}f(x,y)\,dA
+    \]
+    \item Integral of the constant function:
+    \[
+        \iint\limits_{D}1dA=A(D)
+    \]
+    \item If \(m\leq f(x,y)\leq M\,\forall (x,y)\in D\), then
+    \[
+        mA(D)\leq \iint\limits_{D}f(x,y)\,dA\leq MA(D)
+    \]
+\end{enumerate}
+\section{Double Integrals in Polar Coordinates}
+Integrals over polar coordinates are defined through a Riemann sum of polar rectangles. It's very convoluded so I will leave the proof as an excercize to myself when I feel like it in the future.
+\begin{definition}[Polar Rectangle]
+    A set of the form \(\{ (r\cos \theta ,r\sin \theta )\mid r\in[a,b]\land \theta \in[\alpha ,\beta ] \} \). This can be seen as a subset of a circle in both radius and angle.
+\end{definition}
+\begin{theorem}[Polar Integrals]
+    If \(f\) is continuous on a polar rectangle \(R\) with \(0\leq a\leq r\leq b\) and \(\alpha \leq \theta \leq \beta \), where \(\beta -\alpha \leq 2\pi \), then
+    \[
+        \iint\limits_{R}f(x,y)\,dA = \int_\alpha^\beta \int_a^b f \left( r\cos \theta ,r\sin \theta  \right)r\,drd \theta 
+    \]
+\end{theorem}
+Notice the extra \(r\) in the integrand in the above theorem.

@@ -1,0 +1,52 @@
+\section{The Cross Product}
+We begin by defining the determinant of a $2\times2$ and $3\times3$ matrix.
+$$\begin{vmatrix}
+	a&b\\c&d
+\end{vmatrix}\equiv ad-bc$$
+$$\begin{vmatrix}
+	a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3
+\end{vmatrix}=a_1\begin{vmatrix}
+b_2&b_3\\c_2&c_3
+\end{vmatrix}-a_2\begin{vmatrix}
+b_1&b_3\\c_1&c_1
+\end{vmatrix}+a_3\begin{vmatrix}
+b_1&b_2\\c_1&c_2
+\end{vmatrix}$$
+\begin{definition}[The Cross Product]\label{def:1}
+	The cross product is a vector operation defined with the mapping $\R^3\times\R^3\rightarrow\R^3$, where for some $\vec{a}=\langle a_1,a_2,a_3\rangle$ and $\vec{b}=\langle b_1,b_2,b_3\rangle$, we give
+	$$\vec{a}\times\vec{b}=\langle a_2b_3-a_3b_2,a_3b_1-a_1b_3,a_1b_2-a_2b_1\rangle$$
+	If we recall the way to evaluate a $3\times3$ determinant from above, we have the useful memorization method:
+	$$\vec{a}\times\vec{b}=\begin{vmatrix}
+		\ihat&\jhat&\khat\\
+		a_1&a_2&a_3\\
+		b_1&b_2&b_3
+	\end{vmatrix}$$
+	This isn't really a valid determinant to evaluate, but if we treat it as such then it's easier to remember.
+\end{definition}
+The cross product will always give a vector orthogonal to the two starting vectors. We also find that $\vec{a}\times\vec{a}\equiv\vec{0}$. If for some $\vec{a}\times\vec{b}$, the angle between the two vectors $\theta\in[0,\pi]$ goes counter-clockwise, then the resulting vector will point in the positive direction. If the angle goes clockwise, it will point in the negative direction (the negative of its magnitude).
+\begin{theorem}[Sinusoidal Definition of the Cross Product]\label{thm:1}
+	$$|\vec{a}\times\vec{b}|=|\vec{a}||\vec{b}|\sin\vartheta$$
+\end{theorem}
+\begin{theorem}[Properties of the Cross Product]\label{thm:2}
+	Take $\ket{\varphi}$, $\ket{\psi}$, and $\ket{\vartheta}$ as vectors in $\R^3$, because $\vec{a}$ and $\vec{b}$ have different heights and it's annoying. Let $\alpha\in\R$. The following statements will hold:
+	$$\ket{\psi}\times\ket{\varphi}=-\ket{\varphi}\times\ket{\psi}$$
+	$$(\alpha\ket{\psi})\times\ket{\varphi}=\ket{\psi}\times(\alpha\ket{\varphi})=\alpha(\ket{\psi}\times\ket{\varphi})$$
+	$$\ket{\psi}\times(\ket{\varphi}+\ket{\vartheta})=\ket{\psi}\times\ket{\varphi}+\ket{\psi}\times\ket{\vartheta}$$
+	$$\ket{\psi}\cdot(\ket{\varphi}\times\ket{\vartheta})=(\ket{\psi}\times\ket{\varphi})\cdot\ket{\vartheta}$$
+	$$\ket{\psi}\times(\ket{\varphi}\times\ket{\vartheta})=(\ket{\psi}\cdot\ket{\vartheta})\ket{\varphi}-(\ket{\psi}\cdot\ket{\varphi})\ket{\vartheta}$$
+\end{theorem}
+\begin{remark}
+	using this notation for calculus was a mistake.
+\end{remark}
+\section{Equations of Lines and Planes}
+\begin{theorem}[Vector Parametrization of Lines]\label{thm:3}
+	Given a point $P$ and a direction vector $\vec{v}$, we define a line as the set of terminal points of position vectors $\vec{r}$. If $P=(p_1,\ldots,p_n)$, we give $\vec{r_0}=\langle p_1,\ldots,p_n\rangle$. We give the vector equation of a line as
+	$$\vec{r}=\vec{r_0}+t\vec{v},t\in\R$$
+\end{theorem}
+For example, take the point $P=(2,3)$ and $\vec{v}=\langle4,1\rangle$. We have $\vec{r}=\langle2,3\rangle+\langle4t,t\rangle$. Since we're defining a line as the set of terminal points of $\vec{r}$, we can write $\langle x,y\rangle=\langle2+4t,3+t\rangle$. It follows from the definition of matrix addition that we have $x=2+4t$ and $y=3+t$. These are the parametric equations of this line. We solve for $t$ and have $t=\frac{x-2}{4}=y-3$. These are the symmetric equations of this line.\\
+Sidenote: if $f:\langle x_1,\ldots,x_n\rangle\mapsto(x_1,\ldots,x_n)$, then we can give our line in set-builder notation as
+$$\{f(\vec{r})\mid\vec{r}=\vec{r_0}+t\vec{v},t\in\R\}$$
+We will be using $P\sim\vec{r}$ and $\vec{r}\sim P$ to notate the position vector $\vec{r}$ for a point $P$.
+\begin{definition}[Direction Numbers]\label{def:2}
+	If we take $\vec{v}=\langle\alpha,\beta,\gamma\rangle$ in the above example, then the direction numbers are $\alpha,\beta,\gamma$ since these are the denominators of our symmetric equations.
+\end{definition}

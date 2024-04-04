@@ -1,0 +1,39 @@
+\begin{theorem}[Defining Line Segments with Position Vectors]\label{thm:1}
+	The line segment between points $P_0$ and $P_1$ with corresponding position vectors $P_0\sim\vec{r}_0$ and $P_1\sim\vec{r}_1$ is given by
+	\[\vec{r}(t)=(1-t)\vec{r}_0+t\vec{r}_1,t\in[0,1]\subset\R\]
+\end{theorem}
+We can verify the above theorem trivially. We have the parametric variable $t$ spanning the interval $[0,1]$, so we must have $t=0\Rightarrow\vec{r}(0)=\vec{r}_0$ and $t=1\Rightarrow\vec{r}(1)=\vec{r}_1$. Consider the following:
+\[\vec{r}(t)=(1-t)\vec{r}_0+t\vec{r}_1\]
+\[\vec{r}(0)=(1-0)\vec{r}_0+0\vec{r}_1\]
+\[\Rightarrow\vec{r}(0)=\vec{r}_0\]
+\[\vec{r}(1)=(1-1)\vec{r}_0+1\vec{r}_1\]
+\[\Rightarrow\vec{r}(1)=\vec{r}_1\]
+\begin{definition}[Planes]\label{def:1}
+	A plane in $\R^3$ is determined by some point $P_0=(x_0,y_0,z_0)$ and a normal vector $\vec{n}$ which is orthogonal to the plane.
+\end{definition}
+For example, consider the point $P_0=(0,2,3)$ and vector $\vec{n}=\langle2,0,0\rangle$. We find $\vec{n}\sim\ihat$, and $P_0\in \R_y\times\R_z$, thus this vector is orthogonal to the $yz$ plane, which the point happens to be in. Thus this vector and point describe the $yz$-plane.\\
+Now consider the point $P_0=(0,2,3)$ but the vector $\vec{n}=\langle2,0,1\rangle$. If we define the plane described herein as the set of points $\psi$, then we can define $P=(x,y,z)\neq P_0\land P\in\psi$. Let $\vec{r}_0\sim P_0$ be the position vector of point $P_0$, and let $\vec{r}\sim P$ be the position vector of point $P$. This means
+$$\vec{r}_0=\langle0,2,3\rangle$$
+$$\vec{r}=\langle x,y,z\rangle$$
+We define a new vector $\vec{r}-\vec{r}_0=\overrightarrow{PP_0}$ which is parallel to the plane. Thus,
+$$\vec{n}\cdot(\vec{r}-\vec{r}_0)=0$$
+is the vector equation of the plane. We also find
+$$\Rightarrow\langle2,0,1\rangle\cdot\langle x-0,y-2,z-3\rangle=0$$
+$$\Rightarrow 2x+z-3=0$$
+This is the scalar equation of the plane. Notice this is a linear equation in $x,y,z$. In fact, any linear equation $x,y,z$ such that $ax+by+cz+d=0$ has a plane with normal vector $\vec{n}=\langle a,b,c\rangle.$\\
+Another thing we can do is find a vector normal to the plane given points. For example, consider $P=(1,3,0)$, $Q=(2,-1,5)$, and $R=(4,0,2)$. We can give the vectors
+$$\overrightarrow{PR}=\langle-3,3,2\rangle,\qquad\overrightarrow{QP}=\langle1,-4,5\rangle$$
+We compute $\overrightarrow{PR}\times\overrightarrow{QP}$ to find a vector normal to the plane, since we know $\overrightarrow{QP}$ and $\overrightarrow{PR}$ are both in the plane.
+$$\overrightarrow{PR}\times\overrightarrow{QP}=\begin{vmatrix}
+	\ihat&\jhat&\khat\\
+	-3&3&-2\\
+	1&-4&5
+\end{vmatrix}$$
+$$=\begin{vmatrix}3&-2\\-4&5\end{vmatrix}\ihat-\begin{vmatrix}-3&-2\\1&5\end{vmatrix}\jhat+\begin{vmatrix}-3&3\\1&-4\end{vmatrix}\khat$$
+$$=(15-8)\ihat-(-15+2)\jhat+(12-3)\khat$$
+\begin{definition}[Angle Between Planes]\label{def:2}
+	For planes $\psi$ and $\phi$, the angle between the planes $\theta\in[0,\pi]$ is given by the angle $\theta$ between the normal vectors $\vec{n}_\psi$ and $\vec{n}_\phi$.
+\end{definition}
+\begin{definition}[Parallel and Orthogonal Planes]\label{def:3}
+	For planes $\psi$ and $\phi$, they are parallel if and only if their normal vectors $\vec{n}_\psi$ and $\vec{n}_\phi$ are parallel. Furthermore, $\phi\perp\psi$ if and only if $\vec{n}_\phi\cdot\vec{n}_\psi=0$.
+\end{definition}
