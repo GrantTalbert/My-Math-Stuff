@@ -1,0 +1,62 @@
+\begin{definition}[Zero Matrix]\label{def:1}
+	$O_{mn}$ denotes a matrix of dimension $m\times n$ with all entries equaling $0$.
+\end{definition}
+\begin{theorem}[Properties of Zero Matrices]\label{thm:1}
+	If $A$ is an $m\times n$ matrix and $c\in\mathbb{F}$, we have
+	$$A+O_{mn}=A$$
+	$$A+(-A)=O_{mn}$$
+	$$cA=O_{mn}\Leftrightarrow c=0\lor A=O_{mn}$$
+\end{theorem}
+\begin{theorem}[Properties of Matrix Multiplication]\label{thm:2}
+	For $A,B,C$ being matrices with dimensions such that multiplication operations are defined between them, and $c\in\mathbb{F}$, we have
+	$$A(BC)=(AB)C$$
+	$$A(B+C)=AB+AC$$
+	$$(A+B)C=AC+BC$$
+	$$c(AB)=(cA)B=A(cB)$$
+\end{theorem}
+\begin{remark}
+	$$AB=C\cancel{\Rightarrow}BA=C$$
+\end{remark}
+\begin{definition}[Identity Matrix]\label{def:2}
+	An $n\times n$ matrix with all entries $1$ along the main diagonal and other entries equal to $0$ is known as the Identity matrix of size $n$, denoted $I_n$.
+	$$I_n=\begin{pmatrix}
+		1&0&\cdots&0&0\\
+		0&1&\cdots&0&0\\
+		\vdots&\vdots&\ddots&\vdots&\vdots\\
+		0&0&\cdots&1&0\\
+		0&0&\cdots&0&1
+	\end{pmatrix}$$
+\end{definition}
+\begin{theorem}[Properties of the Identity Matrix]\label{thm:3}
+	For $A$ as a matrix of size $m\times n$, we have
+	$$AI_n=A$$
+	$$I_mA=A$$
+\end{theorem}
+\begin{definition}[The Transpose of a Matrix]\label{def:3}
+	The transpose of a matrix $A$, given as $A^T$, is formed by giving the rows of $A$ as columns, and vice versa.
+\end{definition}
+Example:
+$$A=\begin{pmatrix}0\\0\\1\end{pmatrix}\Longrightarrow A^T=\begin{pmatrix}0&0&1\end{pmatrix}$$
+\begin{theorem}[Properties of Transposes]\label{thm:4}
+	If $A$ and $B$ are matrices of dimensions such that operations are defined, and $c\in\mathbb{F}$, we have
+	$$(A^T)^T=A$$
+	$$(A+B)^T=A^T+B^T$$
+	$$(cA^T)=c(A^T)$$
+	$$(AB)^T=B^TA^T$$
+\end{theorem}
+\section{The Inverse of a Matrix}
+\begin{definition}[Inverse Matrices]\label{def:4}
+	An $n\times n$ matrix $A$ is invertible if and only if
+	$$\exists B\in\R^{n\times n}(AB=BA=I_n)$$
+	where $\R^{n\times n}$ denotes the set of all $n\times n$ matrices with real entries. It follows from the above proposition that the matrix $B$ is the multiplicative \emph{inverse} of $A$.\\
+	A matrix such that $\nexists B\in\R^{n\times n}(AB=BA=I_n)$ is known as noninvertible or singular.
+\end{definition}
+\begin{proposition}
+	$$\nexists (A\in\R^{m\times n}\land m\neq n)(\exists B\in\R^{n\times m}(AB=BA=I))$$
+\end{proposition}
+\begin{theorem}[Uniqueness of an Inverse]\label{thm:5}
+	If $A$ is an inverse matrix, then its inverse is unique:
+	$$\exists! B\in\R^{n\times n}(AB=BA=I_n)$$
+	We denote the inverse as $A^{-1}$.
+\end{theorem}
+We can find the inverse of a matrix via Gauss-Jordan elimination. If we take $A$ to be a square matrix of order $n$, then we construct the matrix $\begin{pmatrix}A&I_n\end{pmatrix}$. We perform Gauss-Jordan elimination until we have the resulting matrix $\begin{pmatrix}I_n&A^{-1}\end{pmatrix}$.

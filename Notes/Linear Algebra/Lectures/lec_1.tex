@@ -1,0 +1,103 @@
+\chapter{Systems of Linear Equations}
+\@lecture{1}{23 Jan. 08:00}{Multivariate Systems of Linear Equations}
+\section{Introduction to Systems of Linear Equations}
+In this section, we will
+\begin{itemize}
+	\item Recognize a linear equation in $n$ variables.
+	\item Find a parametric representation of a solution set.
+	\item Determine whether a system of linear equations is consistent or inconsistent.
+	\item Use back-substitution and Gaussian elimination to solve a system of linear equations.
+\end{itemize}
+\begin{definition}[Linear Equation in $n$ Variables]\label{def:1}
+	A linear equation in $n$ variables $x_1,x_2,\ldots,x_n$ has the form
+	$$a_1x_1+a_2x_2+\cdots a_nx_n=b$$
+	with $a_1,\ldots,a_n,b\in\R$.
+\end{definition}
+In \ref{def:1}, $b$ is the \textbf{constant term} and $a_1,\ldots,a_n$ are the \textbf{coefficients} of the linear equation. The number $a_1$ is the \textbf{leading coefficient} and the variable $x_1$ is the \textbf{leading variable}. It also follows that any multivariate linear function may not have terms containing the product of any number of variables, trigonometric functions, exponential functions, logarithmic functions, and any powers of variables other than 1.\\
+\begin{definition}[Solutions and Solution Sets]\label{def:2}
+	The \textbf{solution} of a linear equation in $n$ variables is a sequence of $n$ real numbers $s_1,\ldots,s_n$ that satisfy the equation for $(x_1,\ldots,x_n)=(s_1,\ldots,s_n)$. The set of all solutions to a linear equation is known as its \textbf{solution set}, and is often given with a \textbf{parametric representation}.
+\end{definition}
+An example of a parametric representation of the solution set of a linear function, as seen in \ref{def:2}, can be seen here.
+\begin{eg}
+	Consider the linear relationship
+	$$3x_1-2x_2=6$$
+	Parametrize and give the solution set of this relationship.
+\end{eg}
+\begin{answer}
+	$$\Rightarrow3x_1=2x_2+6$$
+	$$\Rightarrow x_1=\frac{2}{3}x_2+2$$
+	$$\text{Let }t=x_2,t\in\R$$
+	$$\Rightarrow x_1-\frac{2}{3}t+2$$
+	$$\therefore\left\{(x_1,x_2)\left|\right. x_1=\frac{2}{3}t+2,x_2=t,t\in\R\right\}$$
+	A more general way of expressing this set is as:
+	$$(x_1,x_2)=\left(\frac{2}{3}t+2,t\right)$$
+\end{answer}
+\begin{definition}[System of Linear Equations]
+	A system of $m$ linear equations in $n$ variables is a set of $m$ equations, each of which is linear in the same $n$ variables,
+	$$\left\{
+	\begin{array}{c}
+		a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=b_1\\
+		a_{21}x_1+a_{22}x_2+a_{23}x_3+\cdots+a_{2n}x_n=b_2\\
+		a_{31}x_1+a_{32}x_2+a_{33}x_3+\cdots+a_{3n}x_n=b_3\\
+		\vdots\\
+		a_{m1}x_1+a_{m2}x_2+a_{m3}x_3+\cdots+a_{mn}x_n=b_m
+	\end{array}
+	\right.$$
+	The solution set of an equation is a set of numbers $s_1,s_2,s_3,\ldots,s_n$ that satisfies all equations.
+\end{definition}
+\begin{notation}[Solution Set]
+	I've decided to use $\mathcal{S}$ as a shorthand for the solution set of an arbitrary system of equations.
+\end{notation}
+\begin{remark}[Number of Solutions of a System of Linear Equations]\label{rem:1}
+	For any system of equations, exactly one of the following holds.
+	\begin{enumerate}
+		\item The system has exactly one solution. (Consistent system) $n(\mathcal{S})=1$
+		\item The system has infinitely many solutions. (Consistent system) $n(\mathcal{S})=\aleph_1$
+		\item The system has no solutions. (Inconsistent system) $n(\mathcal{S})=0$
+	\end{enumerate}
+\end{remark}
+	Let $E:\mathcal{S}\longrightarrow\R^n$ be a system of equations in $n$ variables $x_1,x_2,\ldots,x_n$ with solution set $\mathcal{S}\subseteq\R^n$. From the previous remark, we see that any consistent system is a system of linear equations will satisfy the statement
+	$$\exists(s_1,s_2,\ldots,s_n)\in\R^n((s_1,s_2,\ldots,s_n)\in\mathcal{S})$$
+	By converse and also from \ref{rem:1}, we see that any inconsistent system of linear equations satisfies
+	$$\nexists(s_1,s_2,\ldots,s_n)\in\R^n((s_1,s_2,\ldots,s_n)\in \mathcal{S})$$
+	It is thus implied that for an inconsistent system, $\mathcal{S}=\varnothing$.
+\begin{theorem}[Gaussian Elimination]\label{thm:1}
+	Two systems of linear equations may be considered equivalent when they have the same solution set, that is
+	$$E_1:\mathcal{S}\rightarrow\R^n\land E_2:\mathcal{S}\rightarrow\R^n\Longrightarrow E_1\equiv E_2$$
+	From this definition, we can perform the following operations on a system while maintaining an equivalent system:
+	\begin{enumerate}
+		\item Interchange two equations
+		\item Multiply an equation by a nonzero constant
+		\item Add a multiple of an equation to another equation
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof of \ref{thm:1}]\label{proof:1}
+	$$\text{Let }E:\mathcal{S}\rightarrow\R^n\text{ be the system of }m\text{ linear equations of }n\text{ variables with solution set }\mathcal{S}\text{ given by}$$
+	$$E(f_1,f_2,\ldots,f_m)=\left\{
+	\begin{array}{c}
+		f_1(x_1,x_2,\ldots,x_n)\\
+		f_2(x_1,x_2,\ldots,x_n)\\
+		f_3(x_1,x_2,\ldots,x_n)\\
+		\vdots\\
+		f_m(x_1,x_2,\ldots,x_n)
+	\end{array}
+	\right.$$
+	Note: it is not implied that $n=m$, but it is also not implied that $n\neq m$.\vspace{5mm}\\
+	\textbf{Proof of condition 1:}\\
+	The proof is obvious and is left as an exercise to the reader.\vspace{5mm}\\
+	\textbf{Proof of condition 2:}
+	\[\text{Let }c\in\R\setminus\{0\}\]
+	\[c\cdot f_i\Rightarrow ca_{i1}x_{1}+ca_{i2}x_{2}+ca_{i3}x_{3}+\cdots+ca_{in}x_{n}=cb_{i}\]
+	\[\Rightarrow c(a_{i1}x_{1}+a_{i2}x_{2}+a_{i3}x_{3}+\cdots+ca_{in}x_{n})=cb_i\]
+	\[\Rightarrow a_{i1}x_{1}+a_{i2}x_{2}+a_{i3}x_{3}+\cdots+ca_{in}x_{n}=\frac{cb_i}{c}\]
+	\[\Rightarrow a_{i1}x_{1}+a_{i2}x_{2}+a_{i3}x_{3}+\cdots+ca_{in}x_{n}=b_i\]
+	\[\therefore\forall(c\in\R,f_i,i\in\setminus\{r|r\in\mathbb{N}\land r\leq n\})(c\cdot f_i\equiv f_i)\]\vspace{5mm}\\
+	\textbf{Proof of condition 3:}
+	\[\forall(i,j)(f_i\equiv f_j)\because(E:\mathcal{S}\rightarrow\R^n\Rightarrow(f_i:X\rightarrow\R\Rightarrow X\subseteq\mathcal{S}))\]
+	\[\Rightarrow\forall(x_1,\ldots,x_n)\in\mathcal{S}((a_{i1}x_{1}+a_{i2}x_2+a_{i3}x_3+\cdots+a_{in}x_n=b_i)\equiv(a_{j1}x_1+_{j2}x_2+a_{j3}x_3+\cdots+a_{jn}x_n=b_j))\]
+	\[\Rightarrow\forall(x_1,\ldots,x_n)\in\mathcal{S}(a_{i1}x_{1}+a_{i2}x_2+a_{i3}x_3+\cdots+a_{in}x_n +b_j = b_i + b_j)\]
+	\[\Rightarrow\forall(x_1,\ldots,x_n)\in\mathcal{S}(a_{i1}x_{1}+a_{i2}x_2+a_{i3}x_3+\cdots+a_{in}x_n+a_{j1}x_1+_{j2}x_2+a_{j3}x_3+\cdots+a_{jn}x_n=b_i + b_j)\]
+	\[\text{If }\exists(s_1,s_2,\ldots,s_n)\in\R^n)((s_1,s_2,\ldots,s_n)\in\mathcal{S})\text{ then the above statements hold.}\]
+	\[\text{If }\exists(s_1,s_2,\ldots,s_n)\in\R^n)((s_1,s_2,\ldots,s_n)\in\mathcal{S})\Rightarrow\mathcal{S}=\varnothing\therefore f_i\neq f_j\]
+	The process of Gaussian elimination necessitates the assumption that $\mathcal{S}\neq\varnothing$,and thus if there does not exist a solution to the system of equations, Gaussian elimination will inevitably lead to a contradiction, indicating that a solution does not exist. If a solution does exist, then the above statements prove that the process of elimination preserves the solution set by adding equal values to both sides of the equation, which happen to be expressed in terms of variables.
+\end{proof}

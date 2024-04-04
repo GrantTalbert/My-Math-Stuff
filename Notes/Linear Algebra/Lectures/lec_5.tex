@@ -1,0 +1,216 @@
+\begin{theorem}[Inverse of a \(2\times 2\) Matrix]
+    For some matrix \(A\in\R^{2\times 2}\), then \(\exists A^{-1}\Leftrightarrow ad-bc\neq 0 \). We also have
+    \[
+        A=\begin{pmatrix}
+            a &b   \\
+           c  & d  \\
+        \end{pmatrix}\Longrightarrow A^{-1} =\frac{1}{ad-bc}\begin{pmatrix}
+            d &-b   \\
+             -c&a   \\
+        \end{pmatrix}
+    \]
+\end{theorem}
+\begin{theorem}[Properties of Inverses]
+    If \(A\) is an invertible matrix, \(k\in\mathbb{Z} ^+\), and \(c\in\mathbb{F} \setminus \{ 0 \} \), then \(A^{-1},A^k ,cA,A^T \) are invertible and the following statements are true:
+    \[
+        (A^{-1} )^{-1} =A
+    \]
+    \[
+        (A^k)^{-1} =\underbrace{A^{-1} A^{-1} \cdots A^{-1} }_\text{k factors}=(A^{-1} )^k
+    \]
+    \[
+        (cA)^{-1} =\frac{1}{c}A^{-1} 
+    \]
+    \[
+        (A^T)^{-1} =(A^{-1} )^T
+    \]
+    \[
+        (AB)^{-1}=B^{-1} A^{-1} 
+    \]
+\end{theorem}
+Defining multiplicative inverses over this matrix algebra allows us to define cancellation properties, akin to how we would see in the real numbers. 
+\begin{theorem}[Cancellation Properties]
+    If \(C\) is an invertible matrix, the following are true. 
+    \[
+        AC=BC\Longrightarrow A=B
+    \]
+    \[
+        CA=CB\Longrightarrow A=B
+    \]
+\end{theorem}
+\begin{theorem}[Square Systems of Linear Equations]
+    If \(A\) is invertible, then the system of linear equations \(A\vec{x}=\vec{b}\) has the unique solution
+    \[
+        \vec{x}=A^{-1} \vec{b}
+    \]
+\end{theorem}
+\section{Elementary Matrices}
+\begin{definition}[Elementary Matrix]
+    An \(n\times n\) matrix is an \textbf{elementary matrix} when it can be obtained from the identity matrix \(I_n\) with a single elementary row operation.
+\end{definition}
+\begin{theorem}[Representing Elementary Row Operations]
+    Let \(E\) be the elementary matrix given by performing an elementary row operation on \(I_n\). If that same operation is performed on some \(m\times n\) matrix \(A\), then the resulting matrix is equivalent to the product \(EA\).
+\end{theorem}
+\begin{remark}
+    This is how we formalize the methods of gaussian elimination, however it's generally better to compute via gaussian elimination than with multiplication by elementary matrices.
+\end{remark}
+\begin{definition}[Row Equivalence]
+    Two \(n\times n\) matrices \(A,B\) are row equivalent when there exists a finite number of elementary matrices \(E_1,E_2,\ldots,E_k\) such that
+    \[
+        B=E_kE_{k-1}\cdots E_2 E_1 A
+    \]
+    \[
+        B=\left( \prod_{i=1}^k E_i \right) A
+    \]
+\end{definition}
+\begin{theorem}[Elementary Matrices are Invertible]
+    If \(E\) is an elementary matrix, then \(\exists E^{-1} \) and is \emph{also} an elementary matrix.\\
+    Furthermore, for any elementary matrix which differs from \(I_n\) by an interchange of rows, it is its own inverse.\\
+    For any matrix which differs from \(I_n\) by a single number on the main diagonal not equaling \(1\), it's inverse is the same matrix except with the multiplicative inverse of that component.\\
+    For any matrix which differs from \(I_n\) by an extra nonzero component, its inverse is the same matrix but with the extra component's additive inverse.
+\end{theorem}
+\begin{theorem}[Propert of Inverse Matrices]
+    A square matrix \(A\) is invertble if and only if it can be written as the product of elementary matrices.
+\end{theorem}
+\begin{theorem}[Conditions Equivalent to Invertibility]
+    If \(A\) is an \(n\times n\) matrix, the following statements are equivalent:
+    \[
+        A\text{ is invertible.}
+    \]
+    \[
+        A\vec{x}=\vec{b}\text{ has a unique solution for every }n\times 1\text{ column vector }\vec{b}.
+    \]
+\[
+    A\vec{x}=\vec{0}\text{ has only the trivial solution.} 
+\]
+    \[
+        A\text{ is row-equivalent to }I_n. 
+    \]
+    \[
+        A\text{ can be written as the product of elementary matrices.} 
+    \]
+\end{theorem}
+\begin{definition}[LU-Factorization]
+    If the \(n\times n\) matrix \(A\) can be written as the product of a lower triangular matrix \(L\) and an upper triangular matrix \(U\), then \(A=LU\) is an LU-Factorization of \(A\).
+\end{definition}
+\begin{remark}
+    The LU-Factorization, if it exists, is not unique.
+\end{remark}
+The method of LU factorization is as follows:
+\begin{enumerate}
+    \item Find a set of elementary matrices \(E_1,E_2,\ldots,E_k\) where there are no row interchanges, such that
+    \[
+        E_k\cdots E_2E_1 A=U
+    \]
+    where \(A\) is the original matrix and \(U\) is upper-triangular.
+    \item Solve for \(A\):
+\[
+    A=E_1 ^{-1} E_2 ^{-1} \cdots E_{k-1} ^{-1} E_k ^{-1} U=A  
+\]
+    \item set \(E_1 ^{-1} E_2 ^{-1} \cdots E_{k-1} ^{-1} E_k ^{-1}=L\)
+\end{enumerate}
+We now have \(A=LU\).
+\begin{theorem}[Solving Systems of Equations with LU-Factorization]
+    Let \(\vec{y}\) be a column vector with new variables \(y_1,y_2,\ldots,y_n\) be defined. Set
+    \[
+        L\vec{y}=\vec{b}
+    \]
+    where \(L\) is the lower triangular matrix of the coefficient matrix of some system, and \(\vec{b}\) is the vector representing constants. Solve for \(\vec{y}\). It will then follow that
+    \[
+        \vec{y}=U\vec{x}
+    \]
+    Solve for \(\vec{x}\) to solve the system.
+\end{theorem}
+\section{Linear Regressions}
+Consider a set of data \(\{ (x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n) \} \). We can denote the linear regression line as \(f(x)=a_0+a_1 x\). It follows that we can use our data points to define a system of \(n\) equations:
+\[
+    \left\{\begin{array}{ccc}
+        y_1&=&a_0 +a_1x_1 +e_1\\
+        y_2&=&a_0 + a_1 x_2 + e_2\\
+        &\vdots&\\
+        y_n&=& a_0 + a_1 x_n + e_n
+    \end{array}\right.
+\]
+where \(e_i\) denotes the error for data point \(i\). We define the following matrices:
+\[
+    Y=\begin{bmatrix}
+         y_1 \\
+          y_2\\
+          \vdots\\
+y_n          \\
+    \end{bmatrix}\quad X=\begin{bmatrix}
+        1 &x_1   \\
+         1&x_2   \\
+         \vdots&\vdots   \\
+         1&x_n   \\
+    \end{bmatrix}\quad A=\begin{bmatrix}
+         a_0 \\
+          a_1\\
+    \end{bmatrix}\quad E=\begin{bmatrix}
+         e_1 \\
+          e_2\\
+          \vdots\\
+          e_n\\
+    \end{bmatrix}
+\]
+The solution to this system is given as \(A=(X^T X)^{-1}  X^T Y\). The error is \(E^T E\). Use a fucking calculator to find this.
+\newpage
+\chapter{Determinants}
+\section{The Determinant of a Matrix}
+\begin{definition}[Determinant of a \(2\times 2\) ]
+    The determinant of a \(2\times 2\) matrix \(A=\begin{bmatrix}
+        a_{11}  &a_{12}    \\
+         a_{21} &a_{22}    \\
+    \end{bmatrix}\) is given as
+    \[
+        \det(A)=|A| = a_{11}a_{22}-a_{12}a_{21}    
+    \]
+\end{definition}
+\begin{definition}[Minors and Cofactors]
+    If \(A\) is a square matrix, then the minor \(M_{ij} \) of the entry \(a_{ij} \) is the determinant of the matrix obtained by deleting the \(ith\) row and \(jth\) column of \(A\). The cofactor \(C_{ij} \) of the entry \(a_{ij} \) is \(C_{ij} =(-1)^{i+j}M_{ij}  \).
+\end{definition}
+\begin{definition}[Determinant of an \(n\times n\) Matrix]
+    IF \(A\) is a square matrix of order \(n\geq 2\), then the \textbf{determinant} of \(A\) is the sum of the entries in the first row multiplied by their respective cofactors. That is,
+    \[
+        \det(A)=|A| = \sum_{j=1}^n a_{1j}C_{1j}
+    \]
+\end{definition}
+\begin{theorem}[Expansion by Cofactors]
+    Let \(A\) be a square matrix of order \(n\). Let \(i,j\in[1,n]\). This theorem extends the determinant of \(A\) to be any of the following, for any \(i\) or \(j\):
+    \[
+        \det(A)=|A| = \sum_{j=1}^n a_{ij}C_{ij}   
+    \]
+    \begin{center}\emph{(Expansion across ith row)}\end{center}
+    \[
+        \det{A}=|A| = \sum_{i=1}^n a_{ij}C_{ij}   
+    \]
+    \begin{center}\emph{(Expansion across jth column)}\end{center}
+\end{theorem}
+We prefer to choose the row or column that will make the computation the easiest, that is the one that has the most coefficients of the cofactors equal to \(0\).\\
+Consider this triangle matrix as an example:
+\[
+    A\coloneqq \begin{bmatrix}
+        6 &0  &0  &0   \\
+         0&5  &0  &0   \\
+         1&0  &4  &0   \\
+         0&2  &0  &3   \\
+    \end{bmatrix}
+\]
+\[
+    \det(A)=6\begin{vmatrix}
+         5&0  &0   \\
+         0&4  &0   \\
+         2&0  &3   \\
+    \end{vmatrix}=6\left(5\begin{vmatrix}
+         4&0   \\
+         0&3   \\
+    \end{vmatrix}\right)=6\cdot5\cdot4\cdot3=360
+\]
+We chose to compute the determinant from the top rows since they only had one nonzero term, thus we only had to consider one cofactor. This leads us into the next theorem.
+\begin{theorem}[Determinant of a Triangular Matrix]
+    If \(A\) is any triangular matrix of degree \(n\), then its determinant is the product of its entries on its main diagonal.
+    \[
+        \det(A)=|A| =a_{11}a_{22}\cdots a_{nn}   
+    \]
+\end{theorem}
+ 

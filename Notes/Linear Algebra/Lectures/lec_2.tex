@@ -1,0 +1,148 @@
+\@lecture{2}{25 Jan. 08:00}{Gaussian Elimination}
+\section{Gaussian Elimination and Gauss-Jordan Elimination}
+\begin{definition}[Matrices]\label{def:1}
+	If $n,m\in\mathbb{Z}$, then an $m\times n$ matrix is a rectangular array
+	$$\underbrace{\left.\begin{bmatrix}
+		a_{11}&a_{12}&a_{13}&\cdots&a_{1n}\\
+		a_{21}&a_{22}&a_{23}&\cdots&a_{2n}\\
+		a_{31}&a_32&a_{33}&\cdots&a_{3n}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		a_{m1}&a_{m2}&a_{m3}&\cdots&a_{mn}
+	\end{bmatrix}\right\}m}_{n}$$
+	in which each entry $a_{ij}$ is located in the $i$th row and the $j$th column.\\
+	A matrix satisfying $m=n$ is a square matrix of order $n$, and the entries $a_{11},a_{22},\ldots,a_{nn}$ constitute the \emph{main diagonal}.
+\end{definition}
+\begin{corollary}[Matrix Representation of a Linear System of Equations]\label{cor:1}
+	For a system of equations
+		$$\left\{
+	\begin{array}{c}
+		a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=b_1\\
+		a_{21}x_1+a_{22}x_2+a_{23}x_3+\cdots+a_{2n}x_n=b_2\\
+		a_{31}x_1+a_{32}x_2+a_{33}x_3+\cdots+a_{3n}x_n=b_3\\
+		\vdots\\
+		a_{m1}x_1+a_{m2}x_2+a_{m3}x_3+\cdots+a_{mn}x_n=b_m
+	\end{array}
+	\right.$$
+	we give the \emph{augmented matrix} of the system as
+	$$\begin{bmatrix}
+		a_{11}&a_{12}&a_{13}&\cdots&a_{1n}&b_1\\
+		a_{21}&a_{22}&a_{23}&\cdots&a_{2n}&b_2\\
+		a_{31}&a_{32}&a_{33}&\cdots&a_{3n}&b_3\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		a_{m1}&a_{m2}&a_{m3}&\cdots&a_{mn}&b_m
+	\end{bmatrix}$$
+	and we give the \emph{coefficient matrix} of the system as
+		$$\begin{bmatrix}
+		a_{11}&a_{12}&a_{13}&\cdots&a_{1n}\\
+		a_{21}&a_{22}&a_{23}&\cdots&a_{2n}\\
+		a_{31}&a_{32}&a_{33}&\cdots&a_{3n}\\
+		\vdots&\vdots&\vdots&\ddots&\vdots\\
+		a_{m1}&a_{m2}&a_{m3}&\cdots&a_{mn}
+	\end{bmatrix}$$
+\end{corollary}
+For example, we can consider the system:
+$$\begin{array}{c}
+	x+y+z=2\\
+	-x+3y+2z=8\\
+	4x+y+0z=4
+\end{array}$$
+For this system, we have the coefficient matrix:
+$$\begin{bmatrix}
+	1&1&1\\-1&3&2\\4&1&0
+\end{bmatrix}$$
+and the augmented matrix:
+$$\begin{bmatrix}
+	1&1&1&2\\-1&3&2&8\\4&1&0&4
+\end{bmatrix}$$
+\begin{theorem}[Elementary Row Operations]\label{thm:1}
+	Gaussian elimination allows for \emph{elementary row operations} to be taken on an augmented matrix. These operations include:
+	\begin{enumerate}
+		\item Interchange two rows.
+		\item Multiply a row by a nonzero constant.
+		\item Add a multiple of a row to another row.
+	\end{enumerate}
+\end{theorem}
+For an example, we can consider the above augmented matrix.
+$$\begin{bmatrix}1&1&1&2\\-1&3&2&8\\4&1&0&4\end{bmatrix}\xlongrightarrow{R_1+R_2\rightarrow R_2}\begin{bmatrix}1&1&1&2\\0&4&3&10\\4&1&0&4\end{bmatrix}\xlongrightarrow{-4R_1+R_3\rightarrow R_3}\begin{bmatrix}1&1&1&2\\0&4&3&10\\0&-3&-4&-4\end{bmatrix}$$
+$$\xlongrightarrow{\frac{1}{4}R_2\rightarrow R_2}\begin{bmatrix}1&1&1&2\\0&1&\frac{3}{4}&\frac{5}{2}\\0&-3&-4&-4\end{bmatrix}\xlongrightarrow{3R_2+R_3\rightarrow R_3}\begin{bmatrix}1&1&1&2\\0&1&\frac{3}{4}&\frac{5}{2}\\0&3&-\frac{7}{4}&\frac{7}{2}\end{bmatrix}\xlongrightarrow{-\frac{7}{4}R_3\rightarrow R_3}\begin{bmatrix}1&1&1&2\\0&1&\frac{3}{4}&\frac{5}{2}\\0&3&1&-2\end{bmatrix}\leftrightarrow\left\{
+\begin{array}{c}
+	x+y+z=2\\
+	y+\frac{3}{4}z=\frac{5}{2}\\
+	z=-2
+\end{array}
+\right.$$
+This form of a matrix is known as row-echelon form.
+\begin{definition}[Row-Echelon and Reduced Row-Echelon Form]\label{def:2}
+	A matrix in \emph{row-echelon} form has the properties:
+	\begin{enumerate}
+		\item Any row consisting entirely of zeros occurs at the bottom of the matrix.
+		\item For each ropw that does not consist entirely of zeros, the first nonzero entry is a 1 (known as a \textbf{leading 1}).
+		\item For two successive (nonzero) rows, the leading 1 in the higher row is further to the left than the leading 1 in the lower row (it can be any distance to the left, not just 1 space).
+	\end{enumerate}
+	A matrix in row-echelon form is in \emph{reduced row-echelon form} when every column that has a leading 1 has zeros in every spot above and below its leading 1 (not just in the rows directly above/below it, but ALL rows)
+\end{definition}
+\begin{remark}
+	The procedure for using Gaussian elimination with back-substitution is summarized below.
+	\begin{enumerate}
+		\item Write the augmented matrix of the system of equations.
+		\item Use elementary row operations to rewrite the matrix in row-echelon form.
+		\item Write the system of linear equations corresponding to the matrix in row-echelon form, and use back-substitution to find the solution.
+	\end{enumerate}
+\end{remark}
+\begin{remark}
+	Gauss-Jordan uses the processes allowed under Gaussian elimination to put a matrix into reduced row-echelon form, rather than row-echelon form.
+\end{remark}
+\subsection{Homogeneous Systems of Linear Equations}
+\begin{definition}[Homogeneous Systems of Linear Equations]\label{def:3}
+	A system of equations is \emph{homogeneous} if and only if a system of $m$ equations in $n$ variables has the form
+	$$\left\{
+	\begin{array}{c}
+		a_{11}x_1+a_{12}x_2+a_{13}x_3+\cdots+a_{1n}x_n=0\\
+		a_{21}x_1+a_{22}x_2+a_{23}x_3+\cdots+a_{2n}x_n=0\\
+		a_{31}x_1+a_{32}x_2+a_{33}x_3+\cdots+a_{3n}x_n=0\\
+		\vdots\\
+		a_{m1}x_1+a_{m2}x_2+a_{m3}x_3+\cdots+a_{mn}x_n=0
+	\end{array}
+	\right.$$
+	Simply, a homogeneous system of equations has all constant terms equal to 0.
+\end{definition}
+\begin{corollary}[Homogeneous Systems]\label{cor:2}
+	Every homogeneous system of equations in $n$ variables has the trivial solution $\underbrace{(0,0,0,\ldots,0)}_{n\;\text{0s}}$. For a system of $m$ equations in $n$ variables, any system with $m<n$ has infinitely many solutions with $m-n$ free variables.
+\end{corollary}
+\section{Applications of Systems of Linear Equations}
+{\large\textbf{Polynomial Curve Fitting}}\\
+$$\text{Let }\exists((x_1,y_1),(x_2,y_2),\ldots,(x_n,y_n)\in\R^2)((x_i,y_i)\in\mathcal{D}\land (i\neq j\Rightarrow(x_i,y_i)\neq(x_j,y_j)))$$
+Let this set $\mathcal{D}$ represent a collection of data points. It will follow that there exists precisely 1 polynomial function $p(x)$ of degree $n-1$ such that
+$$p:\R\rightarrow X\land\mathcal{D}\subseteq X$$
+where $p$ is surjective, that is, $\forall(x\in\R)(p(x)\in X)\land\forall(y)(\exists(x\in\R)(p(x)=y)\Rightarrow y\in X)$. The function $p$ can be given as
+$$p(x)=a_0+a_1x+a_2x^2+a_3x^3+\cdots+a_{n-1}x^{n-1}$$
+\begin{definition}[Polynomial Curve Fitting]\label{def:4}
+	For an arbitrary data set $\mathcal{D}$, the process by which a function $p:X\rightarrow Y$ such that $\mathcal{D}\subseteq X\times Y$ is derived is known as \emph{polynomial curve fitting}.
+\end{definition}
+\begin{remark}
+	We will notice that a polynomial of infinite degree
+	$$p:\R\rightarrow Y$$
+	$$x\mapsto\sum_{n=0}^{\infty}a_i(bx)^n$$
+	will converge for a subset $x\in\left[-\frac{1}{b},\frac{1}{b}\right]$. Allow us to define a data set $\mathcal{D}$ of data points. We need to define a few constraints on $\mathcal{D}$:
+	$$\forall((x_i,y_i),(x_j,y_j)\in\mathcal{D})(i\neq j\Rightarrow x_i\neq x_j)$$
+	$$n(\mathcal{D})=\aleph_0$$
+	$$\exists(a,b\in\R)(\forall((x_k,y_k)\in\mathcal{D})((a>x_k)\land(b<x_k)))$$
+	This final constraint is necessary since for some $I\subsetneq\R$ defining the interval of convergence for our polynomial of infinite degree, the same must hold for $I$.\\
+	It should follow that
+	$$\exists(p:\R\rightarrow Y)(\mathcal{D}\subset\R\times Y)$$
+	I have no idea why this is true but the proof seems to follow from the original proof of polynomial curve fitting.
+\end{remark}
+Example: consider the polynomial that passes through the points $(-1,3)$, $(0,0)$, $(1,1)$, and $(4,58)$. We have a function $p(x)=ax^3+bx^2+cx+d$. We plug in our point values and set up the system:
+$$\left\{\begin{array}{c}
+	a(-1)^3+b(-1)^2+c(-1)+d=3\\
+	d=0\\
+	a+b+c+d=1\\
+	a(4)^3+b(4)^2+c(4)+d=58
+\end{array}\right.$$
+We give the matrix representation
+$$\begin{bmatrix}
+	-1&1&-1&1&3\\0&0&0&1&0\\1&1&1&1&1\\64&16&4&1&58
+\end{bmatrix}\xlongrightarrow{rref}\begin{bmatrix}
+1&0&0&0&\frac{1}{2}\\0&1&0&0&2\\0&0&1&0&-\frac{3}{2}\\0&0&0&1&0
+\end{bmatrix}$$
+$$\therefore p(x)=\frac{1}{2}x^3+2x^2-\frac{3}{2}x$$

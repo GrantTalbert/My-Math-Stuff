@@ -1,0 +1,134 @@
+\chapter{Inner Product Spaces}
+\section{Length and Dot Product in \(\mathbb{R} ^n\)}
+\begin{definition}[Length of a Vector in \(\mathbb{R} ^n\)]
+    Let \(\mathbf{v} \in\mathbb{R} ^n\). The norm (length) of \(\mathbf{v} \) is given as
+    \[
+        \lVert \mathbf{v}  \rVert =\sqrt{\sum_{i=1}^n v_i^2} 
+    \]
+    where \(v_i\) is the \(i\)th component of \(\mathbf{v} \).
+\end{definition}	
+\begin{theorem}[Length of Scalar Multiple]
+    Let \(\mathbf{v} \in \mathbb{R} ^n\) and let \(c\in\mathbb{F} \). Then \(\|c \mathbf{v} \| =|c|\|\mathbf{v} \|\), where \(|\cdot|\) is the absolute value operator.
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{v} \in \mathbb{R} ^n\). Thus, \(\mathbf{v} =\left( v_1,v_2,v_3 \right) \). Let \(c\in\mathbb{F} \). It follows that
+\begin{align*}
+        \|c \mathbf{v} \| &= \sqrt{c^2 v_1^2 + c^2 v_2^2 + c^2 v_3^2} \\
+        &=\sqrt{c^2 \left( v_1^2 + v_2^2 + v_3^2 \right) } \\
+        &=|c|\sqrt{v_1^2 + v_2^2 + v_3^2} \\
+        &=|c|\|\mathbf{v} \|
+\end{align*}
+\end{proof}
+\begin{theorem}[Unit Vector]
+    Let \(\mathbf{v} \in\mathbb{R} ^n\setminus \{ \mathbf{0}  \} \). Then the vector
+    \[
+        \mathbf{u}  = \frac{\mathbf{v} }{\|\mathbf{v} \|}
+    \]
+    is the unit vector in the direction of \(\mathbf{v} \).
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{v} \in\mathbb{R} ^n\setminus \{ \mathbf{0}  \} \). It follows immediately that
+    \[
+        \frac{1}{\|\mathbf{v} \|}>0
+    \]
+Let
+\[
+    \mathbf{u} =\frac{\mathbf{v} }{\|\mathbf{v} \|}= \frac{1}{\|\mathbf{v} \|}\mathbf{v} 
+\]
+It follows that
+\begin{align*}
+    \|\mathbf{u} \| &= \left\|\frac{\mathbf{v} }{\|\mathbf{v}\| }\right\|\\
+    &= \left\| \frac{1}{\|\mathbf{v} \|}\mathbf{v}  \right\|\\
+    &= \left\vert \frac{1}{\|\mathbf{v} \|} \right\vert \|\mathbf{v} \|\\
+    &= \frac{1}{\|\mathbf{v} \|}\|\mathbf{v} \| \qquad \because \frac{1}{\|\mathbf{v} \|}>0\\
+    &= \frac{\|\mathbf{v} \|}{\|\mathbf{v} \|}\\
+    &=1
+\end{align*}
+\end{proof}
+\begin{remark}
+    The process of dividing a vector by its magnitude is known as \textbf{normalizing} \textbf{the} \textbf{vector}.
+\end{remark}
+\begin{exercise}
+    Normalize \(\mathbf{v} =(-1,3,2)\).\\
+    \begin{answer}
+        \[\lVert \mathbf{v}  \rVert=\sqrt{(-1)^2 + 3^2 + 2^2}=\sqrt{1+9+4}=\sqrt{14}    \]
+        \[
+            \Longrightarrow \frac{\mathbf{v} }{\lVert \mathbf{v}  \rVert }=\frac{(-1,3,2)}{\sqrt{14} }=\left( -\frac{1}{\sqrt{14} },\frac{4}{\sqrt{14} },\frac{2}{\sqrt{14} } \right) /
+        \]
+    \end{answer}
+\end{exercise}
+\begin{definition}[Distance Between Vectors in \(\mathbb{R} ^n\)]
+    Let \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\). The \textbf{distance} between \(\mathbf{u} \) and \(\mathbf{v} \) is defined as
+    \[
+        d\left( \mathbf{u} ,\mathbf{v}  \right) =  \left\lVert \mathbf{u} -\mathbf{v}  \right\rVert 
+    \]
+\end{definition}
+Notice that the following rules apply.
+\begin{enumerate}
+    \item \(d\left( \mathbf{u} ,\mathbf{v}  \right)\geq 0 \) 
+    \item \(d\left( \mathbf{u} ,\mathbf{v}  \right)=0 \iff \mathbf{u} =\mathbf{v}  \)
+    \item \(d\left( \mathbf{u} ,\mathbf{v}  \right)=d\left( \mathbf{v} ,\mathbf{u}  \right)  \)
+\end{enumerate}
+\begin{exercise}
+    Let \(\mathbf{u} =(1,2,3)\) and \(\mathbf{v} =(0,-1,4)\). Find \(d\left( u,v \right) \):
+    \begin{answer}
+    \[
+        \mathbf{u} -\mathbf{v} = (1-0,2+1,3-4)=(1,3,-1)
+    \]
+    \[
+        \left\lVert \mathbf{u} -\mathbf{v}  \right\rVert =\sqrt{1^2 + 3^2 + (-1)^2}=\sqrt{1+9+1}=\sqrt{11}   
+    \]
+    \end{answer}
+\end{exercise}
+\begin{definition}[Dot Product]
+    Let \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\) with an angle \(\theta \) between them. We have\\
+    \[
+        \mathbf{u} \cdot \mathbf{v} = \lVert \mathbf{u}  \rVert \lVert \mathbf{v}  \rVert \cos \theta = \sum_{i=1}^n u_i v_i 
+    \]
+    where \(u_i,v_i\) are the \(i\)th entries of the vectors \(\mathbf{u} \), \(\mathbf{v} \), respectively.
+\end{definition}
+\begin{theorem}[Properties of the Dot Product]
+    Let \(\mathbf{u} ,\mathbf{v} ,\mathbf{w} \in\mathbb{R} ^n\) and \(c\in\mathbb{F} \). The following properties hold.
+    \begin{enumerate}
+        \item \(\mathbf{u} \cdot \mathbf{v} =\mathbf{v} \cdot \mathbf{u} \) 
+        \item \(\mathbf{u} \cdot (\mathbf{v} +wbv) = \mathbf{u} \cdot \mathbf{v}  + \mathbf{u} \cdot \mathbf{w} \) 
+        \item \(c(\mathbf{u} \cdot \mathbf{v} )=(c \mathbf{u} )\cdot \mathbf{v} = \mathbf{u} \cdot (c \mathbf{v} )\) 
+        \item \(\mathbf{v} \cdot \mathbf{v} = \lVert \mathbf{v}  \rVert^2 \) 
+        \item \(\mathbf{v} \cdot \mathbf{v} \geq 0 \land \mathbf{v} \cdot \mathbf{v} =0 \iff \mathbf{v} =\mathbf{0} \) 
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[Cauchy-Schwartz (in \(\mathbb{R} ^n\))]
+    Let \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\). Then
+    \[
+        \left\vert \mathbf{u} \cdot \mathbf{v}  \right\vert \leq \left\lVert \mathbf{u}  \right\rVert \left\lVert \mathbf{v}  \right\rVert 
+    \]
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{v} ,\mathbf{u} \in\mathbb{R} ^n\) with \(\mathbf{u} \neq \mathbf{0} \). Let \(t\in\mathbb{F} \).
+    \[
+        (t \mathbf{u} +\mathbf{v} )\cdot (t \mathbf{u} +\mathbf{v} )\geq 0
+    \]
+    \[
+        \Longrightarrow (\mathbf{u} \cdot \mathbf{u} )t^2 + 2(\mathbf{u} \cdot \mathbf{v} )t+(\mathbf{v} \cdot \mathbf{v} )\geq 0
+    \]
+    \[
+        \Longrightarrow \left\lVert \mathbf{u}  \right\rVert^2 t^2 + 2(\mathbf{u} +\mathbf{v} )t +\left\lVert \mathbf{v}  \right\rVert^2 \geq 0 
+    \]
+    This is a quadratic equation in the variable \(t\). By the fundamental theorem of algebra, this equation has \(2\) solutions in \(\mathbb{C} \). This equation will have either 2 roots in \(\mathbb{R} \), with both roots being equal, or no roots in \(\mathbb{R} \). All roots are of the form
+    \[
+        t = \frac{-b \pm \sqrt{b^2 - 4ac} }{2a}
+    \]
+    where \(a\coloneqq \left\lVert  \mathbf{u}  \right\rVert^2 \), \(b\coloneqq 2(\mathbf{u} \cdot \mathbf{v} )\), and \(c\coloneqq \left\lVert \mathbf{v}  \right\rVert^2 \).
+    \[
+        b^2 - 4ac \leq 0
+    \]
+    \[
+        \Longrightarrow b^2 \leq 4ac
+    \]
+    \[
+        \Longrightarrow (2(\mathbf{u} \cdot \mathbf{v} ))^2 \leq 4 \left\lVert \mathbf{u}  \right\rVert^2 \left\lVert \mathbf{v}  \right\rVert^2  
+    \]
+    \[
+        \Longrightarrow\left|\mathbf{u} \cdot \mathbf{v}\right| \leq \left\lVert \mathbf{u}  \right\rVert \left\lVert \mathbf{v}  \right\rVert 
+    \]
+\end{proof}

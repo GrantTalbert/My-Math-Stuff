@@ -1,0 +1,800 @@
+\section{Determinants and Elementary Row Operations}
+Let \(A\coloneqq \begin{bmatrix}
+    a &b   \\
+     c&   d\\
+\end{bmatrix}\). Consider the following:
+\begin{itemize}
+    \item Obtain \(B\) by swapping the rows of \(A\):
+\[
+    B=\begin{bmatrix}
+        c &d   \\
+         a&b   \\
+    \end{bmatrix}
+\]
+\[
+    \det(B)=cb-ad=-(ad-bc)=-\det(A)
+\]
+\item Obtain \(B\) by adding \(k\) times the first row to the second row.
+    \[
+        B=\begin{bmatrix}
+            a &b   \\
+             ka+c&kb+d   \\
+        \end{bmatrix}
+    \]
+    \[
+        \det(B)=a(kb+d)-b(ka+c)=akb+ad-bka-bc=ad-bc=\det(A)
+    \]
+\item Obtain \(B\) by multiplying the second row of \(A\) by a nonzero constant:
+\[
+    B=\begin{bmatrix}
+        a &b   \\
+         kc&kd   \\
+    \end{bmatrix}
+\]
+\[
+    \det(B)=akd-bkc=k(ad-bc)=k\det(A)
+\]
+\end{itemize}
+\begin{theorem}[Elementary Row Operations on Determinants]\label{thm:erod}
+    Let \(A\) and \(B\) be square matrices of order \(n\).\\
+    When \(B\) is obtained from adding \(A\) by interchanging two rows of \(A\):
+    \[
+        \det(B)=-\det(A)
+    \]
+    When \(B\) is obtained from \(A\) by adding a multiple of a row of \(A\) to another row of \(A\):
+    \[
+        \det(B)=\det(A)
+    \]
+    When \(B\) is obtained from \(A\) by multiplying a row of \(A\) by a nonzero constant:
+    \[
+        \det(B)=k\det(A)
+    \]
+\end{theorem}
+A useful way to apply this theorem is by converting matrices into triangular matrices to obtain the determinant of the original matrix.
+\begin{eg}
+    \[
+        A\coloneqq \begin{bmatrix}
+            0 &2  &5  &4   \\
+             1&1  &3  &5   \\
+             1&1  &3  &4   \\
+             -2&-2  &1  &6   \\
+        \end{bmatrix}\xrightarrow{R_3 -R_2}\underbrace{\begin{bmatrix}
+            0 &2  &5  &4   \\
+             1&1  &3  &5   \\
+             0&0  &0  &-1   \\
+             -2&-2  &1  &6   \\
+        \end{bmatrix}}_{\det(A)\to \det(A)}\xrightarrow{R_3 +2R_2}\underbrace{\begin{bmatrix}
+            0 &2  &5  &4   \\
+             1&1  &3  &5   \\
+             0&0  &0  &-1   \\
+             0&0  &7  &16   \\
+        \end{bmatrix}}_{\det(A)\to \det(A)}
+    \]
+    \[
+        \xrightarrow{R_3 \leftrightarrow R_4}\underbrace{\begin{bmatrix}
+            0 &2  &5  &4   \\
+             1&1  &3  &5   \\
+             0&0  &7  &16   \\
+             0&0  &0  &-1   \\
+        \end{bmatrix}}_{\det(A)\to -\det(A)}\xrightarrow{R_1 \leftrightarrow R_2}\underbrace{\begin{bmatrix}
+             1&1  &3  &5   \\
+             0&2  &5  &4   \\
+             0&0  &7  &16   \\
+             0&0  &0  &-1   \\
+        \end{bmatrix}}_{-\det(A)\to \det(A)}
+    \]
+    \[
+        \begin{vmatrix}
+            1&1  &3  &5   \\
+            0&2  &5  &4   \\
+            0&0  &7  &16   \\
+            0&0  &0  &-1   \\
+        \end{vmatrix}=(1)(2)(7)(-1)=-14
+    \]
+    \[
+        \therefore\det(A)=-14
+    \]
+\end{eg}
+\begin{theorem}[Determinants and Elementary Column Operations]
+    Elementary operations performed on columns rather than rows are known as \textbf{elementary} \textbf{column} \textbf{operations}. Similarly, two matrices are column-equivalent when a finite set of elementary column operations transforms one into the other. \ref{thm:erod} remains valid when elementary column operations are considered, rather than rows.
+\end{theorem}
+\begin{theorem}[Conditions that Yield a Zero Determinant]
+    If \(A\) is a square matrix and one of the following is true for \(A\), \(\det(A)\equiv 0\).
+    \begin{itemize}
+        \item An entire row or column consists of \(0\)s. 
+        \item Two rows or columns are equivalent. 
+        \item One row or column is a multiple of another.
+    \end{itemize}
+\end{theorem}
+\section{Properties of Determinants}
+\begin{lemma}\label{emlma}
+    If \(E\) is an elementary matrix, show that \(\det(EB) =\det(E)\det(B)\):\\
+    \emph{proof:}\\
+    Let \(E\) be obtained by interchanging rows of \(I\):
+    \[
+        \text{By \ref{thm:erod}, } \det(EB)=-\det(B)
+    \]
+    \[
+        \det(E)=-\det(I_n)
+    \]
+    \[
+        \det(I_n)\equiv 1
+    \]
+    \[
+        \therefore\det(E)=-1
+    \]
+    \[
+        \Rightarrow \det(E)\det(B)=-\det(B)=\det(EB)
+    \]
+    Let \(E\) be obtained by multiplying a row/column of \(I\) by a contant \(c\):
+    \[
+        \text{By \ref{thm:erod}, } \det{EB}=c\det{B}
+    \]
+    \[
+        \det{E}=c\det{I}=c
+    \]
+    \[
+        \therefore\det{E}\det{B}=c\det{B}=\det{EB}
+    \]
+    Let \(E\) be olbtained by adding a multilple of a row/column of \(I\) to another row/column of \(I\):
+    \[
+        \text{By \ref{thm:erod}, } \det{EB}=\det{B}
+    \]
+    \[
+        \det{E}=\det{I_n}
+    \]
+    \[
+        \therefore\det{E}\det{B}=\det{B}=\det{EB}
+    \]
+\end{lemma}
+\begin{theorem}[Determinant of a Product]\label{detmatrix}
+    If \(A\) and \(B\)  are square matrices of order \(n\), then \(\det(AB)=\det(A)\det(B)\).
+\end{theorem}
+\begin{proof}
+    \emph{Proof of \ref{detmatrix}:}
+    \begin{gather*}
+        \text{Let }A,B\in\mathbb{R} ^{n\times n}\text{ and } \det (A)\neq 0\lor \det (B)\neq 0\\
+        \Longrightarrow \exists (S=\{ E_1,E_2,\ldots,E_k \} \subsetneq \mathbb{R} ^{n\times n})(E_1 E_2 \cdots E_k=A)\\
+        \Longrightarrow \det (A)\det (B)=\det (E_1 \cdots E_k)\det (B)\\
+        =\det (E_1)\det (E_2\cdots E_k)\det (B)\text{ \ref{emlma}}\\
+        =\det (E_1)\cdots\det(E_k)\det (B)\text{ \ref{emlma}}\\
+        =\det(E_1\cdots E_k B)\text{ \ref{emlma}}\\
+        =\det (AB)\\
+        \text{Suppose }\det (A) =0\land \det (B)=0\\
+        \Longrightarrow \text{yea we didnt rlly go over this bit but apparently}\\
+        \text{the product of 2 singular matrices will be singular idk}  
+    \end{gather*}
+\end{proof}
+\begin{remark}
+    Because \(\det (AB)=\det (A)\det (B)\), we can actually define a homomorphism. The determinant does not preserve addition in the general case, so we cannot consider the vector space or ring of matrices. Rather, we can consider the multiplicative group of \(n\times n\) matrices. However, groups necessitate the existance of inverses. Thus, we want to consider the general linear over the reals, that is \(\text{GL}(n,\mathbb{R} ) \). The determinant is not bijective, since it is not injective. For example, consider the following matrices:
+    \[
+        I_n\coloneqq \begin{bmatrix}
+            1 &0  &0 &0   \\
+             0&1  &0  &0  \\
+             0& 0 &1  &0   \\
+             0&0  &0  &1   \\
+        \end{bmatrix}\quad E\coloneqq \begin{bmatrix}
+            1 &1  &0  &0   \\
+            1 &0  &0  &0   \\
+             0&0  &1  &0   \\
+             0&0  &0  &1   \\
+        \end{bmatrix}
+    \]
+    These are both in the general linear of order 4, and the concepts behind them can be generalized to order \(n\). They both have a determinant of 1, but are different matrices. Thus, \(\det \) is not injective. We can only define a homomorphism, not an isomorphism. 
+    \[
+        \det :\text{GL}(n,\mathbb{R} ) \to (\mathbb{R},\cdot)
+    \]
+    \[
+        A\mapsto \det (A)
+    \]
+    \[
+        \det (AB)=\det (A)\det (B)
+    \]
+    \[
+        \therefore \det : \text{GL}(n,\mathbb{R} ) \simeq (\mathbb{R},\cdot)
+    \]
+    We have thus defined a homomorphism between the general linear and the multiplicative group of real numbers.
+\end{remark}
+\begin{theorem}[Determinant of a Scalar Multiple of a Matrix]
+    If \(A\) is a square matrix of order \(n\), and \(a;\in\mathbb{F} \), then \(\det (\alpha A)=\alpha ^n\det (A)\).
+\end{theorem}
+The proof of the above theorem follows trivially from the case of an elementary matrix given by a scalar multiple of a row in \ref{thm:erod}.
+\begin{theorem}[Determinant of a Nonsingular Matrix]
+    If \(A\) is an invertible matrix, then \(\det (A)\neq 0\).
+\end{theorem}
+\begin{theorem}[Determinant of an Inverse Matrix]\label{idet}
+    \[\text{If }A\text{ is an }n\times n\text{ invertible matrix, then }\det \left( A^{-1}  \right) =\frac{1}{\det (A)}\]
+\end{theorem}
+\begin{proof}
+    \emph{Proof of \ref{idet}:}
+    \[
+        AA^{-1} =I_n
+    \]
+    \[
+        \Longrightarrow \det (A)\det \left( A^{-1}  \right) =1
+    \]
+    \[
+        \Longrightarrow \det \left( A^{-1}  \right) =\frac{1}{\det (A)}
+    \]
+\end{proof}
+\begin{theorem}[Determinant of a Transpose]
+    If \(A\) is a square matrix, then \(\det (A)=\det \left( A^T \right) \).
+\end{theorem}
+The proof of the above theorem follows trivially from the fact that a cofactor expansion can be done columnwise and rowwise.
+\begin{theorem}[Conditions for Invertible Matrices]
+    The following conditions are equivalent. 
+    \begin{itemize}
+        \item \(A\) is invertible. 
+        \item \(A\vec{x}=\vec{b}\) has exactly one solution for each \(n\times 1\) column vector \(\vec{b}\).
+        \item \(A\vec{x}=\vec{0}\) has only the trivial solution. 
+        \item \(A\) is row equivalent to \(I_n\). 
+        \item \(A\) can be written as the product of elementary matrices. 
+        \item \(\det (A)\neq 0\).
+    \end{itemize}
+\end{theorem}
+\section{Applications of Determinants}
+\begin{definition}[Adjoint of a Matrix]
+    The matrix of cofactors of some matrix \(A\) has the form
+    \[
+        \begin{bmatrix}
+            C_{11}  &C_{12}   &\cdots  &C_{1n}    \\
+             C_{21} &C_{22}   &\cdots  &C_{2n}    \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             C_{n1} &C_{n2}   &\cdots  &C_{nn}    \\
+        \end{bmatrix}
+    \]
+    The adjoint of this matrix is given as 
+    \[
+        \text{adj}(A)=\begin{bmatrix}
+            C_{11}  &C_{12}   &\cdots  &C_{1n}    \\
+             C_{21} &C_{22}   &\cdots  &C_{2n}    \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             C_{n1} &C_{n2}   &\cdots  &C_{nn}    \\
+        \end{bmatrix}^{\large T}
+    \]
+\end{definition}
+\begin{theorem}[Matrix Inverse]
+    If \(A\) is a square matrix of order \(n\), then 
+    \[
+        A^{-1} =\frac{1}{\det (A)}\text{adj} 
+    \]
+\end{theorem}
+\begin{theorem}[Cramer's Rule]
+    If a system of \(n\) linear equations in \(n\) variables can be given as \(A\vec{x}=\vec{b}\), where \(A\) is the coefficient matrix, then it has the solution 
+    \[
+        x_1 =\frac{\det (A_1)}{\det (A)},\;\; x_2=\frac{\det (A_2)}{\det (A)},\;\;\cdots,\;\;x_n =\frac{\det (A_n)}{\det (A)}
+    \]
+    where \(A_i\) is the matrix \(A\) with the \(i\)th row replaced with \(\vec{b}\).
+\end{theorem}
+\begin{theorem}[Area of a Triangle in \(\mathbb{R} ^2\)]
+    A triangle with vertices \((x_1,y_1),(x_2,y_2),(x_3,y_3)\) has area 
+    \[
+        A=\left\vert \frac{1}{2} \det \begin{bmatrix}
+            x_1 &y_1  &1   \\
+             x_2&y_2  &1   \\
+             x_3&y_3  &1   \\
+        \end{bmatrix} \right\vert 
+    \]
+\end{theorem}
+\begin{theorem}[Collinear Points in \(\mathbb{R} ^2\)]
+    Three points \((x_1,y_1),(x_2,y_2),(x_3,y_3)\) are collinear iff 
+    \[
+        \det \begin{bmatrix}
+            x_1 &y_1  &1   \\
+             x_2&y_2  &1   \\
+             x_3&y_3  &1   \\
+        \end{bmatrix}=0
+    \]
+\end{theorem}
+\begin{theorem}[Equation of a Line]
+    A line passing through points \((x_1,y_1),(x_2,y_2)\) is equivalent to
+    \[
+        \det \begin{bmatrix}
+            x&y  &1   \\
+            x_1 &y_1  &1   \\
+             x_2&y_2  &1   \\
+        \end{bmatrix}=0
+    \]
+\end{theorem}
+\begin{theorem}[Volume of a Tetrahedron]
+    A tetrahedron defined by points \((x_1,y_1,z_1),(x_2,y_2,z_2),\) \((x_3,y_3,z_3),(x_4,y_4,z_4)\) has volume 
+    \[
+        V=\left\vert \frac{1}{6}\det \begin{bmatrix}
+            x_1 &y_1  &z_1  &   1\\
+             x_2&y_2  &z_2  &1   \\
+             x_3&y_3  &z_3  &1   \\
+             x_4&y_4  &z_4  &1   \\
+        \end{bmatrix} \right\vert 
+    \]
+\end{theorem}
+\begin{theorem}[Coplanar Points in \(\mathbb{R} ^3\)]
+    Points \((x_1,y_1,z_1),(x_2,y_2,z_2),\)\((x_3,y_3,z_3),(x_4,y_4,z_4)\) are coplanar iff 
+    \[
+        \det \begin{bmatrix}
+            x_1 &y_1  &z_1  &   1\\
+             x_2&y_2  &z_2  &1   \\
+             x_3&y_3  &z_3  &1   \\
+             x_4&y_4  &z_4  &1   \\
+        \end{bmatrix}=0
+    \]
+\end{theorem}
+\begin{theorem}[Equation of a Plane]
+    A plane through points \((x_1,y_1,z_1),(x_2,y_2,z_2),(x_3,y_3,z_3)\) can be given as
+    \[
+        \det \begin{bmatrix}
+            x&y  &z  &1   \\
+            x_1 &y_1  &z_1  &   1\\
+             x_2&y_2  &z_2  &1   \\
+             x_3&y_3  &z_3  &1   \\
+        \end{bmatrix}=0 
+    \]
+\end{theorem}
+\chapter{Vector Spaces}
+In general, this chapter assumes \(\mathbb{F} =\mathbb{R} \), unless otherwise noted.
+\section{Vectors in \(\mathbb{R} ^n\) }
+\begin{definition}[Properties of Vector Addition and Scalar Multiplication in \(\mathbb{R} ^n\) ]
+    Let \(\vec{u},\vec{v} ,\vec{w}\in\mathbb{R} ^n\) and \(c,d\in\mathbb{F} \). Then 
+    \begin{itemize}
+        \item \(\vec{u} +\vec{v} \in\mathbb{R} ^n\) 
+        \item \(\vec{u} +\vec{v} =\vec{v} +\vec{u} \)
+        \item \((\vec{u} +\vec{v} )+\vec{w} =\vec{u} +(\vec{v} +\vec{w} )\)  
+        \item \(\vec{u} +\vec{0}=\vec{u},\vec{0}\in\mathbb{R} ^n \) 
+        \item \(\vec{u} +(-\vec{u} )=\vec{0},-\vec{u} \in\mathbb{R} ^n\)
+        \item \(c \vec{u} \in\mathbb{R} ^n\)
+        \item \(c(\vec{u} +\vec{v} )=c \vec{u} +c \vec{v} \)   
+        \item \((c+d)\vec{u} =c \vec{u} +d \vec{u} \) 
+        \item \(c(d \vec{u} )=(cd)\vec{u} \) 
+        \item \(1 \vec{u} =\vec{u},\vec{1}\in\mathbb{R} ^n \) 
+    \end{itemize}
+\end{definition}
+\begin{theorem}[Properties of Additive Identity and Inverse]
+Let \(\vec{v} \in\mathbb{R} ^n\) and \(c\in\mathbb{F} \).
+\begin{enumerate}
+\item The additive identity is unique.
+\item There exists a unique additive inverse for every vector.
+\item \(0\vec{v} =\vec{0}\)
+\item \(c\vec{0}-\vec{0}\)
+\item \(c \vec{v} =\vec{0}\Longleftrightarrow c=0 \lor \vec{v} =\vec{0}\) 
+\item \(-(-\vec{v} )=\vec{v} \) 
+    \end{enumerate}
+\end{theorem}
+\begin{definition}[Linear Combination]
+    A linear combination is a set of vectors \(\mathbf{v}_1,\ldots,\mathbf{v} _n\) and scalars \(c_1,\ldots,c_n\) such that a vector can be written as the sum of these vectors: 
+    \[
+        \mathbf{x} =\sum_{i=1}^n c_{i} \mathbf{v} _i  
+    \]
+\end{definition}
+Linear combinations can be treated as systems of equations.
+\begin{eg}
+    Write \(\mathbf{x} =\langle 1,7 \rangle \) as a linear combination of \(\mathbf{v} _1 =\langle 2,4 \rangle \) and \(\mathbf{v} _2 =\langle 1,3 \rangle \).
+    \[
+        \begin{pmatrix}
+             1 \\
+              7\\
+        \end{pmatrix}=c_1\begin{pmatrix}
+             2 \\
+              4\\
+        \end{pmatrix}+c_2 \begin{pmatrix}
+             1 \\
+              3\\
+        \end{pmatrix}
+    \]
+    \[
+        \left\{
+            \begin{array}{ccccc}
+                1&=&2c_1&+&1c_2\\
+                7&=&4c_1&+&3c_2
+            \end{array}
+        \right.
+    \]
+\end{eg}
+\begin{remark}
+    An application of linear combinations is quantum computing. We often give 
+    \[
+        \ket{\psi }=\alpha \ket{0}+\beta \ket{1}
+    \]
+\end{remark}
+\section{Vector Spaces}
+\begin{definition}[Vector Space Axioms]
+    A vector space is an abelian group defined over addition \(\left( \mathbb{V} ,+ \right) \) with a corresponding scalar field \(\mathbb{F} \) for which we define the operations of addition and scalar multiplication: 
+    \[
+        +:\mathbb{V} \times \mathbb{V} \to \mathbb{V} 
+    \]
+    \[
+        \cdot :\mathbb{F} \times \mathbb{V} \to \mathbb{V} 
+    \]
+    wherein the following axioms are satisfied: 
+    \begin{itemize}
+        \item \(c \mathbf{u} \in\mathbb{V} \) - closure under scalar multiplication
+        \item \(c(\mathbf{u} +\mathbf{v} )=c \mathbf{u} +c \mathbf{v} \) - scalar multiplication distributes over vector addition
+        \item \((c+d)\mathbf{u} =c \mathbf{u} +d \mathbf{u} \) - scalar multiplication distributes over scalar addition 
+        \item \(c(d \mathbf{u} )=(cd)\mathbf{u} \) - scalar multiplication is associative
+        \item \(1 \mathbf{u} = \mathbf{u} \) - a scalar multiplicative identity exists
+    \end{itemize}
+\end{definition}
+To show that a set is a vector space, it must be shown that the set is abelian under addition and that the rest of the axioms hold.
+\begin{remark}[Important Vector Spaces]
+    \begin{enumerate}
+        \item The set of reals - \(\mathbb{R} \)
+        \item The set of real ordered pairs - \(\mathbb{R} ^2\)
+        \item The set of real ordered triples - \(\mathbb{R} ^3\)
+        \item The set of real ordered \(n\)-tuples - \(\mathbb{R} ^n\)
+        \item The set of all continuous functions \(f:\mathbb{R}\to \mathbb{R}  \) - \(C(-\infty,\infty)\)
+        \item The set of all continuous functions \(f:[a,b]\subset\mathbb{R}\to \mathbb{R}  \) - \(C[a,b]\)
+        \item The set of all polynomials - \(P\)
+        \item The set of all polynomials of degree \(\leq n\) - \(P_n\)
+        \item The set of all \(m\times n\) matrices \(M_{m\times n} \)
+        \item The set of all \(n\times n\) matrices \(M_{n\times n} \)
+    \end{enumerate}
+\end{remark}
+\begin{theorem}[Properties of Scalar Multiplication]
+    Let \(\mathbf{v} \in V\) and \(c\in\mathbb{F} \).
+    \[
+        0\mathbf{v} =\mathbf{0}
+    \]
+    \[
+        c \mathbf{v} =0\Longleftrightarrow c=0\lor \mathbf{v} =0
+    \]
+    \[
+        c\mathbf{0}=\mathbf{0}
+    \]
+    \[
+        (-1)\mathbf{v} =-\mathbf{v} 
+    \]
+\end{theorem}
+\begin{proof}
+    Proof of statement 1:
+\begin{align*}
+    0\mathbf{v} &=(0+0)\mathbf{v}\\
+    0\mathbf{v} &=0\mathbf{v} +0\mathbf{v} \\
+    0\mathbf{v} -0\mathbf{v} &=0\mathbf{v} \\
+    \mathbf{0}&=0\mathbf{v} 
+\end{align*}
+\end{proof}
+\section{Subspaces of Vector Spaces}
+\begin{definition}[Subspace]
+    If \(V\) is a vector space, then a set \(W\neq \varnothing \) with \(W\subseteq V\) is a \textbf{subspace} of \(V\) when \(W\) is a vector space under the same definition of operations as \(V\).
+\end{definition}
+\begin{theorem}[Test for a Subspace]
+    Let \(V\) be a vector space, and let \(W\subseteq V\). Then \(W\) is a subspace of \(V\) iff 
+    \begin{itemize}
+        \item \(W\neq \varnothing \) 
+        \item If \(\mathbf{u} ,\mathbf{v} \in W\), then \(\mathbf{u} +\mathbf{v} \in W\)
+        \item If \(\mathbf{u} \in W\) and \(c\in\mathbb{F} \), then \(c \mathbf{u} \in W\) 
+    \end{itemize}
+\end{theorem}
+\begin{theorem}[Intersections of Subspaces]
+    If \(V\) and \(W\) are subspaces of \(U\), then \(V\cap W\) is a subspace of \(U\).
+\end{theorem}
+\section{Spanning Sets and Linear Combinations}
+\begin{definition}[Linear Combination]
+    A vector \(\mathbf{x} \in V\) is a linear combination of vectors \(\mathbf{v} _1,\ldots,\mathbf{v} _k\in V\) when 
+    \[
+        x=\sum_{i=1}^{k}c_i \mathbf{v} _i ,c_i\in\mathbb{F}  
+    \]
+\end{definition}
+To tell if some vector \(\mathbf{u} \in V\) can be written as a linear combination of  finite set of vectors \(\mathbf{v} _1,\ldots,\mathbf{v} _n \in V\), let \(c_1,\ldots,c_n \in\mathbb{F} \) where 
+\[
+    \mathbf{u} =c_1 \mathbf{v} _1 + c_2 \mathbf{v} _2 + \cdots c_n \mathbf{v} _n
+\]
+A system of equations can be constructed and solved by giving a matrix representation of the vector.
+\begin{remark}
+    By a theorem that will be seen later on, for any vector space \(V\) with \(\dim V =n\), we have 
+    \[
+        V\cong \mathbb{R} ^n
+    \]
+    Since \(\mathbb{R} ^n\) has an equivalent representation as a column vector, all vector spaces of dimension \(n\) have the same representation.
+\end{remark}
+\begin{definition}[Span]
+    Let \(S=\left\{ \mathbf{v} _1 ,\mathbf{v} _2,\ldots,\mathbf{v} _n \right\} \subset V \), where \(V\) is a vector space over \(\mathbb{F} \). The \textbf{span} of \(S\) is the set of all linear combinations of \(S\), denoted 
+    \[
+        \operatorname{span}(S) =\left\{ \sum_{i=1}^n c_i v_i \mid c_1\ldots,c_n \in \mathbb{F}  \right\} 
+    \]
+\end{definition}
+\begin{remark}
+    When \(\operatorname{span}(S)=V \), we say \(V\) is spanned by \(S\), or the span of \(S\) is \(V\).
+\end{remark}
+\begin{eg}
+    Let \(\begin{bmatrix}
+         2 \\
+         1 \\
+    \end{bmatrix}, \begin{bmatrix}
+         -1 \\
+          2\\
+    \end{bmatrix}\in\mathbb{R}^2\) be vectors in a vector space.
+    \[
+        \operatorname{span}\left\{ \begin{bmatrix}
+             2 \\
+             1 \\
+        \end{bmatrix},\begin{bmatrix}
+             -1 \\
+              2\\
+        \end{bmatrix} \right\}  =\mathbb{R} ^2
+    \]
+    This is just  the result of rescaling and rotating the standard basis, so it's obviously going to span the space.
+\end{eg}
+\begin{theorem}
+    If \(V\) is a vector space and \(S=  \{ \mathbf{v} _1,\mathbf{v} _2,\ldots,\mathbf{v} _n \} \subseteq  V \), then \(\operatorname{span}(S) \) is a subspace of \(V\). \(\operatorname{span}(S) \) is also the smallest subspace of \(V\) that contains \(S\).
+\end{theorem}
+\begin{proof}
+    The span of a set \(S \subseteq  V\) is, by definition, every vector that can be obtained through vector addition with the elements of \(S\), and scalar multiplication with the elements of \(\mathbb{F} \). Thus, by definition, \(\operatorname{span}(S) \) must be closed under scalar multiplication and vector addition. Furthermore,
+    \[
+        \mathbf{v} \in S \Longrightarrow 0 \mathbf{v} =\mathbf{0} \in \operatorname{span}(S) 
+    \]
+    Also by definition, \(\operatorname{span}(S) \subseteq  V \). Therefore, \(\operatorname{span}(S) \) is a subspace of \(V\). From this it follows that any other subset of \(V\) that contains \(S\) must contain \(\operatorname{span}(S) \) as well, otherwise it would not be closed. Thus, \(\operatorname{span}(S) \) is the smallest subspace of \(V\) containing \(S\).
+\end{proof}
+\begin{definition}[Linear Dependence and Independence]
+    Let \(V\) be a vector space. A set of vectors \(S =\{ \mathbf{v} _1,\ldots,\mathbf{v} _k \} \subseteq V\) is linearly independent when 
+    \[
+        c_1 \mathbf{v} _1+\cdots+c_k \mathbf{v} _k = \mathbf{0} 
+    \]
+    has only the solution 
+    \[
+        c_1=\cdots=c_k = 0
+    \]
+    Any set that has nontrivial solutions is linearly dependent.
+\end{definition}
+\begin{remark}
+    A linearly independent set is any set wherein any vector that is an element of the set cannot be written as a linear combination of the others. A linearly dependent set is a set where this is not true.
+\end{remark}
+Let \(V\) be a vector space and \(S\) be set of vectors \(S =\{ \mathbf{v} _1,\ldots,\mathbf{v} _k \} \subseteq V\). To determine whether \(S\) is linearly independent or dependent, use these steps:\\
+Write \(c_1 \mathbf{v} _1 + \cdots c_k \mathbf{v} _k = \mathbf{0} \) as a system of linear equations.\\
+Determine whether the system has a unique solution (take determinant of coefficient matrix).\\
+If the set has a unique solution, it's linearly independent.\\
+\begin{eg}
+    Let \(S=\{ (1,3,1),(0,1,2),(1,0,-5) \} \subset \mathbb{R} ^3\). 
+    \[
+        \det \begin{bmatrix}
+            1 & 2 &1   \\
+            3 & 1 & 0  \\
+            1 &0  &  -5 \\
+        \end{bmatrix}=24\neq 0
+    \]
+    Therefore this set is linearly independent. 
+\end{eg}
+\begin{theorem}
+    A set \(S=\{ \mathbf{v} _1,\ldots,\mathbf{v} _k \},k\geq 2 \) is linearly dependent iff at least one vector \(\mathbf{v} _i\) can be written as a linear combination of the others.
+\end{theorem}
+\begin{corollary}
+    Two vectors \(\mathbf{u} ,\mathbf{v} \in V\) are linearly dependent iff there exists some \(\alpha \in \mathbb{F} \) where \(\mathbf{v} =\alpha \mathbf{u} \) 
+\end{corollary}
+\section{Basis and Dimension}
+\begin{definition}[Basis]
+    A set of vectors \(S=\{ \mathbf{v} _1,\ldots,\mathbf{v} _kk \} \) in a vector space \(V\) is said to be a \textbf{basis} of \(V\) if 
+    \begin{enumerate}
+        \item \(S\) spans \(V\) 
+        \item \(S\) is linearly independent
+    \end{enumerate}
+\end{definition}
+\begin{eg}
+    The standard basis of \(\mathbb{R} ^2\) is \(\{ (1,0),(0,1) \} \).
+\end{eg}
+\begin{eg}
+    Let \(S=\{ (1,2),(1,-1) \} \) be a set in the vector space \(\mathbb{R} ^2\). Let \((x,y)\in\mathbb{R} ^2\) be an arbitrary vector.
+    \[
+        (x,y)=a(1,2)+b(1,-1)
+    \]
+    \[
+        \Longrightarrow (x,y)=(a+b,2a-b)
+    \]
+    This has a system representation with the folling matrix representation.
+    \[
+        \begin{bmatrix}
+            1 &1   \\
+             2&-1   \\
+        \end{bmatrix} \begin{bmatrix}
+             b \\
+             a \\
+        \end{bmatrix} = \begin{bmatrix}
+             x \\
+             y \\
+        \end{bmatrix}
+    \]
+    \[
+        \det \begin{bmatrix}
+            1 &1   \\
+             2&-1   \\
+        \end{bmatrix}=1\neq 0
+    \]
+    Therefore there exists a unique solution for every \((x,y)\in\mathbb{R} ^2\), and thus this set forms a basis of \(\mathbb{R} ^2\).
+\end{eg}
+\begin{theorem}[Uniqueness of Basis Represenation]\label{uniqueb}
+    If \(S\) is a basis of \(V\), then every vector in \(V\) can be written in exactly one way as a linear combination of \(S\).
+\end{theorem}
+Proof of this theorem follows from the facts that \(\operatorname{span}(S)=V \) and since the set is linearly independent, the coefficient matrix \(A\) constructed in the same manner as the previous example will be invertible.
+\begin{theorem}[Bases and Linear Dependence]
+    If \(S\) is a basis for \(V\) and has \(n\) vectors, then every set containing more than \(n\) vectors is linearly dependent.
+\end{theorem}
+\begin{theorem}[Number of Vectors in a Basis]
+    If a vector space \(V\) has a basis with \(n\) vectors, then every basis of \(V\) has \(n\) vectors.
+\end{theorem}
+\begin{definition}[Dimension of a Vector Space]
+    Let \(V\) be a vector space with a basis \(S\) with \(|S| =n\). The number \(n\) is the \textbf{dimension} of \(V\), denoted \(\dim (V)=n\).
+\end{definition}
+If a vector space \(V\) has a basis with a finite number of vectors, \(V\) is finite dimensional. Otherwise, \(V\) is infinite dimensional. \(\{ \mathbf{0}  \} \) is said to be 0-dimensional.
+\begin{remark}
+    \begin{itemize} The following are true.
+        \item \(\dim \left( \mathbb{R} ^n \right)=n \) 
+        \item \(\dim \left( P_n \right)=n+ 1\) 
+        \item \(\dim \left( M_{m,n} \right)=mn \) 
+    \end{itemize}
+\end{remark}
+\begin{theorem}[Basis Tests]
+    Let \(V\) be a vector space with \(\dim (V)=n\).
+    \begin{itemize}
+        \item If \(S=\{ \mathbf{v} _1,\ldots,\mathbf{v} _n \} \) is linearly independent, then it is a basis of \(V\). 
+        \item If \(S=\{ \mathbf{v} _1,\ldots,\mathbf{v} _n \} \) spans \(V\), then \(S\) is a basis of \(V\).
+    \end{itemize}
+\end{theorem}
+\section{Rank of a Matrix and Systems of Linear Equations}
+\begin{definition}[Row Space and Column Space]
+    Let \(A \in M_{m,n}\) be an \(m\times n\) matrix.
+    \begin{enumerate}
+        \item The \textbf{row} \textbf{space} of \(A\) is the subspace of \(\mathbb{R} ^n\) spanned by the row vectors of \(A\).
+        \item The \textbf{column} \textbf{space} of \(A\) is the subspace of \(\mathbb{R} ^n\) spanned by the column vectors of \(A\).
+    \end{enumerate}
+\end{definition}
+\begin{eg}
+    Let
+    \[A=\begin{bmatrix}
+        4 &3  &1   \\
+         -2&3  &4   \\
+    \end{bmatrix}\]
+    The row space of \(A\) is \(\operatorname{span}\left\{ (4,3,1),(-2,3,4) \right\}  \) and the column space is \(\operatorname{span}\left\{ \begin{bmatrix}
+         4 \\
+         -2 \\
+    \end{bmatrix},\begin{bmatrix}
+         3 \\
+         3 \\
+    \end{bmatrix},\begin{bmatrix}
+         1 \\
+         4 \\
+    \end{bmatrix} \right\}  \).
+\end{eg}
+\begin{theorem}
+    Row equivalent matrices of equivalent dimension have equivalent row space. That is, for two row equivalent matrices \(A,B\in M_{m,n}\), the span of their column vectors is equivalent.
+\end{theorem}
+\begin{proof}
+    Let \(A,B\in M_{m,n}\) such that there exists a finite set of elementary matrices \(\left\{ E_1,\ldots,E_n \right\} \) where
+    \[
+        E_n E_{n-1}\cdots E_2 E_1 A=B
+    \]
+    There are three types of elementary matrices. An elementary matrix with a row swap performs a permutation on the row vectors of matrix \(A\), preserving the vectors while modifying their order. A matrix that performs a scalar multiple on one row is equivalent to multiplying that vector by a scalar, which has an equivalent span since the scalar can be divided back out. Adding one row to another simply turns another vector into a linear combination of the original row vectors, which will have equivalent span as seen earlier.
+\end{proof}
+\begin{theorem}[Basis for Row Space]
+    If a matrix \(A\) is row equivalent to a matrix \(B\) in row-echelon form, then the nonzero row vectors of \(B\) form a basis for the row space of \(A\).
+\end{theorem}
+\begin{eg}
+    \[
+        A=\begin{bmatrix}
+            -2 &-4  &4  &5   \\
+             3&6  &-6  &-4   \\
+             -2&-4  &4  &9   \\
+        \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}
+            1 &2  &-2  &0   \\
+             0&0  &0  &1   \\
+             0&0  &0  &0   \\
+        \end{bmatrix}
+    \]
+    Therefore, the row space of \(A\) has as a basis the set \(\left\{ (1,2,-2,0),(0,0,0,1) \right\} \).
+\end{eg}
+\begin{theorem}
+    The row and column spaces of any matrix \(A\) have equivalent dimension.
+\end{theorem}
+\begin{definition}[Rank]
+    The dimension of the row or column space of some matrix \(A\) is the \textbf{rank} of \(A\), denoted \(\rank (A)\).
+\end{definition}
+\begin{theorem}[Solutions of a Homogeneous System]
+    Let \(A\in M_{m,n}\) be a matrix. The set of all solutions \(\mathbf{x} \) to the equation \(A \mathbf{x} = \mathbf{0} \) is called the \textbf{nullspace} of \(A\), and is denoted
+    \[
+        N(A) = \left\{ \mathbf{x} \in \mathbb{R} ^n \middle| A \mathbf{x} =\mathbf{0}  \right\}
+    \]
+    and is a subspace of \(\mathbb{R}^n\). The dimension of the nullspace of \(A\) is the \textbf{nullity} of \(A\).
+\end{theorem}
+\begin{remark}
+    I think the nullspace is synonymous with \(\ker (A)\) where \(A\) is a linear transformation.
+\end{remark}
+\begin{definition}[Dimension of the Nullspace]
+    If \(A\in M_{m,n}\) is an \(m \times n\) matrix with \(\rank (A)=r\), then \(\dim \left( N(A) \right) =n-r\).
+\end{definition}
+\begin{theorem}[Solutions of a Nonhomogeneous Linear System]
+    Let \(\mathbf{x} _p\) be a solution to \(A \mathbf{x}=\mathbf{b}\) with \(\mathbf{b}\neq \mathbf{0}\). Every solution of this system can then be written as the form 
+    \[
+        \mathbf{x}=\mathbf{x}_p +\mathbf{x}_h
+    \]
+    where \(\mathbf{x}_h\) is a solution to \(A \mathbf{x}=\mathbf{0}\).
+\end{theorem}
+\begin{theorem}[Solutions of a System of Linear Equations]
+    Let \(A\) be an \(m\times n\) matrix. The system \(A \mathbf{x}=\mathbf{b}\) is consistent iff \(\mathbf{b}\) is in the column space of \(A\).
+\end{theorem}
+\begin{remark}
+    \textbf{Summary of Equivalent Conditions for Square Matrices:}\\
+    If \(A\in M_{n,n}\), then the following conditions are equivalent:\\
+    \begin{enumerate}
+        \item \(\exists A^{-1} \in M_{n,n}\)
+        \item \(A \mathbf{x}=\mathbf{b}\) has a unique solution for all \(\mathbf{b}\).
+        \item \(A \mathbf{x}=\mathbf{0} \iff \mathbf{x}=\mathbf{0}\)
+        \item \(A\) is row equivalent to \(I_n\) (\(A \sim I_n\) because row equivalence is an equivalence relation).
+        \item \(\det (A)\neq 0\)
+        \item \(\rank (A)=n\)
+        \item The \(n\) rows of \(A\) are linearly independent.
+        \item The \(n\) columns of \(A\) are linearly independent.
+    \end{enumerate}
+\end{remark}
+\section{Coordinates and Change of Basis}
+\begin{definition}[Coordinate Representation Relative to a Basis]
+    Let \(B=\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \} \) be an ordered basis for a vector space \(V\) over \(\mathbb{F} \) and let \(\mathbf{x}\in V\) such that 
+    \[
+        \mathbf{x}=c_1 \mathbf{v}_1 + \cdots + c_n \mathbf{v}_n
+    \]
+    The scalars \(c_1,\ldots,c_n\) are the coordinates of \(\mathbf{x}\) relative to the basis \(B\), and the coordinate matrix of \(\mathbf{x}\) relative to \(B\) is 
+    \[
+        [\mathbf{x}]_B = \begin{bmatrix}
+             c_1 \\
+              c_2\\
+              \vdots\\
+              c_n\\
+        \end{bmatrix}
+    \]
+\end{definition}
+\begin{definition}[Transition Matrix]
+    If \(B\) and \(B^{\prime} \) are bases for a vector space \(\mathbb{R}^n\), then a transition matrix \(P\) is a matrix such that
+    \[
+        P[x]_B = [x]_{B^{\prime} }
+    \]
+\end{definition}
+\begin{lemma}
+    Let \(B=\left\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \right\} \) and \(B^{\prime} =\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_n \right\} \) be two bases for a vector space \(V\). If
+    \[
+        \begin{array}{ccc}
+            \mathbf{v}_1&=&c_{11}\mathbf{u}_1 + c_{21}\mathbf{u}_2 + \cdots+c_{n1}\mathbf{u}_n\\
+            \mathbf{v}_2&=&c_{12}\mathbf{u}_1 +c_{22}\mathbf{u}_2+\cdots +c_{n2} \mathbf{u}_n \\
+            &\vdots&\\
+            \mathbf{v}_n = c_{1n}\mathbf{u}_1 + c_{2n}\mathbf{u}_2  + \cdots +c_{nn}\mathbf{u}_n 
+        \end{array}
+    \]
+    Then the transition matrix from \(B\) to \(B^{\prime} \) is
+    \[
+        Q=\begin{bmatrix}[r]
+            c_{11}  &c_{12}   &\cdots  &c_{1n}    \\
+             c_{21} &c_{22}   &\cdots  &   c_{2n} \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             c_{n1} &c_{n2}   &\cdots  &c_{nn}    \\
+        \end{bmatrix}
+    \]
+\end{lemma}
+\begin{theorem}[Transition Matrices are Invertible]
+    If \(P\) is the transition matrix from a basis \(B^{\prime} \) to a basis \(B\) for \(\mathbb{R} ^n\), then \(P\) is invertible and the transition matrix from \(B\) to \(B^{\prime} \) is \(P ^{-1} \).
+\end{theorem}
+\begin{proof}
+    Let \(P\) be a transition matrix for \(B^{\prime} \to B\). It follows that
+    \[
+        P[x]_{B^{\prime} }=[x]_B
+    \]
+    Let \(Q\) be a transition matrix for \(B\to B^{\prime} \). It follows that
+    \[
+        [x]_{B^{\prime} }=Q[x]_B
+    \]
+    We now have
+    \begin{align*}
+        [x]_B &=P\left( Q[x]_B \right)\\
+        \iff PQ&=I_n\\
+        [x]_{B^{\prime}} &=Q\left( P[x]_B \right)\\
+        \iff QP&=I\\
+        \therefore QP=PQ=I&\iff P=Q^{-1} 
+    \end{align*}
+    The last step holds since inverses are unique.
+\end{proof}
+\begin{theorem}[Transition Matrices via Gaussian Elimination]
+    Let \(B\) and \(B^{\prime} \) be bases for \(\mathbb{R}^n\). The transition matrix \(P ^{-1} \) from \(B\) to \(B^{\prime} \) can be found with
+    \[
+        \begin{bmatrix}[r]
+            B^{\prime}  &B   \\
+        \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+            I_n &P ^{-1}    \\
+        \end{bmatrix}
+    \]
+\end{theorem}
+\begin{remark}
+    Transition matrices define automorphisms on \(\mathbb{R}^n\). Also all vector spaces of equivalent dimension are isomorphic, so the idea of a transition matrix extends beyond \(\mathbb{R} ^n\), but this is the space where it can be initially defined most easily, hence the use of \(\mathbb{R}^n\) in our definitions.
+\end{remark}

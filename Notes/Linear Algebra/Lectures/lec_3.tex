@@ -1,0 +1,49 @@
+\chapter{Introduction to Matrices}
+Note: $\mathbb{F}$ depicts an arbitrary scalar field herein. This class was taught with $\mathbb{F}:=\R$ in mind, so these properties do not necessarily hold for any arbitrary $\mathbb{F}$.
+\section{Operations with Matrices}
+\begin{definition}[Equality of Matrices]\label{def:1}
+	Two $m\times n$ matrices are equal if and only if $a_{ij}=b_{ij}\forall i,j$
+\end{definition}
+\begin{definition}[Matrix Addition]\label{def:2}
+	For $A=[a_{ij}]$ and $B=[b_{ij}]$ both being $m\times n$ matrices, we have the matrix $A+B$ as the matrix with each $(i,j)$ entry equal to $a_{ij}+b_{ij}$.
+\end{definition}
+\begin{definition}[Scalar Multiplication]\label{def:3}
+	For $A=[a_{ij}]$ and $c\in\mathbb{F}$, then $cA=[c\cdot a_{ij}]$.
+\end{definition}
+\begin{definition}[Matrix Multiplication]\label{def:4}
+For For $A=[a_{ij}]$ as an $m\times n$ matrix and $B=[b_{ij}]$ as an $n\times p$ matrix, the product $AB$ is the $m\times p$ matrix $AB=[c_{ij}]$, where we give
+$$c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}$$
+$$=a_{i1}b_{1j}+\cdots+a_{in}+b_{nj}$$	
+\end{definition}
+We can give systems of linear equations as $A\vec{x}=\vec{b}$, where $A$ is the coefficient matrix, $\vec{x}$ is the column vector with entries $x_i$ representing variables, and $\vec{b}$ is the column vector of constant terms. We find that
+$$A\vec{x}=\vec{b}$$
+gives a valid representation of systems of equations in a matrix algebra. This is due to the fact that we can partition matrices into a linear combination:
+$$A\vec{x}=\begin{bmatrix}
+	a_{11}&a_{12}&\cdots&a_{1n}\\
+	a_{21}&a_{22}&\cdots&a_{2n}\\
+	\vdots&\vdots&\ddots&\vdots\\
+	a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{bmatrix}\begin{bmatrix}
+x_1\\x_2\\\vdots\\x_n
+\end{bmatrix}$$
+$$=x_1\begin{bmatrix}
+	a_{11}\\a_{21}\\\vdots\\a_{m1}
+\end{bmatrix}+x_2\begin{bmatrix}
+a_{12}\\a_{22}\\\vdots\\a_{m2}
+\end{bmatrix}+\cdots+x_n\begin{bmatrix}
+a_{1n}\\a_{2n}\\\vdots\\a_{mn}
+\end{bmatrix}=\vec{b}$$
+\begin{definition}[Linear Combination]\label{def:5}
+	If $a_i\in\mathbb{F}$ and $\vec{x}_i$ is a column vector, than a linear combination of $n$ vectors is of the form
+	$$\sum_{i=1}^n a_i\vec{x}_i$$
+\end{definition}
+\section{Properties of Matrix Operations}
+\begin{theorem}[Properties of Matrix Addition and Scalar Multiplication]\label{thm:1}
+	If $A$, $B$, and $C$ are $m\times n$ matrices,  and $c,d\in\mathbb{F}$, the following properties are true.
+	$$A+B=B+A$$
+	$$A+(B+C)=(A+B)+C$$
+	$$(cd)A=c(dA)$$
+	$$1A=A$$
+	$$c(A+B)=cA+cB$$
+	$$(c+d)A=cA+dA$$
+\end{theorem}
