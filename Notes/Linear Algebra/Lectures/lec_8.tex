@@ -1,0 +1,308 @@
+\begin{corollary}
+    From \ref{Cauchy-Schwartz}, we guarentee
+    \[
+        0\leq \frac{\left\vert \mathbf{u} \cdot \mathbf{v}  \right\vert }{\lVert \mathbf{u}  \rVert\lVert \mathbf{v}  \rVert  }\leq 1
+    \]
+\end{corollary}
+\begin{definition}[Angle Between Two Vectors in \(\mathbb{R} ^n\)]
+    Let \(\theta \) be the angle between two vectors \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\).
+    \[
+        \cos \theta =\frac{\mathbf{u} \cdot \mathbf{v} }{\lVert \mathbf{u}  \rVert\lVert \mathbf{v}  \rVert  },\quad 0\leq \theta \leq \pi 
+    \]
+\end{definition}
+\begin{exercise}
+    Find the angle between vectors \(\mathbf{u} =(-4,0,2)\) and \(\mathbf{v} =(2,0,1)\) in \(\mathbb{R} ^3\).
+    \begin{answer}
+        \[
+            \lVert \mathbf{u}  \rVert =\sqrt{20} 
+        \]
+        \[
+            \lVert \mathbf{v}  \rVert =\sqrt{5} 
+        \]
+        \[
+            \mathbf{u} \cdot \mathbf{v} =-10
+        \]
+        \[
+            \Longrightarrow \cos \theta = \frac{-10}{\sqrt{100} }
+        \]
+        \[
+            \Longrightarrow \theta =\arccos \left( -1 \right) =\pi 
+        \]
+    \end{answer}
+\end{exercise}
+\begin{definition}[Orthogonal Vectors]
+    Two vectors \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\) are orthogonal if \(\mathbf{u} \cdot \mathbf{v} =0\).
+\end{definition}
+\begin{exercise}
+    Find all vectors \(\mathbf{v} \) orthogonal to \(\mathbf{u} =(2,1)\). 
+    \begin{answer}
+        Let \(\mathbf{v} =\left( v_1,v_2 \right) \) with \(\mathbf{v} \cdot \mathbf{u} =0\). We have
+        \[
+            2v_1 + v_2 = 0
+        \]
+        \[
+            \Longrightarrow v_2 = -2v_1
+        \]
+        Let \(t\in\mathbb{R}\) be some parameter. We define 
+        \[
+            \mathbf{v} =(t,-2t)
+        \]
+    \end{answer}
+\end{exercise}
+\begin{theorem}[The Triangle Inequality]
+    Let \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\).
+    \[
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert \leq \left\lVert \mathbf{u}  \right\rVert +\left\lVert \mathbf{v}  \right\rVert 
+    \]
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert^2 &= \left( \mathbf{u} +\mathbf{v}  \right) \cdot \left( \mathbf{u} +\mathbf{v}  \right) \\
+        &=\left\lVert \mathbf{u}  \right\rVert ^2 +2(\mathbf{u} \cdot \mathbf{v} )+\left\lVert \mathbf{v}  \right\rVert^2\\
+        &\leq \left\lVert \mathbf{u}  \right\rVert^2 +2\left\vert \mathbf{u} \cdot \mathbf{v}  \right\vert +\left\lVert \mathbf{v}  \right\rVert^2\\
+        &\leq \left\lVert \mathbf{u}  \right\rVert ^2 +2\lVert \mathbf{u}  \rVert \lVert \mathbf{v}  \rVert +\lVert \mathbf{v}  \rVert^2\\
+        &= \left( \left\lVert \mathbf{u}  \right\rVert+\left\lVert \mathbf{v}  \right\rVert   \right)^2\\
+        \Longrightarrow \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert ^2 &\leq \left( \left\lVert \mathbf{u}  \right\rVert+\left\lVert \mathbf{v}  \right\rVert   \right)^2\\
+        \Longrightarrow \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert &\leq \left\lVert \mathbf{u}  \right\rVert +\left\lVert \mathbf{v}  \right\rVert \because \left\lVert \cdot \right\rVert :\mathbb{R} \to \mathbb{R} ^+_0
+\end{align*}
+\end{proof}
+\begin{theorem}[Pythagorean Theorem]
+    Vectors \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\) are orthogonal iff 
+    \[
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert^2 = \left\lVert \mathbf{u}  \right\rVert^2 +\lVert \mathbf{v}  \rVert^2 
+    \]
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\) with \(\mathbf{u} \cdot \mathbf{v} =0\).
+    \begin{align*}
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert^2 &= \left( \mathbf{u} +\mathbf{v}  \right) \cdot \left( \mathbf{u} +\mathbf{v}  \right) \\
+        &= \left\lVert \mathbf{u}  \right\rVert^2 + 2\left( \mathbf{u} \cdot \mathbf{v}  \right) +\left\lVert \mathbf{v}  \right\rVert^2\\
+        &= \lVert \mathbf{u}  \rVert^2 +\lVert \mathbf{v}  \rVert^2\\
+    \end{align*}
+    Now let \(\lVert \mathbf{u} +\mathbf{v}  \rVert^2 = \lVert \mathbf{u}  \rVert^2 +\lVert \mathbf{v}  \rVert^2   \) with \(\mathbf{u} ,\mathbf{v} \in\mathbb{R} ^n\). It follows from the above logic that \(2(\mathbf{u} \cdot \mathbf{v}) \iff \mathbf{u} \cdot \mathbf{v} =0\).
+\end{proof}
+One important note is that the dot product of two vectors
+\[
+    \mathbf{u} =\begin{bmatrix}
+         u_1 \\
+          u_2\\
+          \vdots\\
+          u_n\\
+    \end{bmatrix},\qquad \mathbf{v} =\begin{bmatrix}
+         v_1 \\
+          v_2\\
+          \vdots\\
+          v_n\\
+    \end{bmatrix}
+\]
+can be given as 
+\[
+    \mathbf{u} \cdot \mathbf{v} \cong \mathbf{u}^T \mathbf{v}
+\]
+which gives a \(1\times 1\) matrix \(\begin{bmatrix}
+     \mathbf{u} \cdot \mathbf{v}  \\
+\end{bmatrix}\)  which is isomorphic to the scalar it represents.
+\section{Inner Product Spaces}
+\begin{definition}[Inner Product]
+    Let \(V\) be a vector space over \(\mathbb{F} \) with \(\mathbf{u} ,\mathbf{v} ,\mathbf{w} \in V\) and \(c\in\mathbb{F}\). An inner product on \(V\) is a function
+    \[
+        \left\langle \cdot,\cdot \right\rangle :V\times V\to \mathbb{F} 
+    \]
+    that satisfies the following axioms:
+    \begin{itemize}
+        \item \(\left\langle \mathbf{u} ,\mathbf{v}  \right\rangle =\langle \mathbf{v} ,\mathbf{u}  \rangle \)
+        \item \(\langle \mathbf{u} ,\mathbf{v} +\mathbf{w}  \rangle=\langle \mathbf{u} ,\mathbf{v}  \rangle+\langle \mathbf{u} ,\mathbf{w}  \rangle   \)
+        \item \(c\langle \mathbf{u} ,\mathbf{v}  \rangle=\langle c \mathbf{u} ,\mathbf{v}  \rangle  \)
+        \item \(\langle \mathbf{v} ,\mathbf{v}  \rangle\geq 0 \) and \(\langle \mathbf{v} ,\mathbf{v}  \rangle=0 \iff \mathbf{v} =\mathbf{0}  \)
+    \end{itemize}
+    A vector space \(V\) with an inner product is an \emph{inner product space.}
+\end{definition}
+    The dot product is an inner product on Euclidean space known as the Euclidean inner product.
+\begin{exercise}
+    Let \(\mathbf{v} =\left( v_1,v_2 \right) \) and \(\mathbf{u} =\left( u_1,u_2 \right) \) be vectors in \(\mathbb{R} ^2\). Show 
+    \[
+        \langle \mathbf{u} ,\mathbf{v}  \rangle =u_1 v_1 +9u_2 v_2
+    \]
+    is an inner product on \(\mathbb{R} ^2\).
+    \begin{answer}
+        \begin{align*}
+            \langle \mathbf{u} ,\mathbf{v}  \rangle &=u_1 v_1 +9u_2 v_2\\
+            &= v_1 u_1 +9v_2 u_2\\
+            &=\langle \mathbf{v} ,\mathbf{u}  \rangle 
+        \end{align*}
+        Let \(\mathbf{w} \in\mathbb{R} ^2\) be defined as \(\mathbf{w} =\left( w_1,w_2 \right) \). 
+        \begin{align*}
+            \langle \mathbf{u} ,\mathbf{v} +\mathbf{w}  \rangle &=u_1 (v_{1}+w_1 )+ 9u_2 \left( v_2 +w_2 \right)\\
+            &= u_1 v_1 +u_1 w_1 +9u_2 v_2 +9u_2 w_2\\
+            &= \left( u_1 v_1 +9u_2 v_2 \right) + \left( u_1 w_1 +9u_2 w_2 \right) \\
+            &= \langle \mathbf{u} ,\mathbf{v}  \rangle+\langle \mathbf{u} ,\mathbf{w}  \rangle  
+        \end{align*}
+        Let \(c\in\mathbb{R} \).
+        \begin{align*}
+            c\langle \mathbf{u} ,\mathbf{v}  \rangle &=c \left( u_1 v_1 +9u_2 v_2 \right) \\
+            &= cu_1 v_1 +c9u_2 v_2\\
+            &= \left( cu_1 \right) v_1 +9 \left( cu_2 \right) v_2\\
+            &= \langle c \mathbf{u} ,\mathbf{v}  \rangle
+        \end{align*}
+            \[
+            \langle \mathbf{u} ,\mathbf{u}  \rangle =u_1^2 +9u_2^2
+            \]
+            \[
+                u_1^2 \geq 0
+            \]
+            \[
+                u_2^2 \geq 0
+            \]
+            \[
+                u_1^2,u_2^2 =0 \iff u_1,u_2 =0
+            \]
+        \end{answer}
+\end{exercise}
+\begin{exercise}
+    Let \(\mathbf{v} =\left( v_1,v_2 \right) \) and \(\mathbf{u} =\left( u_1,u_2 \right) \) be vectors in \(\mathbb{R} ^2\). Show the function
+    \[
+        \left\langle \mathbf{u} ,\mathbf{v}  \right\rangle =u_1 v_1 -7u_2 v_2
+    \]
+    does not define an inner product on \(\mathbb{R} ^2\).
+    \begin{answer}
+        Let \(u_2 = \frac{u_1}{\sqrt{7} }\) with \(u_1 \neq 0\). We have 
+        \begin{align*}
+            \left\langle \mathbf{u} ,\mathbf{u}  \right\rangle &=u_1^2 -7 u_2^2\\
+            &= u_1^2 -7 \frac{u_1^2}{\sqrt{7}^2 }\\
+            &= u_1^2 -\frac{7u_1^2}{7}\\
+            &= u_1^2 -u_1^2\\
+            &=0
+        \end{align*}
+        Therefore the function does not define an inner product on \(\mathbb{R} ^2\).
+    \end{answer}
+\end{exercise}
+\begin{exercise}
+    Let \(f,,h\in C[a,b]\) be continuous functions defined on the interval \([a,b] \subset \mathbb{R}\) where \(a\neq b\). Show the function 
+    \[
+        \langle f,g \rangle = \int_a^b f(x)g(x)\,dx
+    \]
+    defines an inner product on \(C[a,b]\).
+    \begin{answer}
+        The functions are real-valued, so multiplication will commute. Thus,
+        \[
+            \langle f,g \rangle =\int_a^b f(x)g(x)\,dx =\int_a^b g(x)f(x)\,dx =\langle g,f \rangle 
+        \]
+        Integrals can be split at addition. Thus,
+        \[
+            \langle f,g+h \rangle =\int_a^b f(x) (g(x)h(x))\,dx =\int_a^b f(x)g(x) +f(x)h(x)\,dx   
+        \]
+        \[
+            =\int_a^b f(x)g(x)\,dx +\int_a^b f(x)h(x)\,dx =\langle f,g \rangle+\langle f,h \rangle
+        \]
+        Let \(c\in\mathbb{R} \). Constants can be factored in and out of an integral. Thus,
+        \[
+            c\langle f,g \rangle =c\int_a^b  \left( f(x)g(x) \right) \,dx=\int_a^b cf(x)g(x)\,dx =\int_a^b (cf(x))g(x)\,dx =\langle cf,g \rangle 
+        \]
+        The square of a real number will always be positive, and the integral of an integral that's always positive will be positive for \(a>b\), which it is. Thus,
+        \[
+            \langle f,f \rangle =\int_{a}^b f(x)f(x)\,dx \geq 0
+        \]
+        The integral evaluates to \(0\) if and only if the integrand is \(0\), or if \(f(a)=-f(b)\), but the square of the function is always \(f^2 \geq 0\). Furthermore, the square of the function is \(0 \iff f(x) =0\).
+    \end{answer}
+\end{exercise}
+\begin{theorem}[Properties of Inner Products]
+    Let \(V\) be an inner product space over \(\mathbb{F} \), and let \(\mathbf{u} ,\mathbf{v} ,\mathbf{w} \in V\) and \(c\in\mathbb{F} \). The following properties are satisfied. 
+    \begin{itemize}
+        \item \(\langle \mathbf{0},\mathbf{v}   \rangle= \langle \mathbf{v} ,\mathbf{0}  \rangle =0 \) 
+        \item \(\langle \mathbf{u} +\mathbf{v} ,\mathbf{w}  \rangle=\langle \mathbf{u} ,\mathbf{w}  \rangle+\langle \mathbf{v} ,\mathbf{w}  \rangle   \) 
+        \item \(\langle \mathbf{u} ,c \mathbf{v}  \rangle=c\langle \mathbf{u} ,\mathbf{v}  \rangle  \) 
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \langle \mathbf{0},\mathbf{v}   \rangle &= \langle \mathbf{v},\mathbf{0}  \rangle\\  
+        \langle \mathbf{0},\mathbf{v}   \rangle&= \langle 0 \mathbf{0},\mathbf{v}   \rangle \\
+        &= 0\langle \mathbf{0},\mathbf{v}   \rangle \\
+        &=0 \,\forall \mathbf{v} 
+    \end{align*}
+    \[
+        \therefore \langle \mathbf{0},\mathbf{v}   \rangle \langle \mathbf{v} ,\mathbf{0}  \rangle =0
+    \]
+    \begin{align*}
+        \langle \mathbf{u} +\mathbf{v} ,\mathbf{w}  \rangle&=\langle \mathbf{w} ,\mathbf{u} +\mathbf{v}  \rangle \\
+        &= \langle \mathbf{w} ,\mathbf{u}  \rangle+\langle \mathbf{w} ,\mathbf{v}  \rangle  \\
+        &=\langle \mathbf{u} ,\mathbf{w}  \rangle+\langle \mathbf{v} ,\mathbf{w}  \rangle  
+    \end{align*}
+    \[
+        \therefore \langle \mathbf{u} +\mathbf{v} ,\mathbf{w}  \rangle=\langle \mathbf{u} ,\mathbf{w}  \rangle+\langle \mathbf{v} ,\mathbf{w}  \rangle   
+    \]
+    \begin{align*}
+        \langle \mathbf{u} ,c \mathbf{v}  \rangle &= \langle c \mathbf{v} ,\mathbf{u}  \rangle \\
+        &= c\langle \mathbf{v} ,\mathbf{u}  \rangle\\
+        &= c\langle \mathbf{u} ,\mathbf{v}  \rangle  
+    \end{align*}
+    \[
+        \therefore \langle \mathbf{u} ,c \mathbf{v}  \rangle =c\langle \mathbf{u} ,\mathbf{v}  \rangle 
+    \]
+\end{proof}
+Rapid fire definition and theorem time!
+\begin{definition}[Norm]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u} \in V\). The norm of \(\mathbf{u} \) is defined as 
+    \[
+        \left\lVert \mathbf{u}  \right\rVert \sqrt{\langle \mathbf{u} ,\mathbf{u}  \rangle } 
+    \]
+\end{definition}
+\begin{definition}[Distance]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\). The distance between \(\mathbf{u} \) and \(\mathbf{v} \) is given as 
+    \[
+        d(\mathbf{u} ,\mathbf{v} )=\left\lVert \mathbf{u} -\mathbf{v}  \right\rVert 
+    \]
+\end{definition}
+\begin{definition}[Angle]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\setminus \{ \mathbf{0}  \} \). The angle \(\theta \) between the vectors is
+    \[
+        \theta =\arccos \left( \frac{\langle \mathbf{u} ,\mathbf{v}  \rangle }{\lVert \mathbf{u}  \rVert\lVert \mathbf{v}  \rVert  } \right) 
+    \]
+    with \(\theta \in [0,\pi ]\).
+\end{definition}
+\begin{definition}[Orthogonality]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\). These vectors are orthogonal if 
+    \[
+        \langle \mathbf{u} ,\mathbf{v}  \rangle=0 
+    \]
+\end{definition}
+If \(\left\lVert \mathbf{u}  \right\rVert=1 \), then we say \(\mathbf{u} \) is a unit vector. For some \(\mathbf{v} \in V\), we say
+\[
+    \mathbf{u} =\frac{\mathbf{v} }{\lVert \mathbf{v}  \rVert }
+\]
+is the unit vector in the direction of \(\mathbf{v} \).
+\begin{theorem}[Cauchy-Schwartz Inequality]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\). We have 
+    \[
+        \left\vert \langle \mathbf{u} ,\mathbf{v}  \rangle  \right\vert \leq \left\lVert \mathbf{u}  \right\rVert\left\lVert \mathbf{v}  \right\rVert  
+    \]
+\end{theorem}
+\begin{theorem}[Triangle inequality]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\). We have 
+    \[
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert \leq \lVert \mathbf{u}  \rVert+\lVert \mathbf{v}  \rVert  
+    \]
+\end{theorem}
+\begin{theorem}[Pythagorean Theorem]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\). \(\mathbf{u} \) and \(\mathbf{v} \) are orthogonal iff 
+    \[
+        \left\lVert \mathbf{u} +\mathbf{v}  \right\rVert^2 = \lVert \mathbf{u}  \rVert^2 +\lVert \mathbf{v}  \rVert^2   
+    \]
+\end{theorem}
+\begin{definition}[Orthogonal Projection]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\) with \(\mathbf{v} \neq \mathbf{0} \). The orthogonal projection of \(\mathbf{u} \) onto \(\mathbf{v} \) is defined as 
+    \[
+        \text{proj}_{\mathbf{v} }\mathbf{u} =\frac{\langle \mathbf{u} ,\mathbf{v}  \rangle }{\langle \mathbf{v} ,\mathbf{v}  \rangle }\mathbf{v}   
+    \]
+\end{definition}
+\begin{theorem}[Orthogonal Projection and Distance]
+    Let \(V\) be an inner product space over \(\mathbb{F} \) with \(\mathbf{u},\mathbf{v}  \in V\) with \(\mathbf{v} \neq \mathbf{0} \). Then 
+    \[
+        d\left( \mathbf{u} ,\text{proj}_{\mathbf{v} }\mathbf{u}    \right) < d \left( \mathbf{u} ,c \mathbf{v}  \right) 
+    \]
+    where
+    \[
+        c\neq \frac{\langle \mathbf{u} ,\mathbf{v}  \rangle }{\langle \mathbf{v} ,\mathbf{v}  \rangle }
+    \]
+\end{theorem}
+note - do 5.3 at home
