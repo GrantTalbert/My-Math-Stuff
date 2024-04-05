@@ -1,9 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
-\usepackage{amsfonts, amssymb,   mathtools, mathrsfs, amsthm}
-\usepackage{color, soul}
+\usepackage{amsfonts, amssymb, mathtools, mathrsfs, amsthm}
 \usepackage{mdframed}
-\usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \theoremstyle{definition}
 \newtheorem{environment}{Exercise}
@@ -214,5 +212,184 @@ Any time the variables are used, there is no ambiguity in their value due each f
 (b) is not injective nor surjective. For any \(n\in\mathbb{Z} \), it follows that \(n^2 \geq 0\). As such, \(n^2 + 3 \geq 3\), and thus the range of the function is \(\{ x\in\mathbb{Z} \mid x\geq 3 \} \subsetneq  \mathbb{Z} \). Furthermore, for any \(n\in\mathbb{Z} \), \(f(n)=f(-n)\) since \(f(-n)=(-n)^2 + 3 = (-1)^2(n)^2 + 3=1n^2 + 3=n^2 + 3=f(n)\). Therefore, the function is not injective either.\\
 (c) is also not injective or surjective. For all \(x\in\mathbb{R} \), \(\sin \) is bounded by \(\sin x\in [-1,1] \subsetneq \mathbb{R} \). Thus, \(f\) is not surjective, and the range of \(f\) is \([-1,1]\). \(f\) is also not injective, since values differing by a factor of \(2\pi \) give the same \(\sin x\) value. For example, \(f(2\pi )=\sin (2\pi )=0=\sin (0)=f(0)\). Therefore \(f(0)=f(2\pi )\) and \(f\) is not injective.\\
 (d) is ALSO not injective nor surjective. Again, \(f(-x)=f(x)\) since \(f(-x)=(-x)^2=(-1)^2(x)^2=1x^2=x^2=f(x)\) for any \(x\in\mathbb{Z} \), so \(f\) is not injective. Furthermore, for any \(x\in\mathbb{Z} \), we have \(x^2 \geq 0\). Therefore, the range of \(f\) is \(\mathbb{N}\), where \(0\in\mathbb{N} \), and thus \(f\) is not surjective.
+\begin{exercise}
+    Let \(f:A\to B\) and \(G:B\to C\) be invertible mappings; that is, mappings such that \(f^{-1} \) adn \(g^{-1} \) exist. Show that \((g\circ f)^{-1} =f^{-1} \circ g^{-1} \).
+\end{exercise}	
+Mapping composition is associative. As such,
+\[
+    (f\circ g)\circ\left( g^{-1} \circ f^{-1}\right) =f\circ \left( g\circ g^{-1}  \right) \circ f^{-1} 
+\]
+Since \(g\) and \(g^{-1} \) are inverses, \(g\circ g^{-1} =g^{-1} \circ g=\text{id} \), where \(\text{id} \) is the identity function and is the identity under function composition. As such,
+\[
+    f\circ \left( g\circ g^{-1}  \right) \circ f^{-1} =f\circ \text{id} \circ f^{-1} =f\circ f^{-1} =\text{id} 
+\]
+\[
+    \therefore \left( f\circ g \right) \circ \left( g^{-1} \circ f^{-1}  \right) =\text{id} 
+\]
+Since inverses are unique, it follows that
+\[
+    \left( f\circ g \right) ^{-1} =g^{-1} \circ f^{-1} 
+\]
+\begin{exercise}
+    \begin{align*}
+        &(a)\quad\text{Define a function }f:\mathbb{N} \to \mathbb{N} \text{ that is one-to-one but not onto.}\\
+        &(b)\quad\text{Define a function }f:\mathbb{N} \to \mathbb{N} \text{ that is onto but not one-to-one.}    
+    \end{align*}
+\end{exercise}
+I will not be considering \(0\in\mathbb{N} \), but the logic here applies even if considering \(0\notin\mathbb{N} \).\\
+(a) Let \(f(n)=n+1\). Obviously, this is injective, since for any \(n\in\mathbb{N} \), there can only be one possible value of \(n+1\). However, since \(-1\notin \mathbb{N} \), and \(n+1=0\iff n=-1\), then the function is not surjective since there is no element of the domain that maps to \(0\).\\
+(b) Let \(f(n)=\left\lfloor 0.99n \right\rfloor\). Notice that \(\left\lfloor 0.99\cdot0 \right\rfloor=\lfloor 0 \rfloor=0\). However, \(\lfloor 0.99\cdot1 \rfloor=\lfloor 0.99 \rfloor=0\), so two elements of the domain map to a single element of the image, so the function is not injective. However, for any element of the image \(n\), there will be at least one element of the domain that maps to it.
+\begin{exercise}
+    Prove the relation defined on \(\mathbb{R} ^2\) by \(\left( x_1,y_1 \right)\sim \left( x_2,y_2 \right)  \) if \(x_1^2 +y_1^2 =x_2^2 + y_2^2\) is an equivalence relation.
+\end{exercise}	
+\[
+   \left( x_1,y_1 \right)\sim \left( x_1,y_1 \right) \iff   x_1^2 + y_1^2 = x_1^2 + y_1^2 \iff x_1^2 - x_1^2 + y_1^2 - y_1^2 = 0 \iff 0=0
+\]
+\[
+    \therefore (x_1,y_1)\sim (x_1,y_1)
+\]
+\begin{align*}
+    \left( x_1,y_1 \right)\sim \left( x_2,y_2 \right)   &\Longrightarrow x_1^2 + y_1^2 = x_2^2 + y+2^2\\
+    &\Longrightarrow x_1^2 + y_1^2 - x_2^2 -y_2^2 = 0\\
+    &\Longrightarrow -x_2^2 -y_2^2 = -x_1^2 -y_1^2\\
+    &\Longrightarrow -1\left( x_2^2 +y_2^2 \right) =-1\left( x_1^2 +y_1^2 \right) \\
+    &\Longrightarrow x_2^2 +y_2^2 =x_1^2+y_1^2\\
+    &\Longrightarrow \left( x_2,y_2 \right) \sim (x_1,y_1)
+\end{align*}
+\begin{align*}
+    \left( x_1,y_1 \right) \sim \left( x_2,y_2 \right) &\Longrightarrow x_1^2 +y_1^2 = x_2^2 +y_2^2\\
+    \left( x_2,y_2 \right) \sim \left( x_3,y_3 \right) &\Longrightarrow x_2^2 +y_2^2 = x_3^2 + y_3^2\\
+    &\Longrightarrow x_1^2 +y_1^2 =x_2^2 +y_2^2 =x_3^2 +y_3^2\\
+    &\Longrightarrow x_1^2 +y_1^2 =x_3^2 +y_3^2\\
+    &\Longrightarrow \left( x_1,y_1 \right) \sim \left( x_3,y_3 \right)
+\end{align*}
+Therefore, \(\sim \) defines an equivalence relation on \(\mathbb{R} ^2\).
+\begin{exercise}
+    Let \(f:A\to B\) and \(g:B\to C\) be maps.
+    \begin{align*}
+        &(a)\quad\text{If }f\text{ and }g\text{ are both one-to-one functions, show that }g\circ f\text{ is one-to-one.}\\
+        &(b)\quad\text{If }g\circ f\text{ is onto, show that }g\text{ is onto.}\\
+        &(c)\quad\text{If }g\circ f\text{ is one-to-one and }f\text{ is onto, show that }g\text{ is one-to-one.}\\
+        &(d)\quad\text{If }g\circ f\text{ is onto and }g\text{ is one-to-one, show that }f\text{ is onto.}           
+    \end{align*}
+\end{exercise}
+(a) Let \(a_1,a_2\in A\) where \(a\neq a_2\). Since \(f\) is injective, \(a_1\neq a_2 \Longrightarrow f(a_1)\neq f(a_2)\). For simplicity, let \(b_1 =f(a_1)\) and \(b_2 =f(a_2)\). Since \(g\) is injective, \(b_1 \neq b_2 \Longrightarrow g(b_1)\neq g(b_2)\). Therefore, \(a_1 \neq a_2 \Longrightarrow g(f(a_1))\neq g(f(a_2))\). Thus, \(g\circ f\) is injective.\\
+(b) Since \(f:A\to B\), every single element of \(A\) is mapped to an element of \(B\). Since \(f\) is not necessarily surjective, we can assume the range of \(f\) is some \(B^{\prime} \subset B\). Since \(B^{\prime} \subset B\), and \(g:B\to C\), \(g\) will map all elements of \(B^{\prime} \) to some element of \(C\). Since \(B^{\prime} \) is the set of all elements originally from \(A\), for \(g\circ f\) to be surjective it must be that all elements of \(C\) are mapped from some \(x\in B^{\prime} \), because no \(x\in B\setminus B^{\prime} \) is mapped from an element of \(A\), and \((g\circ f):A\to C\). Therefore, \(g\circ f\) being surjective implies \(g\) is surjective over some \(B^{\prime} \subset B\), and must therefore be surjective over its entire domain.\\
+(c) First it must be shown that \(f\) is injective. Since \(g\circ f\) is injective and \(f\) is surjective, assume for purpose of contradiction that \(f\) is not injective and there exists some \(a_1,a_2\in A,a_1\neq a_2\) where \(f(a_1)=f(a_2)\). If \(g\circ f\) is injective, then \(g(f(a_1))\neq g(f(a_2))\). However, since \(f(a_1)=f(a_2)\), then \(g(f(a_1))\) must equal two different values for \(g\circ f\) to be injective. However, this would mean \(g\) is not a map since it would not be well defined, which is a contradiction. Therefore, \(f\) must be injective. Since \(g\circ f\) is also injective, meaning \(b_1\neq b_2 \Longrightarrow (g\circ f)(a_1)\neq (g\circ f)(a_2)\), this implies that every element of \(A\) maps to a unique element of \(C\). We also know that every single element of \(A\) is mapped to a unique element of \(B\) by \(f\). Suppose \(g\) is not injective. It follows that there will be some \(b_1 \neq b_2\) such that \(g(b_1)=g(b_2)\). However, \(f\) is onto, so there must exist some \(x,y\in A\) such that \(f(x)=b_1\) and \(f(y)=b_2\). However, since \(b_1 \neq b_2\), it follows that \(f(x)\neq f(y)\Longrightarrow x\neq y\). However, we know that \(g(b_1)=g(b_2)\), thus \((g\circ f)(x)=(g\circ f)(y)\) with \(x\neq y\), which is a contradiction since \(g\circ y\) is injective. Therefore, \(g\) must also be injective.\\
+(d) Since \(g\) is injective, every element of \(B\) maps to a unique element of \(C\). Since \(g\circ f\) is surjective, every element of \(C\) has at least one corresponding element in \(A\). Since \(g\) is injective, it must also be surjective. Let \(f:A\to B\) have an image \(B^{\prime} \subset B \), which will later be proved to be equal to \(B\). Since \(g\circ f\) is surjective, all elements of \(C\) must be mapped to by an element of \(B^{\prime} \). Since \(g\) is injective, all of these elements must be unique. Therefore, \(g\) must map every element of \(B^{\prime} \) to a unique element of \(C\), and every element of \(C\) must be mapped to by an element of \(B^{\prime} \). Therefore, \(g\) is surjective on \(B^{\prime} \). Now suppose \(b\in B\). It follows that there exists some \(c\in C\) where \(g(b)=c\). However, since \(g\) is surjective over \(B^{\prime} \), there exists some \(b^{\prime} \in B^{\prime} \) such that \(g(b^{\prime} )=c=g(b)\). Since \(g\) is injective, this implies \(b^{\prime} =b\), which implies \(b\in B^{\prime} \). Therefore, \(B^{\prime} =B\), and \(g\) is surjective and injective over its entire domain. Since \(B^{\prime} \) is the range of \(f\), this implies that the range of \(f\) is equal to \(B\), and thus \(f\) is surjective.
+\begin{exercise}
+    Define a function on the real numbers by
+    \[
+        f(x) = \frac{x+1}{x-1}
+    \]
+    What are the domain and range of \(f\)? What is the inverse of \(f\)? Compute \(f\circ f^{-1} \) and \(f^{-1} \circ f\).
+\end{exercise}
+\(f\) is not defined for \(f(x)=1\), since
+\[
+    f(1)=\frac{1+1}{1-1}=\frac{2}{0}
+\]
+For all other \(x\in\mathbb{R} \), \(f(x)\) is defined. Thus, the domain of \(f\) is \(\mathbb{R} \setminus \{ 1 \} \). The range of \(f\) will also be \(\mathbb{R} \setminus \{ 1 \} \), since the limit of \(f\) as \(x\to -\infty\) or \(x\to \infty\) is \(1\), and \(f\) approaches \(-\infty\) as \(x\to 1\) from the left and \(f(x)\to \infty\) as \(x\to 1\) from the right. To compute the inverse of \(f\), we can say
+\[
+    f^{-1} (x)=y
+\]
+and give
+\begin{align*}
+    &\qquad x=\frac{y+1}{y-1}\\
+    &\Longrightarrow x(y-1)=y+1\\
+    &\Longrightarrow xy-x=y+1\\
+    &\Longrightarrow xy-y=x+1\\
+    &\Longrightarrow y(x-1)=x+1\\
+    &\Longrightarrow y=\frac{x+1}{x-1}
+\end{align*}
+\[
+    \therefore f^{-1} (x)=\frac{x+1}{x-1}
+\]
+Interestingly, \(f\) is its own inverse. We have
+\begin{align*}
+    \left( f\circ f^{-1}  \right) (x)&=\frac{\frac{x+1}{x-1}+1}{\frac{x+1}{x-1}-1}\\
+    &=\frac{\frac{x+1}{x-1}+\frac{x-1}{x-1}}{\frac{x+1}{x-1}-\frac{x-1}{x-1}}\\
+    &=\frac{\frac{2x}{x-1}}{\frac{2}{x-1}}\\
+    &= \frac{2x}{x-1}\cdot \frac{x-1}{2}\\
+    &=x\\
+    \therefore f\circ f^{-1} &=\text{id} 
+\end{align*}
+We also have
+\begin{align*}
+    \left( f^{-1} \circ f \right) (x)&=\frac{\frac{x+1}{x-1}+1}{\frac{x+1}{x-1}-1}\\
+    &=\text{id} 
+\end{align*}
+as previously seen.
+\begin{exercise}
+    Let \(f:X\to Y\) be a map with \(A_1,A_2 \subset X\) and \(B_1,B_2 \subset Y\).
+    \begin{enumerate}
+        \item Prove \(f \left( A_1 \cup A_2 \right)=f \left( A_1 \right)\cup f \left( A_2 \right)   \).
+        \item Prove \(f \left( A_1 \cap A_2 \right) \subset f \left( A_1 \right)\cap f \left( A_2 \right)   \). Give an example where equality fails.
+        \item Prove \(f^{-1} \left( B_1 \cup  B_2 \right) =f^{-1} \left( B_1 \right)\cup f^{-1} \left( B_2 \right)  \), where
+        \[
+            f^{-1} (B)=\left\{ x\in X\mid f(x)\in B \right\} 
+        \]
+        \item Prove \(f^{-1} \left( B_1 \cap B_2 \right) = f^{-1} \left( B_1 \right) \cap  f^{-1} \left( B_2 \right)   \) 
+        \item Prove \(f^{-1} \left( Y\setminus B_1 \right)=X \setminus f^{-1} \left( B_1 \right)  \).
+    \end{enumerate}
+\end{exercise}	
+Although I understand \emph{why} these are true, I don't know how to make a rigorous argument to prove this.
+\begin{exercise}
+    Determine whether or not the following relations are equivalence relations on the given set. If the relation is an equivalence relation, describe the partition given by it. If the relation is not an equivalence relation, state why it fails to be one.
+    \begin{align*}
+        &(a)\quad x\sim y\text{ in } \mathbb{R} \text{ if }x\geq y &&(c)\quad x\sim y \text{ in }\mathbb{R} \text{ if }\vert x-y \vert\leq 4\\
+        &(b)\quad m\sim n\text{ in }\mathbb{Z} \text{ if }mn>0&&(d)\quad m\sim n\text{ in }\mathbb{Z} \text{ if }m\equiv n\;\;(\text{mod }n )       
+    \end{align*}
+\end{exercise}
+(a) fails to be an equivalence relation, since for some \(x\geq y\), the property is reflexive if and only if \(y\geq x\), meaning \(x=y\). There exist \(x,y\in\mathbb{R} \) where \(x\neq y\), so this does not define an equivalence relation on \(\mathbb{R} \).\\
+(b) is an equivalence relation. For nonzero \(m,n\in\mathbb{Z} \), we know \(m^2 >0\), so \(m\sim m\). We also know multiplication is commutative for integers, so \(mn>0 \Longrightarrow nm>0\). Finally, some nonzero \(m,n\in\mathbb{Z} \) have \(m\sim n\) if and only if they are of the same sign; that is they are both positive or both negative. If they were of opposite signs, then \(m n<0\). Let \(m,n,p\in\mathbb{Z}\setminus \{ 0 \}  \) with \(m\sim n\) and \(n\sim p\). By the previous logic, \(m\) and \(n\) have the same signs, and \(n\) and \(p\) have the same signs. Therefore, \(m\) and \(p\) must have the same signs, and thus \(mp>0\). This partitions the integers into the set of positive integers and the set of negative integers, and the set \(\{ 0 \} \) which has no equivalence relation with any element of \(\mathbb{Z} \).\\
+EDIT: im so stupid this isnt an equivalence relation it falls apart if you try to use 0 because \(0 \nsim 0\) \\
+(c) fails to be an equivalence relation since it does not satisfy the transitive property. An example is as follows:
+\[
+    |6-3| =3\leq 4 \Longrightarrow 6\sim 3
+\]
+\[
+    |3-1| =2\leq 4 \Longrightarrow 3\sim 2
+\]
+\[
+    |6-1| =5 \nleq 4 \Longrightarrow  6 \nsim 1
+\]
+(d) is an equivalence relation, and partitions \(\mathbb{Z} \) into \(n\) equivalence classes, where each one is defined as 
+\[
+    [x]=\left\{ \alpha x \mid \alpha \in\mathbb{Z}  \right\}, x\in \{ 1,2,\ldots,n \} 
+\]
+\begin{exercise}
+    Define a relation \(\sim \) on \(\mathbb{R} ^2\) by stating that \((a,b)\sim (c,d)\) if and only if \(a^2 +b^2 \leq c^2 +d^2\). Show that \(\sim \) is reflexive and transitive but not symmetric.
+\end{exercise}
+Trivial. Let \(a^2 +b^2 = a^2 +b^2\). Then obviously \(a^2 +b^2 \leq a^2 +b^2\), so \((a,b)\sim (a,b)\). Furthermore, if \((a,b)\sim (c,d)\) and \((c,d)\sim (e,f)\), then
+\[
+    a^2 +b^2 \leq  c^2 +d^2
+\]
+\[
+    c^2 +d^2 \leq e^2 +f^2
+\]
+\[
+    \Longrightarrow a^2 +b^2 \leq c^2 +d^2 \leq e^2 +f^{2} 
+\]
+\[
+    \Longrightarrow a^2+b^2 \leq e^2 +f^2
+\]
+\[
+    \therefore (a,b)\sim (c,d)\land (c,d)\sim (e,f)\Longrightarrow (a,b)\sim (e,f)
+\]
+We also know that if \(a^2 +b^2 \leq c^2 +d^2\) is true, then \(c^2 +d^2 \leq a^2 +b^2\) is also true if and only if \(a^2 +b^2 = c^2 +d^2\). However, not every single \((a,b)\sim (c,d)\) satisfies this requirement, so it's not true that \((a,b)\sim (c,d)\Longrightarrow (c,d)\sim (a,b)\).
+\begin{exercise}
+    Show that an \(m\times n\) matrix gives rise to a well-defined map from \(\mathbb{R} ^n\) to \(\mathbb{R} ^m\).
+\end{exercise}
+Let \(A\) be an \(m\times n\) matrix. Any \(n\)-tuple can be represented as an \(n\times 1\) column vector, which can be operated on by a matrix operator. The product of an \(m\times n\) matrix with an \(n\times 1\) matrix is by definition an \(m\times 1\) column vector, which would be in \(\mathbb{R} ^m\). As such, we have the map
+\[
+    A:\mathbb{R} ^n \to \mathbb{R} ^m
+\]
+\[
+    A: \mathbf{x}\mapsto A \mathbf{x}
+\]
+A map is well defined if no element of the domain maps to multiple elements of the range. And matrix multiplication gives one value when you do the multiplication. Is this problem supposed to be this easy I feel like I'm missing something here
+\begin{exercise}
+    Find the error in the following argument by providing a counterexample. ``The reflexive property is redundant in the axioms for an equivalence relation. If \(x\sim y\), then \(y\sim x\) by the symmetric property. Using the transitive property, we can deduce that \(x\sim x\).''
+\end{exercise}
 
 \end{document}
