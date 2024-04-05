@@ -1,0 +1,109 @@
+%basic packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+%math
+\usepackage{amsmath, amsthm, amsfonts, amssymb, mathtools}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+\usepackage{siunitx} %phyjsicsssss
+
+%misc
+\usepackage{float}
+\usepackage[hyphens]{url}
+\usepackage{darkmode}
+\enabledarkmode
+\definecolor{page}{HTML}{293133}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={cyan},
+    urlcolor={green},
+    citecolor={red}
+}
+
+%my commands
+\DeclarePairedDelimiter\bra{\langle}{\rvert} %Bra
+\DeclarePairedDelimiter\ket{\lvert}{\rangle} %Ket
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2} %Bra-ket
+\newcommand{\pvec}[1]{\vec{#1}\mkern2mu\vphantom{#1}} % from https://tex.stackexchange.com/questions/120029/how-to-typeset-a-primed-vector
+\newcommand{\hati}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\hatj}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\hatk}{\boldsymbol{\hat{\textbf{k}}}}
+
+%theorems
+\usepackage{thmtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=5pt, innerbottommargin=6pt}
+\theoremstyle{definition} %because obviously
+
+%theorem styles
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white}]{thmbox} %makes a box
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\(\blacksquare\)]{proofline} %makes a line on the right with a qed
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\qedsymbol]{egline} %makes a line on the right with a qed
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}]{nobox} %doesnt make a box
+
+%numbered theorems
+\declaretheorem[numberwithin=chapter, style=thmbox, name=Definition]{definition}
+\declaretheorem[sibling=definition, style=thmbox, name=Theorem]{theorem}
+\declaretheorem[sibling=definition, style=thmbox, name=Lemma]{lemma}
+\declaretheorem[sibling=definition, style=thmbox, name=Corollary]{corollary}
+\declaretheorem[sibling=definition, style=thmbox, name=Proposition]{proposition}
+
+%unnumbered theorems
+\declaretheorem[numbered=no, style=nobox, name=Remark]{remark}
+\declaretheorem[numbered=no, style=nobox, name=Exercise]{exercise}
+\declaretheorem[numbered=no, style=nobox, name=Notation]{notation}
+\declaretheorem[numbered=no, style=nobox, name=Note]{note}
+\declaretheorem[numbered=no, style=nobox, name=As Previously Seen]{prev}
+\declaretheorem[numbered=no, style=nobox, name=Intuition]{intuition}
+\declaretheorem[numbered=no, style=nobox, name=Example]{eg}
+
+%solution environment
+\declaretheorem[numbered=no, style=egline, name=Solution]{setsolution}
+\newenvironment{solution}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
+\newenvironment{answer}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
+%proof environment
+\declaretheorem[numbered=no, style=proofline, name=Proof]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
+%\renewenvironment{proof}[1][\proofname]{\vspace{-12pt}\begin{replacementproof}}{\end{replacementproof}} this version has no space between above and proof section
+
+%pulls lecture files
+\newcommand{\lec}[2]{%
+	\foreach \c in {#1,...,#2}{%
+		\IfFileExists{Lectures/lec_\c.tex} {%
+			\input{Lectures/lec_\c.tex}%
+		}{}%
+	}%
+}
+%to use, in the same file directory as your header.tex and master.tex files, create a folder titled "Lectures" and put your
+%lectures into their, named lec_1.tex, lec_2.tex, and so on. In the master.tex file, write \lec{a}{b} where a is the lowest
+%number you want to call, and b is the highest.
+
+%fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}\fancyfoot{}
+\fancyfoot[R]{\thepage}
+\fancyfoot[C]{\leftmark}
+
+
+%figures, taken from (https://castel.dev/post/lecture-notes-2)
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\author{Grant Talbert}
