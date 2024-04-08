@@ -145,3 +145,33 @@ $$\begin{bmatrix}
 1&0&0&0&\frac{1}{2}\\0&1&0&0&2\\0&0&1&0&-\frac{3}{2}\\0&0&0&1&0
 \end{bmatrix}$$
 $$\therefore p(x)=\frac{1}{2}x^3+2x^2-\frac{3}{2}x$$
+Matrix models of systems of equations can be used to solve partial fraction decomposition.
+\begin{exercise}
+	Use a matrix to complete partial fraction decomposition on the expression
+	\[
+		\frac{12}{(x+1)(4x+1)}
+	\]
+\end{exercise}
+\begin{solution}
+	\[
+		\frac{12}{(x+1)(4x+1)}=\frac{A}{x+1}+\frac{B}{4x+1}
+	\]
+	\[
+		\Longrightarrow 12=(4x+1)A +(x+1)B
+	\]
+	\[
+		\Longrightarrow \begin{array}{c}
+			4Ax + Bx = 0\\
+			A1+B1=12			
+		\end{array}\sim \begin{bmatrix}
+			4 &1  &0   \\
+			 1&1  &12   \\
+		\end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}
+			1 &0  &-4   \\
+			 0&1  &16   \\
+		\end{bmatrix}
+	\]
+	\[
+		\therefore A=-4 \land B=16
+	\]
+\end{solution}
