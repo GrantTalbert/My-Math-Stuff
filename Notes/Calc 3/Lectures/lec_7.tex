@@ -1,0 +1,66 @@
+\section{The Jacobian}
+\begin{definition}[\(C^1\) Transformation]
+    \(T\) is a \(C^1\) transformation from \(uvw\) space to \(xyz\) space if \(T(u,v,w)=(x,y,z)\) where \(x=g(u,v,w)\), \(y=h(u,v,w)\), \(z=k(u,v,w)\), and \(g,h,\) and \(k\) have continuous first-order partial derivatives.
+\end{definition}
+\begin{definition}[Jacobian]
+    The \textbf{Jacobian} of a \(C^1\) transformation \(T\) from \(uvw\) space to \(xyz\) space is the \(3\times 3\) determinant given by
+    \[
+        \frac{\partial (x,y,z)}{\partial (u,v,w)}=\begin{vmatrix}
+            \frac{\partial x}{\partial u}  &\frac{\partial x}{\partial v}   &\frac{\partial x}{\partial w}    \\[10pt]
+             \frac{\partial y}{\partial u} &\frac{\partial y}{\partial v}   &\frac{\partial y}{\partial w}    \\[10pt]
+             \frac{\partial z}{\partial u} &\frac{\partial z}{\partial v}   &\frac{\partial z}{\partial w}    \\
+        \end{vmatrix}
+    \]
+\end{definition}
+    Transformations can also be defined between \(n\)-dimensional spaces, whenever the spaces are of equal dimension. We give
+    \[
+        \frac{\partial \left( x_1,\ldots,x_n \right) }{\left( u_1,\ldots,u_n \right) }=\begin{vmatrix}
+            \frac{\partial x_1}{\partial u_1}  &\cdots  &\frac{\partial x_1}{\partial u_n}    \\
+             \vdots&\ddots  &\vdots   \\
+             \frac{\partial x_n}{\partial u_1} &\cdots  &\frac{\partial x_n}{\partial u_n}    \\
+        \end{vmatrix}
+    \]
+\begin{remark}
+        Online sources make a distinction between the Jacobian matrix \(\mathbf{J} \) and its determinant. This text only works with the determinant.
+\end{remark}
+\begin{theorem}[Change of Variables in Double or Triple Integral]
+    Let \(T:S\to R\) be a \(C^1\) transformation from \(uv\) space to \(xy\) space with a nonzero Jacobian. Suppose \(f\) is continuous and \(T\) is injective on \(S \subset \mathbb{R}^2\), \(R\subset \mathbb{R} ^2\). Then
+    \[
+        \iint\limits_{R}f(x,y)\,dA = \iint\limits_{S}f(x(u,v),y(u,v))\left\vert \frac{\partial (x,y)}{\partial (u,v)} \right\vert \,dudv
+    \]
+\end{theorem}
+The above theorem can be extended to \(n\)-dimensions in the exact same manner. For brevity, let \(\mathbf{x} = \left( x_1,\ldots,x_n \right) \) and \(\mathbf{u} =\left( u_1,\ldots,u_n \right) \). With the same definitions except for \(S,R \subset \mathbb{R} ^n\), we give
+\[
+    \idotsint\limits_{R}f \left( \mathbf{x}  \right) \,d \mathbf{x}  = \idotsint\limits_{S} f \left( x_1 \left( \mathbf{u}  \right),\ldots,x_n \left( \mathbf{u}   \right)   \right) \left\vert \frac{\partial \left(\mathbf{x}  \right) }{\partial \left( \mathbf{u}  \right) } \right\vert \,d \mathbf{u} 
+\]
+\begin{exercise}
+    Prove theorem 4.17 using the Jacobian.
+\end{exercise}
+\begin{solution}
+    Let \(x= \rho \cos \theta \sin \phi \), \(y=\rho \sin \theta \sin \phi \), \(z=\rho \cos \phi \). It follows that
+    \begin{align*}
+        \begin{vmatrix}
+            \frac{\partial x}{\partial \rho }  &\frac{\partial x}{\partial \theta }   &\frac{\partial x}{\partial \phi }    \\[10pt]
+             \frac{\partial y}{\partial \rho } &\frac{\partial y}{\partial \theta }   &\frac{\partial y}{\partial \phi }    \\[10pt]
+             \frac{\partial z}{\partial \rho } &\frac{\partial z}{\partial \theta }   &\frac{\partial z}{\partial \phi }    \\
+        \end{vmatrix}&=\begin{vmatrix}
+             \cos \theta \sin \phi &-\rho \sin \theta \sin \phi   &\rho \cos \theta \cos \phi    \\
+             \sin \theta \sin \phi &\rho \cos \theta \sin \phi   &\rho \sin \theta \cos \phi    \\
+             \cos \phi &0  &-\rho \sin \phi    \\
+        \end{vmatrix}\\
+        &= \cos \phi \begin{vmatrix}
+            -\rho \sin \theta \sin \phi & \rho \cos \theta \cos \phi  \\
+            \rho \cos \theta \sin \phi &  \rho \sin \theta \cos \phi \\
+        \end{vmatrix} - \rho \sin \phi \begin{vmatrix}
+            \cos \theta \sin \phi & -\rho \sin \theta \sin \phi  \\
+            \sin \theta \sin \phi &  \rho \cos \theta \sin \phi \\
+        \end{vmatrix}\\
+        &= \rho ^2 \cos \phi \left( -\sin^2 \theta \sin \phi \cos \phi-\cos ^2\theta \sin \phi \cos \phi   \right)\\
+        &\quad -\rho \sin \phi \left( \rho \cos ^2\theta \sin ^2\phi +\rho \sin ^2\theta \sin ^2\phi  \right)\\
+        &=-\rho ^2 \cos \phi \left( \sin \phi \cos \phi  \right) -\rho^2 \sin \phi \left( \sin ^2\phi  \right) \\
+        &=-\rho ^2 \left( \sin \phi \cos ^2\phi +\sin ^3\phi  \right) \\
+        &=-\rho ^2 \sin \phi \left( \cos ^2\phi +\sin ^2\phi  \right) \\
+        &=-\rho ^2 \sin \phi 
+    \end{align*}
+    We also have \(\left\vert -\rho ^2 \sin \phi  \right\vert = \rho ^2 \left\vert \sin \phi  \right\vert  \), and by taking \(\phi \in[0,\pi ]\), we have \(\left\vert \sin \phi  \right\vert=\sin \phi  \).
+\end{solution}
