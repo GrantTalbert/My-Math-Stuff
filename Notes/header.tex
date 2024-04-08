@@ -11,6 +11,11 @@
 \usepackage{mathrsfs}
 \usepackage{cancel}
 \usepackage{siunitx} %phyjsicsssss
+\makeatletter
+\renewcommand*\env@matrix[1][c]{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols #1}}
+\makeatother
 
 %misc
 \usepackage{float}
@@ -47,6 +52,7 @@
 %theorem styles
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white}]{thmbox} %makes a box
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\(\blacksquare\)]{proofline} %makes a line on the right with a qed
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false, fontcolor=white}, qed=\(\blacksquare\)]{longproofline} %makes a line on the right with a qed
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\qedsymbol]{egline} %makes a line on the right with a qed
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}]{nobox} %doesnt make a box
 
@@ -74,6 +80,8 @@
 %proof environment
 \declaretheorem[numbered=no, style=proofline, name=Proof]{replacementproof}
 \renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
+\declaretheorem[numbered=no, style=longproofline, name=Proof]{replacementprooflong}
+\newenvironment{longproof}[1][\proofname]{\begin{replacementprooflong}}{\end{replacementprooflong}}
 %\renewenvironment{proof}[1][\proofname]{\vspace{-12pt}\begin{replacementproof}}{\end{replacementproof}} this version has no space between above and proof section
 
 %pulls lecture files
