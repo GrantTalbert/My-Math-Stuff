@@ -1,0 +1,226 @@
+\begin{exercise}
+    Evaluate \(\iint\limits_{R}\left( 3x+4y^2 \right)dA \), where \(R\) is the region bdd by \(x^2 +y^2 =4\) and \(x^2+y^2 =9\), where \(y\geq 0\).
+\end{exercise}
+\begin{solution}
+    \[
+        R =\left\{ (r\cos \theta ,r\sin \theta )\mid \theta \in[0,\pi ]\land r\in[2,3] \right\}
+    \]
+    \begin{align*}
+        \iint\limits_{R}\left( 3x+4y^2 \right)dA&=\int_0^\pi \int_2^3 \left( 3r\cos \theta +4(r\sin \theta )^2 \right)r\,drd \theta \\
+        &=\int_0^\pi \int_2^3 3r^2 \cos \theta +4r^{3}\sin^2 \theta \,drd \theta \\
+        &=\int_0^\pi r^3 \cos \theta +r^4 \sin^2 \theta \biggl\vert_2^3 \,d \theta \\
+        &=\int_0^\pi 19\cos \theta +65\sin^2 \theta \,d \theta \\
+        &=10\sin \theta \big\vert_0^\pi +\int \frac{65}{2}\left( 1-\cos 2\theta  \right) \,d \theta \\
+        &=\frac{65}{2}\left( \theta -\frac{\sin 2\theta }{2} \right) \biggl\vert_0^\pi =\frac{65\pi}{2}
+    \end{align*}
+\end{solution}
+\begin{exercise}
+    \[
+        \int _{-5}^5 \int_0^{\sqrt{25-x^2} } \left( \frac{1}{2}x^ 2+y^2 \right)\,dydx
+    \]
+\end{exercise}
+\begin{solution}
+    \begin{align*}
+        \int _{-5}^5 \int_0^{\sqrt{25-x^2} } \left( \frac{1}{2}x^ 2+y^2 \right)\,dydx&= \int_0^\pi \int_0^5 \frac{1}{2}r^3 \cos^2 \theta + r^3 \sin ^2 \theta \,drd \theta\\
+        &=\int_0^\pi \frac{r^4}{8}\cos ^2\theta +\frac{r^4}{4}\sin ^2\theta \biggl\vert_0^5\,d \theta \\
+        &=\int_0^\pi \frac{625}{8}\cos ^2\theta +\frac{625}{4}\sin ^2\theta \,d \theta \\
+        &=\frac{625}{8}\int_0^\pi \cos ^2\theta +2\sin ^2\theta \,d \theta \\
+        &= \frac{625}{8}\int_0^\pi \cos ^2\theta +\sin ^2\theta +\sin ^2\theta \,d \theta \\
+        &=\frac{625}{8}\int_0^\pi 1+\sin ^2\theta \,d \theta \\
+        &=\frac{625}{16}\int_0^\pi 1-\cos 2\theta \,d \theta \\
+        &=\frac{625\theta}{16}-\frac{625\sin2\theta}{32}\biggl\vert_0^\pi \\
+        &=\frac{625\pi}{16}
+    \end{align*}
+\end{solution}
+\section{Applications of Double Integrals}
+A lamina is basically an extremely thin film, so integrals over regions can approximate properties of a lamina. 
+\begin{definition}[Center of Mass of a Lamina]\label{hi}
+    Let \(\rho :D \to \mathbb{R}\) be the density function of a lamina defined over some region \(D\). The mass of the lamina is given as 
+    \[
+        m=\iint\limits_{D}\rho (x,y)\,dA
+    \]
+    and the center of mass of the lamina is given as 
+    \[
+        (\overline{x} ,\overline{y} )=\left( \frac{M_x}{m},\frac{M_y}{m} \right)
+    \]
+    where 
+    \[
+        M_x =\iint\limits_{D}y \rho (x,y)\,dA\qquad M_y =\iint\limits_{D}x \rho (x,y)\,dA
+    \]
+\end{definition}
+\begin{remark}
+    This definition of mass has applications beyond just a lamina. For example, given a charge density function \(\sigma (x,y)\) defined over a region \(D\), then the total charge \(Q\) is calculated similarly.
+\end{remark}
+\begin{definition}[Moment of a Lamina about an Axis]
+    The moment of a lamina defined over the region \(D\) with density function \(z=\rho (x,y)\) about the \(x\) or \(y\) axis is given as 
+    \[
+        M_x =\iint\limits_{D} y \rho (x,y)\,dA\qquad M_y =\iint\limits_{D}x \rho (x,y)\,dA
+    \]
+    Notice the use of moment in \ref{hi}
+\end{definition}
+\begin{definition}[Moment of Inertia]
+    The moment of inertia of a lamina about an axis is given as 
+    \[
+        I_x =\iint\limits_{D}y^2 \rho (x,y)\,dA\qquad I_y =\iint\limits_{D}x^2 \rho (x,y)\,dA
+    \]
+\end{definition}
+The moments about an axis measure the tendency of a lamin ato rotate about an axis, and the moments of inertia measure the difficulty required to start/stop such a rotation.\\
+Another application of double integrals concerns joint probability functions. Let \(f\) be probability function for some variable \(X\). Thus, \(f\) is a function such that 
+\begin{enumerate}
+    \item \(f(x)\geq 0\,\forall x\in\mathbb{R}\)
+    \item \(\int_\mathbb{R} f(x)\,dx =1\) 
+\end{enumerate}
+The probability that \(X\) lies between \(a,b\in\mathbb{R}\) is given as 
+\[
+    P(a\leq X\leq b)=\int_a^b f(X)\,dX
+\]
+However, we can use calculus to extend this to two variables.
+\begin{definition}[Joint Density Function]
+    Let \(X,Y\in\mathbb{R}\) be probabilistic variables with a probability density \(f(x,y)\). The probability that \(X\in[a,b]\) and \(Y\in[c,d]\) is given as 
+    \[
+        f(a\leq X\leq b,c\leq Y\leq d)=\int_a^b \int_c^d f(X,Y)\,dYdX
+    \]
+\end{definition}
+\section{Surface Area}
+\begin{definition}[Surface Area]
+    Let \(f:D\subset \mathbb{R}^2\to \mathbb{R}\) and let \(f_x,f_y\) be continuous on \(D\). The surface area of the surface \(z=f(x,y)\) is given as
+    \[
+        SA=\iint\limits_{D}\sqrt{1+f_x ^2 +f_y ^2} 
+    \]
+\end{definition}
+    This was a long section.
+\section{Triple Integrals}
+\begin{definition}[Triple Integral]
+    Let \(B \subset \mathbb{R}^3\) with \(f:B\to \mathbb{R}\). We give 
+    \[
+        \iiint\limits_{B}f(x,y,z)\,dV \coloneqq \lim_{\ell,n,m \to \infty}\sum_{i=1}^\ell \sum_{j=1}^n \sum_{k=1}^m f \left( x_i^*,y_j^*,z_k^* \right) \Delta x \Delta y \Delta z
+    \]
+\end{definition}
+\ref{Fubini} holds for triple integrals, and the integral will always exist if the function is continuous over the region of integration.\\
+Here are triple integral analogues of some of the applications that were seen earlier.
+\begin{definition}[Mass of an Object]\label{huge}
+    Let an object occupy some region \(E \subseteq \mathbb{R}^3\) with density function \(\rho :E\to \mathbb{R}\). The mass of the object is given as 
+    \[
+        m=\iiint\limits_{E} \rho (x,y,z)\,dV
+    \]
+\end{definition}
+\begin{definition}[Center of Mass of an Object]
+    Consider the definitions in \ref{huge}. The center of mass of an object is defined as 
+    \[
+        \left( \overline{x} ,\overline{y} ,\overline{z}  \right) = \left( \frac{M_{yz} }{m},\frac{M_{xz} }{m},\frac{M_{xy} }{m} \right)
+    \]
+    where we give
+    \[
+        M_{yz}=\iiint\limits_{E}x \rho (x,y,z)\,dV \qquad M_{xz}=\iiint\limits_{E}y \rho (x,y,z)\,dV \qquad M_{xy}=\iiint\limits_{E}z \rho (x,y,z)\,dV
+    \]
+\end{definition}
+\begin{exercise}
+    Evaluate \(\iiint\limits_{B}\sqrt{x^2 +z^2}\,dV \) where \(B\) is bdd by \(y=x^2 +z^2\) and \(y=4\).
+\end{exercise}
+\begin{solution}
+    Recall how to integrate in polar coordinates for this problem. We will convert the \(xz\)-axis into polar coordinates.
+    \begin{align*}
+        \iiint\limits_{B}\sqrt{x^2 +z^2}  &= \int_{-2}^2 \int_{-\sqrt{4-x^2} }^{\sqrt{4-x^2} }\int_{x^2 +z^2}^4\, dydzdx\\
+        &= \int_0^{2\pi }\int_0^2 \int_{r^2 \cos^2\theta +r^{2}\sin ^2\theta  }^4 \sqrt{r^2 \cos ^2 \theta +r^2 \sin ^2\theta } \,dy(rdrd \theta )\\
+        &=\int_0^{2\pi }\int_0^2 \int_{r^2}^4 r^2 \,drd \theta \\
+        &=\int_0^{2\pi }\int_0^2 \left( 4-r^2 \right)r^2\,drd \theta \\
+        &=\int_0^{2\pi }\int_0^2 4r^2 -r^4\\
+        &=\int_0^{2\pi } \frac{4r^3}{3}-\frac{r^5}{5}\biggl\vert_0^2\,d \theta \\
+        &=\int_0^{2\pi }\frac{32}{3}-\frac{32}{5}\,d \theta \\
+        &=2\pi \left( \frac{32}{3}-\frac{32}{5} \right) 
+    \end{align*}
+\end{solution}
+\begin{theorem}
+    For some arbitrary region \(E \subset \mathbb{R}^3\), the volume can be calculated by evaluating 
+    \[
+        \iiint\limits_{E}\,dV
+    \]
+\end{theorem}
+\begin{exercise}
+    Find the volume of the region \(B\) which is bdd by \(x^2 +y^2 =9\), \(y+z=5\), and \(z=1\). After integrating wrt \(z\), convert to polar coordinates.
+\end{exercise}
+\begin{solution}
+    \begin{align*}
+        V&=\iiint\limits_{B}\,dV\\
+        &=\int_{-3}^3 \int_{-\sqrt{9-x^2} }^{\sqrt{9-x^2} }\int_1^{5-y}\,dzdydx\\
+        &=\int_{-3}^3 \int_{-\sqrt{9-x^2} }^{\sqrt{9-x^2} } 4-y\,dydx\\
+        &=\int_{0}^{2\pi }\int_0^3 4r-r^2\sin \theta \,drd \theta \\
+        &=\int_0^{2\pi } \left[2r^2 -\frac{1}{3}r^3 \sin \theta \right]_0^3 \,d \theta \\
+        &=\int_0^{2\pi }18-9\sin \theta \,d \theta \\
+        &=36\pi
+    \end{align*}
+\end{solution}
+We just integrated in cylindrical coordinates!
+\section{Triple Integrals in Cylindrical Coordinates}
+An intuitive way to think about cylindrical coordinates I've found is to think of polar coordinates along an entire orthogonal axis.\\
+To convert between cylindrical and cartesian coordinates, we give 
+\[
+    x=r\cos \theta \qquad y=r\sin \theta \qquad z=z
+\]
+To convert from cartesian to cylindrical coordinates, we give
+\[
+    r^2 =x^2 +y^2 \qquad \tan \theta =\frac{y}{x}\qquad z=z
+\]
+\begin{exercise}
+    Express the volume of the object bdd by \(z=4-x^2 -y^2\), \(x^2 +y^2 =4\), and \(z=9+x^2 +y^2\) as a triple integral in cartesian coordinates, then as a double integral in cartesian coordinates, then as a triple integral in cylindrical coordinates, then as a double integral in polar coordinates.
+\end{exercise}
+\begin{solution}
+    Notice \(9+x^2 +y^2 \geq 4-x^2 -y^2 \,\forall x,y\in\mathbb{R} \) because \(\forall (x\in\mathbb{R})\left( x^2 \geq 0 \right) \).
+    \[
+        \int_{-2}^2 \int_{-\sqrt{4-x^2} }^{\sqrt{4-x^2} }\int_{4-x^2 -y^2}^{9+x^2 +y^2}\,dzdydx
+    \]
+    \[
+        \int_{-2}^2 \int_{-\sqrt{4-x^2} }^{\sqrt{4-x^2} } 5 +2x^2 +2y^2 \,dydx
+    \]
+    \[
+        \int_{0}^{2\pi }\int_0^2 \int_{4-r^2}^{9+r^2}r\,dzdrd \theta
+    \]
+    \[
+        \int_{0}^{2\pi }\int_0^2 \left( 5+2r^2 \right)r\,drd \theta 
+    \]
+\end{solution}
+The above question will probably be on the exam.
+\section{Triple Integrals in Spherical Coordinates}
+Spherical coordinates are given by the ordered triple \(\rho ,\theta ,\phi \), where 
+\begin{itemize}
+    \item \(\rho \) denotes the distance from the origin
+    \item \(\theta \) denotes the angle formed with the positive \(x\)-axis
+    \item \(\phi \) denotes the angle formed with the positive \(z\)-axis
+\end{itemize}
+We require that
+\[
+    \rho \geq 0\qquad \phi \in[0,\pi ]
+\]
+To convert between spherical to cartesian coordinates, use 
+\[
+    x=\rho \sin \phi \cos \theta \qquad x=\rho \sin \phi \sin \theta \qquad z=\rho \cos \phi 
+\]
+and
+\[
+    \rho ^2=x^2 +y^2 +z^2
+\]
+\begin{intuition}
+    This is like adding \(\rho \sin \phi \) to the polar coordinates for \(x\) and \(y\), and this leaves \(\cos \phi \) ``left over'', so we let \(\rho \cos \phi \) be \(z\).
+\end{intuition}
+\begin{theorem}[Integrals in Spherical Coordinates]
+    Let \(E \subset \mathbb{R}^3\) with \(f:E\to \mathbb{R}\). Let \(E\) be defined in spherical coordinates as 
+    \[
+        E\coloneqq \left\{ (\rho ,\theta ,\phi )\mid \rho \in[a,b]\land \theta \in[\alpha ,\beta ]\land \phi \in[c,d] \right\} 
+    \]
+    where \(a\geq 0\), \(\beta -\alpha \leq 2\pi \), \(d-c\leq \pi \), and \(c\geq 0\). We give 
+    \[
+        \iiint\limits_{E}f(x,y,z)\,dV =\int_c^d \int_\alpha^\beta \int_a^b f \left( \rho  \cos \theta \sin \phi , \rho \sin \theta \sin \phi ,\rho \cos \phi \right) \rho ^2 \sin \phi \,d \rho d \theta d \phi 
+    \]
+\end{theorem}
+\begin{exercise}
+    Convert the following integral to spherical coordinates:
+    \[
+        \int_{-1}^1 \int_0^{\sqrt{1-y^2} }\int_{-\sqrt{1-x^2 -y^2} }^{\sqrt{1-x^2 -y^2} } f(x,y,z)\,dzdxdy
+    \]
+\end{exercise}
+\begin{solution}
+    Notice that this defines a unit semicircle where \(x\geq 0\). Thus, we can give 
+    \[
+        \int_0^\pi \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\int_0^1 f \left( \rho  \cos \theta \sin \phi , \rho \sin \theta \sin \phi ,\rho \cos \phi \right) \rho ^2 \sin \phi \,d \rho d \theta d \phi 
+    \]
+\end{solution}
