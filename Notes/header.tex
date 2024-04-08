@@ -54,6 +54,7 @@
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\(\blacksquare\)]{proofline} %makes a line on the right with a qed
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false, fontcolor=white}, qed=\(\blacksquare\)]{longproofline} %makes a line on the right with a qed
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={nobreak, backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false}, qed=\qedsymbol]{egline} %makes a line on the right with a qed
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}, mdframed={backgroundcolor=page, linecolor=white, bottomline=false, topline=false, rightline=false, fontcolor=white}, qed=\qedsymbol]{longegline} %makes a line on the right with a qed
 \declaretheoremstyle[headfont=\bfseries\sffamily\color{white}, bodyfont=\normalfont\color{white}]{nobox} %doesnt make a box
 
 %numbered theorems
@@ -77,6 +78,8 @@
 \newenvironment{solution}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
 \newenvironment{answer}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\begin{setsolution}}{\end{setsolution}}
+\declaretheorem[numbered=no, style=longegline, name=Solution]{setlongsolution}
+\newenvironment{longsolution}[1][]{\vspace{-10pt}\begin{setlongsolution}}{\end{setlongsolution}}
 %proof environment
 \declaretheorem[numbered=no, style=proofline, name=Proof]{replacementproof}
 \renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
