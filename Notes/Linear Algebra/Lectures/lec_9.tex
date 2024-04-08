@@ -1,0 +1,203 @@
+\section{Orthonormal Bases: Gram-Schmidt Process}
+\begin{remark}
+    When the inner product space being considered is \(\mathbb{R}^n\) or some subspace of \(\mathbb{R}^n\), assume the inner product being used is the Euclidean inner product.
+\end{remark}
+\noindent We say that the basis \(B=\{ (1,0,0),(0,1,0),(0,0,1) \} \) is the standard basis for \(\mathbb{R}^3\), since it's so convenient to use. Its convenience comes from the following properties:
+\begin{enumerate}
+    \item All vectors in \(B\) are \textbf{mutually orthogonal}, meaning
+    \[
+        (1,0,0)\cdot(0,1,0)=0
+    \]
+    \[
+        (1,0,0)\cdot (0,0,1)=0
+    \]
+    \[
+        (0,1,0)\cdot(0,0,1)=0
+    \]
+    \item All vectors in \(B\) are \textbf{unit} \textbf{vectors}.
+\end{enumerate}
+\begin{definition}[Orthogonal and Orthonormal Sets]
+    A set \(S\) of vectors in an inner product space \(V\) is \textbf{orthogonal} when every pair of vectors in \(S\) is orthogonal. If every vector is also a unit vector, then \(S\) is orthonormal.
+\end{definition}
+If \(S\) is a basis for \(V\), we say it is an \textbf{orthogonal} \textbf{basis} or \textbf{orthonormal} \textbf{basis}, respectively. 
+\begin{remark}
+    There are multiple orthonormal bases for many vector spaces. Consider the following basis for \(\mathbb{R}^3\):
+    \[
+        B=\left\{ (\cos \theta ,\sin \theta ,0),(-\sin \theta ,\cos \theta ,0),(0,0,1) \right\}
+    \]
+\end{remark}
+\begin{theorem}[Orthogonal Sets are Linearly Independent]\label{orthobasis}
+    Let \(V\) be an inner product space with \(S=\left\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \right\} \subset V \), where \(\mathbf{0}\notin S\). Then \(S\) is linearly independent.
+\end{theorem}
+\begin{proof}
+    Since any linearly dependent set has some solution \(\left( c_1,\ldots,c_n \right)\neq (0,\ldots,0) \) for the equation 
+    \[
+        c_1 \mathbf{v}_1 +\cdots+c_n \mathbf{v}_n =\mathbf{0}
+    \]
+    we must show that this equation necessarily implies \(c_1 =\cdots=c_n=0\). Let \(\mathbf{v}_i\in S\) be an arbitrary member of the set. Without loss of generality, we can give
+    \[
+        \left\langle c_1 \mathbf{v}_1 +\cdots+c_i \mathbf{v}_i +\cdots+c_n \mathbf{v}_n \right\rangle = \left\langle \mathbf{0},\mathbf{v}_i \right\rangle
+        \]
+        By \ref{propyyy}, we have
+        \[
+        \Longrightarrow c_1 \left\langle \mathbf{v}_1,\mathbf{v}_i \right\rangle +\cdots+c_i \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle +\cdots+c_n \left\langle \mathbf{v}_n,\mathbf{v}_i \right\rangle +\cdots=0
+        \]
+        By \ref{orthowogonality}, we have
+        \[
+            c_i \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle =0
+        \]
+        By the definition of an inner product, we have 
+        \[
+            \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle =0 \iff \mathbf{v}_i=\mathbf{0}
+        \]
+        However, by definition of \(S\), we have \(\mathbf{v}_i\neq 0\). Therefore,
+        \[
+            c_i \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle =0 \Longrightarrow c_i=0
+        \]
+        Thus, all \(c_i=0\), and we have \(\left( c_1,\ldots,c_n \right)= (0,\ldots,0)\).
+\end{proof}
+\begin{corollary}\label{orthobasiscor}
+    Let \(V\) be an inner product space with \(\dim (V)=n\). Any orthogonal set of \(n\) nonzero vectors is a basis for \(V\).
+\end{corollary}
+The above corrollary follows from the definition of a basis, and the proof is considered trivial. 
+\begin{exercise}
+    Using \ref{orthobasiscor}, show that \(S\) is a basis for \(\mathbb{R}^4\). 
+    \[
+        S=\left\{ (2,3,2,1),(1,0,0,1),(-1,0,2,1),(-1,2,-1,1) \right\} 
+    \]
+\end{exercise}
+\begin{solution}
+    \begin{align*}
+        (2,3,2,1)\cdot(1,0,0,1)&=2+0+0-2=0\\
+        (2,3,2,1)\cdot (-1,0,2,1)&=-2+0+4-2=0\\
+        (2,3,2,1)\cdot(-1,2,-1,1)&=-2+6-2-2=0\\
+        (1,0,0,1)\cdot(-1,0,2,1)&=-1+0+0+1=0\\
+        (1,0,0,1)\cdot(-1,2,-1,1)&=-1+0+0+1=0\\
+        (-1,0,2,1)\cdot(-1,2,-1,1)&=1+0-2+1=0
+    \end{align*}
+    By \ref{orthobasiscor}, \(S\) is a basis for \(\mathbb{R}^4\).
+\end{solution}
+\begin{theorem}[Coordinates Relative to an Orthonormal Basis]
+    Let \(B=\left\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \right\} \) be an orthonormal basis for an inner product space \(V\). The coordinate representation of a vector \(\mathbf{w}\) relative to \(B\) is given as
+    \[
+        \mathbf{w}=\left\langle \mathbf{w},\mathbf{v}_1 \right\rangle \mathbf{v}_{1}+\cdots+\left\langle \mathbf{w},\mathbf{v}_n \right\rangle \mathbf{v}_n
+    \]
+\end{theorem}
+\begin{proof}
+    Let \(B\) be an orthonormal basis for an inner product space \(V\) with \(\mathbf{w}\in V\). It follows from the definition of a basis that there exists scalars \(c_1,\ldots,c_n\in\mathbb{F}\) such that
+    \[
+        \mathbf{w}=c_1 \mathbf{v}_1 +\cdots+c_n \mathbf{v}_n
+    \]
+    It follows that 
+    \begin{align*}
+        \left\langle \mathbf{w},\mathbf{v}_i \right\rangle &=\left\langle \left( c_1 \mathbf{v}_1 +\cdots+c_n \mathbf{v}_n \right),\mathbf{v}_i  \right\rangle\\
+        &= c_1 \left\langle \mathbf{v}_1,\mathbf{v}_i \right\rangle +\cdots c_i\left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle +\cdots c_n\left\langle \mathbf{v}_n,\mathbf{v}_i \right\rangle\\
+        &= c_i \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle 
+    \end{align*}
+    Since \(B\) is orthonormal with \(\mathbf{v}_i\in B\), we have 
+    \[
+        \left\langle \mathbf{w}=\mathbf{v}_i \right\rangle =c_i \left\langle \mathbf{v}_i,\mathbf{v}_i \right\rangle =c_i \left\lVert \mathbf{v}_i \right\rVert =c_i
+    \]
+    \[
+        \therefore \left\langle \mathbf{w},\mathbf{v}_i \right\rangle =c_i
+    \]
+\end{proof}
+The \textbf{Gram-Schmidt orthonormalization process} is a systematic method for constructing orthonormal bases from some arbitrary basis.
+\begin{theorem}[Gram-Schmidt Orthonormalization Process]\label{gram}
+    Let \(V\) be an inner product space with a basis \(B=\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \} \). Define the set \(B^{\prime} =\{ \mathbf{w}_1,\ldots,\mathbf{w}_n \} \), where
+    \[
+        \begin{array}{ccc}
+            \mathbf{w}_1&=&\mathbf{v}_1\\
+            \mathbf{w}_2&=&\mathbf{v}_2 -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1\\
+            \mathbf{w}_3&=&\mathbf{v}_3 -\frac{\left\langle \mathbf{v}_3,\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1 -\frac{\left\langle \mathbf{v}_3,\mathbf{w}_2 \right\rangle }{\left\langle \mathbf{w}_2,\mathbf{w}_2 \right\rangle }\mathbf{w}_2\\
+            &\vdots&\\
+            \mathbf{w}_n&=&\mathbf{v}_n -\frac{\left\langle \mathbf{v}_n ,\mathbf{w}_1\right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1 - \frac{\left\langle \mathbf{v}_n,\mathbf{w}_2 \right\rangle }{\left\langle \mathbf{w}_2,\mathbf{w}_2 \right\rangle }\mathbf{w}_2 -\cdots-\frac{\left\langle \mathbf{v}_n,\mathbf{w}_{n-1}  \right\rangle }{\left\langle \mathbf{w}_{n-1},\mathbf{w}_{n-1}   \right\rangle }\mathbf{w}_{n-1} 
+        \end{array}
+    \]
+    Then \(B^{\prime} \) is an orthogonal basis for \(V\). To normalize \(B^{\prime} \), let \(B^{\prime\prime} \) be the set \(B^{\prime\prime} =\left\{ \mathbf{u}_1,\ldots,\mathbf{u}_n \right\} \), where 
+    \[
+        \mathbf{u}_i =\frac{\mathbf{w}_i}{\left\lVert \mathbf{w}_i \right\rVert }
+    \]
+    Then \(B^{\prime\prime} \) is an orthonormal basis for \(V\).
+\end{theorem}
+``Rather than give a proof of this theorem, it is more instructive to discuss a special case for which you can use a geometric model.'' -the textbook lmfao
+\begin{longproof}
+    I honestly don't know how to derive the formula, but we can use proof by induction to verify that \(B^{\prime} \) is an orthogonal basis.\\
+    Let \(B=\left\{ \mathbf{v}_1,\ldots,\mathbf{v}_n \right\} \) be a basis for an inner product space \(V\). Let \(\mathbf{w}_1 \coloneqq \mathbf{v}_1\). Let
+    \[
+        \mathbf{w}\coloneqq \mathbf{v}_2 -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1
+    \]
+    It follows that
+    \begin{align*}
+        \left\langle \mathbf{w}_1,\mathbf{w}_2 \right\rangle &= \left\langle \mathbf{w}_1,\mathbf{v}_2 -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle\mathbf{w}_1,\mathbf{w}_1\right\rangle}\mathbf{w}_1 \right\rangle \\
+        &=\left\langle \mathbf{w}_1,\mathbf{v}_2 \right\rangle -\left\langle \mathbf{w}_1,\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle\mathbf{w}_1,\mathbf{w}_1\right\rangle}\mathbf{w}_1 \right\rangle \\
+        &= \left\langle \mathbf{w}_1,\mathbf{v}_2 \right\rangle -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle\mathbf{w}_1,\mathbf{w}_1\right\rangle}\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle \\
+        &= \left\langle \mathbf{w}_1,\mathbf{v}_2 \right\rangle -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle}{\left\lVert \mathbf{w}_1 \right\rVert }\left\lVert \mathbf{w}_1 \right\rVert \\
+        &=\left\langle \mathbf{w}_1,\mathbf{v}_2 \right\rangle - \left\langle \mathbf{w}_1,\mathbf{v}_2 \right\rangle\\
+        &=0
+    \end{align*}
+    Therefore, \(\mathbf{w}_1\) is orthogonal to \(\mathbf{w}_2\).
+    Now suppose we have defined \(k<n\) orthogonal vectors. We must show that this implies the \(k+1\)th vector will be orthogonal to all other vectors. Using the above theorem, let 
+    \[
+        \mathbf{w}_{k+1}  \coloneqq \mathbf{v}_{k+1} - \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1 - \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_2 \right\rangle }{\left\langle \mathbf{w}_2,\mathbf{w}_2 \right\rangle }\mathbf{w}_2 -\cdots- \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_{k}  \right\rangle }{\left\langle \mathbf{w}_{k},\mathbf{w}_{k}   \right\rangle }\mathbf{w}_{k} 
+    \]
+    Now consider \(\mathbf{w}_i\), where \(1\leq i\leq k\).
+    \begin{align*}
+        \left\langle \mathbf{w}_i,\mathbf{w}_{k+1}  \right\rangle &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1} - \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1 - \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_2 \right\rangle }{\left\langle \mathbf{w}_2,\mathbf{w}_2 \right\rangle }\mathbf{w}_2 -\cdots- \frac{\left\langle \mathbf{v}_{k+1},\mathbf{w}_{k}  \right\rangle }{\left\langle \mathbf{w}_{k},\mathbf{w}_{k}   \right\rangle }\mathbf{w}_{k} \right\rangle \\
+        &=\left\langle \mathbf{w}_i, \mathbf{v}_{k+1}-\frac{\left\langle\mathbf{v}_{k+1},\mathbf{w}_i\right\rangle }{\left\langle\mathbf{w}_i,\mathbf{w}_i\right\rangle}\mathbf{w}_i \right\rangle \,\because \mathbf{w}_i \text{ is orthogonal to all }\mathbf{w}_j,i\neq j\\
+        &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle - \left\langle \mathbf{w}_i,\frac{\left\langle\mathbf{v}_{k+1},\mathbf{w}_i\right\rangle }{\left\langle\mathbf{w}_i,\mathbf{w}_i\right\rangle}\mathbf{w}_i \right\rangle \\
+        &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle - \frac{\left\langle\mathbf{v}_{k+1},\mathbf{w}_i\right\rangle }{\left\langle\mathbf{w}_i,\mathbf{w}_i\right\rangle} \left\langle \mathbf{w}_i,\mathbf{w}_i \right\rangle \\
+        &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle - \frac{\left\langle\mathbf{v}_{k+1},\mathbf{w}_i\right\rangle }{\left\lVert \mathbf{w}_i \right\rVert }\left\lVert \mathbf{w}_i \right\rVert \\
+        &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle - \left\langle \mathbf{v}_{k+1},\mathbf{w}_i  \right\rangle \\
+        &=\left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle - \left\langle \mathbf{w}_i,\mathbf{v}_{k+1}  \right\rangle\\
+        &=0
+    \end{align*}
+    \[
+        \therefore \mathbf{w}_i \perp \mathbf{w}_{k+1}\,\forall 1\leq i\leq k 
+    \]
+    When constructing a basis, we simply stop the process for \(k=n\). Thus, by induction, this step of \ref{gram} produces an orthogonal basis. Simply normalizing each vector will preserve orthogonality, but will produce an orthonormal basis. Thus, the proof is complete.
+\end{longproof}
+\begin{remark}
+    An orthonormal set derived using \ref{gram} will be different depending on the ordering of the vectors in the basis.
+\end{remark}
+\begin{exercise}
+    Use Gram-Schmidt orthonormalization on the basis \(B=\left\{ 1,x,x^2 \right\} \) on the vector space \(P_2\), with the inner product
+    \[
+        \langle p,q \rangle = \int_{-1}^1 p(x)q(x)\,dx
+    \]
+\end{exercise}
+\begin{solution}
+    Let \(B^{\prime} =\left\langle \mathbf{w}_1,\mathbf{w}_2,\mathbf{w}_3 \right\rangle \) be the set obtained after applying the first step of Gram-Schmidt. Let
+    \[
+        \mathbf{v}_1 = 1\quad \mathbf{v}_2 = x\quad \mathbf{v}_3 = x^2
+    \]
+    We have
+    \[
+        \mathbf{w}_1 = \mathbf{v}_1 = 1
+    \]
+    Thus, we also have
+    \begin{align*}
+        \mathbf{w}_2 &= \mathbf{v}_2 -\frac{\left\langle \mathbf{v}_2,\mathbf{w}_1 \right\rangle }{\left\langle \mathbf{w}_1,\mathbf{w}_1 \right\rangle }\mathbf{w}_1\\
+        &= x - \frac{\int_{-1}^1 x\,dx}{\int_{-1}^1 \,dx}1\\
+        &= x
+    \end{align*}
+    Finally, we have
+    \begin{align*}
+        \mathbf{w}_{3}&= \mathbf{v}_3 - \frac{\left\langle \mathbf{v}_3,\mathbf{w}_1 \right\rangle }{\left\langle\mathbf{w}_1,\mathbf{w}_1 \right\rangle}\mathbf{w}_1 - \frac{\left\langle \mathbf{v}_3,\mathbf{w}_2 \right\rangle }{\left\langle\mathbf{w}_{2},\mathbf{w}_2 \right\rangle}\mathbf{w}_2\\
+        &=x^2 - \frac{\int_{-1}^1 x^2\,dx}{\int_{-1}^1 \,dx}1 - \frac{\int_{-1}^1 x^3 }{\int_{-1}^1 x^2}\,dx\\
+        &=x^2 - \frac{1}{3}
+    \end{align*}
+    Let \(B^{\prime\prime} =\left\{ \mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3 \right\} \), where 
+    \[
+        \mathbf{u}_1 = \frac{\mathbf{w}_1}{\left\lVert \mathbf{w}_1 \right\rVert }\quad\mathbf{u}_2 = \frac{\mathbf{w}_2}{\left\lVert \mathbf{w}_2 \right\rVert }\quad\mathbf{u}_3 = \frac{\mathbf{w}_3}{\left\lVert \mathbf{w}_3 \right\rVert }
+    \]
+    We have
+    \begin{align*}
+        \mathbf{u}_1 &= \frac{\mathbf{w}_1}{\left\lVert \mathbf{w}_1 \right\rVert }=\frac{1}{\sqrt{2} }\\
+        \mathbf{u}_2 &=\frac{\mathbf{w}_2}{\left\lVert \mathbf{w}_2 \right\rVert }=\frac{\sqrt{3} }{\sqrt{2} }x\\
+        \mathbf{u}_3 &= \frac{\mathbf{w}_3}{\left\lVert \mathbf{w}_3 \right\rVert }=\frac{\sqrt{5} }{2\sqrt{2} }\left( 3x^2 -1 \right) 
+    \end{align*}
+\end{solution}
+\begin{remark}
+    The polynomials \(\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\) in the previous example are the first three \textbf{normalized} \textbf{Legendre} \textbf{polynomials}.
+\end{remark}
