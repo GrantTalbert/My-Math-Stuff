@@ -1,0 +1,145 @@
+\chapter{Linear Transformations}
+Unless otherwise noted, this chapter requires all vector spaces be defined over \(\mathbb{R} \), or at least over the same field. We will consider \(\mathbb{F} =\mathbb{R} \) for all vector spaces in this chapter, but I will still use the notation \(\mathbb{F} \) for a field to differentiate between scalars and vectors.
+\section{Introduction to Linear Transformations}
+\begin{definition}[Linear Transformation]
+    Let \(V\) and \(W\) be vector spaces over \(\mathbb{F} \). The function 
+    \[
+        T: V\to W
+    \]
+    is a \textbf{linear} \textbf{transformation} from \(V\) to \(W\) if for all \(\mathbf{v} ,\mathbf{u} \in V\) and \(c\in\mathbb{F} \), \(T\) satisfies
+    \begin{itemize}
+        \item \(T(\mathbf{v} +\mathbf{u} )=T(\mathbf{v} )+T(\mathbf{u} )\) 
+        \item \(T(c \mathbf{v} )=cT(\mathbf{v} )\) 
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    Any linear transformation between vector spaces over the same field is a homomorphism.
+\end{remark}
+\begin{exercise}
+    Let \(T:V\to W\) give \(T(\mathbf{v} )=\mathbf{0}\,\forall \mathbf{v}  \). Is \(T\) a linear transformation?
+\end{exercise}
+\begin{solution}
+    Yes, \(T\) is the trivial homomorphism, in this class known as the \(0\) transformation.
+\end{solution}
+Similarly, \(T:V\to V\) given by \(T(\mathbf{v} )=\mathbf{v} \) is a linear transformation, known as the identity function.
+\begin{definition}
+    Let \(T:V\to W\). We say that
+    \begin{itemize}
+        \item \(V\) is the \textbf{domain} of \(T\)
+        \item \(W\) is the \textbf{codomain} of \(T\) 
+        \item If \(T(\mathbf{v} )=\mathbf{w} \), then \(\mathbf{w} \) is the \textbf{image} of \(\mathbf{v} \) under \(T\)
+        \item The set of all \(\mathbf{v} \in V\) such that \(T(\mathbf{v} )=\mathbf{w} \) is the \textbf{preimage} of \(\mathbf{w} \)
+        \item The set of all images of vectors in \(V\) is the range of \(T\)
+    \end{itemize}
+\end{definition}
+\begin{theorem}[Properties of Linear Transformations]\label{Propowowo}
+    Let \(T:V\to W\) be a linear transformation with \(\mathbf{u} ,\mathbf{v} \in V\). The following properties must be true.
+    \begin{enumerate}
+        \item \(T(\mathbf{0} )=\mathbf{0} \) 
+        \item \(T(-\mathbf{v} )=-T(\mathbf{v} )\)
+        \item \(T(\mathbf{u} -\mathbf{v} )=T(\mathbf{u} )-T(\mathbf{v} )\) 
+        \item If \(\mathbf{v} =c_1 \mathbf{v} _1 +c_2 \mathbf{v} _2 + \cdots + c_n \mathbf{v} _n\), then
+        \[
+            T(\mathbf{v} )= c_1 T \left( \mathbf{v} _1 \right) + c_2 T \left( \mathbf{v} _2 \right) + \cdots + c_n T \left( \mathbf{v} _n \right) 
+        \] 
+    \end{enumerate}
+\end{theorem}
+\begin{exercise}
+    Consider \(T:\mathbb{R} ^2 \to \mathbb{R} ^2\) given by \(T(x,y)= (x+1,y+2)\). Is \(T\) a linear transformation?
+\end{exercise}
+\begin{solution}
+    No, it's not. 
+    \[
+        T(\mathbf{0} ) = (0+1,0+2)=(1,2)\neq \mathbf{0} 
+    \]
+    By \ref{Propowowo}, \(T\) is not a linear transformation.
+\end{solution}
+\begin{exercise}
+    Let \(T:\mathbb{R} ^2 \to \mathbb{R} ^3\) be a function such that 
+    \[
+        T(\mathbf{v} )=A \mathbf{v} =\begin{bmatrix}
+            1 &2   \\
+            -2 &4   \\
+             -2&2   \\
+        \end{bmatrix} \begin{bmatrix}
+             v_1 \\
+              V_2\\
+        \end{bmatrix}
+    \]
+    Find \(T(\mathbf{v} )\) when \(\mathbf{v} =(-1,2)\). Show that \(T\) is a linear transformation.
+\end{exercise}
+\begin{solution}
+    \[
+        \begin{bmatrix}
+            1 &2   \\
+            -2 &4   \\
+             -2&2   \\
+        \end{bmatrix} \begin{bmatrix}
+             -1 \\
+              2\\
+        \end{bmatrix}=\begin{bmatrix}
+             3 \\
+             10 \\
+              6\\
+        \end{bmatrix}
+    \]
+    Let \(\mathbf{v} ,\mathbf{u} \in \mathbb{R} ^2\). We have 
+    \[
+        (\mathbf{v} +\mathbf{u} )=A(\mathbf{v} +\mathbf{u} )=A \mathbf{v} +A \mathbf{u} =T(\mathbf{v} )+T(\mathbf{u} )
+    \]
+    Let \(c\in\mathbb{F} \). We have
+    \[
+        T(c \mathbf{v} )=Ac \mathbf{v} =cA \mathbf{v} =cT(\mathbf{v} )
+    \]
+    Therefore, \(T\) is a linear transformation.
+\end{solution}
+\begin{theorem}[Linear Transformations via Matrix]
+    Let \(A\) be an \(m\times n\) matrix. The map 
+    \[
+        T: \mathbf{v} \mapsto A \mathbf{v} 
+    \]
+    is a linear transformation \(\mathbb{R} ^n \to \mathbb{R} ^m\), where \(n\times 1\) matrices represent vectors in \(\mathbb{R} ^n\), and \(m\times 1\) matricess represent vectors in \(\mathbb{R} ^m\).
+\end{theorem}
+Four important linear transformations given by matrices on \(\mathbb{R} ^2\to \mathbb{R} ^2\) are:\\
+Dilation, given by
+\[
+    \begin{bmatrix}
+        \lambda  &0   \\
+         0&   \lambda \\
+    \end{bmatrix}
+\]
+which simply scales a vector by \(\lambda \).\\
+Projection, given by 
+\[
+    \begin{bmatrix}
+        1 &0   \\
+         0&0   \\
+    \end{bmatrix}
+\]
+or
+\[
+    \begin{bmatrix}
+        0 &0   \\
+         0&  1 \\
+    \end{bmatrix}
+\]
+which simply projects the vector onto one of the basis elements its given relative to.\\
+Shear, given by an upper or lower triangular matrix of the form 
+\[
+    \begin{bmatrix}
+        1 &\lambda    \\
+         0&   1\\
+    \end{bmatrix}\quad\text{or}\quad \begin{bmatrix}
+        1 &   0\\
+         \lambda &1   \\
+    \end{bmatrix} 
+\]
+which extends exactly one of the vectors elements relative to the other element and the value of \(\lambda \).\\
+Rotation, given by 
+\[
+    \begin{bmatrix}
+        \cos \theta  &\sin \theta    \\
+         -\sin \theta &\cos \theta    \\
+    \end{bmatrix}
+\]
+This is the transpose of the general form of \(\operatorname{SO}(2) \), which would give a counter-clockwise rotation of \(\theta \). Since \(\operatorname{SO}(2) \) is comprised of only orthogonal matrices, its transpose is its inverse, and thus the above form must give a clockwise rotation of \(\theta \).
