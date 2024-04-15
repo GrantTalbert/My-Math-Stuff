@@ -1,0 +1,18 @@
+\section{Line Integrals}
+\begin{definition}[Line Integral of a Scalar Function]
+    Let \(f:\mathbb{R}^{2}\to \mathbb{R} \) be a scalar valued function. Let the curve \(C \subset \mathbb{R}^2\) be defined by the vector function \(\mathbf{r}(t)= \left\langle x(t),y(t) \right\rangle \) for \(t\in[a,b]\). The line integral of \(f\) over \(C\) is defined as  
+    \[
+        \int_C f(x,y)\,ds = \int_a^b f(x(t),y(t))\sqrt{\left( \frac{d x}{d t} \right)^2 + \left( \frac{d y}{d t} \right)^2  } \,dt
+    \]
+\end{definition}
+\begin{figure}[ht]
+   \scalebox{0.8}{ \incfig{lineint}}
+   \centering
+   \caption{A Line Integral Visualized}
+\end{figure}
+\begin{definition}[Line Integral of Vector Field]
+    Let \(\mathbf{F}\) be a continuous vector field on a smooth curve \(C\) parametrized by \(\mathbf{r}(t)\) for \(t\in[a,b]\). The line integral of \(\mathbf{F}\) over \(C\) is given as 
+    \[
+        \int_C \mathbf{F}\cdot d \mathbf{r} = \int_a^{b} \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}^{\prime} (t)\,dt
+    \]
+\end{definition}
