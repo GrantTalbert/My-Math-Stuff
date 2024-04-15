@@ -1,0 +1,168 @@
+\section{The Kernel and Range of a Linear Transformation}
+\begin{definition}[Kernel]
+    Let \(T:V\to W\) be a linear transformation. The set of all \(\mathbf{v}\in V\) such that \(T(\mathbf{v})=\mathbf{0}\) is the kernel of \(T\).
+    \[
+        \ker (T)=\left\{ \mathbf{v}\in V\mid T(\mathbf{v})=\mathbf{0} \right\} 
+    \]
+\end{definition}
+\begin{exercise}
+    Find the kernel of the transformation \(T:\mathbb{R}^3 \to \mathbb{R}^3\) given by \(T(x,y,z)=(0,0,0)\).
+\end{exercise}
+\begin{solution}
+    Since any \(v\in\mathbb{R}^3\) has \(T(\mathbf{v})=\mathbf{0}\), we have 
+    \[
+        \ker (T)=\mathbb{R}^3
+    \]
+\end{solution}
+\begin{exercise}
+    Find the kernel of the transformation \(T:\mathbb{R}^2 \to \mathbb{R}^2\) given by \(T(x,y)=T(x-y,y-x)\).
+\end{exercise}
+\begin{solution}
+    \[
+        x-y=0\land y-x=0\iff x=y
+    \]
+    \[
+        \therefore \ker (t)=\left\{ (x,y)\in\mathbb{R} \mid x=y \right\} 
+    \]
+\end{solution}
+\begin{center}
+    \begin{figure}[ht]
+        \scalebox{.75}{\incfig{Transform}}
+        \centering
+        \caption{The Kernel of a Linear Map \(T\)}
+    \end{figure}
+\end{center}
+\begin{theorem}
+    Let \(T:V\to W\) be a linear transformation. Then \(\ker (T)\) is a subspace of the domain \(V\).
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{u},\mathbf{v}\in \ker (T) \subset V\). Let \(c\in\mathbb{F}\). By \ref{Propowowo}, 
+    \[
+        T(\mathbf{0})=\mathbf{0}\Longrightarrow \mathbf{0}\in\ker (T)\,\forall T
+    \]
+    \[
+        \therefore \ker (T)\neq \varnothing 
+    \]
+    \begin{align*}
+        \mathbf{u},\mathbf{v}\in\ker (T)&\Longrightarrow T(\mathbf{u})=T(\mathbf{v})=\mathbf{0}\\
+        &\Longrightarrow T(\mathbf{u})+T(\mathbf{v})=\mathbf{0}\\
+        &\Longrightarrow T(\mathbf{u}+\mathbf{v})=\mathbf{0}\\
+        &\Longrightarrow \mathbf{u}+\mathbf{v}\in\ker (T)
+    \end{align*}
+    \begin{align*}
+        T(c \mathbf{v})&=cT(\mathbf{v})\\
+        &=c \mathbf{0}\\
+        &=\mathbf{0}\\
+        &\Longrightarrow c\mathbf{v}\in\ker (T)
+    \end{align*}
+    \[
+        \therefore \ker (T)\text{ is a subspace of }V 
+    \]
+\end{proof}
+\begin{corollary}\label{cor:6.7}
+    Let \(A\) be an \(m\times n\) matrix and \(T:\mathbb{R}^n \to \mathbb{R}^m\) be the linear transformation \(T(\mathbf{x})=A \mathbf{x}\). Then the kernel of \(T\) is equal to the solution space of \(A \mathbf{x}=\mathbf{0}\).
+\end{corollary}
+\begin{exercise}
+    Find a basis for the kernel of the linear transformation \(T:\mathbb{R}^3 \to \mathbb{R}^2\) given by 
+    \[
+        T(\mathbf{x})= \begin{bmatrix}[r]
+            -1 &-2  &1   \\
+             0&  2&   1\\
+        \end{bmatrix} \begin{bmatrix}[r]
+             x \\
+             y \\
+             z \\
+        \end{bmatrix}
+    \]
+\end{exercise}
+\begin{solution}
+    Let the above matrix be called \(A\). By \ref{cor:6.7}, we know that
+    \[
+        \ker (T)=\left\{ \begin{bmatrix}[r]
+             x \\
+             y \\
+             z \\
+        \end{bmatrix}\in\mathbb{R}^3 \mid \begin{bmatrix}[r]
+            -1 &-2  &1   \\
+             0&  2&   1\\
+        \end{bmatrix} \begin{bmatrix}[r]
+            x \\
+            y \\
+            z \\
+       \end{bmatrix}=\begin{bmatrix}[r]
+         0 \\
+         0 \\
+       \end{bmatrix} \right\} 
+    \]
+    We can find a basis for this set. First rref \(A\):
+    \[
+        \begin{bmatrix}[r]
+            -1 &-2  &1   \\
+             0&  2&   1\\
+        \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+            1 &0  &2   \\
+             0&1  &0.5   \\
+        \end{bmatrix}
+    \]
+    Notice that the only column that isn't a pivot column is the third column, so our free variable will be \(z\). Set 
+    \[
+        z=t
+    \]
+    and solve. 
+    \[
+        x+2t = 0 \Longrightarrow  x=-2t
+    \]
+    \[
+        y+\frac{1}{2}t=0 \Longrightarrow y=-\frac{1}{2}t
+    \]
+    Therefore, we have the general form of a solution as
+    \[
+        \mathbf{x}=\begin{bmatrix}[r]
+             -2t \\
+             -\frac{1}{2}t \\
+              t\\
+        \end{bmatrix}
+    \]
+    Since we only have one free variable, this column vector will be the basis for our set, when we set \(t=1\):
+    \[
+        \ker (T)=N(A)= \text{span} \left\{ \begin{bmatrix}[r]
+             -2 \\
+             -\frac{1}{2} \\
+              1\\
+        \end{bmatrix} \right\} 
+    \]
+\end{solution}
+\begin{definition}[Range]
+    The range of a linear transformation \(T:V\to W\) is the set of all \(\mathbf{w}\in W\) that have a preimage under \(T\) in \(V\). That is,
+    \[
+        \text{range}(T)=\left\{ T(\mathbf{v}) \mid \mathbf{v}\in V \right\} 
+    \]
+\end{definition}
+\begin{theorem}
+    The range of a linear transformation \(T:V\to W\) is a subspace of \(W\).
+\end{theorem}
+\begin{proof}
+    By \ref{Propowowo}, all linear maps must give \(\mathbf{0}\mapsto \mathbf{0}\), and thus \(0\in\operatorname{range}(T)\neq \varnothing  \). Let \(\mathbf{u},\mathbf{v}\in V\) and \(\mathbf{x},\mathbf{y}\in W\) such that 
+    \[
+        T(\mathbf{u})=\mathbf{x}\qquad T(\mathbf{v})=\mathbf{y}
+    \]
+    We have
+    \[
+        \mathbf{x}+\mathbf{y}=T(\mathbf{u})+T(\mathbf{v})=T(\mathbf{u}+\mathbf{v})
+    \]
+    Since \(V\) is a vector space, \(\mathbf{u}+\mathbf{v}\in V\), and thus there exists some \(\mathbf{u}+\mathbf{v}\in V\) such that \(\mathbf{x}+\mathbf{y}=T(\mathbf{u}+\mathbf{v})\). Finally, let \(c\in\mathbb{F}\). For any \(c \mathbf{x}\), we have 
+    \[
+        c \mathbf{x}=c T(\mathbf{u})=T(c \mathbf{u})
+    \]
+    Since \(V\) is a vector space, \(c \mathbf{u}\in V\). Thus, \(c \mathbf{u}\in \operatorname{range}(T) \). Therefore, \(\operatorname{range}(T) \) is a subspace of \(W\).
+\end{proof}
+\begin{corollary}
+    Let \(A\in M_{m,n}\) give the linear transformation \(T:\mathbb{R}^n \to \mathbb{R}^m\). Then the column space of \(A\) is equal to the range of \(T\).
+\end{corollary}
+\begin{center}
+\begin{figure}[ht]
+    \incfig{Fig}
+    \centering
+    \caption{The Range of a Linear Map \(T\)}
+\end{figure}
+\end{center}
