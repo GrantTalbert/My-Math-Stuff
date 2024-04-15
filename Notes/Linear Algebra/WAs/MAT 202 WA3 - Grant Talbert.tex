@@ -1,0 +1,855 @@
+\documentclass{article}
+\newcommand{\uline}[1]{\rule[0pt]{#1}{0.4pt}}%fill this blank
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{color, soul}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[linewidth=1pt]{mdframed}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+%\usepackage[20pt]{extsizes}
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\
+bullet$}}}}}
+\makeatother
+\newenvironment{boxin}
+    {\begin{center}
+    \begin{tabular}{|p{1 \textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+\usepackage{fancyhdr}
+\newcommand{\bv}{\ensuremath{{\bf v } } }
+\newcommand{\bu}{\ensuremath{{\bf u } } }
+\newcommand{\bw}{\ensuremath{{\bf w } } }
+\newcommand{\bx}{\ensuremath{{\bf x } } }
+\newcommand{\bp}{\ensuremath{{\bf p } } }
+\newcommand{\bd}{\bigcdot}
+\newcommand{\bbox}[2]{ \fbox{\begin{minipage}{#1 in}\hfill\vspace{#2 in}\
+end{minipage}} }
+\newcommand{\N}{\mathbb{N}} %Naturals
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newcommand{\Q}{\mathbb{Q}} %Rationals
+\newcommand{\R}{\mathbb{R}} %Reals
+\newcommand{\C}{\mathbb{C}} %Complex numbers
+%standard basis vectors, boldface with hats
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\makeatletter
+\renewcommand*\env@matrix[1][c]{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols #1}}
+\makeatother
+\pagestyle{fancy}
+%\rfoot{Thao-Nhi Luu}
+\begin{document}
+\large
+
+%\renewcommand{\headrulewidth}{0pt}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead[R]{Grant Talbert}
+\fancyhead[L]{MAT 202} 
+\begin{center}
+\textbf{Written Assignment 3}\\
+Grant Talbert
+\end{center}
+\noindent{\textbf{1)}} Find the $adj(A)$, then use it to find $A^{-1}$ if it exists.  Show all of your work to receive credit. 
+\[ A =
+ \begin{bmatrix}[c]
+5 & 2 & -2   \\
+2 & 1 &- 1 \\
+6 & 3 & -2\\
+\end{bmatrix} \]\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+\begin{align*}
+  \text{adj}(A)&=\begin{bmatrix}[r]
+    \begin{vmatrix}
+      1 &-1   \\
+       3&-2   \\
+    \end{vmatrix} &-\begin{vmatrix}
+      2 &-1   \\
+       6&-2   \\
+    \end{vmatrix}  &\begin{vmatrix}
+      2 &1   \\
+       6&3   \\
+    \end{vmatrix}   \\[4mm]
+     -\begin{vmatrix}
+      2 &-2   \\
+       3&-2   \\
+     \end{vmatrix}&\begin{vmatrix}
+      5 &-2   \\
+       6&-2   \\
+     \end{vmatrix}  &-\begin{vmatrix}
+      5 &2   \\
+       6&3   \\
+     \end{vmatrix}   \\[4mm]
+     \begin{vmatrix}
+      2 &-2   \\
+       1&-1   \\
+     \end{vmatrix}&  -\begin{vmatrix}
+      5 &-2   \\
+       2&-1   \\
+     \end{vmatrix}&\begin{vmatrix}
+      5 &2   \\
+       2&1   \\
+     \end{vmatrix}   \\
+  \end{bmatrix}^T\\
+  &=\begin{bmatrix}[r]
+     1&-2  &0   \\
+     -2&2  &-3   \\
+     0&1  &1   \\
+  \end{bmatrix}^T\\
+  &=\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  A^{-1} &=\frac{1}{\det (A)}\text{adj}(A)\\
+  &=\frac{1}{\begin{vmatrix}
+    5 &2  &-2   \\
+     2&1  &-1   \\
+     6&3  &-2   \\
+  \end{vmatrix}}\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  &=\frac{1}{5\begin{vmatrix}
+    1 &-1   \\
+     3&-2   \\
+  \end{vmatrix}-2\begin{vmatrix}
+    2 &-1   \\
+     6&-2   \\
+  \end{vmatrix}-2\begin{vmatrix}
+    2 &1   \\
+     6&3   \\
+  \end{vmatrix}}\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  &=\frac{1}{5(1)-2(2)-2(0)}\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  &=\frac{1}{1}\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}
+\end{align*}
+(Test that this is the inverse)
+\begin{align*}
+  A A^{-1} &=\begin{bmatrix}
+    5 & 2 & -2   \\
+    2 & 1 &- 1 \\
+    6 & 3 & -2\\
+    \end{bmatrix}\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    (5\cdot1)+(2\cdot-2)+(-2\cdot0) &(5\cdot-2)+(2\cdot2)+(-2\cdot-3)  &(5\cdot0)+(2\cdot1)+(-2\cdot 1)   \\
+     (2\cdot1)+(1\cdot-2)+(-1\cdot0)& (2\cdot-2)+(1\cdot2)+(-1\cdot-3) & (2\cdot0)+(1\cdot1)+(-1\cdot1)  \\
+     (6\cdot1)+(3\cdot-2)+(-2\cdot0)&(6\cdot-2)+(3\cdot2)+(-2\cdot-3)  &(6\cdot0)+(3\cdot1)+(-2\cdot1)   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    5-4 & -10+4+6 &  0+2-2 \\
+     2-2+0& -4+2+3 &   0+1-1\\
+     6-6+0& -12+6+6 &  0+3-2 \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    1 &0  &0   \\
+    0 & 1 &  0 \\
+     0&  0&1   \\
+  \end{bmatrix}\\
+  &=I_3\;\checkmark
+\end{align*}
+\[
+  \therefore\text{adj}(A)=\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix},\quad A^{-1} =\begin{bmatrix}
+    1 &-2  &0   \\
+     -2&2  &1   \\
+     0&-3  &1   \\
+  \end{bmatrix} 
+\]
+\hfill\(\blacksquare\)
+
+
+\newpage
+\noindent{\textbf{2)}} Use Cramer's Rule to solve the system of linear equation below.   Show all of your work by hand except for finding determinants. 
+\[ 
+\begin{array}{ccccccc}
+x &  &&  +& z &  =  & 3	\\
+2x & + &  y& +  &2z&  =  & 7\\
+3x & + &  2y & +  & 6z &  =  & 8	\\
+\end{array}
+\]\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+This system of equations has equivalent solutions \(x,y,z\) to the matrix equation
+\[
+  \begin{bmatrix}
+    1 &0  &1   \\
+     2&1  &2   \\
+     3&2  &6   \\
+  \end{bmatrix} \begin{bmatrix}
+     x \\
+      y\\
+      z\\
+  \end{bmatrix}=\begin{bmatrix}
+     3 \\
+     7 \\
+     8 \\
+  \end{bmatrix}
+\]
+Cramer's rule states for any system of \(n\) linear equations in \(n\) variables \(x_1,\ldots,x_n\), if the equation can be given as \(A \vec{x} =\vec{b} \) where \(A\) is the coefficient matrix and is invertible, then the system has the solution 
+\[
+  x_i=\frac{\det \left( A_i \right) }{\det \left( A \right) }
+\]
+where \(A_i\) denotes the matrix \(A\) with the \(i\)th column having been replaced with \(\vec{b} \).
+
+The determinant of \(A\) is 
+\[
+  \begin{vmatrix}
+    1 &0  &1   \\
+    2&1  &2   \\
+    3&2  &6   \\
+  \end{vmatrix}=\begin{vmatrix}
+    1 &2   \\
+     2&6   \\
+  \end{vmatrix}+\begin{vmatrix}
+    2 &1   \\
+     3&2   \\
+  \end{vmatrix}=2+1=3
+\]
+We now find the determinants of \(A_1,A_2,A_3\):
+\begin{align*}
+  \det (A_1)&=\begin{vmatrix}
+    3 &0  &1   \\
+    7&1  &2   \\
+    8&2  &6   \\
+  \end{vmatrix}=3\begin{vmatrix}
+    1 &2   \\
+     2&6   \\
+  \end{vmatrix}+\begin{vmatrix}
+    7 &1   \\
+     8&2   \\
+  \end{vmatrix}=3(2)+6=12\\
+  \det (A_2)&=\begin{vmatrix}
+    1 &3  &1   \\
+    2&7  &2   \\
+    3&8  &6   \\
+  \end{vmatrix}=\begin{vmatrix}
+    7 &2   \\
+     8&6   \\
+  \end{vmatrix}-3\begin{vmatrix}
+    2 &2   \\
+     3&6   \\
+  \end{vmatrix}+\begin{vmatrix}
+    2 &7   \\
+     3&8   \\
+  \end{vmatrix}=26-3(6)-5=3\\
+  \det (A_3)&=\begin{vmatrix}
+    1 &0  &3   \\
+    2&1  &7   \\
+    3&2  &8   \\
+  \end{vmatrix}=\begin{vmatrix}
+    1 &7   \\
+     2&8   \\
+  \end{vmatrix}+3\begin{vmatrix}
+    2 &1   \\
+     3&2   \\
+  \end{vmatrix}=-6+3=-3
+\end{align*}
+Thus, we have
+\begin{align*}
+  x=&\frac{\det \left( A_1 \right) }{\det \left( A \right) }=\frac{12}{3}=4\\
+  y=&\frac{\det \left( A_2 \right) }{\det \left( A \right) }=\frac{3}{3}=1\\
+  z=&\frac{\det \left( A_3 \right) }{\det \left( A \right) }=\frac{-3}{3}=-1
+\end{align*}
+(Test that this is the solution)
+\[
+  \begin{array}{c}
+    x+z=4-1=3\;\checkmark\\
+    2x+y+2z=8+1-2=7\;\checkmark\\
+    3x+2y+6z=12+2-6=8\;\checkmark
+  \end{array}
+\]
+Therefore \((x,y,z)=(4,1,-1)\)\hfill\(\blacksquare\)
+
+
+\newpage
+\noindent{\textbf{3)}} For the following  matrix,  write the third column as a linear combination of the first two columns, if possible.   If it's not possible, explain why. Show all of your work to receive credit.
+\[ A = \begin{bmatrix}
+1 & 2 & 3 \\ 
+7 & 8 & 9 \\
+4 & 5 & 6 
+\end{bmatrix}\]\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+The third column can be written as a linear combination of the first two iff there exists \(\alpha ,\beta \in\mathbb{R} \) such that 
+\[
+  \alpha \begin{bmatrix}
+     1 \\
+     7 \\
+     4 \\
+  \end{bmatrix}+\beta \begin{bmatrix}
+     2 \\
+     8 \\
+     5 \\
+  \end{bmatrix}=\begin{bmatrix}
+     3 \\
+     9 \\
+     6 \\
+  \end{bmatrix}
+\]
+From this, we have the system of equations 
+\[
+  \left\{\begin{array}{c}
+    \alpha +2\beta =3\\
+    7\alpha +8\beta =9\\
+    4\alpha +5\beta =6
+  \end{array}\right.
+\]
+This gives the matrix representation
+\[
+  \begin{bmatrix}
+    1 & 2 & 3  \\
+    7 & 8 & 9  \\
+    4 & 5 & 6  \\
+  \end{bmatrix}
+\]
+Using Gaussian Elimination, we can solve the system.
+\[
+  \begin{bmatrix}
+    1 & 2 & 3  \\
+    7 & 8 & 9  \\
+    4 & 5 & 6  \\
+  \end{bmatrix}\xlongrightarrow{R_2 -7R_1 \to R_2}\begin{bmatrix}
+    1 & 2 & 3  \\
+    0 & -6 & -12  \\
+    4 & 5 & 6  \\
+  \end{bmatrix}\xlongrightarrow[-\frac{1}{6}R_2 \to R_2]{R_3 -4R_1 \to R_3}\begin{bmatrix}
+    1 &2  &3   \\
+     0&1  &2   \\
+     0&-3  &-6   \\
+  \end{bmatrix}\xlongrightarrow{R_3 +3R_2 \to R_3}\begin{bmatrix}
+    1 &2  &3   \\
+     0&1  &2   \\
+     0&0  &0   \\
+  \end{bmatrix}
+\]
+From the above process, we have \(\beta =2\) and \(\alpha +2\beta =3\). We can plug in to find 
+\[
+  \alpha +2(2)=3\Longrightarrow \alpha =3-4=-1
+\]
+(Test to confirm the solution)
+\[
+  \begin{bmatrix}
+     -1 \\
+     -7 \\
+      -4\\
+  \end{bmatrix}+\begin{bmatrix}
+     4 \\
+     16 \\
+      10\\
+  \end{bmatrix}=\begin{bmatrix}
+     3 \\
+     9 \\
+     6 \\
+  \end{bmatrix}\;\checkmark
+\]
+Therefore the third column can be written in the form \(A_3 =-A_1 +2A_2\), where \(A_i\) denotes the \(i\)th column of the matrix \(A\).\hfill\(\blacksquare\)
+
+\newpage
+\noindent{\textbf{4)}} Let $S$ be the set of all $2 \times 2$ matrices of the form $\begin{bmatrix} a&b\\ c&0 \end{bmatrix}$ together with the standard operations.  Is $S$ a vector space?  Justify your answer.\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+Let \(S\) be defined over the field \(\mathbb{R} \), and let the operations of addition and scalar multiplication be defined as 
+\[
+  +:S\times S\to S
+\]
+\[
+  \cdot:\mathbb{R} \times S\to S
+\]
+with the standard definitons. It still remains to be shown that \(S\) is actually closed under these operations, but if \(S\) is not closed, then by contradiction it will be shown that the set is not a vector space. Let \(A,B,C\in S\) and \(\alpha ,\beta \in\mathbb{R} \). Let 
+\[
+  A\coloneqq \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\qquad B\coloneqq \begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}\qquad C\coloneqq \begin{bmatrix}
+    c_{11}  &c_{12}    \\
+     c_{21} &0   \\
+  \end{bmatrix}
+\]
+\begin{align*}
+  A+B&=\begin{bmatrix}
+    a_{11}  &   a_{12} \\
+   a_{21}   & 0  \\
+  \end{bmatrix}+\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+b_{11}   & a_{12}+b_{12}    \\
+     a_{21}+b_{21}  &   0+0\\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+b_{11}   & a_{12}+b_{12}    \\
+     a_{21}+b_{21}  &   0\\
+  \end{bmatrix}
+\end{align*}
+Clearly this last matrix is an element of \(S\), since its a \(2\times 2\) matrix with a \(0\) in its bottom right entry. Thus, \(A+B\in S\), and \(S\) is closed under addition.
+
+Recall that addition of real numbers is both associative and commutative. Notice the following:
+\begin{align*}
+  (A+B)+C&=\left(\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}\right)+\begin{bmatrix}
+    c_{11}  &c_{12}    \\
+     c_{21} &0   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+b_{11}   & a_{12}+b_{12}    \\
+     a_{21}+b_{21}  &   0\\
+  \end{bmatrix}+\begin{bmatrix}
+    c_{11}  &c_{12}    \\
+     c_{21} &0   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+b_{11}+c_{11}    & a_{12}+b_{12} +c_{12}    \\
+     a_{21}+b_{21} +c_{21}  &   0\\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+\left(b_{11}+c_{11}\right)    & a_{12}+\left(b_{12} +c_{12}\right)    \\
+    a_{21}+\left(b_{21} +c_{21}\right)  &   0\\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\left(\begin{bmatrix}
+     b_{11}+c_{11}  &b_{12}+c_{12}     \\
+     b_{21}+c_{21}  &0   \\
+  \end{bmatrix}\right)\\
+  &=\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\left(\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}+\begin{bmatrix}
+    c_{11}  &c_{12}    \\
+     c_{21} &0   \\
+  \end{bmatrix}\right)\\
+  &=A+(B+C)
+\end{align*}
+Therefore, addition over \(S\) is associative.
+
+Suppose there exists an additive identity \(\vec{0}\in S\). To prove this supposition, it suffices to identify each component of \(\vec{0}\) and to verify \(\vec{0}\in S\). To avoid confusion with \(\alpha ,\beta\) being scalars but also still using as many greek letters as physically possible, let
+\[
+  \vec{0}=\begin{bmatrix}
+    \tau   &\phi     \\
+     \psi  &0    \\
+  \end{bmatrix}
+\]
+We can suppose the bottom right element is \(0\), which if true means \(\vec{0}\in S\), but if this leads to a contradiction then either no such \(\vec{0}\) exists or \(\vec{0}\notin S\). If it does not lead to a contradiction, then \(\vec{0}\in S\).
+\begin{align*}
+  &A+\vec{0}=A\\
+\Longrightarrow &\begin{bmatrix}
+a_{11}  &a_{12}    \\
+ a_{21} &0    \\
+\end{bmatrix}+\begin{bmatrix}
+  \tau   &\phi     \\
+   \psi  &0    \\
+\end{bmatrix}=\begin{bmatrix}
+  a_{11}  &a_{12}    \\
+   a_{21} &0    \\
+  \end{bmatrix}\\
+  \Longrightarrow &\begin{bmatrix}
+    a_{11}+\tau   &a_{12}+\phi     \\
+     a_{21}+\psi  &0+0   \\
+  \end{bmatrix}=\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0   \\
+  \end{bmatrix}
+\end{align*}
+Matrix equality is defined component-wise for matrices of equivalent dimension, so a system of equations can be constructed.
+\begin{align*}
+  &\left\{\begin{array}{c}
+    a_{11}+\tau =a_{11}\\
+    a_{12}+\phi =a_{12}\\
+    a_{21}+\psi =a_{21}\\
+    0=0\\    
+  \end{array}\right.\\
+  \Longleftrightarrow &\left\{\begin{array}{c}
+    \tau= 0\\
+    \phi= 0\\
+    \psi =0\\
+    0=0\\    
+  \end{array}\right.
+\end{align*}
+Therefore, we have
+\[
+  \vec{0}=\begin{bmatrix}
+    0 &0   \\
+     0&0   \\
+  \end{bmatrix}\in S
+\]
+Thus, an additive identity element exists in \(S\). 
+
+To show that there exists an additive inverse for all \(A\in S\), we need only identify the additive inverse for the general case of some \(A\in S\). Let \(-A\) be the additive inverse of \(A\in S\), meaning 
+\[
+  A+(-A)=-A+A=\vec{0}
+\]
+We must show that we can identify the components of \(-A\) and that \(-A\in S\). Once again using greek letters, let
+\[
+  (-A)=\begin{bmatrix}
+    \mu    &\nu      \\
+     \sigma   &0   \\
+  \end{bmatrix}
+\]
+Once again, supposing that the bottom right corner is \(0\) will lead to a contradiction if it is not, but if no such contradiction is found then \(-A\in S\).
+\begin{align*}
+  &A+(-A)=\vec{0}\\
+\Longrightarrow &\begin{bmatrix}
+  a_{11}  &a_{12}    \\
+   a_{21} &0    \\
+  \end{bmatrix}+\begin{bmatrix}
+    \mu  &\nu    \\
+     \sigma &0   \\
+  \end{bmatrix}=\begin{bmatrix}
+    0 &0   \\
+     0&0   \\
+  \end{bmatrix}\\
+  \Longrightarrow &\begin{bmatrix}
+    a_{11}+\mu   &a_{12}+\nu     \\
+     a_{21}+\sigma  &0+0   \\
+  \end{bmatrix}=\begin{bmatrix}
+     0&0   \\
+     0&0   \\
+  \end{bmatrix}
+\end{align*}
+\newpage
+\noindent Once again using the fact that matrix equality can be defined as component-wise between matrices of equivalent dimension, and properties of real number arithmetic, we have the system
+\begin{align*}
+  &\left\{\begin{array}{c}
+    a_{11}+\mu=0\\
+    a_{12}+\nu =0\\
+    a_{21}+\sigma =0\\
+    0=0   
+  \end{array}\right.\\
+  \Longrightarrow &\left\{\begin{array}{c}
+    \mu=-a_{11} \\
+    \nu =-a_{12}\\
+    \sigma =-a_{21}\\
+    0=0
+  \end{array}\right.
+\end{align*}
+Thus, for the general case, we have defined 
+\[
+  -A=\begin{bmatrix}
+    -a_{11}  &-a_{12}    \\
+     -a_{21} &0   \\
+  \end{bmatrix}
+\]
+Since we have not arrived at any contradictions, for any \(A\in S\), there exists an additive inverse \(-A\in S\).
+
+Proving any two arbitrary matrices \(A,B\in S\)  commute will prove that for any element of \(S\), addition is commutative. Recall that addition commutes over the reals.
+\begin{align*}
+  A+B&=\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}+b_{11}   &a_{12}+b_{12}     \\
+     a_{21}+b_{21}  &0+0   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    b_{11}+a_{11}   &b_{12}+a_{12}     \\
+     b_{21}+a_{21}  &0+0   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0   \\
+  \end{bmatrix}+\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=B+A
+\end{align*}
+Therefore, addition is commutative over \(S\). We have now proven the group \((S,+)\) is abelian.
+
+Now we must demonstrate closure under scalar multiplication. Notice the following:
+\begin{align*}
+  \alpha A&=\alpha \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha a_{11}  &\alpha a_{12}    \\
+     \alpha a_{21} &\alpha 0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha a_{11}  &\alpha a_{12}    \\
+     \alpha a_{21} & 0    \\
+  \end{bmatrix}
+\end{align*}
+Since the bottom right element of \(\alpha A\) is \(0\), we have \(\alpha A\in S\). Thus, \(S\) is closed under scalar multiplication.
+\newpage
+We now demonstrate associativity of scalar multiplication. Recall the fact that scalars can be factored out of a matrix and that multiplication is associative over the reals. Observe the following:
+\begin{align*}
+  (\alpha \beta )A&=(\alpha \beta )\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    (\alpha \beta )a_{11}  &(\alpha \beta )a_{12}    \\
+    (\alpha \beta )a_{21} &(\alpha \beta )0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha (\beta a_{11})  &\alpha (\beta a_{12})    \\
+    \alpha (\beta a_{21}) &\alpha (\beta 0)    \\
+  \end{bmatrix}\\
+  &=\alpha \begin{bmatrix}
+     (\beta a_{11})  &(\beta a_{12})    \\
+     (\beta a_{21}) & (\beta 0)    \\
+  \end{bmatrix}\\
+  &=\alpha \left(\beta \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\right)\\
+  &=\alpha (\beta A)
+\end{align*}
+Therefore, scalar multiplication as defined is associative.
+
+Now consider the left distributive property. Recall that multiplication distributes over addition from both directions in the algebra of the reals. Observe the following:
+
+\begin{align*}
+  \alpha (A+B)&=\alpha \left( \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix} \right)\\
+  &=\alpha \begin{bmatrix}
+    a_{11}+b_{11}   &a_{12}+b_{12}     \\
+     a_{21}+b_{21}  &  0+0 \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha \left( a_{11}+b_{11}   \right)  & \alpha \left( a_{12}+b_{12}   \right)   \\
+     \alpha \left( a_{21}+b_{21}   \right) &\alpha (0+0)   \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha a_{11}+\alpha b_{11}   &\alpha a_{12}+\alpha b_{12}     \\
+     \alpha a_{21}+\alpha b_{21}  &0\alpha +0\alpha    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha a_{11}  &\alpha a_{12}    \\
+     \alpha a_{21} &0\alpha    \\
+  \end{bmatrix}+\begin{bmatrix}
+    \alpha b_{11}  &\alpha b_{12}    \\
+     \alpha b_{21} &0\alpha    \\
+  \end{bmatrix}\\
+  &=\alpha \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}+\alpha \begin{bmatrix}
+    b_{11}  &b_{12}    \\
+     b_{21} &0    \\
+  \end{bmatrix}\\
+  &=\alpha A+\alpha B
+\end{align*}
+Therefore scalar multiplication distributes over addition from the left.
+\newpage
+Now consider the right distributive property. Recall that multiplication distributes over addition from both directions in the algebra of the reals. Observe the following:
+\begin{align*}
+  \left( \alpha +\beta  \right)A&=\left( \alpha +\beta  \right)  \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \left( \alpha +\beta  \right)a_{11}  &\left( \alpha +\beta  \right)a_{12}    \\
+    \left( \alpha +\beta  \right)a_{21} &\left( \alpha +\beta  \right)0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    \alpha a_{11}  +\beta a_{11}   &\alpha a_{12}+\beta a_{12}     \\
+     \alpha a_{21}+\beta a_{21}  &0\alpha +0\beta    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    (\alpha a_{11})  +(\beta a_{11})   &(\alpha a_{12})+(\beta a_{12})     \\
+     (\alpha a_{21})+(\beta a_{21})  &(0\alpha) +(0\beta)    \\
+  \end{bmatrix}\\
+  &=\left( \alpha \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix} \right) +\left( \beta \begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix} \right) \\
+  &=\alpha A+\beta A
+\end{align*}
+Therefore scalar multiplication distributes over addition from the right.
+
+Finally, notice that the multiplicative identity of \(\mathbb{R} \) is \(1\). We find that 
+\begin{align*}
+  1A&=1\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    1a_{11}  &1a_{12}    \\
+     1a_{21} &1\cdot0    \\
+  \end{bmatrix}\\
+  &=\begin{bmatrix}
+    a_{11}  &a_{12}    \\
+     a_{21} &0    \\
+  \end{bmatrix}\\
+  &=A
+\end{align*}
+Therefore, \(1A=A\). Thus, the set \(S\) over \(\mathbb{R} \) with the above definitions of addition and scalar multiplication forms a vector space.\hfill\(\blacksquare\) 
+
+\newpage
+\noindent{\textbf{5)}} Determine whether the set $\R^3$ is a vector space under the following operations.  Justify your answer. 
+
+\begin{itemize}
+\item $(x_1, y_1, z_1)	 + 	(x_2, y_2, z_2)	 = 	(x_1 + x_2 + 1, y_1 + y_2 + 2, z_1 + z_2 + 3)$
+
+\item $c(x, y, z)	 = 	(cx, cy, cz)$
+\end{itemize}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+Let \(\vec{u} ,\vec{v} \in\mathbb{R} ^3\) with
+\[\vec{u} =(x_1,y_1,z_1)\quad \vec{v} =(x_2,y_2,z_2)\]
+Let the set \(\mathbb{R} ^3\) be defined over the field \(\mathbb{R} \) with the operations 
+\begin{align*}
+  +&:\mathbb{R} ^3 \times \mathbb{R} ^3 \to \mathbb{R} \\
+  &\left( \left( x_1,x_2,x_3 \right),(y_1,y_2,y_3)  \right) \mapsto \left( x_1 +y_1 +1,x_2 +y_2 +2,x_3 +y_3 +3 \right)\\
+  \cdot&:\mathbb{R} \times \mathbb{R} ^3 \to \mathbb{R} ^3\\
+  &\left( c,\left( x_1,x_2,x_3 \right)  \right) \mapsto \left( cx_1,cx_2,cx_3 \right)
+\end{align*}
+Let \(\alpha \in\mathbb{R} \). Suppose scalar multiplication distributes over addition. It follows that we have
+\begin{align*}
+  &\alpha (\vec{u} +\vec{v} )=\alpha \vec{u} +\alpha \vec{v}\\
+  \Longleftrightarrow  &\alpha (x_1 +x_2 +1,y_1 +y_2 +2,z_1 +z_2 +3 )=(\alpha x_1,\alpha y_1,\alpha z_1)+(\alpha x_2,\alpha y_2,\alpha z_2)\\
+  \Longleftrightarrow  &(\alpha x_1 +\alpha x_2 +1\alpha,\alpha y_1 +\alpha y_2 +2\alpha,\alpha z_1 +\alpha z_2 +3\alpha  )=(\alpha x_1 +\alpha x_2 +1,\alpha y_1 +\alpha y_2 +2,\alpha z_1 +\alpha z_2 +3  )\\
+  \Longleftrightarrow  &\left\{\begin{array}{c}
+    \alpha x_1 +\alpha x_2 +1\alpha=\alpha x_1 +\alpha x_2 +1\\
+    \alpha y_1 +\alpha y_2 +2\alpha=\alpha y_1 +\alpha y_2 +2\\
+    \alpha z_1 +\alpha z_2 +3\alpha=\alpha z_1 +\alpha z_2 +3
+  \end{array}\right.\\
+  \Longleftrightarrow  &\left\{\begin{array}{c}
+  1\alpha=1\\
+  2\alpha=2\\
+  3\alpha=3
+\end{array}\right.\\
+\Longleftrightarrow &\alpha =1\\
+&\exists \beta \in\mathbb{R} (\beta \neq 1)\Longrightarrow \Longleftarrow
+\end{align*}
+Therefore, the set \(\mathbb{R} ^3\) over \(\mathbb{R} \) with the given definitions of addition and scalar multiplication is not a vector space.\hfill\(\blacksquare\)\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+I also thought of defining the space \(\mathbb{R} ^3\) over an arbitrary field \(\mathbb{F} \) and showing that \(\mathbb{F} =\{ 1 \} \), which is not supposed to be a field due to a field needing both an additive identity \(0\) and multiplicative identity \(1\) with \(0\neq 1\). However, not only was this not even material that gets covered in this class, but I'm not even really confident about that solution after googling some stuff, since I think I could define operations to make \(\{ 1 \} \) work if the requirement \(0\neq 1\) was dropped. \emph{Apparently} the field with 1 element \(\mathbb{F} _1\) is like an actual ongoing reasearch problem which I did NOT know about at all. It was interesting to accidentally walk into something like that but after trying to read a paper and getting lost in the first sentence between something about the zeta function and something about morhphisms of sheaves I can confidently say I don't even know what the question is that is being researched, so I declined to use this method to solve the problem.
+\newpage
+Let \(\sigma \in S_n\) with \(\sigma =\left( i_1,\ldots,i_r \right) \). Show \(\sigma ^{-1} =\left( i_1,i_r,i_{r-1},\ldots,i_2  \right) \forall \sigma \in S_n\).\\
+\begin{proof}
+  \[
+    \sigma =\begin{pmatrix}[r]
+      i_1 & i_2 &i_3&\cdots  & i_{r-1}  &i_r   \\
+       i_2&i_3  &i_4&\cdots  &i_r  &i_1   \\
+    \end{pmatrix}
+  \]
+\[
+  \text{Let }\sigma ^{-1}  =\begin{pmatrix}[r]
+    i_1 &i_2  & i_3&\cdots &i_{r-1}   &i_r   \\
+     i_r&i_1   & i_2&\cdots &i_{r-2}   & i_{r-1}   \\
+  \end{pmatrix} 
+\]
+\[
+  \sigma \sigma ^{-1} =\begin{pmatrix}[r]
+    i_1 & i_2 &i_3&\cdots  & i_{r-1}  &i_r   \\
+    i_2&i_3  &i_4&\cdots  &i_r  &i_1   \\
+     i_1&i_2  &i_3  &\cdots  &i_{r-1}   &i_r   \\
+  \end{pmatrix}=\text{id}_S
+\]
+\[
+  \sigma ^{-1} \sigma = \begin{pmatrix}[r]
+    i_1 &i_2  & i_3&\cdots &i_{r-1}   &i_r   \\
+     i_r&i_1   & i_2&\cdots &i_{r-2}   & i_{r-1}   \\
+     i_1&i_2  &i_3  &\cdots  &i_{r-1}   &i_r   \\
+  \end{pmatrix}=\text{id}_S
+\]
+\[
+  \sigma \sigma ^{-1} =\sigma ^{-1} \sigma =\text{id}_S 
+\]
+\[
+  \text{Inverses are unique.} 
+\]
+\end{proof}
+\begin{proof}
+  \[
+    \sigma \coloneqq \left( i_1,\ldots,i_r \right) 
+  \]
+  \[
+    \sigma ^r=\text{id}_S 
+  \]
+  \[
+    \Longrightarrow \sigma \circ \sigma^{r-1}=\text{id}_S  
+  \]
+  \[
+    \Longrightarrow \sigma^{r-1}=\sigma ^{-1} 
+  \]
+  \[
+    \sigma^{r-1}=\underbrace{\left( i_1,\ldots,i_r \right)\circ \cdots \circ \left( i_1,\ldots,i_r \right)  }_{r\text{ times} }
+  \]
+  \[
+    \sigma^{r-1}=\left( i_1,i_{r},i_{r-1},i_{r-2},\ldots,i_2    \right)
+  \]
+\end{proof}
+\begin{proof}
+  \[
+    \sigma \coloneqq \left( i_1,\ldots,i_r \right) 
+  \]
+  \[
+    \sigma ^{-1} \sigma =\sigma \sigma ^{-1} =\text{id}_{S}  
+  \]
+  \[
+    \text{Let }\sigma ^{-1} =(a_1,\ldots,a_n) 
+  \]
+  \[
+    \sigma \left( i_1 \right) =i_2
+  \]
+  \[
+    \Longrightarrow \sigma ^{-1} (i_2)=i_1\because \sigma ^{-1} (\sigma (i_k))=i_k
+  \]
+\[
+  \sigma (i_{n \mod r})=i_{n+1  \mod r} 
+\]
+\[
+  \Longrightarrow \sigma ^{-1} (i_{n \mod r} )=\sigma (i_{n-1 \mod r} )
+\]
+\end{proof}
+\end{document}

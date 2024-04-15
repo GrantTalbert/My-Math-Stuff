@@ -1,0 +1,470 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools, mathrsfs}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={cyan},
+    urlcolor={green},
+    citecolor={red}
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%matrix
+\makeatletter
+\renewcommand*\env@matrix[1][c]{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols #1}}
+\makeatother
+
+\usepackage{thmtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em, innertopmargin=5pt, innerbottommargin=6pt}
+\theoremstyle{definition}
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont\color{black}, mdframed={nobreak, linecolor=black}]{thmbox}
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont\color{black}, mdframed={linecolor=black, bottomline=false, topline=false, rightline=false, fontcolor=black}, qed=\(\blacksquare\)]{proofline}
+\declaretheoremstyle[headfont=\bfseries\sffamily\color{black}, bodyfont=\normalfont\color{black}, qed=\(\blacksquare\)]{soln}
+\declaretheorem[numbered=yes, style=thmbox, name=Exercise]{exercise}
+\declaretheorem[numbered=no, style=thmbox, name=Theorem]{theorem}
+\declaretheorem[numbered=no, style=thmbox, name=Lemma]{lemma}
+\declaretheorem[numbered=no, style=proofline, name=Proof]{replacementproof}
+\declaretheorem[numbered=no, style=soln, name=Solution]{replacementsoln}
+\renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
+\newenvironment{solution}[1][]{\begin{replacementsoln}}{\end{replacementsoln}}
+
+\begin{document}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead[R]{Grant Talbert}
+\fancyhead[L]{MAT 202}
+\begin{center}
+\textbf{Written Assignment 5}\\
+Grant Talbert
+\end{center}
+\begin{exercise}
+    Let  $A=\begin{bmatrix}[r]
+    1&0&-2&0\\
+    4&-2&4&-2\\
+    -2&0&-1&3\\
+    \end{bmatrix}$ and let $\vec{b} =\begin{bmatrix}
+    1\\2\\3
+    \end{bmatrix}.$
+    \begin{enumerate}
+    \item Write down the row-reduced echelon form of A.  Label the pivot column(s). Show your all of your work by hand.  
+    \item Find a basis the nullspace of $A$.  
+    \item Find a basis the column space of $A$.
+    \item Write down all solutions to $A\vec{x}=\vec{b}$, then determine whether or not $\vec{b}$ is in the column space of $A$. 
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  \[
+    \begin{bmatrix}[r]
+      1&0&-2&0\\
+      4&-2&4&-2\\
+      -2&0&-1&3\\
+      \end{bmatrix}\xlongrightarrow{R_2 -4R_1 \to R_2} \begin{bmatrix}[r]
+        1 &0  &-2  &0   \\
+         0&-2  &12  &-2   \\
+         -2&0  &-1  &3   \\
+      \end{bmatrix}\xlongrightarrow{-\frac{1}{2}R_2 \to R_2} \begin{bmatrix}[r]
+        1 &0  &-2  &0   \\
+         0&1  &-6  &1   \\
+         -2&0  &-1  &3   \\
+      \end{bmatrix}
+  \]
+  \[
+    \xlongrightarrow{R_3 + 2R_1 \to R_3}\begin{bmatrix}[r]
+      1 &0  &-2  &0   \\
+       0&1  &-6  &1   \\
+       0&0  &-5  &3   \\
+    \end{bmatrix}\xlongrightarrow{-\frac{1}{5}R_3 \to R_3}\begin{bmatrix}[r]
+      1 &0  &-2  &0   \\
+       0&1  &-6  &1   \\
+       0&0  &1  &-\frac{3}{5}   \\
+    \end{bmatrix}\xlongrightarrow{R_2 +6R_3 \to R_2}\begin{bmatrix}[r]
+      1 &0  &-2  &0   \\[5pt]
+       0&1  &0  &-\frac{13}{5}   \\[5pt]
+       0&0  &1  &-\frac{3}{5}   \\
+    \end{bmatrix}
+    \]
+    \[\xlongrightarrow{R_1+2R_3 \to R_1}\begin{bmatrix}[r]
+      1 &0  & 0 &-\frac{6}{5}   \\[5pt]
+       0&1  &0  &-\frac{13}{5}   \\[5pt]
+       0&0  &1  &-\frac{3}{5}   \\
+    \end{bmatrix}
+  \]
+  The first three columns are pivot columns.\\
+  I couldn't find a proof or theorem in my notes showing that the nullspace of row-equivalent matrices was equivalent, but I thought it made sense so I proved it here real quick.\\
+  \begin{lemma}
+    Let \(B,C\in M_{m,n}\) be row equivalent.
+    \[
+      N(B)=N(C)
+    \]
+  \end{lemma}
+  \begin{proof}
+  Let \(B,C\in M_{m,n}\) be row equivalent. It follows that there exists some set \(\left\{E_1,E_2,\ldots,E_k\right\}\) of elementary matrices with 
+  \[
+    E_1 E_2 \cdots E_k B = C
+  \]
+  It follows that
+  \[
+    C \mathbf{x}=\mathbf{0} \Longrightarrow E_1 E_2 \cdots E_k B \mathbf{x}=\mathbf{0}
+  \]
+  Let \(E\in\left\{ E_1,E_2,\ldots,E_n \right\} \). We say that
+  \[
+    \mathbf{x}\in N(EB) \iff EB \mathbf{x}=\mathbf{0}
+  \]
+  Since matrix algebra is associative, it follows that
+  \[
+    E \left( B \mathbf{x} \right)= \mathbf{0}
+  \]
+  We also know that if \(B \mathbf{x}=\mathbf{0}\), \(E(B \mathbf{x})=\mathbf{0}\), meaning \(\mathbf{x}\in N(B)\Longrightarrow \mathbf{x}\in N(EB)\). Thus we have
+  \[
+    N(EB)=N(B)\cup \left\{ \mathbf{x}\in\mathbb{R}^n \mid E(B \mathbf{x})=\mathbf{0}\right\}
+  \]
+  The first set is obviously a subset of the second set, so the reason for writing it like this is to highlight the possibility that the second set can have elements that are not in the first set. This second set depends on the set \(\left\{ B \mathbf{x} \mid \mathbf{x}\in\mathbb{R}^n \right\} \), which is a subspace of \(\mathbb{R}^n\), and is therefore a vector space. Since the transformation \(E:\left\{ B \mathbf{x} \mid \mathbf{x}\in\mathbb{R}^n \right\}\to \mathbb{R}^m \) given by \(\mathbf{x}\mapsto E \mathbf{x}\) is invertible, \(\ker (E)=\{ \mathbf{0} \} \), and thus
+  \[\left\{ \mathbf{x}\in\mathbb{R}^n \mid E(B \mathbf{x})=\mathbf{0} \right\}=N(B)\cup \{ \mathbf{0} \}  \]
+  However, trivially \(\mathbf{0}\in N(B)\), so \(\left\{ \mathbf{x}\in\mathbb{R}^n \mid E(B \mathbf{x})=\mathbf{0} \right\}=N(B)\), and thus 
+  \[
+    N(EB)=N(B)
+  \]
+  Repeated applications of this result show that 
+  \[
+    B\sim C\Longrightarrow N \left(B \right) = N(C)
+  \]
+  where the relation \(\sim \) denotes row-equivalence.
+  \end{proof}
+  The solution space of \(A \mathbf{x}=\mathbf{0}\) is equivalent to the space of \(\text{rref} (A) \mathbf{x}=\mathbf{0}\). Furthermore, \(\mathbf{x}\mapsto A \mathbf{x}\) gives the mapping \(T:\mathbb{R}^4 \to \mathbb{R}^3\), so the nullspace can be given as
+  \[
+    N(A) = \left\{ \mathbf{x}\in\mathbb{R}^4 \mid A \mathbf{x}=\mathbf{0} \right\} 
+  \]
+  To find a basis for the space, consider the matrix
+  \[
+    A^{\prime} \coloneqq \begin{bmatrix}[r]
+      1 &0  & 0 &-\frac{6}{5}   \\[5pt]
+       0&1  &0  &-\frac{13}{5}   \\[5pt]
+       0&0  &1  &-\frac{3}{5}   \\
+    \end{bmatrix}
+  \]
+  which gives a representation of the system \(A \mathbf{x}=\mathbf{0}\). The fourth column is not a pivot column, so we give \(x_4 = t\), where \((x_1,x_2,x_3,x_4)\in\mathbb{R}^4\) and \(t\in\mathbb{R}\). It will follow that
+  \[
+    \left\{
+      \begin{array}{ccc}
+        x_1 - \frac{6}{5}t = 0&\Longrightarrow &x_1 = \frac{6}{5}t\\[5pt]
+        x_{2}  - \frac{13}{5}t = 0&\Longrightarrow &x_1 = \frac{13}{5}t\\[5pt]
+        x_3 - \frac{3}{5}t = 0&\Longrightarrow &x_1 = \frac{3}{5}t\\[5pt]
+      \end{array}
+    \right.
+  \]
+Thus the general form for some \(\mathbf{x}\in N(A)\) is \(\mathbf{x}=\left(\frac{6}{5},\frac{13}{5},\frac{3}{5},1\right)\), and the basis \(\mathcal{B} \) for \(N(A)\) is given as 
+\[
+  \mathcal{B} =\left\{ \begin{bmatrix}[r]
+     \frac{6}{5} \\[5pt]
+      \frac{13}{5}\\[5pt]
+      \frac{3}{5}\\[5pt]
+      1\\
+  \end{bmatrix} \right\} 
+\]
+
+The easiest way to construct a basis for the column space of some matrix is to row reduce its transpose. This is due to the fact that \(A \mathbf{x}\) can be represented as the sum of components of \(\mathbf{x}\) as scalars multiplied against the column vectors composing \(A\).
+\[
+  \begin{bmatrix}[r]
+    1&0&-2&0\\
+    4&-2&4&-2\\
+    -2&0&-1&3\\
+    \end{bmatrix}^{\top}= \begin{bmatrix}[r]
+      1 & 4 &-2   \\
+       0&-2  &0   \\
+       -2&  4&-1   \\
+       0&  -2&3   \\
+    \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+      1 &0  &0   \\
+       0&1  &0   \\
+       0&0  &1   \\
+       0&0  &0   \\
+    \end{bmatrix}
+\]
+Since the last row is a \(0\) row, we can ignore it. The column vectors of this matrix will form a basis \(\mathcal{B} \) for the solution space. As such, a basis for the column space of \(A\) is the standard basis for \(\mathbb{R}^3\):
+\[
+  \mathcal{B} = \left\{ \begin{bmatrix}[r]
+     1 \\
+     0 \\
+     0 \\
+  \end{bmatrix}, \begin{bmatrix}[r]
+     0 \\
+     1 \\
+     0 \\
+  \end{bmatrix}, \begin{bmatrix}[r]
+     0 \\
+     0 \\
+     1 \\
+  \end{bmatrix} \right\} 
+\]
+Since the column space of \(A\) is \(\mathbb{R}^3\) and \(\mathbf{b}\in\mathbb{R}^3\), \(\mathbf{b}\) is in the column space of \(A\). The set of \(\mathbf{x}\in\mathbb{R}^3\) satisfying \(A \mathbf{x}=\mathbf{b}\) can be found from the augmented matrix:
+\[
+  \begin{bmatrix}[r]
+    1&0&-2&0&1\\
+    4&-2&4&-2&2\\
+    -2&0&-1&3&3\\
+    \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+      1 &0  & 0 &-1.2  &-1   \\
+       0&1  &0  &-2.6  &-5   \\
+       0&0  &1  &-0.6  &-1   \\
+    \end{bmatrix}
+\]
+Give \(x_4 = t,t\in\mathbb{R}\). It follows that 
+\[
+  \left\{
+    \begin{array}{ccc}
+      x_1 - 1.2t = -1& \Longrightarrow &x_1 = 1.2t - 1\\
+      x_2 - 2.6t = -5& \Longrightarrow &x_2 = 2.6t - 5\\
+      x_3 - 0.6t = -1& \Longrightarrow &x_3 = 0.6t - 1\\
+    \end{array}
+  \right.
+\]
+Thus, every solution to \(A \mathbf{x}=\mathbf{b}\) is of the form \(\mathbf{x}= \left( 1.2t-1,2.6t-5,0.6t-1,t \right) \) for \(t\in\mathbb{R}\).
+\end{solution}
+
+\begin{exercise}
+    Let  $A=\begin{bmatrix}[r]
+    1&0&-2\\
+    4&-2&4\\
+    -2&0&-1\\
+    \end{bmatrix}$ and let $\vec{b} =\begin{bmatrix}
+    -1\\-2\\-3
+    \end{bmatrix}.$
+    \begin{enumerate}
+    \item Write down the row-reduced echelon form of A.  Label the pivot column(s). Show your all of your work by hand.  
+    \item Find a basis the nullspace of $A$.  
+    \item Find a basis the column space of $A$.
+    \item Write down all solutions to $A\vec{x}=\vec{b}$, then determine whether or not $\vec{b}$ is in the column space of $A$. 
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  \[
+    \begin{bmatrix}[r]
+      1&0&-2\\
+      4&-2&4\\
+      -2&0&-1\\
+      \end{bmatrix}\xlongrightarrow{R_2 - 4R_1 \to R_2}\begin{bmatrix}[r]
+        1&0&-2\\
+        0&-2&12\\
+        -2&0&-1\\
+        \end{bmatrix}\xlongrightarrow{-\frac{1}{2}R_2 \to R_2}\begin{bmatrix}[r]
+          1&0&-2\\
+          0&1&-6\\
+          -2&0&-1\\
+          \end{bmatrix}
+  \]
+  \[
+    \xlongrightarrow{R_3 + 2R_1 \to R_3} \begin{bmatrix}[r]
+      1&0&-2\\
+      0&1&-6\\
+      0&0&-5\\
+      \end{bmatrix}\xlongrightarrow{-\frac{1}{5}R_3 \to R_3}\begin{bmatrix}[r]
+        1&0&-2\\
+        0&1&-6\\
+        0&0&1\\
+        \end{bmatrix}\xlongrightarrow{R_2 +6R_3 \to R_2}\begin{bmatrix}[r]
+        1&0&-2\\
+        0&1&0\\
+        0&0&1\\
+        \end{bmatrix}
+  \]
+  \[
+    \xlongrightarrow{R_1 +2R_3 \to R_1}\begin{bmatrix}[r]
+      1&0&0\\
+      0&1&0\\
+      0&0&1\\
+      \end{bmatrix}=I_3
+  \]
+  Since the matrix is row-equivalent to the identity matrix, it is invertible and has only \(\mathbf{x}=\mathbf{0}\) as a solution for \(A \mathbf{x}=\mathbf{0}\). Thus, \(N(A)=\{ \mathbf{0} \} \). Furthermore, since \(A\) has an inverse, it defines an invertible linear transformation \(T:\mathbb{R}^3 \to \mathbb{R}^3\) given by \(T(\mathbf{x})=A \mathbf{x}\) which has an inverse \(T^{-1}(\mathbf{x})=A^{-1} \mathbf{x}\) such that \(T\circ T^{-1} =\text{id} \), where \(\text{id} \) denotes the identity function. A function is invertible if and only if it's bijective, and bijective linear maps define vector space isomorphisms, so \(A\) gives an automorphism on \(\mathbb{R}^3\). This implies \(T\) is onto \(\mathbb{R}^3\), and thus its solution space, which is equivalent to its column space, is \(\mathbb{R}^3\). Therefore, \(\mathbf{b}\in\mathbb{R}^3\) implies \(\mathbf{b}\) is in the column space of \(A\). Since \(T\) must also be one-to-one, there will exist exactly one \(\mathbf{x}\in\mathbb{R}^3\) such that \(A \mathbf{x}=\mathbf{b}\). It follows that 
+  \[
+    \begin{bmatrix}[r]
+      1 &0  &-2  &-1   \\
+       4&-2  &4  &-2   \\
+       -2&0  &-1  &-3   \\
+    \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+      1 &0  &0  &1   \\
+       0&1  &0  &5   \\
+       0&0  &1  &1   \\
+    \end{bmatrix}
+  \]
+  Thus, the only solution to \(A \mathbf{x}=\mathbf{b}\) is \(\mathbf{x}=(1,5,1)\). A basis \(\mathcal{B} \)  for the space is any basis for \(\mathbb{R}^3\). For example, the standard basis
+  \[
+  \mathcal{B} = \left\{ \begin{bmatrix}[r]
+     1 \\
+     0 \\
+     0 \\
+  \end{bmatrix}, \begin{bmatrix}[r]
+     0 \\
+     1 \\
+     0 \\
+  \end{bmatrix}, \begin{bmatrix}[r]
+     0 \\
+     0 \\
+     1 \\
+  \end{bmatrix} \right\} 
+\]
+\end{solution}
+
+\begin{exercise}
+    Find the coordinate matrix of $\vec{x} =(4, -2, 9)$ in $R^3$ relative to the basis $B' = \{(1, 0, 0). (0, 1, 0), (1, 1, 1)\}$.
+\end{exercise}
+
+\begin{solution}
+  For simplicity, let 
+  \[
+    \mathbf{e}_1 = (1,0,0)\quad \mathbf{e}_2=(0,1,0)\quad \mathbf{e}_3=(1,1,1)
+  \]
+  Let \(\mathbf{x}=\alpha \mathbf{e}_1 +\beta \mathbf{e}_2 +\gamma \mathbf{e}_3\), where \(\alpha ,\beta ,\gamma \in\mathbb{R}\). Obviously, \(\gamma =9\), since no other elements of \(B^{\prime} \) have a third component. Switching to a matrix representation for visual simplicity, we thus have 
+  \begin{align*}
+    \begin{bmatrix}[r]
+       \alpha  \\
+        0\\
+        0\\
+    \end{bmatrix}+\begin{bmatrix}[r]
+       0 \\
+       \beta  \\
+        0\\
+    \end{bmatrix}+\begin{bmatrix}[r]
+       9 \\
+       9 \\
+       9 \\
+    \end{bmatrix}&=\begin{bmatrix}[r]
+       4 \\
+       -2 \\
+       9 \\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}[r]
+       \alpha  \\
+        \beta \\
+        0\\
+    \end{bmatrix}&=\begin{bmatrix}[r]
+       -5 \\
+        -11\\
+        0\\
+    \end{bmatrix}
+  \end{align*}
+  We thus have \(\mathbf{x}= -5\mathbf{e}_1 -11\mathbf{e}_2 +9\mathbf{e}_3\), implying that 
+  \[
+    [\mathbf{x}]_{B^{\prime} }=\begin{bmatrix}[r]
+       -5 \\
+        -11\\
+        9\\
+    \end{bmatrix}
+  \]
+\end{solution}
+
+\begin{exercise}
+    Let $B$ and $B'$ be the two bases of $\mathbb{R}^2$ given by $B = \left\{ (2, -2), (6,3) \right\}$ and $B' = \left\{ (1,1), (32,31) \right\}$,  and let $\left[ \mathbf{x} \right]_{B'} = \begin{bmatrix*}[r] 2 \\ -1\end{bmatrix*}$.
+    \begin{enumerate}
+    \item Find the transition matrix from $B$ to $B'$, 
+    \item Find the transition matrix from $B'$ to $B$, 
+    \item Verify that the two transition matrices are inverses of one another, and 
+    \item Find $\left[ \mathbf{x} \right]_{B}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{solution}.
+  By one of the theorems, row-reducing \(\begin{bmatrix}[r]
+    B^{\prime}  &B   \\
+  \end{bmatrix}\) gives the matrix \(\begin{bmatrix}[r]
+    I_n &P ^{-1}    \\
+  \end{bmatrix}\) where \(P ^{-1} \) gives a transision \(B \to B^{\prime} \). As such, we have
+  \[
+    \begin{bmatrix}[r]
+      1 &  32&2  & 6  \\
+      1 &31  & -2 & 3  \\
+    \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+      1 &0  &-126  &-90   \\
+       0&1  &4  &3   \\
+    \end{bmatrix}
+  \]
+  Thus, the matrix
+  \[
+    P ^{-1} =\begin{bmatrix}[r]
+      -126 &-90   \\
+       4&3   \\
+    \end{bmatrix}
+  \]
+  defines a transition from \(B\) to \(B^{\prime} \). Since the matrix is invertible, we can find \(P\) via Gaussian elimination:
+  \[
+    \begin{bmatrix}[r]
+      -126 &-90  &1  &0   \\
+       4&3  &0  &1   \\
+    \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+      1 &0  &-\frac{1}{6}  &-5   \\[5pt]
+       0&1  &  \frac{2}{9}&7   \\
+    \end{bmatrix}
+  \]
+  Thus the matrix 
+  \[
+    P = \begin{bmatrix}[r]
+      -\frac{1}{6} &-5   \\[5pt]
+       \frac{2}{9}&  7 \\
+    \end{bmatrix}
+  \]
+  defines a transition from \(B^{\prime} \) to \(B\). If this is true, it should follow that \(P P ^{-1} =P ^{-1} P=I_{2} \).
+  \[
+    \begin{bmatrix}[r]
+      -\frac{1}{6} &-5   \\[5pt]
+       \frac{2}{9}&  7 \\
+    \end{bmatrix}\begin{bmatrix}[r]
+      -126 &-90   \\
+       4&3   \\
+    \end{bmatrix}= \begin{bmatrix}[r]
+      \frac{126}{6}-20 &\frac{90}{6}-15   \\[5pt]
+       -\frac{2}{9}126+28&-\frac{2}{9}90+21   \\
+    \end{bmatrix} = \begin{bmatrix}[r]
+      1 &0   \\
+      0 &1   \\
+    \end{bmatrix}=I_2
+  \]
+  Therefore the matrices are inverses of each other.
+  \[
+    [\mathbf{x}]_B = \begin{bmatrix}[r]
+      -\frac{1}{6} &-5   \\[5pt]
+       \frac{2}{9}&  7 \\
+    \end{bmatrix} \begin{bmatrix}[r]
+       2 \\
+       -1 \\
+    \end{bmatrix} = \begin{bmatrix}[r]
+        -\frac{1}{3}+5\\[5pt]
+        \frac{4}{9}-7\\
+    \end{bmatrix} = \begin{bmatrix}[r]
+        \frac{14}{3}\\[5pt]
+        -\frac{59}{9}\\
+    \end{bmatrix}
+  \]
+\end{solution}
+
+\begin{exercise}
+    Let $f(x) =x^3 -x$ and $g(x)=2x-1$ be functions in  $C[-1, 1]$.  Find the orthogonal projection of $f$ onto $g$ using the inner product \[ \left\langle f, g \right\rangle = \int^1_{-1}f(x) g(x)  \; \mathrm{d}x\]
+\end{exercise}
+
+\begin{solution}
+  An orthogonal projection of \(\mathbf{u}\) onto \(\mathbf{v}\) is defined as 
+  \[
+    \operatorname{proj}_{\mathbf{v}} (\mathbf{u}) = \frac{\left\langle \mathbf{u},\mathbf{v} \right\rangle }{\left\langle \mathbf{v},\mathbf{v} \right\rangle }\mathbf{v}
+  \]
+  As such, we have
+  \[
+    \operatorname{proj}_{g} (f) = \frac{\int_{-1}^{1}\left( x^3 -x \right)\left( 2x-1 \right)\,dx    }{\int_{-1}^1 \left( 2x-1 \right)\left( 2x-1 \right)\,dx   } \left( 2x-1 \right)
+  \]
+  \[
+    \int_{-1}^1 \left( x^3 -x \right)\left( 2x-1 \right)  \,dx =\int_{-1}^1 2x^4 - x^3- 2x^2 + x\,dx = \left[\frac{2}{5}x^5 - \frac{1}{4}x^4 - \frac{2}{3}x^3 + \frac{1}{2}x^2\right]_{-1}^1=2 \left( \frac{2}{5}-\frac{2}{3} \right) =-\frac{8}{15}
+  \]
+  \[
+    \int_{-1}^1 \left( 2x-1 \right)^2\,dx = \int_{-1}^1 4x^2 - 4x + 1\,dx=\left[ \frac{4}{3}x^3 - 2x^2 + x \right]_{-1}^1 = 2\left( \frac{4}{3}+1 \right) =\frac{14}{3}
+  \]
+  \[
+    \Longrightarrow \operatorname{proj}_g(f)=-\frac{8}{15}\cdot \frac{3}{14}\left( 2x-1 \right)  = -\frac{4}{35}\left( 2x-1 \right) 
+  \]
+\end{solution}
+\end{document}

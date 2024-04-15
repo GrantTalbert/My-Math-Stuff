@@ -1,0 +1,253 @@
+\documentclass{article}
+\newcommand{\uline}[1]{\rule[0pt]{#1}{0.4pt}}%fill this blank
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage[all]{xy}
+\usepackage[margin=1in]{geometry}
+\usepackage[linewidth=1pt]{mdframed}
+\usepackage{color,soul}
+\newenvironment{boxin}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+\usepackage{hyperref}
+
+\hypersetup{
+colorlinks=true, 
+linkcolor=Blue, 
+urlcolor=blue
+}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+%\rfoot{Thao-Nhi Luu}
+
+\newcommand{\N}{\mathbb{N}} %Naturals
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newcommand{\Q}{\mathbb{Q}} %Rationals
+\newcommand{\R}{\mathbb{R}} %Reals
+\newcommand{\C}{\mathbb{C}} %Complex numbers
+%standard basis vectors, boldface with hats
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\begin{document}
+\large
+
+
+
+%\renewcommand{\headrulewidth}{0pt}
+
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead[R]{Grant Talbert}
+\fancyhead[L]{MAT 202} 
+\begin{center}
+
+\textbf{Written Assignment 1}\\
+Grant Talbert
+
+
+\end{center}
+\emph{I have never formally learned how to write proofs and I'm like 100\% self taught so I'm sorry if I made any mistakes with notation or stuff, I'm still trying to get better.}\vspace{5mm}\\
+
+\noindent\textbf{1)} Consider the following system of linear equations.  
+
+\[ 
+\begin{array}{ccccccc}
+x & + &  2y & + & z &  =  & 8	\\
+-3x & - & 6y & -  &3z &  =  &  -21\\
+\end{array}
+\]
+
+\noindent\textbf{Part A:}
+$$\begin{bmatrix}
+1&2&1&8\\-3&-6&-3&-21
+\end{bmatrix}\xlongrightarrow{3R_1+R_2\rightarrow R_2}\begin{bmatrix}
+1&2&1&8\\-3+3&-6+6&-3+3&-21+24
+\end{bmatrix}$$
+$$=\begin{bmatrix}
+1&2&1&8\\0&0&0&3
+\end{bmatrix}$$
+$$\therefore0x+0y+0z=3$$
+$$0x+0y+0z=0\;\forall x,y,z\in\R$$
+$$\Rightarrow0=3$$
+$$\text{However, }0\neq3\Rightarrow\Leftarrow$$
+$$\text{Since we have a contradiction, our assumption that the system was consistent must be wrong.}$$
+$$\therefore\text{ this system must be inconsistent and have no solution.}$$
+\textbf{Part B:}\vspace{1mm}\\
+The fact that this system is inconsistent means there does not exist any point $(x,y,z)$ such that the planes intersect. Since these planes are continuous for all $(x,y,z)\in\R^3$, this necessarily implies that the planes are parallel to each other.\vspace{3mm}\\
+
+\noindent\textbf{2)}\vspace{3mm}\\
+ For a $3\times5$ matrix, if the fifth column is a pivot column, this implies that exactly one row has a leading 1 in the 5th column. A leading 1 must have all entries to the left of it in its column be 0. Thus, at least one column in our matrix will look like this:
+ $$\begin{bmatrix}0&0&0&0&1\end{bmatrix}$$
+ This column implies the following statement:
+ $$0x_1+0x_2+0x_3+0x_4+0x_5=1$$
+ where $x_i$ denotes a variable in $\R$. We know that for all $x_i\in\R,\;0x_i=0$. Thus, this statement simplifies to
+ $$0=1$$
+ This is a contradiction, as $0\neq1$, so we find that this matrix represents an inconsistent system.\vspace{3mm}\\
+
+\noindent\textbf{3)}\vspace{3mm}\\ 
+Since we're asked for the sales in the fourth year, it's reasonable to assume the given values start from the first year. We give $x$ as the year, and $y$ as the sales in millions. Thus, we must find an equation of the form
+$$y=ax^2+bx+c$$
+that contains the points $(1,50)$, $(2,60)$, and $(3,75)$. By plugging in our point values, we can have
+$$\left\{
+\begin{array}{c}
+	a+b+c=50\\
+	4a+2b+c=60\\
+	9a+3b+1=75
+\end{array}\right.$$
+This system of equations has the matrix representation
+$$\begin{bmatrix}1&1&1&50\\4&2&1&60\\9&3&1&75\end{bmatrix}$$
+We use the elementary row operations allowed under Gaussian elimination to solve this system.
+$$\begin{bmatrix}1&1&1&50\\4&2&1&60\\9&3&1&75\end{bmatrix}\xlongrightarrow{-4R_1+R_2\rightarrow R_2}\begin{bmatrix}1&1&1&50\\0&-2&-3&-140\\9&3&1&75\end{bmatrix}\xlongrightarrow{-\frac{1}{2}R_2\rightarrow R_2}\begin{bmatrix}1&1&1&50\\0&1&\frac{3}{2}&70\\9&3&1&75\end{bmatrix}$$
+$$\xlongrightarrow{-9R_1+R_3\rightarrow R_3}\begin{bmatrix}1&1&1&50\\0&1&\frac{3}{2}&70\\0&-6&-8&-375\end{bmatrix}\xlongrightarrow{R_3+6R_2\rightarrow R_3}\begin{bmatrix}1&1&1&50\\0&1&\frac{3}{2}&70\\0&0&1&45\end{bmatrix}\xlongrightarrow{-R_3+R_1\rightarrow R_1}\begin{bmatrix}1&1&0&5\\0&1&\frac{3}{2}&70\\0&0&1&45\end{bmatrix}$$
+$$\xlongrightarrow{-\frac{3}{2}R_3+R_2\rightarrow R_2}\begin{bmatrix}1&1&0&5\\0&1&0&\frac{5}{2}\\0&0&1&45\end{bmatrix}\xlongrightarrow{-R_2+R_1\rightarrow R_1}\begin{bmatrix}1&0&0&\frac{5}{2}\\0&1&0&\frac{5}{2}\\0&0&1&45\end{bmatrix}$$
+The matrix, now given in reduced row-echelon form, indicates the following equation will satisfy this problem:
+$$y=\frac{5}{2}x^2+\frac{5}{2}x+45$$
+To predict the sales in the fourth year, we can solve for $y$ given $x=4$:
+\begin{align*}
+y=&\frac{5}{2}4^2+\frac{5}{2}4+45\\
+=&\frac{5\cdot16}{2}+\frac{5\cdot4}{2}+45\\
+=&40+10+45\\
+=&95
+\end{align*}
+This model predicts the sales in year 4 will reach \$95 million.
+\newpage
+
+\noindent\textbf{4)}
+\begin{align*}
+x-y+2z&=0\\
+-x+y-z&=0\\
+x+ky+z&=0
+\end{align*}
+This problem was very interesting. First we give the matrix representation of this system:
+$$\begin{bmatrix}
+	1&-1&2&0\\-1&1&-1&0\\1&k&1&0
+\end{bmatrix}$$
+We perform the following operation:
+$$\begin{bmatrix}
+	1&-1&2&0\\-1&1&-1&0\\1&k&1&0
+\end{bmatrix}\xlongrightarrow{R_1+R_2\rightarrow R_1}\begin{bmatrix}
+0&0&1&0\\-1&1&-1&0\\1&k&1&0
+\end{bmatrix}$$
+Looking at the first row, we see that for all $x,y$, it must be true that $z=0$. We cannot solve for $x$ and $y$ from here, since we do not know what $k$ is. However, we will be using the fact that $\forall x,y(z=0)$ later in the problem.\\
+This system of equations is homogeneous, and thus has the trivial solution $(x,y,z)=(0,0,0)$. By a theorem from section 1.1, we know that the solution set (which I have denoted as $\mathcal{S}$ because I wanted it to look cool) of a system of equations must satisfy exactly one of these statements:
+\begin{enumerate}
+	\item $\mathcal{S}$ has exactly 1 element.
+	\item $\mathcal{S}$ has an infinite number of elements.
+	\item $\mathcal{S}=\varnothing$
+\end{enumerate}
+Since $(0,0,0)\in\mathcal{S}\;\forall k\in\R$, and thus $\mathcal{S}\neq\varnothing$, we only need to find values of $k$ that would allow for an infinite number of solutions.\\
+We know that $x-y+2z=0$ and $x+ky+z=0$. $\forall(x,y,z)\in\mathcal{S}$, the following statements hold:
+\begin{align*}
+&x+ky+z=x-y+2z\\
+\Longleftrightarrow&(x-x)+(ky+y)+(z-2z)=0\\
+\Longleftrightarrow&(ky+y)-z=0\\
+\Longleftrightarrow&ky+y=z\\
+\Longleftrightarrow&y(k+1)=z
+\end{align*}
+We are going to now isolate $k$, which entails dividing by the variable $y$. This is generally discouraged since division by $0$ is undefined over the reals. However, there is a rather trivial proof that the only solution with $y=0$ is the solution $(0,0,0)$, and we're trying to find the values of $k$ that allow for solutions beyond the aforementioned solution. To prove this, suppose we have $y=0$ and recall that $z=0\;\forall x,y$. Recalling the equations from our original system, we observe
+\begin{align*}
+	&x-y+2z=0\\
+	\Rightarrow&x-0+0=0\\
+	\Rightarrow&x=0\\
+	&-x+y-z=0\\
+	\Rightarrow&-x+0-0=0\\
+	\Rightarrow&x=0\\
+	&x+ky+z=0\\
+	\Rightarrow&x+k(0)+0=0\\
+	\Rightarrow&x=0
+\end{align*}
+Thus the only solution with $y=0$ is $(0,0,0)$. For any $k$ allowing for solutions beyond this solution, there must exist a corresponding $y\neq0$ that satisfies the system of equations. We thus allow division by $y$ in this scenario.
+$$\text{Recall }y(k+1)=z$$
+$$\Rightarrow k+1=\frac{z}{y}$$
+$$\text{Recall }z=0$$
+$$\Rightarrow k+1=0$$
+$$\Rightarrow k=-1$$
+If this statement is true, that is $k=-1$, it will imply that there are an infinite number of solutions. This becomes more obvious when we realize that $k=-1$ turns the third equation in our system into the negative of the second equation, effectively turning the system into a system of two equations with three variables, which cannot have only one solution since the number of variables is greater than the number of equations, and by a theorem from 1.1 this implies either no solutions or infinite solutions exist. Since this system is homogeneous, and thus $\mathcal{S}\neq\varnothing$, there must be infinite solutions.\\
+If it is not true, that is $k\neq-1$, then it is necessary that $y=0$, otherwise there would be no other way to arrive at this contradiction. To illustrate this, suppose $k\neq-1$. It follows that $k+1\neq0$. We previously saw the statement
+$$y(k+1)=z$$
+Remember that $z$ is always equal to 0. Thus, we have
+$$y(k+1)=0$$
+If $k+1\neq0$, then we can divide both sides by $k+1$ and see the following:
+$$\frac{y(k+1)}{k+1}=\frac{0}{k+1}$$
+$$\Leftrightarrow y=0$$
+Thus, $k\neq-1$ necessarily implies $y=0$. We previously saw that $y=0\Leftrightarrow\mathcal{S}=\{(0,0,0)\}$. Thus, any $k\neq-1$ will give this system of equations exactly one solution.
+$$\therefore k\in\R\setminus\{-1\}$$\vspace{3mm}\\
+
+\noindent\textbf{5)}\vspace{3mm}\\ 
+Consider the following matrices: 
+\[ X = \begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix},  \; \; \; Y = \begin{bmatrix}
+1 \\ 1 \\ 0
+\end{bmatrix},  \; \; \; Z = \begin{bmatrix}
+2 \\ -1 \\ 3
+\end{bmatrix},  \; \; \; W = \begin{bmatrix}
+1 \\ 1 \\ 1
+\end{bmatrix}. \] 
+\noindent{\textbf{Part A:}}\vspace{3mm}
+$$\text{Let }a,b\in\R$$
+$$\text{Let }Z=aX+bY$$
+\begin{align*}
+\Rightarrow\begin{bmatrix}2\\-1\\3\end{bmatrix}=&a\begin{bmatrix}1\\0\\1\end{bmatrix}+b\begin{bmatrix}1\\1\\0\end{bmatrix}\\
+=&\begin{bmatrix}a\\0\\a\end{bmatrix}+\begin{bmatrix}b\\b\\0\end{bmatrix}\\
+=&\begin{bmatrix}a+b\\b\\a\end{bmatrix}
+\end{align*}
+$$\Longleftrightarrow\left\{
+\begin{array}{c}
+	a+b=2\\
+	b=-1\\
+	a=3
+\end{array}
+\right. $$
+$$a+b=3-1=2$$
+$$\therefore a=3\text{ and }b=-1$$\\
+\noindent{\textbf{Part B:}}\vspace{3mm}
+$$\text{Suppose for contradiction that }\exists a,b\in\R\text{ such that }aX+bY=W$$
+$$\Longrightarrow a\begin{bmatrix}1\\0\\1\end{bmatrix}+b\begin{bmatrix}1\\1\\0\end{bmatrix}=\begin{bmatrix}1\\1\\1\end{bmatrix}$$
+$$\Longleftrightarrow\begin{bmatrix}a\\0\\a\end{bmatrix}+\begin{bmatrix}b\\b\\0\end{bmatrix}=\begin{bmatrix}1\\1\\1\end{bmatrix}$$
+$$\Longleftrightarrow\begin{bmatrix}a+b\\b\\a\end{bmatrix}=\begin{bmatrix}1\\1\\1\end{bmatrix}$$
+$$\therefore a=1\text{ and }b=1\text{ and }a+b=1$$
+$$\text{However, }a=1\text{ and }b=1\text{ implies }a+b=1+1=2\neq1\Rightarrow\Leftarrow$$
+$$\text{Therefore, no such scalars }a\text{ and }b\text{ exist.}$$
+$$\therefore\nexists a,b\in\R(aX+bY=W)$$\\
+\noindent{\textbf{Part C:}}\vspace{3mm}
+$$\text{Let }aX+bY+cW+\vec{0}$$
+$$\Rightarrow\begin{bmatrix}a\\0\\a\end{bmatrix}+\begin{bmatrix}b\\b\\+\end{bmatrix}+\begin{bmatrix}c\\c\\c\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+$$\Rightarrow\begin{bmatrix}a+b+c\\b+c\\a+c\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+$$\Rightarrow a+b+c=b+c=0$$
+$$\Rightarrow a=0$$
+$$\Rightarrow\begin{bmatrix}b+c\\b+c\\c\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+$$\Rightarrow c=0$$
+$$\Rightarrow\begin{bmatrix}b\\b\\0\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+$$\Rightarrow b=0$$
+$$\therefore aX+bY+cW=\vec{0}\Leftrightarrow a=0,\; b=0,\; c=0$$\\
+\noindent{\textbf{Part D:}}\vspace{3mm}
+
+	$$aX+bY+cZ=\vec{0}$$
+	$$\Rightarrow a\begin{bmatrix}1\\0\\1\end{bmatrix}+b\begin{bmatrix}1\\1\\0\end{bmatrix}+c\begin{bmatrix}2\\-1\\3\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+	$$\Rightarrow\begin{bmatrix}a+b+2c\\b-c\\a+3c\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+	$$\Rightarrow b-c=0\Rightarrow b=c$$
+	$$Rightarrow\begin{bmatrix}a+3c\\c-c\\a+3c\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+	$$\Rightarrow a+3c=0\Rightarrow a=-3c$$
+	$$\text{Let }c=1$$
+	$$\Rightarrow b=1,\quad a=-3$$
+	$$\Rightarrow\begin{bmatrix}-3+1+2\\1-1\\-3+3\end{bmatrix}=\begin{bmatrix}0\\0\\0\end{bmatrix}$$
+Therefore the scalars $a=-3$, $b=1$, and $c=1$ satisfy the statements $aX+bY+cZ=\vec{0}$ and $\{a,b,c\}\setminus\{0\}\neq\varnothing$.
+
+\end{document}
+
+
+
+

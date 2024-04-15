@@ -1,0 +1,347 @@
+\documentclass{article}
+\newcommand{\uline}[1]{\rule[0pt]{#1}{0.4pt}}%fill this blank
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage[all]{xy}
+\usepackage[margin=1in]{geometry}
+\usepackage[linewidth=1pt]{mdframed}
+\usepackage{color,soul}
+\newenvironment{boxin}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+\usepackage{hyperref}
+
+\hypersetup{
+colorlinks=true, 
+linkcolor=Blue, 
+urlcolor=blue
+}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+%\rfoot{Thao-Nhi Luu}
+
+\newcommand{\N}{\mathbb{N}} %Naturals
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newcommand{\Q}{\mathbb{Q}} %Rationals
+\newcommand{\R}{\mathbb{R}} %Reals
+\newcommand{\C}{\mathbb{C}} %Complex numbers
+%standard basis vectors, boldface with hats
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\begin{document}
+\large
+
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead[R]{Grant Talbert}
+\fancyhead[L]{MAT 202} 
+\begin{center}
+
+\textbf{Written Assignment 2}\\
+Grant Talbert
+\end{center}
+\noindent{\textbf{1)}}
+\[
+    \text{Let } AP=DP 
+\]
+\[
+    \text{Let }P\text{ be an invertible }n\times n\text{ matrix.} 
+\]
+By the property of right cancellation for invertible matrices, we have 
+\[
+    \Longleftrightarrow APP^{-1} =DPP^{-1} 
+\]
+\[
+    \Longleftrightarrow A=D\qed
+\]
+
+\noindent{\textbf{2)}} First we must show the product of any two diagonal matrices is a diagonal matrix. Suppose we have two \(n\times n\) diagonal matrices \(A,B\) with real entries, where \(\forall i(a_{ii}\neq0\land b_{ii}\neq0)\). This assumption will be important later.
+We recall from the component-wise definition of matrix mulitplication bewteen two \(n\times n\) matrices that any component \(ab_{ij} \) of a product \(AB\) is given as
+\[
+    ab_{ij}=\sum_{k=1}^n  a_{ik}b_{kj}  
+\]
+By the definition of a diagonal matrix, we know that for any entry not on the main diagonal, that is any \(a_{ij}\) where \(i\neq j\), it must follow that \(a_{ij}=0 \). Since \(\forall a\in\mathbb{R} (0a\equiv 0)\), the product of any \(a_{ik},b_{kj}  \) will equal 0 unless there exists a \(k\) such that \(i=k=j\).
+If \(i=j\), then there will always exist exactly one \(k\), since for this summation, \(k\) ranges through the set \(\{ 1,2,\ldots,n \}\subset\mathbb{N}  \), of which \(i\) and \(j\) are elements. Thus, the sum of the products of components can have a nonzero value if and only if \(i=j\), which we can define as \(a_{ii}b_{ii}\). By definition, all entries \(ab_{ii}\) must be on the main diagonal, and therefore we find that the product of any two diagonal matrices is a diagonal matrix.\\
+We must now show that if a diagonal matrix \(A\) times a matrix \(B\) equals a new diagonal matrix \(AB\), then \(B\) must be diagonal. Suppose \(B\) has an element \(b_{ij}\neq 0,i\neq j \). According to the above component-wise definition of matrix multiplication, when \(k=i\), we will have \(a_{ii}b_{ij}  \), both of which are nonzero, as previously assumed. From this, it follows that there exists some \(ab_{ij},i\neq j \) such that
+\[
+    ab_{ij} =\sum_{k=1}^n a_{ik}b_{kj}=a_{ii}b_{ij}  \neq 0\text{ for }i\neq j
+\]
+and thus \(AB\) is not diagonal. The same logic can be applied to prove the same for a product \(BA\), where for an entry \(ba_{ij}\neq 0,i\neq j \) by taking the value \(k=j\). From this, we find that if a matrix \(A\) is diagonal and a product \(AB\text{ or } BA\) is diagonal, then it's necessarily implied that \(B\) is diagonal.\\
+From the above discussion, we can recall that component-wise multiplication of two diagonal matrices can be defined as 
+\[
+    ab_{ii} =\sum_{k=1}^n a_{ik}b_{ki} =a_{ii}b_{ii}
+\]
+and for all \(i\neq j\), we obtain \(0\).\\
+A square matrix \(A\) of order \(n\)  is invertible if there exists a matrix \(A^{-1} \) such that \(AA^{-1} =A^{-1} A=I_n\). Since \(I_n\) is a diagonal matrix, it follows from the above statements that if \(A\) is diagonal and there exists \(A^{-1} \), then \(A^{-1} \) must also be diagonal. We also know that, assuming \(\forall i(a_{ii}\neq0\land b_{ii}\neq 0 )\), the product of two diagonal matrices \(AB\) cannot have any 0 entries on its main diagonal, since there are no zero divisors over \(\mathbb{R} \), that is \(\nexists a,b\in\mathbb{R}\setminus \{ 0 \}  (ab=0)\).\\
+We know that \(\mathbb{R} \) has multiplicative inverses, that is, \(\forall( a\in\mathbb{R}\setminus \{ 0 \}  )(\exists( a^{-1} \in\mathbb{R}\setminus \{ 0 \}  )(aa^{-1} =a^{-1} a=1))\). Since we are assuming that the main diagonal has all nonzero entries, and thus all entries are in \(\mathbb{R} \setminus \{ 0 \} \), there will exist a multiplicative identity for every entry. Since the components of \(AB\) on the main diagonal equal \(a_{ii}b_{ii}  \), and \(0\) elsewhere, we can simply define the matrix \(B\) such that \(b_{ii}=a^{-1}_{ii}  \), and then \(B\) will be the inverse of \(A\). Since there will always exist multiplicative inverses for any \(a\in\mathbb{R} \setminus \{ 0 \} \), we can always define such a \(B\), and thus there will always be an inverse if the assumption as stated above holds.\\
+Recall that \(\forall a\in\mathbb{R} (0a\equiv 0)\), and our initial assumption that \(\forall i(a_{ii}\neq 0\land b_{ii}\neq0  )\). Thus, if our initial assumption is wrong and there exist zero entries on the main diagonal of a diagonal matrix \(A\), that is \(\exists i( a_{ii}=0) \), it will follow that \(\exists i(a_{ii}b_{ii}=0\forall b_{ii}\in\mathbb{R})   \). The identity matrix does not have \(0\)s on its main diagonal, so this matrix cannot be invertible since its product will have \(0\)s on the main diagonal. This logic holds in reverse, that is if there exists some \(b_{ii}=0 \).\\
+Therefore we find that a diagonal matrix \(A\) is invertible if and only if every diagonal entry \(a_{ii}\neq0\;\forall i\).\hfill\(\qed\) 
+
+
+\noindent\textbf{3)}
+\begin{align*}
+    \text{Let }A\coloneqq \begin{bmatrix}
+        1 &0  &1   \\
+         2&1  &2   \\
+         3&2  &6   \\
+    \end{bmatrix}\\
+    \begin{bmatrix}
+        1 &0  &0   \\
+         -2&1  &0   \\
+         0&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &1   \\
+         2& 1 &2   \\
+         3&2  &6   \\
+    \end{bmatrix}&=\begin{bmatrix}
+        1 &0  &1   \\
+         0&1  &0   \\
+         3&2  &6   \\
+    \end{bmatrix}\\
+    \begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         -3&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         -2&1  &0   \\
+         0&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &1   \\
+         2& 1 &2   \\
+         3&2  &6   \\
+    \end{bmatrix}&=\begin{bmatrix}
+        1 &0  &1   \\
+         0&1  &0   \\
+         0&2  &3   \\
+    \end{bmatrix}\\
+    \begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         0&-2  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         -3&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         -2&1  &0   \\
+         0&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &1   \\
+         2& 1 &2   \\
+         3&2  &6   \\
+    \end{bmatrix}&=\begin{bmatrix}
+        1 &0  &1   \\
+         0&1  &0   \\
+         0&0  &3   \\
+    \end{bmatrix}\\
+    \text{Let }\begin{bmatrix}
+        1 &0  &1   \\
+         0&1  &0   \\
+         0&0  &3   \\
+    \end{bmatrix}&\eqqcolon  U\\
+    \text{Let }\begin{bmatrix}
+        1 &0  &0   \\
+         -2&1  &0   \\
+         0&0  &1   \\
+    \end{bmatrix}^{-1}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         -3&0  &1   \\
+    \end{bmatrix}^{-1}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         0&-2  &1   \\
+    \end{bmatrix}^{-1} &\eqqcolon  L\\
+    \Longrightarrow \begin{bmatrix}
+        1 &0  &0   \\
+         2&1  &0   \\
+         0&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         3&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         0&2  &1   \\
+    \end{bmatrix}&=L\\
+    \Longrightarrow \begin{bmatrix}
+        1 &0  &0   \\
+         2&1  &0   \\
+         3&0  &1   \\
+    \end{bmatrix}\begin{bmatrix}
+        1 &0  &0   \\
+         0&1  &0   \\
+         0&2  &1   \\
+    \end{bmatrix}&=L\\
+    \Longrightarrow \begin{bmatrix}
+        1 &0  &0   \\
+         2&1  &0   \\
+         3&2  &1   \\
+    \end{bmatrix}&=L
+\end{align*}\begin{align*}
+    \text{Let }L\vec{y}\coloneqq \begin{bmatrix}
+        1 &0  &0   \\
+         2&1  &0   \\
+         3&2  &1   \\
+    \end{bmatrix} \begin{bmatrix}
+         y_1 \\
+          y_2\\
+          y_3\\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+          7\\
+          8\\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         y_1 \\
+          2y_1+y_2 \\
+          3y_1+2y_2 +y_3\\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+          7\\
+          8\\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         y_1 \\
+         y_2 \\
+         2y_2 +y_3 \\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+          7-6\\
+          8-9\\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         y_1 \\
+         y_2 \\
+         y_3 \\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+         1 \\
+         -1-2 \\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         y_1 \\
+         y_2 \\
+         y_3 \\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+         1 \\
+         -3 \\
+    \end{bmatrix}\\
+    U\vec{x}=\begin{bmatrix}
+        1 &0  &1   \\
+         0&1  &0   \\
+         0&0  &3   \\
+    \end{bmatrix}\begin{bmatrix}
+         x_1 \\
+          x_2\\
+          x_3\\
+    \end{bmatrix}&=\begin{bmatrix}
+         y_1 \\
+         y_2 \\
+         y_3 \\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         x_1+x_3 \\
+          x_2\\
+          3x_3\\
+    \end{bmatrix}&=\begin{bmatrix}
+         3 \\
+         1 \\
+         -3 \\
+    \end{bmatrix}\\
+    \Longrightarrow \begin{bmatrix}
+         x_1 \\
+         x_2 \\
+         x_3 \\
+    \end{bmatrix}&=\begin{bmatrix}
+         4 \\
+         1 \\
+         -1 \\
+    \end{bmatrix}
+\end{align*}
+$\therefore \text{ the system of equations is satisfied for }(x_1,x_2,x_3)=(4,1,-1)\hfill\qed$
+\newpage
+\noindent\textbf{4)}
+\begin{align*}
+    0&=\begin{vmatrix}
+        \lambda  & 0 & 1  \\
+         0& \lambda  & 3  \\
+         2& 2 &\lambda-2    \\
+    \end{vmatrix}\\
+    &= \begin{vmatrix}
+        \lambda  &3   \\
+         2&\lambda -2   \\
+    \end{vmatrix}\lambda +\begin{vmatrix}
+        0 &\lambda    \\
+         2&2   \\
+    \end{vmatrix}\\
+     &=\left(\lambda ^2 -2\lambda -6\right)\lambda -2\lambda\\
+    &= \lambda^3 -2\lambda^2 -8\lambda\\
+    &= \lambda \left( \lambda ^2 -2\lambda -8 \right)\\
+    &\Longrightarrow  \lambda =0\land \lambda ^2-2\lambda -8=0\\
+    &\Longrightarrow 0= (\lambda -4)(\lambda +2)\\
+    \therefore0=\begin{vmatrix}
+        \lambda  & 0 & 1  \\
+         0& \lambda  & 3  \\
+         2& 2 &\lambda-2    \\
+    \end{vmatrix}&\Longleftrightarrow  \lambda \in\{ -2,0,4 \}
+\end{align*}$\hfill\qed$\\
+\noindent{\textbf{5)}}
+\[\text{Let }A\coloneqq \begin{bmatrix}
+    a_{11}  & a_{12}   \\
+    a_{21}  &  a_{22}  \\
+\end{bmatrix}\text{ and }B\coloneqq \begin{bmatrix}
+    b_{11}  & b_{12}   \\
+     b_{21} &  b_{22}  \\
+\end{bmatrix}\]
+\[
+    \text{Suppose multiplication of any two matrix components is commutative.}
+\]
+\begin{align*}
+\Longrightarrow AB&=\begin{bmatrix}
+    a_{11}  & a_{12}   \\
+    a_{21}  &  a_{22}  \\
+\end{bmatrix}\begin{bmatrix}
+    b_{11}  & b_{12}   \\
+     b_{21} &   b_{22} \\
+\end{bmatrix}\\
+&=\begin{bmatrix}
+    a_{11}b_{11}+a_{12}b_{21}     & a_{11}b_{12}+a_{12}b_{22}      \\
+    a_{21}b_{11}+a_{22}b_{21}     & a_{21}b_{12}+a_{22}b_{22}      \\
+\end{bmatrix}\\
+\Longrightarrow \text{Tr}(AB)&=a_{11}b_{11}+a_{12}b_{12}+a_{21}b_{12}+a_{22}b_{22}\\
+BA&=\begin{bmatrix}
+    b_{11}  & b_{12}   \\
+     b_{21} &   b_{22} \\
+\end{bmatrix}\begin{bmatrix}
+    a_{11}  & a_{12}   \\
+    a_{21}  &  a_{22}  \\
+\end{bmatrix}\\
+&=\begin{bmatrix}
+    b_{11}a_{11}+b_{12}a_{21}     & b_{11}a_{12}+b_{12}a_{22}      \\
+    b_{21}a_{11}+b_{22}a_{21}     & b_{21}a_{12}+b_{22}a_{22}      \\
+\end{bmatrix}\\
+\Longrightarrow \text{Tr}(BA)&=b_{11}a_{11}+b_{12}a_{21}+b_{21}a_{12}+b_{22}a_{22}\\
+&=a_{11}b_{11}+a_{21}b_{12}+a_{12}b_{21}+a_{22}b_{22}\\
+&=a_{11}b_{11}+a_{12}b_{21}+a_{21}b_{12}+a_{22}b_{22}\\
+&=\text{Tr}(AB)\\
+&\therefore\text{Tr}(AB)=\text{Tr}(BA)
+\end{align*}
+It will follow from the above proposition that for any two \(2\times 2\) matrices \(A,B\) with components from a set \(S\) over which multiplication is defined and commutative, we have \(\text{Tr}(AB)= \text{Tr}(BA)  \). I have no idea how to prove this for a noncommutative algebra. The same goes for addition now that I think about it.\hfill$\qed$
+\end{document}

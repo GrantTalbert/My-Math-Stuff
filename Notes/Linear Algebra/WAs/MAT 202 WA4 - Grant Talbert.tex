@@ -1,0 +1,218 @@
+\documentclass{article}
+\newcommand{\uline}[1]{\rule[0pt]{#1}{0.4pt}}%fill this blank
+\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+\usepackage{color, soul}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[linewidth=1pt]{mdframed}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+%\usepackage[20pt]{extsizes}
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\
+bullet$}}}}}
+\makeatother
+\newenvironment{boxin}
+    {\begin{center}
+    \begin{tabular}{|p{1 \textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+\usepackage{fancyhdr}
+\newcommand{\bv}{\ensuremath{{\bf v } } }
+\newcommand{\bu}{\ensuremath{{\bf u } } }
+\newcommand{\bw}{\ensuremath{{\bf w } } }
+\newcommand{\bx}{\ensuremath{{\bf x } } }
+\newcommand{\bp}{\ensuremath{{\bf p } } }
+\newcommand{\bd}{\bigcdot}
+\newcommand{\bbox}[2]{ \fbox{\begin{minipage}{#1 in}\hfill\vspace{#2 in}\
+end{minipage}} }
+\newcommand{\N}{\mathbb{N}} %Naturals
+\newcommand{\Z}{\mathbb{Z}} %Integers
+\newcommand{\Q}{\mathbb{Q}} %Rationals
+\newcommand{\R}{\mathbb{R}} %Reals
+\newcommand{\C}{\mathbb{C}} %Complex numbers
+%standard basis vectors, boldface with hats
+\newcommand{\ihat}{\boldsymbol{\hat{\textbf{\i}}}}
+\newcommand{\jhat}{\boldsymbol{\hat{\textbf{\j}}}}
+\newcommand{\khat}{\boldsymbol{\hat{\textbf{k}}}}
+\makeatletter
+\renewcommand*\env@matrix[1][c]{\hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols #1}}
+\makeatother
+\pagestyle{fancy}
+%\rfoot{Thao-Nhi Luu}
+\begin{document}
+\large
+
+%\renewcommand{\headrulewidth}{0pt}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead[R]{Grant Talbert}
+\fancyhead[L]{MAT 202} 
+\begin{center}
+\textbf{Written Assignment 4}\\
+Grant Talbert
+\end{center}
+\emph{Note - I often use the notation }\(\exists (x)(P(x))\)\emph{ to mean "there exists x such that P(x). Basically I encase each argument in parenthases to be 100\% clear about which part of the statement is which, and I leave the "such that" implicit in my notation between the parenthases because I'm too lazy to write it most of the time. I often use similar notation for }\(\forall(x)(P(x)) \)\emph{, meaning "for all x, P(x) is true." I think I've seen similar notation used before so I would assume it's not extremely nonstandard, but none of my profs have written like that so I like to clarify my notation.}\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+\noindent{\textbf{1)}} Let $W$ be the set of all vectors in $\mathbb{R}^2$ whose components are integers.  Either show that  $W$ is a subspace of $\mathbb{R}^2$ , or provide a specific example that violates the test for a subspace (Theorem 4.5).\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+Let \(\mathbb{R} ^2\) be defined over \(\mathbb{R} \) with \(W\coloneqq \mathbb{Z} ^2\). Trivially, \(W \subset  \mathbb{R} ^2\). Equally as trivially, \(W\) is not a subspace of \(\mathbb{R} ^2\) due to not being closed under the standard definition of scalar multiplication. Consider \(0.5\in\mathbb{R} \). For any odd number \(\alpha  \in\mathbb{Z} \), we have 
+\[
+  0.5 \alpha  \notin \mathbb{Z}
+\]
+Thus, for any \(\mathbf{v}\in W\) with a component \(\alpha \), it follows that \(0.5\mathbf{v} \notin W\). For example, \(0.5(3,1)=(1.5,0.5)\notin W\). This can be taken a step further.
+\[
+  \pi \in\mathbb{R} \setminus \mathbb{Q} 
+\]
+\[
+  \Longrightarrow \nexists(\beta ,\gamma \in\mathbb{Z} )\left( \pi =\frac{\beta }{\gamma } \right) 
+\]
+The second step is true by definition of an irrational number. For any \(\beta ,\gamma \in \mathbb{Z} \), we thus have 
+\begin{align*}
+  &\qquad\pi \neq \frac{\beta }{\gamma }\\
+  &\Longrightarrow \gamma \pi \neq \beta\\
+  &\qquad\therefore \forall \left( \beta \in\mathbb{Z}  \right)\left( \beta  \pi \notin\mathbb{Z}   \right)
+\end{align*}
+Therefore, we can confidently say that for all \(\mathbf{v} \in W\), it follows that \(\pi \mathbf{v} \notin W\), and the same will follow for any irrational number. Therefore \(W\) is not closed under scalar multiplication.\hfill\(\blacksquare\)\\
+This problem actually reminds me of when I tried to prove \(\mathbb{Z} \) couldn't form a vector space a little while ago, but looking back on it my proof was not very correct. Like I said \(\{ 0,1 \} \) wasn't a field since \(1+1=2\notin \{ 0,1 \} \), but \(\mathbb{Z} /2\mathbb{Z} \) actually does form a field with \(1+1=0\). I think my proof works however, I just need to clean up some of the arguments in it.
+
+
+\newpage
+\noindent{\textbf{2)}} Let $A$ be a fixed $m \times n$ matrix.  Use properties of matrix addition and multiplication to show that 
+the set 
+\[ S = \left\{ \mathbf{x}  \in \mathbb{R}^n  :  A \mathbf{x} = \mathbf{0}  \right\} \] 
+is a subspace of $\mathbb{R}^n$.\\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+For any \(A\in M_{m,n}\), the trivial solution \(\mathbf{x} =\mathbf{0} \) will be a solution to the equation \(A \mathbf{x} =\mathbf{0} \). Thus, \(\mathbf{0} \in S\). By the definition of \(S\), we also have 
+\[
+  \forall (\mathbf{x} \in S)\left( \mathbf{x} \in\mathbb{R} ^n \right)
+\]
+Thus, \(S \subseteq \mathbb{R} ^n\).\\
+Let \(\mathbf{x} ,\mathbf{y} \in S\). It follows that
+\[
+  A \mathbf{x} =\mathbf{0}
+\]
+\[
+  A \mathbf{y} =\mathbf{0} 
+\]
+Consider \(\mathbf{x} +\mathbf{y}\). By the properties of matrix multiplication and the fact that \(\mathbb{R} ^n\) is a vector space, we have
+\[
+  A(\mathbf{x} +\mathbf{y} )= A \mathbf{x} +A \mathbf{y}=0+0=0
+\]
+\[
+  \therefore \mathbf{x} +\mathbf{y} \in S
+\]
+Thus \(S\) is closed under vector addition. Let \(\alpha \in \mathbb{R} \). By the associative property defined over matrices, real numbers, and the vector space \(\mathbb{R}^n\), we have 
+\[
+  A(\alpha \mathbf{x} )=\alpha A \mathbf{x}=\alpha (0)=0
+\]
+\[
+  \therefore \alpha \mathbf{x} \in S
+\]
+Thus, \(S\) is closed under scalar multiplication. By one of the theorems, since \(S\subseteq \mathbb{R}^n\), \(S \neq \varnothing \because \mathbf{0}\in S \), and \(S\) is closed under vector addition and scalar multiplication as defined in \(\mathbb{R} ^n\), it follows that \(S\) is a subspace of \(\mathbb{R}^n\).\hfill\(\blacksquare\)\\
+I'm just realizing this as I'm checking over my work before submi0tting this - if \(A:\mathbb{R} ^n \to \mathbb{R} ^m\) were a linear map, wouldn't the nullspace just be \(\ker (A)\)? Which would be \(\{  \mathbf{0}  \} \) if \(A\) is an isomorphism, but the general case is just a homomorphism so that's not necessarily true. Wait if an isomorphism is a bijective homomorphism, and all linear maps are homomorphic, then any linear map given by an invertible matrix gives an isomorphism since a function is bijective iff it is invertible. And for \(A \mathbf{x} =\mathbf{0} \), the nullspace is \(\{ \mathbf{0}  \} \) iff \(A^{-1} \) exists. Wow why does every single part of linear algebra connect together so well. And why am I thinking out loud into a document.
+
+
+\newpage
+\noindent{\textbf{3)}} Let $A$ be a fixed $m \times n$ matrix. Determine whether the set 
+\[ T = \left\{ \mathbf{x}  \in \mathbb{R}^n  :  A \mathbf{x} = \mathbf{b}  \text{ and  }  \mathbf{b} \neq \mathbf{0}\right\} \] 
+is a subspace of $\mathbb{R}^n$?  Justify your answer. \\
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+Let \(A\in M_{m,n}\) be an arbitrary matrix with real entries. \(T\) is a subspace iff \(\mathbf{0} \in T\). However, for \(\mathbf{x} =\mathbf{0} \),
+\[
+  A \mathbf{0} =\mathbf{0}
+\]
+However, \(T\) requires \(A \mathbf{x} \neq \mathbf{0} \), meaning \(\mathbf{0}\notin T \). Thus \(T\) is not a vector space, and cannot be a subspace of \(\mathbb{R} ^n\).\hfill\(\blacksquare\)\\
+
+
+
+\newpage
+\noindent{\textbf{4)}} Let $S =\left\{(1, 2, -3), (-1, 2, 2)\right\}$ 
+\begin{enumerate}
+\item Are the vectors in $S$ linearly independent? Justify your answer. 
+\item Do the vectors in S span $\mathbb{R}^3$? Justify your answer.
+\item Find a basis for the span($S$). Justify your answer.
+\end{enumerate}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+Suppose there exists some \(\alpha ,\beta \in\mathbb{R} \) such that 
+\[
+  \alpha \begin{bmatrix}[r]
+     1 \\
+     2 \\
+     -3 \\
+  \end{bmatrix}= \beta \begin{bmatrix}[r]
+     -1 \\
+      2\\
+      2\\
+  \end{bmatrix}
+\]
+If this statement holds for some \((\alpha ,\beta )\neq (0,0)\), then \(S\) is linearly dependent. From the above statement, we have
+\[
+  \begin{bmatrix}[r]
+     \alpha  \\
+     2\alpha  \\
+     -3\alpha  \\
+  \end{bmatrix}=\begin{bmatrix}[r]
+     -\beta  \\
+      2\beta \\
+      2\beta \\
+  \end{bmatrix}
+\]
+Since matrix equality is defined component-wise, from the first entry we have \(\alpha =-\beta \). However, from the second entry, we have \(2\alpha =2\beta \), but if \(\beta =-\alpha\), we have 
+\[
+  2\alpha =-2\alpha \iff \alpha =-\alpha \iff \alpha =0
+\]
+If \(\alpha =0\), then \(\beta =0\) as well, meaning the only solution \(\alpha ,\beta \in\mathbb{R} \) is the trivial solution. Therefore, \(S\) is linearly independent.\\
+We know that \(\dim \left( \mathbb{R} ^3 \right) =3\) due to the standard basis, \(B=\left\{ (1,0,0),(0,1,0),(0,0,1) \right\} \) having \(|B| =3\). Thus, all bases for \(\mathbb{R} ^3\) have 3 elements. It follows from the definition of a basis that there are no sets with less elements than a basis that span the space. However, \(|S| =2\neq 3\), meaning \(\operatorname{span}(S) \subsetneq \mathbb{R} ^3 \). Therefore, \(S\) does not span \(\mathbb{R} ^3\).\\
+Suppose for purpose of contradiction that there exists some set \(B_S \subset \mathbb{R} ^3\) that forms a basis for \(\operatorname{span}(S) \) with \(\left\vert B_S \right\vert < |S| \). Since \(|S| =2\), it follows that \(\left\vert B_S \right\vert =1 \). Let \(\mathbf{e} \in B_S\) be the element of this basis. Notice that \(S \subset \operatorname{span}(S) \). From this,
+\[
+  \exists (\alpha,\beta  \in\mathbb{R} )\left( \alpha \mathbf{e} =\begin{bmatrix}[r]
+     1 \\
+     2 \\
+     -3 \\
+  \end{bmatrix} \land \beta \mathbf{e} =\begin{bmatrix}[r]
+     -1 \\
+      2\\
+      2\\
+  \end{bmatrix} \right) 
+\]
+However, \(S\) is linearly independent, meaning that there exists no set \(\left\vert R \right\vert < |S| \) where the elements of \(S\) can be written as a linear combination of the elements of \(R\). Thus, no such \(B_S\) exists, since the elements of \(S\) cannot be written as a linear combination of \(B_S\), and by contradiction it follows that \(S\) must be its own basis for \(\operatorname{span}(S) \).
+\hfill\(\blacksquare\)
+
+
+\newpage
+\noindent{\textbf{5)}} Let $T =\left\{(1, 2, -3), (2, -1, 2), (5, 0, 1), (3, 0, 3) \right\}$ 
+\begin{enumerate}
+\item Are the vectors in $T$ linearly independent? Justify your answer. 
+\item Do the vectors in S span $\mathbb{R}^3$? Justify your answer.
+\item Find a basis for the span($T$). Justify your answer.
+\end{enumerate}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}\\
+We know that \(T \subset \mathbb{R} ^3\), and from the above problem \(\dim \left( \mathbb{R} ^3 \right)  =3\). However, \(|T| =4>\dim \left( \mathbb{R} ^3 \right)\), so \(T\) can't be linearly independent since it has more elements than the basis of \(\mathbb{R} ^3\).\\
+Since the rowspace of any two row-equivalent matrices is equal, we can find a basis for \(\operatorname{span}(T) \) as follows.
+\[
+  \begin{bmatrix}[r]
+    1 &2  &-3   \\
+     2&-1  &2   \\
+     5&0  &1   \\
+     3&0  &3   \\
+  \end{bmatrix}\xlongrightarrow{\text{rref}}\begin{bmatrix}[r]
+    1 &0  &0   \\
+     0&1  &0   \\
+     0&0  &1   \\
+     0&0  &0   \\
+  \end{bmatrix}
+\]
+Therefore, \(\operatorname{span}(T)=\operatorname{span}\left\{ (1,0,0),(0,1,0),(0,0,1) \right\}   \). This set \(\left\{ (1,0,0),(0,1,0),(0,0,1) \right\}\) is the standard basis for \(\mathbb{R}^3\), and as such \(\operatorname{span}\left\{ (1,0,0),(0,1,0),(0,0,1) \right\}=\mathbb{R}^3\). Thus, \(\operatorname{span}(T)=\mathbb{R} ^3 \). We also find that a basis for \(\operatorname{span}(T) \) is the standard basis for \(\mathbb{R}^3\):
+\[
+  \left\{ (1,0,0),(0,1,0),(0,0,1) \right\}
+\]\hfill\(\blacksquare\)
+\end{document}
