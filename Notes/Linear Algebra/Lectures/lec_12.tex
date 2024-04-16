@@ -1,0 +1,115 @@
+\begin{definition}[One-to-one and Onto Transformations]
+    Let \(T:V\to W\) be a linear map. We say that \(T\) is one-to-one if for any \(\mathbf{w} \in W\), there exists at most one \(\mathbf{v} \in V\) such that \(T(\mathbf{v} )=\mathbf{w} \). Equivalently,
+    \[
+        T(\mathbf{u} )=T(\mathbf{v} )\iff \mathbf{u} =\mathbf{v} 
+    \]
+    We say that \(T\) is onto if for all \(\mathbf{w} \in W\), there exists at least one \(\mathbf{v} \in V\) such that \(T(\mathbf{v} )=\mathbf{w} \).
+\end{definition}
+\begin{exercise}
+    Consider \(T:\mathbb{R} ^3 \to \mathbb{R} ^2\) given by 
+    \[
+        T(\mathbf{v} )=\begin{bmatrix}
+            1 &0  &0   \\
+             0&1  &0   \\
+        \end{bmatrix} \begin{bmatrix}
+             x \\
+             y \\
+             z \\
+        \end{bmatrix}
+    \]
+\end{exercise}
+\begin{solution}
+    This is an onto map but not one to one.
+    \[
+        \begin{bmatrix}
+            1 &0  &0   \\
+             0&1  &0   \\
+        \end{bmatrix} \begin{bmatrix}
+             x \\
+             y \\
+             z \\
+        \end{bmatrix} = \begin{bmatrix}
+             x \\
+             y \\
+        \end{bmatrix}
+    \]
+\end{solution}
+\begin{theorem}[One-to-one Linear Maps]
+    Let \(T:V\to W\) be a linear transformation. Then \(T\) is one-to-one if and only if \(\ker (T)=\{ \mathbf{0}  \} \).
+\end{theorem}
+\begin{proof}
+    Recall that for any linear map, \(\mathbf{0}\mapsto \mathbf{0}  \).\\
+    Suppose \(T\) is injective. Since \(\mathbf{0}\mapsto \mathbf{0}\) and \(T\) is injective, \(\ker (T)=\{ \mathbf{0} \} \).\\
+    Suppose \(\ker (T)=\{ \mathbf{0}  \} \). Let \(\mathbf{u} ,\mathbf{v} \in V\) such that 
+    \begin{align*}
+        &\qquad T(\mathbf{u} )=T(\mathbf{v} )\\
+        &\Longrightarrow T(\mathbf{u} )-T(\mathbf{v} )=\mathbf{0}\\
+        &\Longrightarrow T(\mathbf{u} -\mathbf{v} )=\mathbf{0}\\
+        &\Longrightarrow \mathbf{u} -\mathbf{v} =\mathbf{0} \because\ker(T)=\{ \mathbf{0}  \}\\
+        &\Longrightarrow \mathbf{u} =\mathbf{v} 
+    \end{align*}
+    Therefore \(T\) is injective.
+\end{proof}
+\begin{theorem}[Onto Linear Maps]
+    Let \(T:V\to W\) be a linear transformation where \(W\) is finite-dimensional. \(T\) is onto if and only if \(\rank(T)=\dim (W)\).
+\end{theorem}
+\begin{theorem}[One-to-one and Onto Linear Maps]
+    Let \(T:V\to W\) be a linear transformation with \(\dim (V)=\dim (W)=n\). Then \(T\) is onto if and only if \(T\) is one-to-one.
+\end{theorem}
+Maps that are both one-to-one and onto can be called bijections.
+\begin{definition}[Isomorphism]
+    Let \(T:V\to W\) be a bijective linear map. We say that \(T\) is an \textbf{isomorphism} between \(V\) and \(W\). If \(V\) and \(W\) are vector spaces such that there exists an isomorphism between them, we say that \(V\) and \(W\) are isomorphic, given as \(V\cong W\).
+\end{definition}
+\begin{theorem}[Isomorphic Vector Spaces and Dimension]
+    Let \(V\) and \(W\) be finite dimensional vector spaces. Then \(V\) and \(W\) are isomorphic if and only if \(\dim (V)=\dim (W)\).
+\end{theorem}
+Vector spaces that are isomorphic have equivalent structure, and allow us to treat them as basically equivalent spaces.
+\section{Matrices for Linear Transformations}
+\begin{theorem}[Linear Maps as Matrices]
+    Let \(V,W\) be vector spaces with \(\dim (V),\dim (W)<\infty\). Any linear map \(T:V\to W\) has a matrix representation \(\mathbf{x} \mapsto A \mathbf{x} \) for \(A\in M_{m,n}\).
+\end{theorem}
+\begin{theorem}[Standard Matrix for Linear Transformations]
+    Let \(T:\mathbb{R} ^n\to \mathbb{R} ^m\) be a linear map such that, for the standard basis vectors \(\left\{ \mathbf{e}_1,\ldots,\mathbf{e} _n \right\} \subset \mathbb{R} ^n \), we have 
+    \[
+        T\left( \mathbf{e} _1 \right) = \begin{bmatrix}
+             a_{11}  \\
+             a_{21}  \\
+              \vdots\\
+              a_{m1} \\
+        \end{bmatrix}\quad T\left( \mathbf{e} _2 \right) = \begin{bmatrix}
+            a_{12}  \\
+            a_{22}  \\
+             \vdots\\
+             a_{m2} \\
+       \end{bmatrix}\quad \cdots\quad T\left( \mathbf{e} _n \right) = \begin{bmatrix}
+        a_{1n}  \\
+        a_{2n}  \\
+         \vdots\\
+         a_{mn} \\
+   \end{bmatrix}
+    \]
+    The \(m\times n\) matrix \(A\) given as 
+    \[
+        A=\begin{bmatrix}
+            a_{11}  &a_{12}   &\cdots  &a_{1n}    \\
+             a_{21} &a_{22}   &\cdots  &a_{2n}    \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             a_{m1} &a_{m2}   &\cdots  &a_{mn}    \\
+        \end{bmatrix}
+    \]
+    is the \textbf{standard} \textbf{matrix} for \(T\) and satisfies \(T(\mathbf{x} )=A \mathbf{x} \) for any \(\mathbf{x} \in \mathbb{R} ^n\).
+\end{theorem}
+The notion of vector space isomorphisms extents this theorem beyond \(\mathbb{R}^n\) to any space isomorphic to it.
+\begin{theorem}[Composition of Linear Maps]
+    Let \(T_1:\mathbb{R} ^n\to \mathbb{R} ^m\) and \(T_2:\mathbb{R} ^m\to \mathbb{R} ^p\) be linear maps with standard matrices \(A_1,A_2\), respectively. The composition \(T_2 \circ T_1:\mathbb{R} ^n\to \mathbb{R} ^p\) is a linear transformation with standard matrix \(A_2 A_1\).
+\end{theorem}
+\begin{proof}
+    Same proof as 6.4 except with 2 matrices now.
+\end{proof}
+\begin{definition}[Inverse Maps]
+    Let \(T_1:\mathbb{R} ^n\to \mathbb{R} ^n\) and \(T_2:\mathbb{R} ^n\to \mathbb{R} ^n\) be linear maps such that
+    \[
+        T_1 \circ T_2 = T_2 \circ T_1 = id_{\mathbb{R}^n}
+    \]
+    we say that \(T_1\) is invertible and its inverse is \(T_2\).
+\end{definition}
