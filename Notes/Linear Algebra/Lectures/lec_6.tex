@@ -808,3 +808,75 @@ One application of vector spaces is in identifying solutions to linear different
     where \(g_0,g_1,\ldots,g_{n-1} \) and \(f\) are fixed continuous functions of \(x\), and equations \(y\) are solutions to the equation when \(y\) and its first \(n\) derivatives are substituted in.
 \end{definition}
 If \(f(x)=0\), the equation is \textbf{homoegeneous}. If not, the equation is \textbf{nonhomogeneous}.
+\begin{exercise}
+    Show that both \(y_1=e^x\) and \(y_2 =e^{-x} \) are solutions to the linear differential equation \(y^{\prime\prime} -y=0\).
+\end{exercise}
+\begin{solution}
+    Since \(y^{\prime\prime} -y=0 \Longrightarrow y^{\prime\prime} =y\), it suffices to show \(y^{\prime\prime} =y\). Since \(y_1 = e^x\), we have \(\frac{d}{dx}e^x = e^x\) and \(\frac{d^2}{dx^2}e^x = e^x\). Thus, \(y_1^{\prime\prime} =y_1\). Similarly, \(\frac{d}{dx}e^{-x}=-e^{-x}  \) and \(\frac{d}{dx}\left(-e^{-x}\right)=e^{-x}  \), so \(y_2^{\prime\prime} =y_2\).
+\end{solution}
+Consider the two solutions \(y_1,y_2\) in the above example. These two solutions are linearly independent in the vector space \(C^{\prime\prime} (-\infty,\infty)\) (space of functions with second derivatives), meaning for scalars \(C_1,C_2\), we have
+\[
+    C_1 y_1 + C_2 y_2 = 0 \iff \left( C_1,C_2 \right) =(0,0)
+\]
+This is easier to visualize by writing it as 
+\[
+    ce^x + ce^{-x} = 0 
+\]
+More interestingly, every linear combination \(C_1 y_1 + C_2 y_2\) is a solution to the equation. 
+\[
+    \frac{d^2}{dx^2}\left( C_1 e^x + C_2 e^{-x}  \right) =\frac{d}{dx}\left( C_1 e^x - C_2 e^{-x}  \right) =C_1 e^x + C_2 e^{-x} 
+\]
+This observation generalizes.
+\begin{theorem}[Solutions to Homogeneous Systems]
+    Every \(n\)th order linear differential equation of the form 
+    \[
+        y^{(n)} + g(x)_{n-1}y^{(n-1)}+\cdots+g_1(x)y^{\prime} +g_0(x)y = 0 
+    \]
+    has \(n\) linearly independent solutions \(\left\{ y_1,y_2,\ldots,y_n \right\} \), and every solution to the equation is some linear combination of the system
+    \[
+        y = C_1 y_1 + C_2 y_2 + \cdots + C_n y_n        
+    \]
+    for scalars \(C_1,\ldots,C_n\).
+\end{theorem}
+\begin{remark}
+    The equation \( y = C_1 y_1 + C_2 y_2 + \cdots + C_n y_n\) is the \textbf{general} \textbf{solution} to the linear differentiale equation.
+\end{remark}
+\begin{definition}[Wronskian]
+    Let \(\left\{ y_1,y_2,\ldots,y_n \right\}\) be a set of linearly independent functions with \(n-1\) derivatives on some interval \(I\). Define the \textbf{Wronskian} of the set of functions as the determinant 
+    \[
+        W(y_{1},\ldots,y_n )=\begin{vmatrix}
+            y_1 &y_2  &\cdots  &y_n   \\
+             y_1^{\prime} &y_2^{\prime}   &\cdots  &y_n^{\prime}    \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             y_1^{(n-1)}& y_2^{(n-1)} &\cdots  &y_n^{(n-1)}   \\
+        \end{vmatrix}
+    \]
+\end{definition}
+The Wronskian is usually used to consider the linear independence of a set of solutions to some arbitrary homoegeneous linear differential equation. 
+\begin{theorem}[Wronskian Test for Linear Independence]
+    Let \(\left\{y_1,y_2,\ldots,y_n\right\}\) be a set of solutions to some \(n\)th order \textbf{homogeneous} linear differential equation. We say that the set is linearly independent if and only if 
+    \[
+        W\left( y_1,\ldots,y_n \right)\neq 0 
+    \]
+\end{theorem}
+Why is there no provided proof and the only proof left as an exercise is for \(n=2\) not even the general case wtf 
+\begin{proof}
+    Let \(\left\{ y_1,y_2,\ldots,y_n \right\} \) be a set of solutions to the homogeneous linear differential equation
+    \[
+        y^{(n)} + g(x)_{n-1}y^{(n-1)}+\cdots+g_1(x)y^{\prime} +g_0(x)y = 0
+    \]
+    We must show that if this set is linearly independent, then \(W\neq 0\), and if \(W\neq 0\) the set is linearly independent.
+
+    Suppose \(\left\{ y_1,\ldots,y_n \right\} \) is a set of linearly independent solutions. We have the system of equations 
+    \[
+        \left\{
+            \begin{array}{ccc}
+                y^{(n)}_1 + g(x)_{n-1}y^{(n-1)}_1+\cdots+g_1(x)y^{\prime}_1 +g_0(x)y_1 &=& 0\\
+                y^{(n)}_2 + g(x)_{n-1}y^{(n-1)}_2+\cdots+g_1(x)y^{\prime}_2 +g_0(x)y_2 &=& 0\\
+                &\vdots&\\
+                y^{(n)}_n + g(x)_{n-1}y^{(n-1)}_n +\cdots+g_1(x)y^{\prime}_n +g_0(x)y_n &=& 0
+            \end{array}
+        \right.
+    \]
+    aidk wtf to dfo
+\end{proof}
