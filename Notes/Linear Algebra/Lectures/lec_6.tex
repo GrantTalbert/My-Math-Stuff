@@ -798,3 +798,13 @@ If a vector space \(V\) has a basis with a finite number of vectors, \(V\) is fi
 \begin{remark}
     Transition matrices define automorphisms on \(\mathbb{R}^n\). Also all vector spaces of equivalent dimension are isomorphic, so the idea of a transition matrix extends beyond \(\mathbb{R} ^n\), but this is the space where it can be initially defined most easily, hence the use of \(\mathbb{R}^n\) in our definitions.
 \end{remark}
+\section{Applications of Vector Spaces}
+One application of vector spaces is in identifying solutions to linear differential equations that are linearly independent, specifically involving the Wronskian.
+\begin{definition}[Linear Differential Equation]
+    A linear differential equation is an equation of the form 
+    \[
+        y^{(n)} + g_{n-1}(x)y^{(n-1)} + \cdots + g_0 (x)y^{\prime} =f(x)
+    \]
+    where \(g_0,g_1,\ldots,g_{n-1} \) and \(f\) are fixed continuous functions of \(x\), and equations \(y\) are solutions to the equation when \(y\) and its first \(n\) derivatives are substituted in.
+\end{definition}
+If \(f(x)=0\), the equation is \textbf{homoegeneous}. If not, the equation is \textbf{nonhomogeneous}.
