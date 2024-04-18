@@ -854,29 +854,160 @@ This observation generalizes.
 \end{definition}
 The Wronskian is usually used to consider the linear independence of a set of solutions to some arbitrary homoegeneous linear differential equation. 
 \begin{theorem}[Wronskian Test for Linear Independence]
-    Let \(\left\{y_1,y_2,\ldots,y_n\right\}\) be a set of solutions to some \(n\)th order \textbf{homogeneous} linear differential equation. We say that the set is linearly independent if and only if 
+    Let \(\left\{y_1,y_2,\ldots,y_n\right\}\) be a set of solutions to some \(n\)th order \textbf{homogeneous} linear differential equation. We say that the set is linearly independent if and only if the Wronskian is not \textbf{identically} equal to \(0\).
+\end{theorem}
+%Why is there no provided proof and the only proof left as an exercise is for \(n=2\) not even the general case wtf 
+%\begin{proof}
+%    Let \(\left\{ y_1,y_2,\ldots,y_n \right\} \) be a set of solutions to the homogeneous linear differential equation
+%    \[
+%        y^{(n)} + g(x)_{n-1}y^{(n-1)}+\cdots+g_1(x)y^{\prime} +g_0(x)y = 0
+%    \]
+%    We must show that if this set is linearly independent, then \(W\neq 0\), and if \(W\neq 0\) the set is linearly independent.%
+%
+%    Suppose \(\left\{ y_1,\ldots,y_n \right\} \) is a set of linearly independent solutions. We have the system of equations 
+%    \[
+%        \left\{
+%            \begin{array}{ccc}
+%                y^{(n)}_1 + g(x)_{n-1}y^{(n-1)}_1+\cdots+g_1(x)y^{\prime}_1 +g_0(x)y_1 &=& 0\\
+%                y^{(n)}_2 + g(x)_{n-1}y^{(n-1)}_2+\cdots+g_1(x)y^{\prime}_2 +g_0(x)y_2 &=& 0\\
+%                &\vdots&\\
+%                y^{(n)}_n + g(x)_{n-1}y^{(n-1)}_n +\cdots+g_1(x)y^{\prime}_n +g_0(x)y_n &=& 0
+%            \end{array}
+%        \right.
+%    \]
+%    aidk wtf to dfo
+%\end{proof}
+\begin{exercise}
+    Use the Wronskian to verify the set \(\left\{ e^x,xe^x,x^2 e^x \right\} \) forms a linearly independent set of solutions to the differential equation 
     \[
-        W\left( y_1,\ldots,y_n \right)\neq 0 
+        y^{\prime\prime\prime} -3y^{\prime\prime} +3y^{\prime} -y=0
+    \]
+\end{exercise}
+\begin{longsolution}
+    Notice that
+    \[\frac{d}{dx}e^x = \frac{d^2}{dx^2}e^x = e^x\]
+    We also have the following.
+    \[
+        \frac{d}{dx}xe^x = xe^x + e^x = (x+1)e^x
+    \]
+    \[
+        \frac{d^2}{dx^2}xe^x = (x+2)e^x
+    \]
+    \[
+        \frac{d}{dx}x^2 e^x = x^{2}e^x + 2xe^x
+    \]
+    \[
+        \frac{d^2}{dx^2}x^2 e^x = x^2 e^x + 2xe^x + 2xe^x + 2e^x = x^{2}e^x + 4xe^x + 2e^x 
+    \]
+    We thus give the Wronskian 
+    \[
+        W \left( e^x,xe^x,x^2 e^x \right) =\begin{vmatrix}[r]
+            e^x & xe^x &x^2 e^x   \\
+             e^{x} & (x+1)e^x &x^{2}e^x + 2xe^x    \\
+             e^x&(x+2)e^x  &x^{2}e^x + 4xe^x + 2e^x    \\
+        \end{vmatrix}
+    \]
+    \[
+        =e^x \begin{vmatrix}[r]
+            (x+1)e^x &x^{2}e^x + 2xe^x   \\
+            (x+2)e^x  &x^{2}e^x + 4xe^x + 2e^x   \\
+        \end{vmatrix} - xe^x \begin{vmatrix}[r]
+            e^{x}&x^{2}e^x + 2xe^x   \\ 
+            e^x  &x^{2}e^x + 4xe^x + 2e^x
+        \end{vmatrix} + x^2 e^x \begin{vmatrix}[r]
+            e^{x} & (x+1)e^x   \\
+             e^x&(x+2)e^x     \\
+        \end{vmatrix}
+    \]
+    \[
+        =2x^2 e^{3x}+4xe^{3x}-2e^{3x}   
+    \]
+    Since this does not identically equal \(0\), the set is linearly independent.
+\end{longsolution}
+Another application of vector spaces involves conic sections and rotation. Every conic section in the \(xy\)-plane can be written of the form 
+\[
+    ax^2 + bxy + cy^2 + dx + ey + f=0
+\]
+The graph of this equation is easy to identify when \(b=0\), but when the \(xy\) term is nonzero, it becomes harder. However, we can rotate the \(x\)- and \(y\)-axes to get rid of the \(xy\) term by rotating counterclockwise by some \(\theta \) calculated with 
+\[
+    \cot 2\theta =\frac{a-c}{b}
+\]
+This rotation shifts the basis \(B=\{ (1,0),(0,1) \} \) to the new basis \(B^{\prime} =\left\{ (\cos \theta ,\sin \theta ),(-\sin \theta ,\cos \theta ) \right\} \). Letting \(\left( x^{\prime} ,y^{\prime}  \right) \) be the coordinates of \((x,y)\) relative to \(B^{\prime} \), we have the transition matrix \(P\) that gives
+\[
+    \begin{bmatrix}[r]
+        \cos \theta  &\sin \theta    \\
+         -\sin \theta &\cos \theta    \\
+    \end{bmatrix} \begin{bmatrix}[r]
+         x \\
+         y \\
+    \end{bmatrix} = \begin{bmatrix}[r]
+         x^{\prime}  \\
+          y^{\prime} \\
+    \end{bmatrix}
+\]
+Notice \(P\in \operatorname{SO}(2) \), so \(P ^{-1} =P^{T} \). Thus we have
+\[
+    \begin{bmatrix}[r]
+        \cos \theta  &-\sin \theta    \\
+         \sin \theta &\cos \theta    \\
+    \end{bmatrix} \begin{bmatrix}[r]
+        x^{\prime}  \\
+        y^{\prime}  \\
+   \end{bmatrix} = \begin{bmatrix}[r]
+         x \\
+         y \\
+    \end{bmatrix}
+\]
+Multiplying out gives the equations \(x=x^{\prime} \cos \theta -y^{\prime} \sin \theta \) and \(y=x^{\prime} \sin \theta +y^{\prime} \cos \theta \). Substituting these equations gives a new equation for a conic section with no \(xy\) term, as seen in the next theorem:
+\begin{theorem}[Rotation of Axes for Conic Sections]
+    Let \((x^{\prime} ,y^{\prime} )\) be the coordinates of \((x,y)\) relative to the basis \(\mathcal{B}^{\prime} = \left\{ (\cos \theta ,\sin \theta ),(-\sin \theta ,\cos \theta ) \right\} \). Any second degree conic section \(ax^2 + bxy + cy^2 + dx + ey + f = 0\) can be written of the form 
+    \[
+        \mathfrak{a}\left( x^{\prime}  \right)^2 + \mathfrak{b}\left( y^{\prime}  \right)^2 + \mathfrak{c}x^{\prime} +\mathfrak{d}y^{\prime} +\mathfrak{e} =0
+    \]
+    where \(\mathfrak{a},\mathfrak{b},\mathfrak{c},\mathfrak{d},\mathfrak{e}\) are scalars. This equation arises from performing the following substitutions:
+    \[
+        x=x^{\prime} \cos \theta -y^{\prime} \sin \theta 
+    \]
+    \[
+        y=x^{\prime} \sin \theta +y^{\prime} \cos \theta
+    \]
+    on the original equation, where 
+    \[
+        \cot 2\theta =\frac{a-c}{b}
     \]
 \end{theorem}
-Why is there no provided proof and the only proof left as an exercise is for \(n=2\) not even the general case wtf 
-\begin{proof}
-    Let \(\left\{ y_1,y_2,\ldots,y_n \right\} \) be a set of solutions to the homogeneous linear differential equation
-    \[
-        y^{(n)} + g(x)_{n-1}y^{(n-1)}+\cdots+g_1(x)y^{\prime} +g_0(x)y = 0
-    \]
-    We must show that if this set is linearly independent, then \(W\neq 0\), and if \(W\neq 0\) the set is linearly independent.
-
-    Suppose \(\left\{ y_1,\ldots,y_n \right\} \) is a set of linearly independent solutions. We have the system of equations 
-    \[
-        \left\{
-            \begin{array}{ccc}
-                y^{(n)}_1 + g(x)_{n-1}y^{(n-1)}_1+\cdots+g_1(x)y^{\prime}_1 +g_0(x)y_1 &=& 0\\
-                y^{(n)}_2 + g(x)_{n-1}y^{(n-1)}_2+\cdots+g_1(x)y^{\prime}_2 +g_0(x)y_2 &=& 0\\
-                &\vdots&\\
-                y^{(n)}_n + g(x)_{n-1}y^{(n-1)}_n +\cdots+g_1(x)y^{\prime}_n +g_0(x)y_n &=& 0
-            \end{array}
-        \right.
-    \]
-    aidk wtf to dfo
-\end{proof}
+\begin{exercise}
+This is confusing, so consider the conic section defined by
+\[
+    5x^2 - 6xy + 5y^2 + 14\sqrt{2}x - 2\sqrt{2}y + 18 = 0  
+\]
+Eliminate the \(xy\) term by transforming to the \(x^{\prime} y^{\prime} \)-plane.
+\end{exercise}
+\begin{longsolution}
+To eliminate the \(xy\) term by rotating the axes, we need to find \(\theta \) with 
+\[
+    \cot 2\theta = \frac{5-5}{-6}=0 \Longrightarrow \theta=\frac{\pi}{4}
+\]
+It follows that 
+\[
+    \sin \theta = \cos \theta =\frac{1}{\sqrt{2} }
+\]
+We then give 
+\[
+    x=\frac{1}{\sqrt{2} }\left( x^{\prime} -y^{\prime}  \right) 
+\]
+and
+\[
+    y=\frac{1}{\sqrt{2} }\left( x^{\prime} +y^{\prime}  \right) 
+\]
+Plugging into the original equation gives
+\[
+    \frac{5}{2}\left( \left( x^{\prime}  \right)^{2}-2 x^{\prime} y^{\prime}  +\left( y^{\prime}  \right)^{2}   \right) - 3\left( \left( x^{\prime}  \right)^2 -\left( y^{\prime}  \right)^2   \right)+\frac{5}{2}\left( \left( x^{\prime}  \right)^{2}+2 x^{\prime} y^{\prime}  +\left( y^{\prime}  \right)^{2}   \right)+14\left( x^{\prime} -y^{\prime}  \right) -2\left( x^{\prime} +y^{\prime}  \right) +18=0
+\]
+\[
+    \Longrightarrow 2\left( x^{\prime}  \right)^2 + 8\left( y^{\prime}  \right)^2 + 12x^{\prime} -16y^{\prime} +18=0
+\]
+\[
+    \Longrightarrow \left( x^{\prime}  \right)^2 + 4\left( y^{\prime}  \right)^2 + 6x^{\prime} -8y^{\prime} +9=0
+\]
+\end{longsolution}
