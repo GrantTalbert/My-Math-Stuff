@@ -1,0 +1,171 @@
+\begin{remark}
+    The identity map \(\text{id}_{\mathbb{R}^n} \) is given by the identity matrix \(I_n\).
+\end{remark}
+\begin{theorem}[Existence of an Inverse Linear Map]
+    Let \(T:\mathbb{R}^{n}\to \mathbb{R}^n \) be a linear transformation with standard matrix \(A\). The following conditions are equivalent. 
+    \begin{enumerate}
+        \item \(T\) is invertible. 
+        \item \(T\) is an isomorphism.
+        \item \(A\) is invertible.
+    \end{enumerate}
+\end{theorem}
+\begin{exercise}
+    Determine if \(T(x,y)=(2x,0)\) is invertible.
+\end{exercise}
+\begin{solution}
+    \(T(1,0)=(2,0)\) and \(T(0,1)=(0,0)\), so 
+    \[
+        A=\begin{bmatrix}[r]
+            2 & 0  \\
+             0&0   \\
+        \end{bmatrix}
+    \]
+    no thats not invertible lol
+\end{solution}
+\begin{exercise}
+    Determine if \(T(x,y)=(x+y,x-y)\) is invertible. If it is, find its inverse.
+\end{exercise}
+\begin{solution}
+    We have \(T(1,0)=(1,1)\) and \(T(0,1)=(1,-1)\), so if \(T:\mathbf{x}\mapsto A \mathbf{x}\), we have
+    \[
+        A=\begin{bmatrix}[r]
+            1 &1   \\
+             1&-1   \\
+        \end{bmatrix}
+    \]
+    Notice \(\det (A)=-2\neq 0\), so \(T\) is invertible. We give 
+    \[
+        A^{-1} = \frac{1}{-2} \begin{bmatrix}[r]
+            -1 &-1   \\
+             -1&1   \\
+        \end{bmatrix}
+    \]
+    It follows that 
+    \[
+        T^{-1} (\mathbf{x})= A^{-1} \mathbf{x}
+    \]
+\end{solution}
+\begin{theorem}[Transformation Matrix for Nonstandard Bases]\label{thismakessense}
+    Let \(V\) and \(W\) be finite dimensional vector spaces with arbitrary bases \(\mathcal{B} \) and \(\mathcal{B} ^{\prime} \), respectively. Let 
+    \[
+        \mathcal{B} = \left\{ \mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_n \right\} 
+    \]
+    Let \(T:V\to W\) be a linear map with 
+    \[
+        [T(\mathbf{v}_1)]_{\mathcal{B} ^{\prime} }=\begin{bmatrix}[r]
+             a_{11}  \\
+              a_{21} \\
+              \vdots\\
+              a_{m1} \\
+        \end{bmatrix}\quad [T(\mathbf{v}_2)]_{\mathcal{B} ^{\prime} }=\begin{bmatrix}[r]
+            a_{12}  \\
+             a_{22} \\
+             \vdots\\
+             a_{m2} \\
+       \end{bmatrix}\quad \cdots \quad [T(\mathbf{v_n})]_{\mathcal{B} ^{\prime} }=\begin{bmatrix}[r]
+        a_{1n}  \\
+         a_{2n} \\
+         \vdots\\
+         a_{mn} \\
+   \end{bmatrix}
+    \]
+    Define the matrix
+    \[
+        A=\begin{bmatrix}[r]
+            a_{11}  &a_{12}   &\cdots  &a_{1n}    \\
+             a_{21} &a_{22}   &\cdots  &a_{2n}    \\
+             \vdots&\vdots  &\ddots  &\vdots   \\
+             a_{m1} &a_{m2}   &\cdots &a_{mn}    \\
+        \end{bmatrix}
+    \]
+    It follows that for all \(\mathbf{v}\in V\),
+    \[
+        [T(\mathbf{v})]_{\mathcal{B} ^{\prime} }=A[\mathbf{v}]_\mathcal{B} 
+    \]
+\end{theorem}
+This theorem is fairly confusing. This is basically a generalization of the matrix representation of a linear map to an arbitrary basis. If one defines a map \(T\) and identifies \(T(\mathbf{e}_i)\) relative to whatever basis for \(W\) is being considered for all basis elements \(\mathbf{e}_i\), then the matrix \(A\) gives a map from the basis \(\mathcal{B} \) to \(\mathcal{B} ^{\prime} \) at the same time as \(V\to W\). The last line of the theorem sums this up and is likely the most important line.
+\begin{exercise}
+    Let \(T:\mathbb{R}^2 \to \mathbb{R}^3\) be a map with \(T(x,y)=(x+y,x,y)\). Find the matrix \(A\in M_{m,n}\) where \(T(\mathbf{x})=A \mathbf{x}\) relative to the bases \(\mathcal{B} \) and \(\mathcal{B} ^{\prime} \):
+    \[
+        \mathcal{B} = \left\{ (1,-1),(0,1) \right\} \qquad \mathcal{B} ^{\prime} = \left\{ (1,1,0),(0,1,1),(1,0,1) \right\} 
+    \]
+\end{exercise}
+\begin{longsolution}
+    First, we must take \(T\) on the basis \(\mathcal{B} \). Then we must express it in terms of the basis \(\mathcal{B} ^{\prime} \). Consider the first element:
+    \[
+        T(1,-1)=(0,1,-1)
+    \]
+    Let there exist scalars \(a,b,c\) such that \((0,1,-1) = a(1,1,0)+b(0,1,1)+c(1,0,1)\) and define the coordinates of \(T(1,-1)\) relative to \(\mathcal{B} ^{\prime} \) to be 
+    \[
+        [T(1,-1)]_{\mathcal{B} ^{\prime} }= \begin{bmatrix}[r]
+             a \\
+             b \\
+             c \\
+        \end{bmatrix}
+    \]
+    Constructing a system of equations gives 
+    \[
+        \begin{bmatrix}[r]
+            1 &0  &1  &0   \\
+             1&1  &0  &1   \\
+             0&1  &1  &-1   \\
+        \end{bmatrix}\xlongrightarrow{rref} \begin{bmatrix}[r]
+            1 & 0 &0  &1   \\
+             0&1  &0  & 0  \\
+             0&0  &1  & -1  \\
+        \end{bmatrix}
+    \]
+    Thus we have \([T(1,-1)]_{\mathcal{B} ^{\prime} }=(1,0,-1)\). Now consider the second basis element:
+    \[
+        T(0,1)=(1,0,1)
+    \]
+    This is the third element of \(\mathcal{B} ^{\prime} \), so we give \([T(0,1)]_{\mathcal{B} ^{\prime} }=(0,0,1)\). We can now construct \(A\). From \ref{thismakessense},
+    \[
+        A = \begin{bmatrix}[r]
+            1 &0   \\
+             0&0   \\
+             -1&1   \\
+        \end{bmatrix}
+    \]
+\end{longsolution}
+\begin{exercise}
+    Using the above exercise, find \(T(\mathbf{v})\) where \(\mathbf{v}=(5,4)\) 
+\end{exercise}
+\begin{solution}
+    First find \([\mathbf{v}]_\mathcal{B} \). Since the first element is the only one without \(0\) in the first entry, trivially we have \([\mathbf{v}]_\mathcal{B} =(5,9)\). It follows from the definition of \(A\) that 
+    \[
+        [T(\mathbf{v})]_{\mathcal{B} ^{\prime} } = \begin{bmatrix}[r]
+            1 &0   \\
+             0&0   \\
+             -1&1   \\
+        \end{bmatrix} \begin{bmatrix}[r]
+             5 \\
+             9 \\
+        \end{bmatrix} = \begin{bmatrix}[r]
+             5 \\
+             0 \\
+             4 \\
+        \end{bmatrix}
+    \]
+    Converting back to the standard basis, we have 
+    \[
+        \mathbf{v}= 5(1,1,0) + 4(1,0,1) = (9,5,4)
+    \]
+    Thus, \(T(\mathbf{v}) = (9,5,4)\). We can verify this by recalling \(T(x,y)=(x+y,x,y)\), and seeing that 
+    \[
+        T(5,4) = (5+4,5,4)=(9,5,4)
+    \]
+\end{solution}
+\section{Transition Matrices and Similarity}
+Suppose we know some matrix \(A\) that gives a linear map \(T\) relative to some basis \(\mathcal{B} \), but we want the matrix \(A^{\prime} \) that gives \(T\) relative to a different basis \(\mathcal{B} ^{\prime} \).
+\begin{figure}[ht]
+    \incfig{SimMatrix}
+\end{figure}
+Let \(P\) give \([\mathbf{v}]_\mathcal{B} = P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\). It follows that \([\mathbf{v}]_{\mathcal{B} ^{\prime} }=P ^{-1} [\mathbf{v}]_\mathcal{B} \). By taking \(P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\), we can convert \(\mathbf{v}\) into the basis \(\mathcal{B} \) and then use \(A\) to perform the transformation \(T\):
+\[
+    [T(\mathbf{v})]_{\mathcal{B} } = AP[\mathbf{v}]_{\mathcal{B} ^{\prime} }
+\]
+Taking \(P ^{-1} \) on this \([T(\mathbf{v})]_{\mathcal{B} }\) gives 
+\[
+    [T(\mathbf{v})]_{\mathcal{B}^{\prime}  } = P ^{-1} AP [\mathbf{v}]_{\mathcal{B} ^{\prime} }
+\]
