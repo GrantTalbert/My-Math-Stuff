@@ -1,10 +1,31 @@
 \section{Line Integrals}
+\begin{definition}[Piecewise Smooth Curve]
+    Any curve \(C\) that can be expressed as 
+    \[
+        C=\bigcup_{i=1}^{n}C_i 
+    \]
+    where \(C_i\) is a smooth curve and \(n\in\mathbb{N}\) is finite.
+\end{definition}
+\begin{definition}[Orientation of a Parametrized Curve]
+    Let \(C\) be a space curve parametrized by \(t\). We say that a given parametrization defines an orientation of \(C\) with the positive direction in the direction of increasing \(t\).
+\end{definition}
+
 \begin{definition}[Line Integral of a Scalar Function]
     Let \(f:\mathbb{R}^{2}\to \mathbb{R} \) be a scalar valued function. Let the curve \(C \subset \mathbb{R}^2\) be defined by the vector function \(\mathbf{r}(t)= \left\langle x(t),y(t) \right\rangle \) for \(t\in[a,b]\). The line integral of \(f\) over \(C\) is defined as  
     \[
         \int_C f(x,y)\,ds = \int_a^b f(x(t),y(t))\sqrt{\left( \frac{d x}{d t} \right)^2 + \left( \frac{d y}{d t} \right)^2  } \,dt
     \]
 \end{definition}
+Oftentimes this will be written as \(f(\mathbf{r})\) to symbolize that we are plugging in the components of \(\mathbf{r}\) as functions of \(t\) to \(f\) as the variable inputs. This can also be thought of loosely as \(f\circ \mathbf{r}\).
+\begin{intuition}
+    I found line integrals very odd and tough to remember, so here's how I thought of them. We only want to evaluate the integral of \(f(x,y)\) over some \((x,y)\in C\). Since we defined the function \(\mathbf{r}(t)\) to take some input \(t\) and output all the values \((x,y)\in C\), then to do this we just evaluate \(f(\mathbf{r})\) for all of the outputs of \(\mathbf{r}\), which are given by \(t\) values. Thus we have \(f(\mathbf{r}(t))\). The big square root just comes from parametrizing the surface length differential, and the reason for the surface length differential is since \(dx\) is just a length along the line \(y=0\), \(ds\) is just a length along the line \(C\). This is not asimilar to integrating wrt the measure.
+\begin{remark}
+    Oftentimes when we integrate about a closed space curve \(C\), or at least a closed portion of it, we will write
+    \[
+        \oint_C f(x,y)\,ds
+    \]
+\end{remark}
+Oftentimes when giving a parametrization of a space curve, we write something along the lines of \(C:\mathbf{r}(t)\) to show that \(C\) is being parametrized by \(\mathbf{r}\). This formula also extends to \(n\)-dimensions if needed.
 \begin{figure}[ht]
    \scalebox{0.8}{ \incfig{lineint}}
    \centering
@@ -16,3 +37,190 @@
         \int_C \mathbf{F}\cdot d \mathbf{r} = \int_a^{b} \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}^{\prime} (t)\,dt
     \]
 \end{definition}
+\section{The Fundamental Theorem for Line Integrals}
+\begin{definition}[Path]
+    A path is a curve traced out by a piecewise smooth curve along some orientation.
+\end{definition}
+\begin{definition}[Independence of Path]
+    Let \(\mathbf{f}:D\to \mathbb{R}^3\) be a vector field with \(C_1,C_2 \subset D\) as paths with the same initial and terminal points. We say the integral of \(\mathbf{F}\) is \textbf{independent} \textbf{of} \textbf{path} if
+    \[
+        \int_{C_1}\mathbf{F}\cdot d \mathbf{r}=\int_{C_2}\mathbf{F}\cdot d \mathbf{r}
+    \]
+\end{definition}
+\begin{definition}[Simply-connected Region]
+    A simply-connected region is a connected region \(D\) such that every simple closed curve (Jordan curve) in \(D\) only encloses points in \(D\).
+\end{definition}
+\begin{intuition}
+    A simply-connected region \(D\) has a boundary defined by a curve \(\partial D\) that is non self-intersecting. \(D\) also has no holes in it.
+\end{intuition}
+\begin{theorem}[Fundamental Theorem of Line Integrals]\label{ftc:line}
+    Let \(C\) be a smooth curve parametrized by \(\mathbf{r}(t)\) for some \(t\in[a,b]\). Let \(f\) be a differentiable function of two or three variables with \(\nabla f\) being continuous over \(C\). Then 
+    \[
+        \int_C \nabla f\cdot d \mathbf{r}=f(\mathbf{r}(b))-f(\mathbf{r}(a))
+    \]
+\end{theorem}
+\begin{longproof}
+    This proof covers the case of \(\mathbb{R}^3\). Given the previous definitions and \(\mathbf{r}(t)=\left\langle x(t),y(t),z(t) \right\rangle \), recall the chain rule for some \(f(x,y,z)\) with \(x,y,z\) as functions of a single parameter \(t\):
+    \[
+        \frac{\partial f}{\partial t}= \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} +\frac{\partial f}{\partial z} \frac{dz}{dt} 
+    \]
+    The proof given in class did not use this fact, and there is probably a reason for that, so I have given both my proof using this fact and the proof given in class, starting with mine.
+    \begin{align*}
+        \int_C \nabla f\cdot d \mathbf{r}&=\int_a^b \left\langle \frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}    \right\rangle \cdot \left\langle \frac{dx}{dt},\frac{dy}{dt},\frac{dz}{dt} \right\rangle \,dt\\
+        &=\int_a^b \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} +\frac{\partial f}{\partial z} \frac{dz}{dt} \,dt\\
+        &=\int_a^b \frac{d}{dt}f(\mathbf{r})\,dt\\
+        &= f(\mathbf{r}(b))-f(\mathbf{r}(a))
+    \end{align*}
+    The proof given in class deviates on the escond to last step.
+    \begin{align*}
+        \int_C \nabla f\cdot d \mathbf{r}&=\int_a^b \left\langle \frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}    \right\rangle \cdot \left\langle \frac{dx}{dt},\frac{dy}{dt},\frac{dz}{dt} \right\rangle \,dt\\
+        &=\int_a^b \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} +\frac{\partial f}{\partial z} \frac{dz}{dt} \,dt\\
+        &=\int_a^b \frac{\partial f}{\partial x}\,dx +  \int_a^b \frac{\partial f}{\partial y}\,dy + \int_a^b \frac{\partial f}{\partial z}\,dz\\
+        &= f(\mathbf{r}(b))-f(\mathbf{r}(a))
+    \end{align*}
+\end{longproof}
+Recall that if there exists some \(f\) such that \(\mathbf{F}=\nabla f\), then we say that \(\mathbf{F}\) is conservative. By \ref{ftc:line}, we can say that for any conservative vector field, the fundamental theorem of calculus applies to line integrals. 
+\begin{eg}
+    Since line integrals are somewhat strange, let's do an example. Let \(C\) be a path from \((0,4)\) to \((2,1)\) with an unknown parametrization. Evaluate
+    \[
+        \int_C \left\langle 6xy,3x^2 -\frac{2}{\sqrt{y} } \right\rangle \cdot d \mathbf{r}
+    \]
+    Normally to evaluate a line integral we would evaluate
+    \[
+        \int_{[a,b]}\mathbf{F}(\mathbf{r}(t))\cdot \mathbf{r}^{\prime} (t)\,dt
+    \]
+    However we don't known \(\mathbf{r}\). Thus, we should try to find some \(f\) such that \(\mathbf{F}=^{\prime}\nabla f\). Then it will follow that the integral is equal to
+    \[
+        f(2,1)-f(0,4)
+    \]
+    since these are the endpoints, and that's what the statement \(\mathbf{r}(b)\) and \(\mathbf{r}(a)\) gives in \ref{ftc:line}. To find one, we need to undo the del operator via partial integration. Integrating the first component wrt x:
+    \[
+        \int6xy\,dx = 3x^2 y + C(y)
+    \]
+    where the constant is now a function of \(y\). We now integrate the \(y\) component w.r.t.\  \(y\):
+    \[
+        \int 3x^2 - \frac{2}{\sqrt{y} }\,dy = 3x^2 y - 4\sqrt{y} + C(x)
+    \]
+    From this, we know that the function \(f(x,y)=3x^2 y-4\sqrt{y} \) is a potential function for \(\mathbf{F}\). By \ref{ftc:line},
+    \[
+        \int_C \left\langle 6xy,3x^2 -\frac{2}{\sqrt{y} } \right\rangle \cdot d \mathbf{r}= 3(2)^2 (1)-4\sqrt{1} - \left( 3(0)^2 (4) - 4\sqrt{4}  \right)  = 12-4+8=16
+    \]
+\end{eg}
+\begin{corollary}
+    Let \(\mathbf{F}\) be a conservative vector field that is continuous on \(D\), and let \(C\) be a closed curve in \(D\). Then 
+    \[
+        \oint_C \mathbf{F}\cdot d \mathbf{r}=0
+    \]
+\end{corollary}
+\begin{theorem}
+    If \(\mathbf{F}\) is a continuous vector field on some open, simply connected region \(D\subseteq \mathbb{R}^2\), then \(F\) is independent of path if and only if it is conservative.
+\end{theorem}
+\begin{proof}
+    Let \(C_1,C_2 \subset D\) be space curves with initial point \(a\) and terminal point \(b\), and let \(\mathbf{F}=\nabla f\). Then 
+    \[
+        \int_{C_1}\mathbf{F}\cdot d \mathbf{r}=f(b)-f(a)
+    \]
+    \[
+        \int_{C_2}\mathbf{F}\cdot d \mathbf{r}=f(b)-f(a)
+    \]
+    \[
+        \therefore \int_{C_1}\mathbf{F}\cdot d \mathbf{r}=\int_{C_2}\mathbf{F}\cdot d \mathbf{r}
+    \]
+    Proof in the reverse direction was not provided and I'm lazy.
+\end{proof}
+A way to check if some \(\mathbf{F}\) is independent of path/conservative employs \ref{Clairaut}. If \(f\) is continuous on \(D\), then \(f_{xy}=f_{yx}  \) on \(D\). Let 
+\[
+    \mathbf{F}=\begin{bmatrix}[r]
+         P(x,y) \\
+          Q(x,y)\\
+    \end{bmatrix}
+\]
+If \(\mathbf{F}\) is conservative, then there exists some function such that \(\mathbf{F}= \nabla f\). It follows that 
+\[
+    \begin{bmatrix}[r]
+         P(x,y) \\
+          Q(x,y)\\
+    \end{bmatrix} = \begin{bmatrix}[r]
+         f_x \\
+          f_y\\
+    \end{bmatrix}
+\]
+Assuming \ref{Clairaut} since \(\mathbf{F}\) is conservative, we have 
+\[
+    P_y = Q_x
+\]
+which is generally stated as 
+\[
+    Q_x - P_y = 0
+\]
+\begin{theorem}[Test for Conservative Vector Field]\label{test}
+    Let \(\mathbf{F} = \left\langle P(x,y),Q(x,y) \right\rangle \) be a vector field that is continuous on an open, simply connected region \(D\). If the components of \(\mathbf{F}\) have continuous first order partial derivatives and
+    \[
+        Q_x - P_y = 0
+    \]
+    then \(\mathbf{F}\) is conservative.
+\end{theorem}
+\section{Green's Theorem}
+\begin{prev}
+    A curve parametrized by some \(\mathbf{r}\) is smooth if \(\mathbf{r}^{\prime} \) is continuous and nonzero along the curve.
+\end{prev}
+\begin{definition}[Positive Orienation of Curves]
+    Let \(C\coloneqq \partial D\) be a simple closed curve (Jordan curve) bounding some region \(D\). By convention, the positive orientation of \(C\) is defined to be the counterclockwise direction.
+\end{definition}
+\begin{remark}
+    \(\oint_C\) or \(\oint_{\partial D}\) is often used to denote the integral over a simple closed curve in the direction of positive orientation.
+\end{remark}
+\begin{theorem}[Green's Theorem]\label{ftc:green}
+    Let \(D\subseteq \mathbb{R}^2\) be a closed region with \(C\coloneqq \partial D\) being a positively oriented, piece-wise smooth, simple, closed curve bounding \(D\). If \(\mathbf{F}=\left\langle P(x,y),Q(x,y) \right\rangle \) is a vector field who's components have continuous first order partial derivatives on \(D\), then 
+    \[
+        \oint_C P\,dx + Q\,dy = \iint\limits_{D}Q_x - P_y\,dA
+    \]
+\end{theorem}
+\begin{proof}
+    Let \(C\) be parametrized by \(\mathbf{r}(t)=(x(t),y(t))\) for \(t\in[a,b]\) with the above definitions. Then 
+    \begin{align*}
+        \oint_C \mathbf{F}\cdot d \mathbf{r}&= \oint_a^b \left\langle P(x,y),Q(x,y) \right\rangle \cdot \left\langle \frac{d x}{d t} ,\frac{d y}{d t}  \right\rangle\,dt \\
+        &=\oint_a^b P(x,y)\frac{d x}{d t}dt + Q(x,y)\frac{d y}{d t}\,dt\\
+        &=\oint_a^{b} Pdx + Qdy\\
+        &=\iint\limits_{D}Q_x -P_y\,dA
+    \end{align*}
+\end{proof}
+\begin{corollary}
+    If \(\mathbf{F}\) is conservative, by \ref{test},
+    \[
+        \iint\limits_{D}Q_x -P_y\,dA = 0
+    \]
+\end{corollary}
+\begin{eg}
+    Evaluate \(\int_C \mathbf{F}\cdot d \mathbf{r}\) where \(\mathbf{F}=\langle xy,x \rangle \) and \(C\) is defined as \(y=\sqrt{4-x^2} \) from \((2,0)\) to \((-2,0)\).\\
+    This curve is a semicircle, and isn't closed. However, it is in the positive orientation. Define \(C_1\) as the line segment from \((-2,0)\) to \((2,0)\) and define 
+    \[
+        \Sigma =C\cup C_1
+    \]
+    \ref{ftc:green} now applies, and we have
+    \[
+        \oint_\Sigma \mathbf{F}\cdot d \mathbf{r}=\iint\limits_{\Gamma }1-x\,dA
+    \]
+    where \(\Gamma \) is the region bdd by \(:S\), and \(\partial \Gamma  = \Sigma \). We can now evaluate the integral.
+    \begin{align*}
+        \iint\limits_{\Gamma }1-x\,dA&=\int_{-2}^2 \int_0^{\sqrt{4-x^2} }1-x\,dydx\\
+        &= \int_0^\pi  \int_0^2 r-r^2 \cos \theta \,drd \theta \\
+        &=\int_0^\pi \frac{2^2}{2}-\frac{2^3}{3}\cos \theta \,d \theta \\
+        &=\int_0^\pi 2-\frac{8}{3}\cos \theta \,d \theta \\
+        &=2\pi -\frac{8}{3}(\sin \pi -\sin 0)\\
+        &=2\pi 
+    \end{align*}
+    To find the value of the original integral, we take \(\oint_\Sigma \mathbf{F}\cdot d \mathbf{r}- \int_{C_1}\mathbf{F}\cdot d \mathbf{r}\). To find the second integral, we need to parametrize \(C_1\):
+    \[
+        C_1 : \mathbf{r}(t)=(1-t)\left\langle -2,0 \right\rangle +t\left\langle 2,0 \right\rangle = \left\langle -2+4t,0 \right\rangle
+    \]
+    and give 
+    \begin{align*}
+        \int_{C_1}\mathbf{F}\cdot d \mathbf{r}&=\int_0^1 \langle (-2+4t)(0),(-2+4t) \rangle \cdot \left\langle 4,0 \right\rangle \,dt\\
+        &=\int_0^1 0\,dt\\
+        &=0
+    \end{align*}
+    \[
+        \therefore \oint_{C}\mathbf{F}\cdot d \mathbf{r}= 2\pi
+    \]
+\end{eg}
