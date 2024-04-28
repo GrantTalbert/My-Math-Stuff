@@ -51,8 +51,13 @@ $$A=\begin{pmatrix}0\\0\\1\end{pmatrix}\Longrightarrow A^T=\begin{pmatrix}0&0&1\
 	where $\R^{n\times n}$ denotes the set of all $n\times n$ matrices with real entries. It follows from the above proposition that the matrix $B$ is the multiplicative \emph{inverse} of $A$.\\
 	A matrix such that $\nexists B\in\R^{n\times n}(AB=BA=I_n)$ is known as noninvertible or singular.
 \end{definition}
+\begin{remark}
+	We say that
+	\[\operatorname{GL}_n(\mathbb{F})\coloneqq \left\{ A\in M_{n,n}(\mathbb{F}) \mid \exists A^{-1} \in M_{n,n}\left( A A^{-1} =A^{-1} A = I_n \right)   \right\}  \]
+	and we call this set the general linear of order \(n\) with entries from \(\mathbb{F}\). In this class, we generally assume \(\mathbb{F}=\mathbb{R}\), so omitting the set for which the entries are from should be interpreted as \(\mathbb{R}\).
+\end{remark}
 \begin{proposition}
-	$$\nexists (A\in\R^{m\times n}\land m\neq n)(\exists B\in\R^{n\times m}(AB=BA=I))$$
+	If \(A\) is an \(m\times n\) matrix with \(m\neq n\), then \(A\notin \operatorname{GL} \) of any order.
 \end{proposition}
 \begin{theorem}[Uniqueness of an Inverse]\label{thm:5}
 	If $A$ is an inverse matrix, then its inverse is unique:

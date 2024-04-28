@@ -157,11 +157,7 @@ This theorem is fairly confusing. This is basically a generalization of the matr
     \]
 \end{solution}
 \section{Transition Matrices and Similarity}
-Suppose we know some matrix \(A\) that gives a linear map \(T\) relative to some basis \(\mathcal{B} \), but we want the matrix \(A^{\prime} \) that gives \(T\) relative to a different basis \(\mathcal{B} ^{\prime} \).
-\begin{figure}[ht]
-    \incfig{SimMatrix}
-\end{figure}
-Let \(P\) give \([\mathbf{v}]_\mathcal{B} = P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\). It follows that \([\mathbf{v}]_{\mathcal{B} ^{\prime} }=P ^{-1} [\mathbf{v}]_\mathcal{B} \). By taking \(P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\), we can convert \(\mathbf{v}\) into the basis \(\mathcal{B} \) and then use \(A\) to perform the transformation \(T\):
+Suppose we know some matrix \(A\) that gives a linear map \(T\) relative to some basis \(\mathcal{B} \), but we want the matrix \(A^{\prime} \) that gives \(T\) relative to a different basis \(\mathcal{B} ^{\prime} \). Let \(P\) give \([\mathbf{v}]_\mathcal{B} = P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\). It follows that \([\mathbf{v}]_{\mathcal{B} ^{\prime} }=P ^{-1} [\mathbf{v}]_\mathcal{B} \). By taking \(P[\mathbf{v}]_{\mathcal{B} ^{\prime} }\), we can convert \(\mathbf{v}\) into the basis \(\mathcal{B} \) and then use \(A\) to perform the transformation \(T\):
 \[
     [T(\mathbf{v})]_{\mathcal{B} } = AP[\mathbf{v}]_{\mathcal{B} ^{\prime} }
 \]
@@ -169,3 +165,66 @@ Taking \(P ^{-1} \) on this \([T(\mathbf{v})]_{\mathcal{B} }\) gives
 \[
     [T(\mathbf{v})]_{\mathcal{B}^{\prime}  } = P ^{-1} AP [\mathbf{v}]_{\mathcal{B} ^{\prime} }
 \]
+This is the idea of similar matrices.
+\begin{definition}[Similar Matrices]
+    For \(A,A^{\prime} \in M_{n,n}\), we say that \(A^{\prime} \) is similar to \(A\) if there exists some invertible matrix \(P\in M_{n,n} \) such that 
+    \[
+        A^{\prime} =P ^{-1} A P
+    \]
+\end{definition}
+\begin{theorem}
+    Similar matrices define an equivalence relation on the set of all matrices. That is, if \(\sim \) denotes similar matrices, then
+    \[
+        A\sim A
+    \] 
+    \[
+        A\sim B \Longrightarrow B\sim A
+    \]
+    \[
+        A\sim B \land B\sim C \Longrightarrow A\sim C
+    \]
+    for all \(A,B,C\in M_{n,n}\).
+\end{theorem}
+\begin{proof}
+    Let \(A,B,C\in M_{n,n}\). Trivially, \(A\sim A\) by the identity matrix:
+    \[
+        I_nAI_n^{-1} =A
+    \]
+    \[
+        \therefore A\sim A
+    \]
+    Now let \(A\sim B\). Thus, there exists some invertible \(P\in M_{n,n}\) such that 
+    \[
+        A = P ^{-1} B P
+    \]
+    Since \(P\) is invertible, we have 
+    \begin{align*}
+        \Longrightarrow&   PA = BP\\
+        \Longrightarrow& PA P ^{-1} =B
+    \end{align*}
+    \[
+        \therefore A\sim B \Longrightarrow B\sim A
+    \]
+    Finally, let \(A\sim B\) and \(B\sim C\). Thus, there exist invertible matrices \(P,L\in M_{n,n}\) such that
+    \[
+        A = P ^{-1} BP
+    \]
+    and
+    \[
+        B = L^{-1} C L
+    \]
+    It follows that we have 
+    \[
+        A=P ^{-1} L^{-1} CLP
+    \]
+    By \ref{prowotogen}, \((LP)^{-1} =P ^{-1} L^{-1} \). Define \(M\coloneqq LP\) and \(M^{-1} \coloneqq (LP)^{-1} =P ^{-1} L^{-1} \). We thus have 
+    \[
+        A = M^{-1} CM
+    \]
+    Since \(M\in M_{n,n}\), we are done. Therefore, 
+    \[
+        A\sim B\land B\sim C\Longrightarrow A\sim C
+    \]
+    and thus \(\sim \) defines an equivalence relation on \(M_{n,n}\).
+\end{proof}
+One advantage of using similar matrices, which we will see on full display in the next chapter, is finding diagonal matrices that act on a set equivalently to a different matrix, since the products of diagonal matrices are much easier to compute.
