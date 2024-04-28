@@ -1145,14 +1145,14 @@ If left and right cosets are the same or it's obvious which coset is being refer
 \begin{proof}
 	Proof not provided, I will do this when im not exhausted i think
 \end{proof}
-\begin{theorem}
+\begin{theorem}\label{cospart}
 	Let \(H\) be a subgroup of some group \(H\). The left cosets of \(H\) in \(G\) partition \(G\).
 \end{theorem}
 \begin{proof}
 	Let \(g_1,g_2\in G\) and \(g_1 H\), \(g_2 H\) be left cosets of \(H\) in \(G\). We must show that \(g_1 H \cap g_2 H = \varnothing \) or \(g_1 H = g_2 H\). Suppose \(g_1 H \cap g_2 H \neq \varnothing \). It follows that there exists some \(a\in g_1 H \cap g_2 H\). By definition of a left coset, \(a=g_1 h_1 = g_2 h_2\) for some \(h_1,h_2\in H\). Thus, \(g_1 =g_2 h_2 h^{-1} _1\). Since \(H\) is a subgroup, \(h^{-1} _1\in H\) and \(h_2 h^{-1} _1 \in H\). Therefore, \(g_2 h_2 h^{-1} _1 \in g_2 H\). This implies \(g_1\in g_2 H\). By lemma \ref{lma:6.3}, \(g_1 H = g_2 H\). Therefore, \(g_1 H\cap g_2 H \neq \varnothing \Longrightarrow g_1 H = g_2 H \).
 \end{proof}
 There is nothing special in this proof for left cosets, so we can define an equivalent statement for right cosets of \(H\) in \(G\).
-\begin{definition}[Index]
+\begin{definition}[Index]\label{indx}
 	Let \(G\) be a group with subgroup \(H\). Define the \textbf{index} of \(H\) in \(G\) to be the number of left cosets of \(H\) in \(G\), denoted \([G:H]\).
 \end{definition}
 \begin{theorem}
@@ -1165,4 +1165,234 @@ There is nothing special in this proof for left cosets, so we can define an equi
 	\]
 \end{proof}
 \section{Lagrange's Theorem}
+\begin{proposition}\label{prowo}
+	Let \(H\) be a subgroup of \(G\) with \(g\in G\) and define the map \(\phi :H\to gH\) by \(\phi (h)=gh\). \(\phi \) is bijective, and thus \(\vert H \vert=\vert gH \vert  \).
+\end{proposition}
+\begin{proof}
+	To show \(\phi \) is injective, let \(h_1,h_2\in H\) with \(h_1 =h_2\). We must show that this implies \(\phi (h_1)=\phi (h_2)\). Notice that \(\phi (h_1)=gh_1\) and \(\phi (h_2)=gh_2\). Thus we have
+	\[
+		\phi (h_1)h^{-1}_1 =gh_1 h_1 ^{-1} =g
+	\]
+	\[
+		\phi (h_2)h^{-1} _2 = gh_2 h_2 ^{-1} =g
+	\]
+	However, inverses are unique, so \(h_1 = h_2 \Longrightarrow h_1 ^{-1} =h_2 ^{-1} \). Therefore, we have
+	\begin{align*}
+		&\qquad \phi (h_2)h_2 ^{-1} = \phi (h_2)h_1 ^{-1}\\
+		&\Longrightarrow \phi (h_1)h_1 ^{-1} =\phi (h_2) h_1 ^{-1} \\
+		&\Longrightarrow \phi (h_1)=\phi (h_2)
+	\end{align*}
+	Therefore, \(\phi \) is injective. Now we must show that \(\phi \) is surjective by showing that for any \(\alpha \in gH\), there exists a corresponding \(h\in H\) such that \(\phi (h)=\alpha \). To do this, start by recognizing that \(\alpha \) can be written as some \(gh\), and that \(\phi \) by definition maps \(h\mapsto gh\). Therefore, for any \(gh\in gH\), simply notice that \(h\in H\) has \(\phi (h)=gh\). Therefore, \(\phi \) is bijective.
+\end{proof}
+\begin{theorem}[Lagrange's Theorem]
+	Let \(G\) be a finite group with subgroup \(H\). Then \(\vert G \vert /\vert H \vert = [G:H]  \) is the number of distinct left cosets of \(H\) in \(G\). The number of elements in \(H\) must divide the number of elements in \(G\).
+\end{theorem}
+\begin{proof}
+	By \ref{cospart} and via \ref{indx}, \(G\) is partitioned into \([G:H]\) distinct left cosets. By \ref{prowo}, each coset has \(\vert H \vert \) elements. Since each coset is distinct from the rest, the total number of cosets times the order of each coset will give the order of \(G\). Thus, \(\vert G \vert=[G:H]\vert H \vert  \).
+\end{proof}
+\begin{corollary}\label{cor6.1}
+	Suppose \(G\) is a finite group with \(g\in G\). Then the order of \(g\) must divide \(\vert G \vert \).
+\end{corollary}
+\begin{corollary}\label{cor6.2}
+	Let \(\vert G \vert =p\) with \(p\) as a prime number. Then \(G\) is cyclic and any \(g\in G\) with \(g\neq e\) will be a generator.
+\end{corollary}
+\begin{proof}
+	Let \(g\in G\) with \(g\neq e\). Recall that the order of an element is the number of operations required to return to that original element. Since identities are unique, \(\vert \langle g \rangle   \vert\neq 1 \), and thus \(\vert \langle g \rangle  \vert =p \) since \(p\) is prime and \(\vert \langle g \rangle  \vert \) must divide \(p\) by \ref{cor6.1}. Thus, \(\langle g \rangle =G \).
+\end{proof}
+\begin{remark}
+	The converse of Lagrange's theorem is false. Just because a group can have subgroups of some order does not mean those subgroups actually exist. Proof of this is noted by the next proposition.
+\end{remark}
+\begin{proposition}
+	The group \(A_4\) has no subgroups of order \(6\).
+\end{proposition}
+\begin{proof}
+	Recall from Chapter 5 that \(A_4\) is the set of all even permutations in \(S_4\), and 
+	\[
+		\left\vert A_4 \right\vert = \frac{4!}{2}=12
+	\]
+	Let \(\vert H \vert =6\) and note that \([G:H]=\vert G \vert/ \vert H \vert =2  \). Since one of the cosets is formed by \(eH=H\), there must exist some other element \(g\in A_4\) with \(gH \neq H\). Specifically, \(gH=G\setminus H\), since \(gH\) is what's ``left over'' from the other coset. However, \(He=H\) is also a right coset, and the same logic shows that \(Hg=G\setminus H\). Therefore, \(gH=Hg\). This implies that \(gHg^{-1} =Hgg^{-1} =H\). This means that for any \(g\in G\), \(gH=Hg\), since this holds for both \(gH=H\) or \(gH\neq H\). This shows that for any \(g\in H\), \(ghg^{-1} \in H\) for some \(h\in H\) by the previous logic. Since there are eight cycles of order 3 in \(A_4\), there will exist at least one in \(H\). WLOG, let \((123)\in H\). Then \((123)^{-1} =(132) \in H\). Since \((124),(243)\in A_4\) with inverses \((142),(234)\in A_4\), respectively, we have 
+	\[
+		(124)(123)(124)^{-1} =(124)(123)(142)=(324)=(243)
+	\]
+	Therefore \((243)\in H\), and thus \((243)^{-1} =(234)\in H\). We now have defined 4 elements of \(H\).
+	\[
+		(243)(123)(243)^{-1} =(243)(123)(234)=(142)
+	\]
+	Therefore \((142)\in H\), and thus \((142)^{-1} =(124)\in H\). We have now defined \(6\) elements of \(H\), which is the maximum our assumption allowed for. Now notice that \((1)\in H\), which brings the total to 7. Therefore there exists no such \(H\) with 6 elements, and \(A_4\) has no subgroup of order 6.
+\end{proof}
+\begin{theorem}
+	Two cycles \(\tau ,\mu \in S_n\) have the same order if and only if there exists some \(\sigma \in S_n\) such that \(\mu =\sigma \tau \sigma ^{-1} \).
+\end{theorem}
+\begin{proof}
+	Let
+	\[
+		\tau =\left( a_1,\ldots,a_k \right) 
+	\]
+	\[
+		\mu =\left( b_1,\ldots,b_k \right) 
+	\]
+	Define \(\sigma (a_i)=b_i\) for some index \(i\in\mathbb{N}\). For any \(b_{i} \), observe that 
+	\[
+		\sigma ^{-1} (b_i)=a_i
+	\]
+	\[
+		\mu a_i = a_{i+1} 
+	\]
+	\[
+		\sigma (a_{i+1} )=b_{i+1} 
+	\]
+	\[
+		\mu (b_i)=b_{i+1} 
+	\]
+	where addition in the index is defined to be \((i\,\,\text{mod }k )+1\). Therefore, \(\mu =\sigma \tau \sigma ^{-1} \).\\
+	For the reverse case, let \(\tau \) retain the above definition and let \(\sigma \in S_n\) be arbitrarily chosen such that \(\sigma \tau \sigma ^{-1} =\mu \). If \(\sigma (a_i)=b\) and \(\sigma \left( a_{(i\,\,\text{mod }k )+1} \right)=b^{\prime}  \), then \(\mu (b)=b^{\prime} \). Since \(\sigma \) is bijective, the cycle 
+	\[
+		\mu =\left( \sigma (a_1),\sigma (a_2),\ldots,\sigma (a_k) \right) 
+	\]
+	is the same length as \(^\tau \).
+\end{proof}
+\section{Fermat's and Euler's Theorems}
+The Euler \(\phi \)-Function is the map \(\phi :\mathbb{N}\to \mathbb{N}\) defined as \(\phi (1)=1\) and \(\phi (n)\) as the number of integers that are coprime to \(n\) (\(\operatorname{gcd}(m,n)=1 \) for \(1\leq m<n\)), for \(n>1\).
+\begin{theorem}\label{protogen}
+	Let \(U(n)\) be the group of units in \(\mathbb{Z}_n\). Then \(\vert U_n \vert =\phi (n)\).
+\end{theorem}
+This gives rise to an important theorem in number theory.
+\begin{theorem}[Euler's Theorem (wow great name guys)]
+	Let \(a,n\in\mathbb{Z}\) with \(n>0\) and \(\operatorname{gcd}(a,n)=1 \). Then \(a^{\phi (n)} \equiv 1\,\,(\text{mod }n )\).
+\end{theorem}
+\begin{proof}
+	By \ref{protogen}, \(\vert U(n) \vert=\phi (n) \). Therefore, either \(a^{\phi (n)}=1\) for all \(a\in U(n)\), or \(a^{\phi (n)}-1\) is divisible by \(n\). Therefore, \(a^{\phi (n)} \equiv 1\,\,(\text{mod }n )\).
+\end{proof}
+Notice that, trivially, \(\phi (p)=p-1\) for any prime number. This leads to the special case known as Fermat's Little Theorem, not to be confused with Fermat's Last Theorem.
+\begin{theorem}[Fermat's Little Theorem]
+	Let \(p\) be prime and suppose \(p\nmid a\). Then 
+	\[
+		a^{p-1}\equiv 1\,\,(\text{mod } p)
+	\]
+	Furthermore, for any \(b\in\mathbb{Z}\), \(b^p \equiv b\,\,(\text{mod }p )\).
+\end{theorem}
+\chapter{Isomorphisms}
+(skipping chapters 7 and 8 because i dont find those applications of algebra very interesting, and since I have to take a class on algebra in college anyways id prefer to read what I find \textbf{enjoyable} rather than everything in the textbook).
+\section{Definition and Examples}
+\begin{definition}[Group Isomorphism]
+	Two groups \((G,\cdot)\) and \((H,\circ )\) are \textbf{isomorphic} if there exists a bijective map \(\phi :G\to H\) that preserves the group operation. That is,
+\[
+	\phi (a\cdot b)=\phi (a)\circ \phi (b)
+\]
+for all \(a,b\in G\). If \(G\) is isomorphic to \(H\), we write \(G\cong H\) and call \(\phi \) an isomorphism, specifically a \textbf{group} \textbf{isomorphism}.
+\end{definition}
+\begin{eg}
+	We can show that \(\mathbb{Z}_{4}\cong \langle i \rangle  \). Define \(\phi :\mathbb{Z}_4 \to \langle i \rangle \) as the map \(\phi (n)=i^{n} \). The reasons for such a definition should be self-evident. Brute force can show that \(\phi \) is bijective:
+	\begin{align*}
+		\phi (0)=1&&\phi (1)=i\\
+		\phi (2)=-1&&\phi (3)=-i
+	\end{align*}
+	To show that \(\phi \) preserves the group operation, let \(m,n\in \mathbb{Z}_4\). We have
+	\[
+		\phi (m+n)=i^{m+n}=i^m i^n = \phi (m)\phi (n)
+	\]
+	Therefore the group operation is preserved, and \(\mathbb{Z}_4 \cong \langle i \rangle \).
+\end{eg}
+\begin{eg}
+	The groups \(\mathbb{Z}_8\) and \(\mathbb{Z}_{12} \) cannot be isomorphic, since \(\vert \mathbb{Z}_8 \vert \neq \vert \mathbb{Z}_{12}  \vert  \).
+\end{eg}
+\begin{theorem}\label{isowowo}
+	Let \(\phi :H\to G\) be a group isomorphism. Then the following is true. 
+	\begin{itemize}
+		\item \(\phi ^{-1} :H\to G\) is an isomorphism. 
+		\item \(\vert G \vert =\vert H \vert  \)
+		\item If \(G\) is abelian, then \(H\) is abelian.
+		\item If \(G\) is cyclic, then \(H\) is cyclic.
+		\item If \(G\) has a subgroup of order \(n\), then \(H\) has a subgroup of order \(n\).
+	\end{itemize}
+\end{theorem}
+\begin{proof}
+	The first two follow from the fact that \(\phi \) is a bijection. The proofs of 4 and 5 are left as an exercise, so this should be fun.\\
+	Let \(h_1,h_2\in H\). Since \(\phi \) is surjective, there exist \(g_1,g_2\in G\) such that \(\phi (g_1)=h_1\) and \(\phi (g_2)=h_2\). Let \(G\) be abelian. Therefore,
+	\begin{align*}
+		h_1 h_2 &= \phi (g_1)\phi (g_2)\\
+		&=\phi (g_1 g_2)\\
+		&=\phi (g_2 g_2)\\
+		&=\phi (g_2)\phi (g_1)\\
+		&=h_2 h_1
+	\end{align*}
+	To prove the fourth statement, notice that
+	\[
+		\phi \left( n^k \right) =\phi (n\cdots n)=\phi (n)\cdots \phi (n)=\phi (n)^k
+	\]
+	for some \(k\in\mathbb{Z}\). Let \(G\) be cyclic with \(\langle g \rangle =G \) for some generator \(g\in G\). Let \(\phi (g)=h\). Since \(g\) generates \(G\), any \(g^{\prime} \in G\) can be written as
+	\[
+		g^k = g^{\prime} 
+	\]
+	for some \(k\in\mathbb{Z}\). Therefore, for all \(g^{\prime} \in G\), we have 
+	\[
+		\phi \left( g^{\prime}  \right) =\phi \left( g^k \right) =\phi (g)^k = h^k
+	\]
+	Since \(\phi \) is bijective, any \(h^{\prime} \) can be written as some \(\phi \left( g^{\prime}  \right) \), implying that any \(h^{\prime} \) can thus be written as some \(\phi \left( g^k \right)=h^k\). Therefore, \(H\) is cyclic and \(\langle h \rangle=H \).\\
+	Now we show the fifth condition. Let \(S\) be a subgroup of \(G\) with \(\vert S \vert =n \). We can define the set \(L\) as the set 
+	\[
+		L\coloneqq \left\{ \phi (s) \mid s\in S \right\} 
+	\]
+	If we let \(s_1,s_2\in S\), then \(s_1 s_2 \in S\). Furthermore, \(\phi (s_1 s_2)=\phi (s_1)\phi (s_2)\), and \(\phi (s_1),\phi (s_2)\in L\). However, since \(s_1 s_2\in S\), \(\phi (s_1 s_2)\in L\), and thus \(\phi (s_1)\phi (s_2)\in L\). Therefore, \(L\) is closed under the group operation, and defines a subgroup of \(H\). Because \(\phi \) is a bijection and we can abuse notation to concisely say \(\phi (S)=L\), \(\vert S \vert=\vert L \vert  =n\).
+\end{proof}
+\begin{theorem}
+	All cyclic groups of infinite order are isomorphic to \(\mathbb{Z}\).
+\end{theorem}
+\begin{proof}
+	Let \(G\) be a cyclic group with infinite order and let \(\langle a \rangle =G \) be a generator for \(G\). Define the map \(\phi :\mathbb{Z}\to G\) by \(n\mapsto a^n\). Then 
+	\[
+		\phi (m+n)=a^{m+n}=a^m a^n = \phi (m)\phi (n)
+	\]
+	Now we must show \(\phi \) is a bijection. Let \(m,n\in \mathbb{Z}\) with \(m\neq n\), specifically WLOG \(m>n\). Suppose for purpose of contradiction that \(a^m = a^n\). It follows that 
+	\[
+		a^{m-n}=e \Longrightarrow \Longleftarrow 
+	\]
+	because this contradicts the assumption that \(G\) has infinite order, and \(m-n>0\) is finite. Since \(a\) is a generator for \(G\), \(\phi \) is onto since for any \(\alpha \in G\), there exists some integer \(n\) such that \(\alpha =a^n\), and \(\phi (n)=a^n = \alpha \). Therefore, \(\phi \) is an isomorphism.
+\end{proof}
+\begin{theorem}\label{iwi}
+	Let \(G\) be cyclic with \(\vert G \vert=n \). Then \(G\cong \mathbb{Z}_n\).
+\end{theorem}
+\begin{proof}
+	Let \(G\) be a cyclic group with order \(n\) and generator \(a\in G\). Define the map \(\phi :\mathbb{Z}_n \to G\) by \(k\mapsto a^k\), with \(0\leq k<n\). The proof that \(\phi \) is an isomorphism is left as an exercise wooooooooo\\
+	First, show that \(\phi \) preserves the group operation. Let \(m,r\in \mathbb{Z}_n\). Notice that \(m,r<n\) in \(\mathbb{Z}_n\). Thus,
+	\[
+		\phi (m+r)=a^{m+r}=a^m a^r = \phi (m)\phi (r)
+	\]
+	Now it remains to be shown that \(\phi \) is a bijection. Suppose \(m\neq r\). WLOG, let \(m>r\). Suppose for purpose of contradiction that \(\phi (m)=\phi (r)\). We have
+	\[
+		\phi (m) = \phi (r) \Longrightarrow a^m = a^r \Longrightarrow a^{m-r}=e
+	\]
+	\[
+		m>r\Longrightarrow m-r\neq \alpha n\,\forall \alpha \in\mathbb{Z} \Longrightarrow \Longleftarrow
+	\]
+	Therefore \(m\neq r \Longrightarrow \phi (m)\neq \phi (r)\). It remains only to be shown that \(\phi \) is surjective. Any \(g\in G\) can be written as \(a^k\) for some \(0\leq k<n\). Notice that 
+	\[
+		g =a^k = \phi (k)
+	\]
+	Therefore \(\phi \) is surjective, and \(\therefore G\cong \mathbb{Z}_n\).
+\end{proof}
+\begin{corollary}
+	If \(G\) is a group of order \(p\) with \(p\) as a prime number, then \(G\cong \mathbb{Z}_p\).
+\end{corollary}
+\begin{proof}
+	By \ref{cor6.2}, any \(\vert G \vert =p \) is cyclic. Thus, by \ref{iwi}, \(G\cong \mathbb{Z}_p\).
+\end{proof}
+\begin{theorem}
+	Isomorphisms of groups defines an equivalence relation on the class of all groups.
+\end{theorem}
+\begin{proof}
+	Proof is left as an exercise. Luckily I thought of this about a month ago and already proved it!!!\\
+	Any group is trivially isomorphic to itself by the identity function. Thus, \(G\cong G\) for some group \(G\). Let \(G\) and \(H\) be groups with isomorphism \(\phi :G\to H\). By \ref{isowowo}, \(\phi ^{-1} :H\to G\) is also an isomorphism, so \(G\cong H \Longrightarrow H\cong G\). Now let \(\phi:G\to H \) define the isomorphism \(G\cong H\) and let \(\psi:H\to I \) define the isomorphism \(H\cong I\), where \(I\) is a group. Consider the function \(\psi \circ \phi :G\to I\). Let \(g_1,g_2\in G\). Since \(\phi \) and \(\psi \) are isomorphisms, we have 
+	\[
+		(\psi \circ \phi )(g_1 g_2)=\psi (\phi (g_1 g_2))=\psi (\phi (g_1)\phi (g_2))=\psi (\phi (g_1))\psi (\phi (g_2))=(\psi \circ \phi )(g_1)(\psi \circ \phi )(g_2)
+	\]
+	Therefore \(\psi \circ \phi \) is an isomorphism, and \(G\cong H \land H\cong I \Longrightarrow G\cong I\). Therefore, isomorphisms define an equivalence relation on the class of groups.
+\end{proof}
+The result of this theorem gives a goal of group theory: to classify all groups up to isomorphism with groups that are well studied, since we can treat isomorphic groups as equivalent. This idea gives rise to representation theory, where we represent groups with isomorphic groups we know a lot about. The following theorem is a representation theorem, and a very strong one at that.
+\begin{theorem}[Cayley]
+	Every group is isomorphic to a group of permutations.
+\end{theorem}
+\begin{proof}
+	This proof is complicated ill work through it when i wake up
+\end{proof}
 \end{document}
