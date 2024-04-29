@@ -1,0 +1,87 @@
+\section{Curl and Divergence}
+\begin{definition}[Irrotational/Curl-Free]
+    If \(\mathbf{F}\) is a vector field, then \(\mathbf{F}\) is irrotational at \(P\) if \(\nabla \times \mathbf{F}=\mathbf{0}\).
+\end{definition}
+\begin{definition}[Incompressible/Divergence-Free]
+    If \(\mathbf{F}\) is a vector field, then \(\mathbf{F}\) is incompressible at \(P\) if \(\nabla \cdot \mathbf{F}=0\).
+\end{definition}
+\begin{definition}[Laplace's Operator]
+    We say that
+    \[
+        \nabla \cdot (\nabla f)=\frac{\partial^2 f}{\partial x^2} +\frac{\partial^2 f}{\partial y^2} +\frac{\partial^2 f}{\partial z^2}
+    \]
+    and we abbreviate this as \(\nabla ^2 f\), or sometimes \(\Delta f\). We call this Laplace's Operator.
+\end{definition}
+In operator theory, we use the del operator as a vector of derivatives:
+\[
+    \nabla =\left\langle \frac{\partial }{\partial x_1},\ldots,\frac{\partial }{\partial x_n} \right\rangle
+\]
+where \(\nabla \) is applied to a function of \(n\) variables. This allows us to write
+\[
+    \nabla f(x,y,z)= f\left\langle  \frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\right\rangle=\left\langle  \frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right\rangle
+\]
+which is the conventional use of \(\nabla \). However, it also givs convenient notations for the curl and divergence operations.
+\begin{definition}[Curl]
+    Let \(\mathbf{F}=\langle P,Q,R \rangle \) be a vector field. Then the \textbf{curl} of \(\mathbf{F}\), denoted 
+    \[
+        \operatorname{curl}(\mathbf{F})
+    \]
+    or
+    \[
+        \nabla \times \mathbf{F}
+    \]
+    is calculated as 
+    \[
+        \nabla \times \mathbf{F}=\left\langle R_y - Q_z,P_z - R_x, Q_x - P_y \right\rangle
+    \]
+    Since this is a horrible way to remember this, we can use the notation \(\nabla \times \mathbf{F}\) quite literally, and give the memorization pneumonic:
+    \[
+        \nabla \times \mathbf{F}=\begin{vmatrix}[r]
+            \hati &\hatj  &\hatk   \\[5pt]
+             \frac{\partial }{\partial x}&\frac{\partial }{\partial y}  &\frac{\partial }{\partial z}   \\[5pt]
+             P&Q  &R   \\
+        \end{vmatrix}
+    \]
+\end{definition}
+\begin{theorem}[Test for Conservative Vector Field]
+    If \(\mathbf{F}\) has continuous partial derivatives, \(\mathbf{F}\) is conservative if and only if \(\nabla \times \mathbf{F}=\mathbf{0}\).
+\end{theorem}
+When \(\nabla \times \mathbf{F}=\mathbf{0}\), we say that \(\mathbf{F}\) is curl-free or irrotational.
+\begin{intuition}
+    Curl is the tendency of a vector field to rotate about a point.
+\end{intuition}
+\begin{definition}[Divergence]
+    Let \(\mathbf{F}=\langle P,Q,R \rangle \) be a vector field where \(P_x,Q_y,R_z\) exist. The \textbf{divergence} of \(\mathbf{F}\) is denoted as 
+    \[
+        \operatorname{div}(\mathbf{F})
+    \]
+    or more commonly
+    \[
+        \nabla \cdot \mathbf{F}
+    \]
+    and is defined as 
+    \[
+        \nabla \cdot \mathbf{F}= \left\langle \frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z} \right\rangle \cdot \langle P,Q,R \rangle =P_x +Q_y +R_z
+    \]
+\end{definition}
+\begin{eg}
+    Consider \(\nabla \cdot (\nabla \times \mathbf{F})\), where \(\mathbf{F}=\langle P,Q,R \rangle \). By evaluating the determinant, we find
+    \[
+        \nabla \cdot (\nabla \times \mathbf{F})=\nabla \cdot \left\langle R_y -Q_z,P_z -R_x, Q_x -P_y \right\rangle = R_{yx}-Q_{zx}+P_{zy}-R_{xy} +Q_{xz} -P_{yz} 
+    \]
+    Notice that \(\nabla \cdot \nabla \times \mathbf{F}=\mathbf{0}\) if \(\mathbf{F}\) is continuous, implying that \ref{Clairaut} applies.
+\end{eg}
+From the previous example, we know that for a continuous vector field, it's curl is incompressible. There is a theorem that extends this idea into the decomposition of vector fields known as \textbf{Helmholtz} \textbf{Decomposition}, also \textbf{Helmholtz' Theorem} or the \textbf{Fundamental} \textbf{Theorem} \textbf{of} \textbf{Vector} \textbf{Calculus}. The full statement and proof are beyond this class, but the idea can be stated as follows:\\
+Let \(\mathbf{F} \) be a vector field defined on a domain bounded by a closed surface \(S\subset \mathbb{R} ^3\). \(\mathbf{F} \) can then be expressed as 
+\[
+    \mathbf{F} = \mathbf{CF} +\mathbf{DF} 
+\]
+where \(\mathbf{CF} \) is irrotational and \(\mathbf{DF} \) is incompressible.\\
+I tried to understand this and have yet to fully understand it. I self-taught Lebesgue integration and some elementary measure theory, but I need to further understand the dirac delta function and some strange notation to understand it I believe.
+\begin{intuition}
+    The curl measures the rate of flow of a vector field towards or away from a point.
+\end{intuition}
+Using our knowledge, we can rewrite Green's theorem as 
+\[
+    \oint_C \mathbf{F}\cdot d \mathbf{r} = \iint\limits_{D} \nabla \times \mathbf{F}\cdot \hatk\,dA
+\]

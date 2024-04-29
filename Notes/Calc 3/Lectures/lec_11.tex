@@ -1,0 +1,60 @@
+\section{Parametric Surfaces and Their Areas}
+This section is fascinatingly short. We give the following method for parametrizing surfaces:
+\begin{definition}
+    A surface has a parametrization in terms of two variables. Let \(t,u\in\mathbb{R}\). 
+    \[
+        \mathbf{R}(t,u)=\left\langle x(t,u),y(t,u),z(t,u) \right\rangle
+    \]
+\end{definition}
+Often it's hard to interpret a surface via a parametrization, so we often give the obvious parametrization. For some surface defined as \(f(x,y)=z\), we give the parametrization 
+\[
+    \mathbf{r}(x,y)=\left\langle x,y,f(x,y) \right\rangle
+\]
+\begin{prev}
+    Let \(f(x,y):D\to \mathbb{R}\) define a surface \(S\). Then the area \(\mathcal{A} (S)\) is defined as 
+    \[
+        \mathcal{A} (S)=\iint\limits_{D}\sqrt{1+\left( \frac{\partial f}{\partial x}  \right)^2 + \left( \frac{\partial f}{\partial y}  \right)^2  } 
+    \]
+\end{prev}
+\section{Surface Integrals}
+\begin{definition}[Oriented Surface and its Orientation]
+    If there exists some unit normal vector \(\mathbf{n}\) to a surface \(S\) such that for every \((x,y,z)\in S\), \(\mathbf{n}\) varies continuously over \(S\), then \(S\) is an oriented surface and the choice of \(\mathbf{n}\) gives \(S\) an orientation.
+\end{definition}
+\begin{definition}[Closed Surface]
+    A closed surface is the boundary of some region \(E\subseteq \mathbb{R}^3\).
+\end{definition}
+\begin{definition}[Positive Orientation of Closed Surface]
+    By convention, the positive orientation of a closed surface is outwards.
+\end{definition}
+In regards to the previous definitions, I've elected to bring some of the notes further ahead in the section. Let \(S\) be an oriented surface \(f(x,y)=z\). We define
+\[
+    \mathbf{n}_{up} \coloneqq \frac{\left\langle -f_x,-f_y,1 \right\rangle }{\left\lVert \left\langle -f_x,-f_y,1 \right\rangle \right\rVert }
+\]
+and
+\[
+    \mathbf{n}_{down} \coloneqq \frac{\left\langle f_x,f_y,-1 \right\rangle }{\left\lVert \left\langle f_x,f_y,-1 \right\rangle \right\rVert }
+\]
+by convention, we choose \(\mathbf{n}_{up}  \) to be the positive orientation of \(S\).
+\begin{theorem}[Surface Integral of a Scalar Function]
+    Let \(S\) be a surface defined by the map \(g:D\subseteq \mathbb{R}^2\to \mathbb{R}\) given as \(g(x,y)=z\), with parametrization \(S:\mathbf{r}(x,y)=\left\langle x,y,g(x,y) \right\rangle \) for \((x,y)\in D\). The integral of some function \(f(x,y,z)\) over \(S\) is given as 
+    \[
+        \iint\limits_{S}f(x,y,z)\,dS = \iint\limits_{D}f(\mathbf{r}(x,y))\sqrt{1+g_x^2 +g_y^2}\,dA
+    \]
+    where \(f(\mathbf{r}(x,y))=f(x,y,g(x,y))\) due to our parametrization of \(S\).
+\end{theorem}
+\begin{remark}
+    Surface integrals are tricky to compute, and it is extremely difficult to find ones with ``clean'' answers. As such, the answers to surface integral questions will not necessarily ``look nice''.
+\end{remark}
+\begin{theorem}[Surface Integral of a Scalar Function]
+    Let \(\mathbf{F}\) be a continuous vector field defined on the oriented surface \(S\) with unit normal \(\mathbf{n}\). Then the surface integral of \(\mathbf{F}\) over \(S\) is given as 
+    \[
+        \iint\limits_{S}\mathbf{F}\cdot \mathbf{n}dS \text{ or }  \iint\limits_{S}\mathbf{F}\cdot d \mathbf{S}
+    \]
+    and is calculated as 
+    \[
+        \iint\limits_{S}\mathbf{F}\cdot \mathbf{n}dS = \iint\limits_{S}\mathbf{F}(\mathbf{r}(x,y))\cdot \mathbf{n}\,dA
+    \]
+\end{theorem}
+\begin{remark}
+    Oftentimes the surface integral of a vector field is referred to as the \textbf{flux} of \(\mathbf{F}\) over a surface \(S\), and often is given the symbol \(\Phi \). This can be interpreted as the ``amount of stuff passing through a surface'', such as magnetic fields.
+\end{remark}
