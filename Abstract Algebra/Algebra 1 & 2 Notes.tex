@@ -1392,7 +1392,102 @@ The result of this theorem gives a goal of group theory: to classify all groups 
 \begin{theorem}[Cayley]
 	Every group is isomorphic to a group of permutations.
 \end{theorem}
+\begin{longproof}
+	Let \(G\) be a group. The goal is to find some group of permutations \(\overline{G} \) that is isomorphic to \(G\). For any \(g\in G\), define a function \(\lambda _g :G\to G\) as \(\lambda _g(a)=ga\). We must show each \(\lambda_g\) defines a permutation on \(G\). To show that it is one to one, let \(\lambda _g(a)=\lambda _g(b)\) and notice that 
+	\[
+		\lambda _g(a)=ga
+	\]
+	\[
+		\lambda _g(b)=gb
+	\]
+	\[
+		\Longrightarrow gb=gb \Longrightarrow g=a
+	\]
+	Therefore \(\lambda _g\) is injective. To show that it is surjective, we must show for any \(a\in G\), there exists some \(b\in G\) such that \(\lambda _g(b)=a\). Let \(b=g^{-1} a\). We have \(\lambda _g(b)=a\).\\
+	Now we can define the group \(\overline{G} \):
+	\[
+		\overline{G} \coloneqq \left\{ \lambda _g \mid g\in G \right\}
+	\]
+	It still remains to be shown that \(\overline{G} \) is both a group and that it is isomorphic to \(G\). To show this first thing, since it is more important, we suppose that \(\left( \overline{G} ,\circ  \right) \) is a group. Let \(g,h,k,a\in G\)and consider closure under addition. 
+	\[
+		(\lambda _g \circ \lambda _h)(a)=\lambda _g \left( \lambda _h (a) \right) =\lambda _g (ha)=gha = \lambda_{gh}(a) 
+	\]
+	Since \(G\) is a group, \(gh\in G\), and thus \(\lambda_{gh}\in \overline{G}  \). Next, we show associativity. 
+	\[
+		\left( \lambda _g \circ \left( \lambda _h \circ \lambda_k \right)  \right)(a)= \lambda_g \left(\left(\lambda _h \circ \lambda_k\right)(a)\right)=\lambda _g \left( \lambda _h \left( \lambda _k (a) \right) \right) = \left( \lambda _g \circ \lambda _h \right) \left( \lambda _k(a) \right)
+	\]
+	\[
+		=\left( \left( \lambda _g \circ \lambda _h \right)\circ \lambda _k  \right) (a)
+	\]
+	Therefore \(\overline{G} \) is associative. Notice that \(\lambda_e (a)=ea=a\), meaning \(\lambda_e = \text{id}_G \). As seen previously, this is an additive identity under function composition. Define \(\lambda _g ^{-1} =\lambda _{g^{-1} }\). We have 
+	\[
+		\left( \lambda _{g^{-1} }\circ \lambda _g \right)(a) = g^{-1} g a = a = \lambda _e (a)
+	\]
+	Therefore \(\overline{G} \) is a group under function composition. Now define the isomorphism \(\phi :G\to \overline{G} \) as the map \(g\mapsto \lambda _g\). Trivially, \(\phi \) is surjective. We now show that \(\phi \) is injective. Suppose \(g,h\in G\). Then it follows that 
+	\[
+		\phi (g)=\lambda _g
+	\]
+	and
+	\[
+		\phi (h)=\lambda _h
+	\]
+	Suppose \(\lambda _h = \lambda _g\). For any \(a\in G\),
+	\[
+		ga = \lambda _g(a)=\lambda _h(a)=ha
+	\]
+	Thus, \(\phi \) is injective. Finally, we show that \(\phi \) defines an isomorphism.
+	\[
+		\phi (gh)=\lambda_{gh}=\lambda_g \lambda _h = \phi (g)\phi (h) 
+	\]
+	Therefore, \(G\cong \overline{G} \).
+\end{longproof}
+\begin{remark}
+	The isomorphism in the above proof gives the \textbf{left} \textbf{regular} \textbf{representation} of \(G\).
+\end{remark}
+\section{Direct Products}
+Direct products allow the study of groups via Cartesian products of groups.
+\subsection{External Direct Products}
+\begin{definition}[External Direct Product]
+	Let \((G,\cdot),(H,\circ )\) be groups. We define the \textbf{external} \textbf{direct} \textbf{product} of \(G\) and \(H\) as the Cartesian product \(G\times H\), where for any \((g_1,h_1),(g_2,h_2)\in G\times H\), we define the binary operation as 
+	\[
+		(g_1,h_1)(g_2,h_2)=(g_1\cdot g_2,h_{1}\circ h_2 )
+	\]
+\end{definition}
+\begin{remark}
+	The external direct product can be repeated an arbitrary number of times:
+	\[
+		\prod_{i=1}^n G_i = G_1 \times \cdots \times G_n
+	\]
+	If all these groups are equivalent, we often simply write \(G^n\).
+\end{remark}
+\begin{proposition}
+	Let \(G\) and \(H\) be groups. The external direct product \(G\times H\) is a group.
+\end{proposition}
 \begin{proof}
-	This proof is complicated ill work through it when i wake up
+	Let \((g_1,h_1),(g_2,h_2)\in G\times H\). We have
+	\[
+		(g_1,h_1)(g_2,h_2)=(g_1 g_2,h_1 h_2)
+	\]
+	Since \(G\) and \(H\) are closed under their respective group operations, \(g_1 g_2 \in G\) and \(h_1 h_2 \in H\), and thus \((g_1 g_2,h_1 h_2)\in G\times H\).\\
+	Let \(e_1\) be the identity of \(G\) and \(e_2\) the identity of \(H\), and note that \((e_1,e_2)\in G\times H\). Then we have 
+	\[
+		(g_1,h_1)(e_1,e_2)=(g_1 e_1,h_1 e_2)=(g_1,h_1)
+	\]
+	since each is an identity under their own group. Therefore, \(G\times H\) has an identity.\\
+	For any \((g,h)\in G\times H\), we can define the identity \(\left( g^{-1} ,h^{-1}  \right)\in G\times H \):
+	\[
+		(g,h)\left( g^{-1} ,h^{-1}  \right) = \left( gg^{-1} ,hh^{-1}  \right) =\left( e_1,e_2 \right) 
+	\]
+	Associativity is effort to prove but similarly to the first three it follows directly from the fact that \(G\) and \(H\) are groups.
 \end{proof}
+\begin{theorem}
+	Let \((g,h)\in G\times H\). If \(g\) and \(h\) have finite orders \(r\) and \(s\) respectively, then the order of \((g,h)\) in \(G\times H\) is the least common multiple of \(r\) and \(s\).
+\end{theorem}
+\begin{proof}
+	This should be blatantly obvious I don't know why this proof is so long, but there must be some reason. Anyways if \((g,h)^m = \left( g^m,h^m \right)=(e_G,e_H) \) then \(m\) must be some multiple of both \(r\) and \(s\) in order for this to occur. Thus, the least common multiple must be the order.
+\end{proof}
+\begin{corollary}
+	Let \((g_1,\ldots,g_n)\in \prod G_i\). If \(g_i\) has finite order \(r_i\) in \(G_i\), then the order of \((g_1,\ldots,g_n)\in \prod G_i\) is the least common multiple of \(r_1,\ldots,r_n\).
+\end{corollary}
+
 \end{document}
