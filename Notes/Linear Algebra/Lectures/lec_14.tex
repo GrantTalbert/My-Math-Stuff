@@ -1,0 +1,61 @@
+\chapter{Eigenvalues and Eigenvectors}
+\section{Eigenvalues and Eigenvectors}
+Sometimes, for a linear transformation \(T:\mathbb{R} ^n \to \mathbb{R} ^n\) given by \(A\in M_{n,n}\), there exists some \(\lambda\in \mathbb{R}  \) and nonzero \(\mathbf{v} \in\mathbb{R} ^n\) such that 
+\[
+    A \mathbf{x} =\lambda  \mathbf{x} 
+\]
+These values are extremely important, and are known as eigenvalues and eigenvectors.
+\begin{definition}[Eigenvalues and Eigenvectors]
+    Let \(A\in M_{n,n}\). If there exists a nonzero vector \(\mathbf{x} \) and scalar \(\lambda \) such that \(A \mathbf{x} =\lambda  \mathbf{x} \), then we call \(\lambda \) an \textbf{eigenvalue} of \(A\), and \(\mathbf{x} \) is the \textbf{eigenvector} corrsponding to \(\lambda \).
+\end{definition}	
+\begin{theorem}[Eigenspace]
+    Let \(A\in M_{n,n}\) have eigenvalue \(\lambda \). The set
+    \[
+        E\coloneqq \left\{ \mathbf{x} \mid A \mathbf{x} =\lambda \mathbf{x} \land \mathbf{x} \neq \mathbf{0}  \right\} \cup \{ \mathbf{0}  \}
+    \]
+    is a subspace of \(\mathbb{R} ^n\), called the \textbf{eigenspace} of \(\lambda \).
+\end{theorem}
+\begin{proof}
+    Let \(\mathbf{u} ,\mathbf{v} \in E\). Then \(A \mathbf{u} =\lambda  \mathbf{u} \) and \(A \mathbf{v} =\lambda \mathbf{v} \). It follows that 
+    \begin{align*}
+        A(\mathbf{u} +\mathbf{v} )&=A \mathbf{u} +A \mathbf{v} \\
+        &=\lambda \mathbf{u} +\lambda \mathbf{v} \\
+        &=\lambda (\mathbf{u} +\mathbf{v} )
+    \end{align*}
+    Therefore, \(A(\mathbf{u} +\mathbf{v} )=\lambda (\mathbf{u} +\mathbf{v} )\), and thus \(\mathbf{u} +\mathbf{v} \in E\). Similarly, let \(a\in\mathbb{R} \) and observe that
+    \begin{align*}
+        A(a \mathbf{v} )&=a(A \mathbf{v} )\\
+        &=a(\lambda \mathbf{v} )\\
+        &=\lambda (a \mathbf{v} )
+    \end{align*}
+    Therefore, \(A(a \mathbf{v} )=\lambda (a \mathbf{v} )\), and thus \(a \mathbf{v} \in E\). Finally, \(\mathbf{0}\in E \) by definition. Since \(E\) is closed under vector addition, scalar multiplication, and is nonempty, \(E\) forms a subspace of \(\mathbb{R} ^n\).
+\end{proof}
+\begin{theorem}[Eigenvalues and Eigenvectors of a Matrix]
+    Let \(A\in M_{n,n}\). An eigenvalue of \(A\) is a scalar \(\lambda \) such that \(\det \left( \lambda I - A \right)=0 \), and the eigenvectors of \(A\) corresponding to \(\lambda \) are the nonzero solutions of \(\left( \lambda I-A \right)\mathbf{x} =\mathbf{0}  \).
+\end{theorem}
+\begin{proof}
+    Let \(A \mathbf{x} =\lambda \mathbf{x} \). We have
+    \[
+        A \mathbf{x} = (\lambda I)\mathbf{x}
+    \]
+    \[
+        \Longrightarrow A \mathbf{x} -(\lambda I)\mathbf{x} = \mathbf{0} 
+    \]
+    \[
+        \Longrightarrow (A-\lambda I)\mathbf{x} =\mathbf{0} 
+    \]
+    If \(A-\lambda I\) is invertible, there will only exist the solution \(\mathbf{x} =\mathbf{0} \). Thus, we require \(\det (A-\lambda I)=0\).
+\end{proof}
+\begin{remark}
+    The equation \(\det (\lambda I-A)=0\) is called the characteristic equation of \(A\), and the corresponding polynomial \(\lambda ^n + c_{n-1}\lambda^{n-1}+\cdots+c_1 \lambda  + c_0=\det (\lambda I-A ) \) is called the caracteristic polynomial of \(A\).
+\end{remark}
+The process for finding eigenvalues and eigenvectors for some \(A\in M_{n,n}\) is summarized as
+\begin{enumerate}
+    \item Form the characteristic equation \(\det (\lambda I-A)=0\), a polynomial of degree \(n\).
+    \item Find the \(n\) roots guarenteed by the Fundamental Theorem of Algebra (this class only focuses on real roots but complex roots are still eigenvalues)
+    \item For each \(\lambda _i\), solve the homogeneous system \((\lambda_i I - A)\mathbf{x} =\mathbf{0} \) via rrefing an \(n\times n\) matrix to determine all eigenvectors of \(\lambda_i\).
+\end{enumerate}
+\begin{theorem}[Eigenvalues of Triangular Matrices]
+    If \(A\in M_{n,n}\) is triangular, then the eigenvalues of \(A\) are the entries on its diagonal.
+\end{theorem}
+\section{Diagonalization}
