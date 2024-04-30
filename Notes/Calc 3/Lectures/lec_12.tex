@@ -1,0 +1,18 @@
+\section{Stokes' Theorem}
+\begin{theorem}[Stokes]
+    Let \(\Sigma \) be an oriented, piecewise smoot surface bounded by a simple, closed,, piecewise smooth boundary curve \(\Gamma \coloneqq \partial \Sigma \) with positive orientation. Let \(\mathbf{F} \) be a vector field whos components have continuous partial derivatives on an open region containing \(\Sigma \). Then
+    \[
+        \iint\limits_{\Sigma }\nabla \times \mathbf{F} \cdot d \boldsymbol{\Sigma} = \oint_{\partial \Sigma }\mathbf{F} \cdot d \boldsymbol{\Gamma}
+    \]
+\end{theorem}
+If \(\mathbf{n} \) is a unit normal for \(\Sigma \) along the positive orientation and \(\Gamma :\mathbf{r} \), then this can be restated more intuitively as 
+\[
+    \iint\limits_{\Sigma }\nabla \times \mathbf{F} \cdot \mathbf{n} dS = \oint_{\Gamma }\mathbf{F} \cdot d \mathbf{r} 
+\]
+\section{The Divergence Theorem}
+\begin{theorem}[The Divergence Theorem/Gauss' Theorem]
+    Let \(E \subset \mathbb{R}^3\) be a simple, solid region with \(S\coloneqq \partial E\), given with positive orientation. Let \(\mathbf{F} \) be a vector field whos components have continuous partials on an open region containing \(E\). Then
+    \[
+        \iiint\limits_{E}\nabla \cdot \mathbf{F} \,dV = \iint\limits_{S}\mathbf{F} \cdot \mathbf{n} \,dS
+    \]
+\end{theorem}
