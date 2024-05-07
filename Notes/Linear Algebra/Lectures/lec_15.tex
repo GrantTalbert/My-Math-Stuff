@@ -1,0 +1,61 @@
+The diagonalization problem is a classic problem in linear algebra, and it deals with determining when some \(A\in M_{n\times n}\) is diagonalizable and actually diagonalizing it.
+\begin{problem}
+    For some \(A\in M_{n\times n}\), does there exist an invertible matrix \(P\) such that \(P ^{-1} AP\) is a diagonal matrix?
+\end{problem}
+One example for how this reduces computation time is to consider some \(A^k\).
+\[
+    A^k = \left( P ^{-1} DP \right)^k = \left( P ^{-1} DP \right)\cdots\left( P ^{-1} DP \right)= P ^{-1} D^k P
+\]
+Obviously this is easier to compute.
+\begin{definition}[Diagonalizable Matrix]
+    Let \(A\in M_{n,n}\). \(A\) is diagonalizable if if is similar to a diagonal matrix.
+\end{definition}
+\begin{theorem}
+    Let \(A\sim B\) be similar matrices. Then they have the same eigenvalues.
+\end{theorem}
+\begin{proof}
+    Let there exist \(P\in \operatorname{GL}_n(\mathbb{C} ) \) with
+    \[
+        A = P ^{-1} BP
+    \]
+    Let
+    \[
+        A \mathbf{x} =\lambda \mathbf{x} 
+    \]
+    It follows that
+    \[
+        \det (\lambda I - A)=\det \left(\lambda I - P ^{-1} BP\right)=\det \left( P ^{-1} \lambda IP - P ^{-1} BP \right)
+    \]
+    \[
+        =\det \left( P ^{-1} (\lambda I - B)P \right) =\det (P ^{-1} )\det (\lambda I - B)\det (P) = \det (\lambda I-B)
+    \]
+    Therefore they have the same characteristic polynomial.
+\end{proof}
+\begin{theorem}[Condition for Diagonalization]
+    An \(n\times n\) matrix is diagonalizable iff it has \(n\) linearly independent eigenvectors.
+\end{theorem}
+\begin{theorem}[Steps for Diagonalizing a Matrix]
+    Let \(A\in M_{n\times n}\). To diagonalize \(A\),
+    \begin{enumerate}
+        \item Find \(n\) linearly independent eigenvectors \(\mathbf{p}_1,\ldots,\mathbf{p} _n\) with corresponding eigenvalues \(\lambda _1\ldots,\lambda _n\).
+        \item Let \(P\in M_{n\times n}\) be the matrix with columns composed of these eigenvectors:
+        \[
+            \begin{bmatrix}
+                \mid  & \mid  &\cdots  & \mid    \\
+                 \mathbf{p} _1&\mathbf{p} _2  &\cdots  &\mathbf{p} _n   \\
+                \mid  & \mid  & \cdots  & \mid   \\
+            \end{bmatrix}
+        \]
+        \item The diagonal matrix \(D=P ^{-1} AP=\diag (\lambda _1,\ldots,\lambda _n)\).
+    \end{enumerate}
+\end{theorem}
+\begin{remark}
+    The eigenvalues \(\lambda _1,\ldots,\lambda _n\) in step 1 may not be distinct.
+\end{remark}
+\begin{remark}
+    Finding the \(n\) linearly independent eigenvectors in step 1 is straightforward - we only need to find a basis for the eigenspace of each eigenvector, and the set of all vectors in these bases forms the desired set.
+\end{remark}
+\begin{theorem}[Sufficient Condition for Diagonalization]
+    Let \(A\in M_{n\times n}\) have \(n\) distinct eigenvalues. Then \(A\) is diagonalizable.
+\end{theorem}
+For a linear transformation \(T\) given by \(A\in M_{n\times n}\), the problem of diagonalization is equivalent to finding a basis for which \(T\) is diagonal. 
