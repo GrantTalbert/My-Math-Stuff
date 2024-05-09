@@ -1,0 +1,48 @@
+\section{Symmetric Matrices and Orthogonal Diagonalization}
+\begin{definition}[Symmetric Matrices]
+    A symmetric matrix \(A\) is any matrix such that \(A=A^T\).
+\end{definition}
+\begin{theorem}[Real Spectral Theorem]
+    Let \(A\in M_{n\times n}\) be symmetric. Then
+    \begin{itemize}
+        \item \(A\) is diagonalizable.
+        \item All eigenvalues of \(A\) are real.
+        \item If \(\lambda \) is an eigenvalue of \(A\) with multiplicity \(k\), then the eigenspace of \(\lambda \) has dimension \(k\).
+    \end{itemize}
+\end{theorem}
+\begin{definition}[Orthogonal Matrices]
+    Let \(A\in \operatorname{GL}_n(\mathbb{R} ) \). We say that \(A\) is orthogonal iff \(A=A^{-1} \).
+\end{definition}
+\begin{theorem}
+    A square matrix is orthogonal if and only if its columns form an orthonormal set.
+\end{theorem}
+\begin{theorem}[Property of Symmetric Matrices]
+    Let \(A\) be symmetric with distinct eigenvalues \(\lambda _1,\lambda _2\). If \(\mathbf{x} _1\) and \(\mathbf{x} _2\) are the eigenvectors corresponding to \(\lambda _1\) and \(\lambda _2\), then \(\mathbf{x} _1\) and \(\mathbf{x} _2\) are orthogonal.
+\end{theorem}
+\begin{proof}
+    Let \(\lambda _1 \mathbf{x} _1 = A \mathbf{x} _1\) and \(\lambda _2 \mathbf{x} _2 = A \mathbf{x} _2\) with \(\lambda _1 \neq \lambda _2\). We have
+    \begin{align*}
+        \lambda_1 (\mathbf{x} _1 \cdot \mathbf{x} _2)&= (\lambda _1 \mathbf{x} _1)\cdot \mathbf{x} _2\\
+        &=A \mathbf{x} _1 \cdot \mathbf{x} _2\\
+        &\cong (A \mathbf{x} _1)^T \mathbf{x} _2\\
+        &= \mathbf{x} _1^T A^T \mathbf{x} _2\\
+        &=\mathbf{x} _1^T A \mathbf{x} _2\\
+        &=\mathbf{x} _1^T \lambda \mathbf{x} _2\\
+        &=\lambda _2 \mathbf{x} _1^T \mathbf{x} _2\\
+        &\cong \lambda _2(\mathbf{x} _1 \cdot \mathbf{x} _2)
+    \end{align*}
+    Therefore, \(\lambda_1 (\mathbf{x} _1\cdot \mathbf{x} _2)=\lambda _2 (\mathbf{x} _1\cdot \mathbf{x} _2)\). Letting \(\mathbf{x} _1\cdot \mathbf{x}_2 \neq 0\) implies that \(\lambda _1 =\lambda _2 \Longrightarrow \Longleftarrow\), so \(\mathbf{x} _1 \cdot \mathbf{x} _2 = 0\).
+\end{proof}
+\begin{definition}[Orthogonal Diagonalization]
+    A matrix \(A\) is orthogonally diagonalizable if there exists an orthogonal matrix \(P\) with \(P ^{-1} AP=D\) being diagonal.
+\end{definition}	
+\begin{theorem}[Fundamental Theorem of Symmetric Matrices]
+    Let \(A\) be a square matrix. Then \(A\) is orthogonally diagonalizable if and only if \(A\) is symmetric.
+\end{theorem}
+Let's take a break from the rapid fire definitions and theorems (not proofs for some reason) to go over a method for orthogonally diagonalizing a matrix. Let \(A\in M_{n\times n}\) be symmetric.
+\begin{enumerate}
+    \item Find all eigenvalues of \(A\) and determine their multiplicity.
+    \item Find each eigenvector corresponding to each eigenvalue. Recall that for eigenvalues of multiplicity \(\neq 1\), there will be more than 1 eigenvector. Normalize each eigenvector.
+    \item If the set is not orthonormal, apply the Gram-Schmidt orthonormalization process.
+    \item This will product a set of \(n\) orthonormal eigenvectors. Use these to form the columns of \(P\), and the resulting matrix of \(P ^{-1} AP=D\) will have the eigenvalues on the diagonal, with an order corresponding to the order of the eigenvectors.
+\end{enumerate}
